@@ -1,7 +1,6 @@
 import React from "react";
 import { Hero } from "@/components/sections/home/Hero";
 import { Overview } from "@/components/sections/home/Overview";
-import { Stats } from "@/components/sections/home/Stats";
 import { Services } from "@/components/sections/home/Services";
 import { RentalTeaser } from "@/components/sections/home/RentalTeaser";
 import { FeaturedProjects } from "@/components/sections/home/FeaturedProjects";
@@ -14,12 +13,11 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <ClientLogos />
       <Overview />
-      <Stats />
       <Services />
       <RentalTeaser />
       <FeaturedProjects />
-      <ClientLogos />
       <Certifications />
       <MissionVision />
       <Leadership />

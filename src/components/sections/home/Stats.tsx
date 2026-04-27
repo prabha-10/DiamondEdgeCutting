@@ -4,7 +4,6 @@ const stats = [
   { value: "17+", label: "Years operating in the UAE" },
   { value: "300+", label: "Trained professionals" },
   { value: "18+", label: "Headline projects delivered" },
-  { value: "#1", label: "Robotic demolition fleet in GCC" },
 ];
 
 export function Stats() {

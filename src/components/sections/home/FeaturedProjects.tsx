@@ -2,106 +2,135 @@
 
 import React, { useRef } from "react";
 import Link from "next/link";
-import { Button } from "@/components/ui/Button";
-import { ArrowRight } from "lucide-react";
-// In a real project with full GSAP integration, we would use useGSAP here.
-// For now, we will just structure the horizontal scrolling section with standard CSS overflow.
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 const featuredProjects = [
   {
     title: "Concrete Chimney Tower",
+    year: "2024",
     location: "Jebel Ali, Dubai",
-    scope: "Complete demolition of a 90m concrete chimney to ground using custom spider robotic machine.",
     slug: "jebel-ali-chimney-tower",
-    image: "placeholder-chimney" // Replace with actual image path
+    image:
+      "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1200&q=80",
   },
   {
     title: "Marsa Al Arab",
+    year: "2023",
     location: "Dubai",
-    scope: "Demolition of 3600 Bar, Verdana Beach building, breakwater concrete elements, and slipway.",
     slug: "marsa-al-arab",
-    image: "placeholder-marsa"
+    image:
+      "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=80",
   },
   {
-    title: "Dubai International Airport, Concourse 4",
+    title: "DXB Concourse 4",
+    year: "2024",
     location: "Dubai",
-    scope: "Controlled demolition of 23 Northern Apron Buildings.",
     slug: "dxb-concourse-4",
-    image: "placeholder-dxb"
+    image:
+      "https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?w=1200&q=80",
   },
   {
-    title: "Vale Oman Pelletiser Plant",
+    title: "Vale Pelletiser Plant",
+    year: "2023",
     location: "Sohar, Oman",
-    scope: "Refractory linings removal at Sohar pelletiser plant.",
     slug: "vale-oman-pelletiser",
-    image: "placeholder-vale"
-  }
+    image:
+      "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=1200&q=80",
+  },
 ];
 
 export function FeaturedProjects() {
   const scrollRef = useRef<HTMLDivElement>(null);
 
+  const scrollBy = (dir: 1 | -1) => {
+    if (!scrollRef.current) return;
+    const cardWidth = scrollRef.current.firstElementChild?.clientWidth ?? 600;
+    scrollRef.current.scrollBy({ left: dir * (cardWidth + 32), behavior: "smooth" });
+  };
+
   return (
-    <section className="py-32 bg-white overflow-hidden border-t border-brand-gray-100">
-      <div className="container mx-auto px-4 md:px-8 mb-16 flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
-        <h2 className="text-5xl md:text-7xl font-bold text-brand-gray-900 max-w-2xl leading-none tracking-tight">
-          Selected Works
-        </h2>
-        <Button asChild variant="outline" className="rounded-full px-8 h-12 hidden md:flex shrink-0">
-          <Link href="/projects">
-            All Projects
-          </Link>
-        </Button>
+    <section className="py-24 bg-brand-gray-100 overflow-hidden">
+      {/* Header row */}
+      <div className="container mx-auto px-4 md:px-8 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 items-center gap-6">
+          {/* Left: eyebrow + nav arrows */}
+          <div className="flex items-center gap-6">
+            <div className="flex items-center gap-2.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-brand-gray-500" />
+              <span className="font-['Inter_Display',sans-serif] text-[14px] text-[#707070]">
+                Our works
+              </span>
+            </div>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => scrollBy(-1)}
+                className="w-10 h-10 rounded-full bg-brand-gray-300 text-brand-gray-900 flex items-center justify-center hover:bg-brand-gray-300/80 transition-colors"
+                aria-label="Previous"
+              >
+                <ArrowLeft className="w-4 h-4" strokeWidth={2} />
+              </button>
+              <button
+                onClick={() => scrollBy(1)}
+                className="w-10 h-10 rounded-full bg-brand-gray-900 text-white flex items-center justify-center hover:bg-brand-gray-700 transition-colors"
+                aria-label="Next"
+              >
+                <ArrowRight className="w-4 h-4" strokeWidth={2} />
+              </button>
+            </div>
+          </div>
+
+          {/* Center: heading */}
+          <h2 className="font-sans font-semibold text-brand-gray-900 text-[48px] md:text-[56px] leading-none tracking-tight md:text-center">
+            Selected Projects
+          </h2>
+
+          {/* Right: description */}
+          <p className="font-['Inter_Display',sans-serif] font-normal text-[#707070] text-[18px] leading-[24px] md:text-right md:max-w-[320px] md:ml-auto">
+            A look at some of the projects we&apos;ve demolished, cut, and dismantled.
+          </p>
+        </div>
       </div>
 
-      {/* Horizontal Scroll Container */}
+      {/* Horizontal scroll cards */}
       <div className="pl-4 md:pl-8 lg:pl-[max(2rem,calc((100vw-1536px)/2+2rem))]">
-        <div 
+        <div
           ref={scrollRef}
-          className="flex gap-8 overflow-x-auto pb-12 snap-x snap-mandatory hide-scrollbar"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          className="flex gap-8 overflow-x-auto pb-4 snap-x snap-mandatory hide-scrollbar"
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
-          {featuredProjects.map((project, index) => (
-            <Link 
-              href={`/projects/${project.slug}`} 
-              key={index}
-              className="snap-start shrink-0 w-[85vw] md:w-[600px] lg:w-[700px] group flex flex-col"
+          {featuredProjects.map((project) => (
+            <Link
+              href={`/projects/${project.slug}`}
+              key={project.slug}
+              className="snap-start shrink-0 w-[80vw] sm:w-[380px] md:w-[420px] lg:w-[460px] group flex flex-col bg-white rounded-2xl p-3"
             >
-              <div className="aspect-[4/3] bg-brand-gray-100 overflow-hidden relative mb-6">
-                <div className="absolute inset-0 bg-brand-gray-100 flex items-center justify-center transition-transform duration-700 group-hover:scale-105">
-                   <span className="text-brand-gray-500 font-mono text-sm tracking-widest uppercase">[Image Placeholder]</span>
-                </div>
+              <div className="aspect-[4/3] bg-brand-gray-100 rounded-xl overflow-hidden">
+                <img
+                  src={project.image}
+                  alt={project.title}
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
               </div>
-              <div className="flex flex-col border-t border-brand-gray-300 pt-6">
-                <div className="flex items-center justify-between gap-4 mb-2">
-                  <h3 className="text-2xl font-bold text-brand-gray-900 group-hover:text-brand-red transition-colors">
-                    {project.title}
-                  </h3>
-                  <span className="text-sm font-medium text-brand-gray-500 whitespace-nowrap">{project.location}</span>
+              <div className="flex flex-col gap-1 px-3 pt-4 pb-2">
+                <h3 className="font-sans font-semibold text-brand-gray-900 text-[22px] tracking-tight leading-tight group-hover:text-brand-red transition-colors">
+                  {project.title}
+                </h3>
+                <div className="font-['Inter_Display',sans-serif] text-[#707070] text-[14px]">
+                  {project.year} · {project.location}
                 </div>
-                <p className="text-brand-gray-700 font-medium">
-                  {project.scope}
-                </p>
               </div>
             </Link>
           ))}
-          
-          {/* View All Card */}
-          <div className="snap-start shrink-0 w-[200px] md:w-[300px] flex items-center justify-center mr-8">
-             <Link 
-              href="/projects"
-              className="w-32 h-32 rounded-full border border-brand-gray-300 flex items-center justify-center group hover:bg-brand-gray-900 hover:border-brand-gray-900 transition-colors"
-            >
-              <ArrowRight className="w-8 h-8 text-brand-gray-900 group-hover:text-white transition-colors" />
-            </Link>
-          </div>
         </div>
       </div>
-      
-      <div className="container mx-auto px-4 mt-8 md:hidden">
-        <Button asChild variant="outline" className="w-full rounded-full h-14">
-          <Link href="/projects">All Projects</Link>
-        </Button>
+
+      <div className="container mx-auto px-4 mt-10 md:hidden">
+        <Link
+          href="/projects"
+          className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand-gray-900 text-white font-medium px-6 py-3"
+        >
+          View all projects
+        </Link>
       </div>
     </section>
   );
