@@ -24,7 +24,10 @@ export default function RootLayout({
       className="h-full antialiased scroll-smooth"
       suppressHydrationWarning
     >
-      <body className="min-h-full flex flex-col font-sans selection:bg-brand-red selection:text-white">
+      <body
+        className="min-h-full flex flex-col font-sans selection:bg-brand-red selection:text-white"
+        suppressHydrationWarning
+      >
         <OrganizationSchema />
         <IntroProvider>
           <Header />

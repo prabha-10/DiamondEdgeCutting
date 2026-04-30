@@ -2,7 +2,7 @@
 
 import React, { useRef } from "react";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 
 const featuredProjects = [
   {
@@ -49,18 +49,38 @@ export function FeaturedProjects() {
   };
 
   return (
-    <section className="py-24 bg-brand-gray-100 overflow-hidden">
+    <section className="pt-24 pb-40 bg-brand-gray-100 overflow-hidden">
       {/* Header row */}
       <div className="container mx-auto px-4 md:px-8 mb-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 items-center gap-6">
-          {/* Left: eyebrow + nav arrows */}
-          <div className="flex items-center gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-6">
+          {/* Left: heading + description stacked */}
+          <div className="flex flex-col gap-4">
+            <h2 className="font-sans font-semibold text-brand-gray-900 text-[48px] md:text-[56px] leading-none tracking-tight">
+              Selected Projects
+            </h2>
+            <p className="font-['Inter_Display',sans-serif] font-normal text-[#707070] text-[18px] leading-[24px] max-w-[460px]">
+              A look at some of the projects we&apos;ve demolished, cut, and dismantled.
+            </p>
+          </div>
+
+          {/* Right: eyebrow + view all CTA + nav arrows */}
+          <div className="flex flex-wrap items-center gap-x-6 gap-y-3 md:justify-end">
             <div className="flex items-center gap-2.5">
               <span className="w-1.5 h-1.5 rounded-full bg-brand-gray-500" />
               <span className="font-['Inter_Display',sans-serif] text-[14px] text-[#707070]">
                 Our works
               </span>
             </div>
+            <Link
+              href="/projects"
+              className="group inline-flex items-center gap-2 rounded-full bg-brand-gray-900 text-white font-medium text-[14px] px-5 py-2.5 hover:bg-brand-gray-700 transition-colors"
+            >
+              View All Projects
+              <ArrowUpRight
+                className="w-3.5 h-3.5 transition-transform duration-300 group-hover:rotate-45"
+                strokeWidth={2}
+              />
+            </Link>
             <div className="flex items-center gap-2">
               <button
                 onClick={() => scrollBy(-1)}
@@ -78,16 +98,6 @@ export function FeaturedProjects() {
               </button>
             </div>
           </div>
-
-          {/* Center: heading */}
-          <h2 className="font-sans font-semibold text-brand-gray-900 text-[48px] md:text-[56px] leading-none tracking-tight md:text-center">
-            Selected Projects
-          </h2>
-
-          {/* Right: description */}
-          <p className="font-['Inter_Display',sans-serif] font-normal text-[#707070] text-[18px] leading-[24px] md:text-right md:max-w-[320px] md:ml-auto">
-            A look at some of the projects we&apos;ve demolished, cut, and dismantled.
-          </p>
         </div>
       </div>
 
