@@ -8,6 +8,9 @@ import { ClientLogos } from "@/components/sections/home/ClientLogos";
 import { Certifications } from "@/components/sections/home/Certifications";
 import { MissionVision } from "@/components/sections/home/MissionVision";
 import { Leadership } from "@/components/sections/home/Leadership";
+import { Testimonials } from "@/components/sections/home/Testimonials";
+import { FAQ } from "@/components/sections/home/FAQ";
+import { FinalCTA } from "@/components/sections/home/FinalCTA";
 
 export default function Home() {
   return (
@@ -16,11 +19,14 @@ export default function Home() {
       <ClientLogos />
       <Overview />
       <Services />
-      <RentalTeaser />
       <FeaturedProjects />
+      <RentalTeaser />
       <Certifications />
       <MissionVision />
       <Leadership />
+      <Testimonials />
+      <FAQ />
+      <FinalCTA />
     </>
   );
 }

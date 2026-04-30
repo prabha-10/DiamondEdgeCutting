@@ -1,7 +1,6 @@
 import React from "react";
 import Link from "next/link";
 import { rentalCategories } from "@/data/navigation";
-import { Button } from "@/components/ui/Button";
 
 const serviceLinks = [
   { name: "Robotic Demolition", href: "/demolition-services#robotic-demolition" },
@@ -17,27 +16,6 @@ const serviceLinks = [
 export function Footer() {
   return (
     <footer className="bg-brand-gray-900 text-white relative">
-      {/* Massive CTA Section */}
-      <div className="container mx-auto px-4 md:px-8 pt-32 pb-24 border-b border-white/10">
-        <div className="max-w-4xl">
-          <h2 className="text-6xl md:text-8xl font-bold tracking-tight mb-12 leading-[1.1]">
-            Ready to start <br />
-            <span className="text-brand-gray-500">your project?</span>
-          </h2>
-          <div className="flex flex-wrap items-center gap-6">
-            <Button asChild variant="brand" size="lg">
-              <Link href="/contact">Start Your Project</Link>
-            </Button>
-            <a 
-              href="mailto:info@diamondedgecutting.com"
-              className="inline-flex items-center justify-center bg-white/10 text-white h-16 px-10 rounded-full text-lg font-medium hover:bg-white/20 transition-colors"
-            >
-              Email Us
-            </a>
-          </div>
-        </div>
-      </div>
-
       <div className="container mx-auto px-4 md:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
           {/* Column 1: About */}

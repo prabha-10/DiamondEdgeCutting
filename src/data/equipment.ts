@@ -22,8 +22,7 @@ export const equipmentCategories = [
       { name: "Husqvarna DXR 145", spec: "Ultra-compact 360-degree rotating arm machine." }
     ],
     crossSells: [
-      { name: "Brokk and DXR Attachments", link: "/rental-equipment/robotic-attachments" },
-      { name: "Excavator Attachments", link: "/rental-equipment/excavator-attachments" }
+      { name: "Excavators", link: "/rental-equipment/excavators" }
     ],
     faqs: [
       {
@@ -37,43 +36,6 @@ export const equipmentCategories = [
       {
         question: "Can these machines fit in a standard service elevator?",
         answer: "Yes, our smaller models (like the Brokk 160, 170, and DXR 145) are designed specifically to fit through standard doorways and into service elevators."
-      }
-    ]
-  },
-  {
-    id: "robotic-attachments",
-    name: "Brokk and DXR Attachments",
-    title: "Brokk & DXR Attachments Rental Dubai | Breakers, Crushers, Grapples",
-    description: "Rent hydraulic breakers, crushers, and grapples for Brokk and Husqvarna DXR robotic machines across the UAE.",
-    h1: "Robotic Demolition Attachments",
-    overview: "Maximize the versatility of your robotic demolition machines with our comprehensive range of specialist attachments. From heavy-duty breakers to precise concrete crushers.",
-    useCases: [
-      "Concrete breaking and slab removal",
-      "Silent concrete crushing",
-      "Steel cutting and shearing",
-      "Material sorting and handling"
-    ],
-    terms: "Attachments are available for hire alongside our robotic machines or separately if you already have the compatible carrier. Maintenance and daily checks are included.",
-    models: [
-      { name: "Hydraulic Breakers", spec: "SB 452, SB 302, SB 202, BHB 455, BHB 305, BHB 205." },
-      { name: "Concrete Crushers", spec: "CC700, CC520, CC420, CC320, DCR300." },
-      { name: "Sorting Grapples", spec: "Compatible with DXR 300, Brokk 160, Brokk 170." }
-    ],
-    crossSells: [
-      { name: "Robotic Demolition Machines", link: "/rental-equipment/robotic-demolition-machines" }
-    ],
-    faqs: [
-      {
-        question: "Can I rent an attachment without a machine?",
-        answer: "Yes, if you own a compatible Brokk or Husqvarna DXR carrier, we can rent attachments separately subject to compatibility checks."
-      },
-      {
-        question: "Are hoses and couplings included?",
-        answer: "Yes, all attachments come complete with the necessary hydraulic hoses and quick-release couplings."
-      },
-      {
-        question: "What happens if an attachment breaks down?",
-        answer: "We offer 24/7 support. If an attachment fails during normal operation, we will repair or replace it immediately to minimize your downtime."
       }
     ]
   },
@@ -97,8 +59,8 @@ export const equipmentCategories = [
       { name: "26-Metre Long Reach", spec: "Specialist rigs for high-rise controlled demolition." }
     ],
     crossSells: [
-      { name: "Excavator Attachments", link: "/rental-equipment/excavator-attachments" },
-      { name: "Wheel Loaders", link: "/rental-equipment/wheel-loaders" }
+      { name: "Wheel Loaders", link: "/rental-equipment/wheel-loaders" },
+      { name: "Mini Excavators", link: "/rental-equipment/mini-excavators" }
     ],
     faqs: [
       {
@@ -112,45 +74,6 @@ export const equipmentCategories = [
       {
         question: "Do the excavators come with attachments?",
         answer: "Excavators come with a standard bucket. Specialist demolition attachments (breakers, crushers, shears) are rented separately based on your project needs."
-      }
-    ]
-  },
-  {
-    id: "excavator-attachments",
-    name: "Excavator Attachments",
-    title: "Excavator Attachments Rental UAE | Hydraulic Breakers, Crushers, Shears",
-    description: "Rent heavy demolition excavator attachments across Dubai and the UAE. Breakers, crushers, shears, and grabs.",
-    h1: "Excavator Attachments for Demolition",
-    overview: "Turn any standard excavator into a specialist demolition machine. We maintain a huge inventory of attachments to suit carriers from 14 to 50 tons.",
-    useCases: [
-      "Primary breaking of reinforced concrete",
-      "Secondary crushing and material processing",
-      "Steel structural shearing",
-      "Scrap and debris sorting"
-    ],
-    terms: "Available for daily, weekly, or monthly hire. We provide mounting support to ensure compatibility with your carrier.",
-    models: [
-      { name: "Hydraulic Breakers", spec: "Heavy-duty breakers for 14T to 50T carriers." },
-      { name: "Concrete Pulverizers & Crushers", spec: "Fixed and rotating crushers for primary and secondary demolition." },
-      { name: "Steel Shears", spec: "High-force shears for cutting structural steel." },
-      { name: "Sorting Grapples", spec: "Rotating grabs for efficient material handling." }
-    ],
-    crossSells: [
-      { name: "Excavators", link: "/rental-equipment/excavators" },
-      { name: "Mini Excavators", link: "/rental-equipment/mini-excavators" }
-    ],
-    faqs: [
-      {
-        question: "How do I know if an attachment will fit my excavator?",
-        answer: "Provide us with your excavator make and model, and our technical team will ensure we supply the correct headstock and pin sizes."
-      },
-      {
-        question: "Who handles the installation?",
-        answer: "Our mobile mechanics can assist with the initial installation and hydraulic setup on your site if required."
-      },
-      {
-        question: "Are the attachments supplied with chisel paste/grease?",
-        answer: "Yes, breakers are supplied fully greased, and we provide guidelines for daily maintenance during the rental period."
       }
     ]
   },
@@ -174,7 +97,7 @@ export const equipmentCategories = [
     ],
     crossSells: [
       { name: "Skid Steers", link: "/rental-equipment/skid-steers" },
-      { name: "Excavator Attachments", link: "/rental-equipment/excavator-attachments" }
+      { name: "Excavators", link: "/rental-equipment/excavators" }
     ],
     faqs: [
       {
