@@ -13,7 +13,7 @@ export default function ContactPage() {
     <>
       <ContactSchema />
 
-      {/* Hero — Bungee-style: tiny eyebrow, big inviting headline, divider, email + reply note */}
+      {/* Hero, Bungee-style: tiny eyebrow, big inviting headline, divider, email + reply note */}
       <section className="relative pt-32 pb-16 bg-white overflow-hidden">
         <div className="container relative z-20 mx-auto px-4 md:px-8">
           <div className="flex flex-col gap-3">
@@ -34,7 +34,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Form section — form on the right, empty space on the left */}
+      {/* Form section, form on the right, empty space on the left */}
       <section className="py-32 bg-white">
         <div className="container mx-auto px-4 md:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
@@ -50,7 +50,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Direct + Offices below the form — 2 column row */}
+      {/* Direct + Offices below the form, 2 column row */}
       <section className="pb-32 bg-white">
         <div className="container mx-auto px-4 md:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start pt-16 border-t border-brand-gray-300">
@@ -118,7 +118,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* Map — entire container clickable, opens Google Maps in new tab */}
+      {/* Map, entire container clickable, opens Google Maps in new tab */}
       <a
         href="https://www.google.com/maps/place/DIAMOND+EDGE+CUTTING+LLC/@24.985382,55.1885506,17z/data=!4m15!1m8!3m7!1s0x3e5f7311c2c99bc1:0xc8741ee5922448b5!2sDIAMOND+EDGE+CUTTING+LLC!8m2!3d24.985369!4d55.188579!10e1!16s%2Fg%2F11rhsrwtb1"
         target="_blank"
@@ -132,7 +132,7 @@ export default function ContactPage() {
           style={{ filter: "grayscale(100%) contrast(1.05) brightness(0.97)" }}
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
-          title="Diamond Edge Cutting — Dubai HQ map"
+          title="Diamond Edge Cutting, Dubai HQ map"
         />
 
         {/* Centered colored brand pin (no pulsing halo) */}
@@ -156,7 +156,7 @@ export default function ContactPage() {
           </svg>
         </div>
 
-        {/* "Open in Google Maps" affordance — visible on hover */}
+        {/* "Open in Google Maps" affordance, visible on hover */}
         <span className="absolute top-5 right-5 inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-2 text-[13px] font-medium text-brand-gray-900 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-[0_8px_24px_-12px_rgba(0,0,0,0.35)]">
           Open in Google Maps
           <ArrowRight className="w-3.5 h-3.5" strokeWidth={2} />

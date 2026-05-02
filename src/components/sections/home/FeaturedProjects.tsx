@@ -65,12 +65,6 @@ export function FeaturedProjects() {
 
           {/* Right: eyebrow + view all CTA + nav arrows */}
           <div className="flex flex-wrap items-center gap-x-6 gap-y-3 md:justify-end">
-            <div className="flex items-center gap-2.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-brand-gray-500" />
-              <span className="font-['Inter_Display',sans-serif] text-[14px] text-[#707070]">
-                Our works
-              </span>
-            </div>
             <Link
               href="/projects"
               className="group inline-flex items-center gap-2 rounded-full bg-brand-gray-900 text-white font-medium text-[14px] px-5 py-2.5 hover:bg-brand-gray-700 transition-colors"

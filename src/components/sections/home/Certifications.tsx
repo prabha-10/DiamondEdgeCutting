@@ -29,7 +29,7 @@ export function Certifications() {
   return (
     <section className="py-28 bg-brand-gray-100 border-t border-brand-gray-300/60">
       <div className="container mx-auto px-4 md:px-8">
-        {/* Header — eyebrow left, two-tone title right */}
+        {/* Header, eyebrow left, two-tone title right */}
         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 mb-12">
           <div className="flex items-center gap-2.5 shrink-0">
             <span
@@ -48,7 +48,7 @@ export function Certifications() {
           </h2>
         </div>
 
-        {/* Cards — single row of 6 mini-cards */}
+        {/* Cards, single row of 6 mini-cards */}
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
           {certifications.map((cert) => {
             const Icon = cert.icon;

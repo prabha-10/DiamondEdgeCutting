@@ -28,7 +28,7 @@ const services: Service[] = [
     num: "/002",
     title: "Robotic Demolition",
     description:
-      "GCC's largest specialized robotic fleet — Brokk 500 to 160 — for confined, high-precision demolition.",
+      "GCC's largest specialized robotic fleet, Brokk 500 to 160, for confined, high-precision demolition.",
     tags: ["Brokk 500", "Brokk 160", "Confined Spaces", "Indoor"],
     image: "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=900&q=80",
     href: "/demolition-services#robotic-demolition",

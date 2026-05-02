@@ -15,7 +15,7 @@ export function Header() {
   const pathname = usePathname();
   const { introComplete } = useIntro();
 
-  // On inner pages there's no intro — show immediately
+  // On inner pages there's no intro, show immediately
   const isHomepage = pathname === "/";
   const headerVisible = !isHomepage || introComplete;
 
@@ -52,7 +52,7 @@ export function Header() {
           </span>
         </Link>
 
-        {/* Desktop Navigation — no pill container, items float freely */}
+        {/* Desktop Navigation, no pill container, items float freely */}
         <nav className="hidden lg:flex items-center gap-2">
           {navigationLinks.map((link) => {
             const isActive = link.dropdown

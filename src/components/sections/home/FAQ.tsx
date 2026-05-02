@@ -13,7 +13,7 @@ const faqs: FaqItem[] = [
   {
     question: "What types of demolition projects do you handle?",
     answer:
-      "We deliver controlled, robotic, and selective demolition across residential, commercial, and infrastructure projects — from single-storey strip-outs to 26-metre long-reach high-rise demolition. Each scope is approached based on the structure, environment, and programme constraints.",
+      "We deliver controlled, robotic, and selective demolition across residential, commercial, and infrastructure projects, from single-storey strip-outs to 26-metre long-reach high-rise demolition. Each scope is approached based on the structure, environment, and programme constraints.",
   },
   {
     question: "Do you supply operators with the equipment?",
@@ -28,7 +28,7 @@ const faqs: FaqItem[] = [
   {
     question: "Are you approved by Dubai Municipality?",
     answer:
-      "Yes — we hold DM G+12 approval (cleared up to ground + 12 floors), ICV certification, and CICSPA Specialist Permit Authority for complex demolition works. All certificates are active and independently audited.",
+      "Yes, we hold DM G+12 approval (cleared up to ground + 12 floors), ICV certification, and CICSPA Specialist Permit Authority for complex demolition works. All certificates are active and independently audited.",
   },
   {
     question: "How quickly can you mobilise?",
@@ -38,7 +38,7 @@ const faqs: FaqItem[] = [
   {
     question: "Do you handle waste removal and recycling?",
     answer:
-      "Yes — end-to-end demolition plus waste removal. 12 / 22 CBM skips, 3 to 18 CBM tipper lorries, and recycling-led disposal pathways. Municipality tipping fees, drivers, and waste manifests are all included.",
+      "Yes, end-to-end demolition plus waste removal. 12 / 22 CBM skips, 3 to 18 CBM tipper lorries, and recycling-led disposal pathways. Municipality tipping fees, drivers, and waste manifests are all included.",
   },
 ];
 
@@ -49,7 +49,7 @@ export function FAQ() {
     <section className="py-32 bg-brand-gray-100">
       <div className="container mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          {/* Left — heading + CTA card */}
+          {/* Left, heading + CTA card */}
           <div className="lg:col-span-5 flex flex-col gap-12 lg:sticky lg:top-24">
             <div className="flex flex-col gap-5">
               <h2 className="font-sans font-medium text-brand-gray-900 text-[40px] md:text-[52px] leading-[1.05] tracking-tight">
@@ -97,7 +97,7 @@ export function FAQ() {
             </div>
           </div>
 
-          {/* Right — FAQ accordion */}
+          {/* Right, FAQ accordion */}
           <div className="lg:col-span-7 flex flex-col gap-3">
             {faqs.map((faq, i) => {
               const isOpen = openIndex === i;

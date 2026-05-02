@@ -81,7 +81,7 @@ export default function ProjectsPageClient() {
           </div>
           <div className="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end">
             <p className="lg:col-span-7 font-['Inter_Display',sans-serif] font-normal text-[19px] md:text-[22px] leading-[1.5] text-[#707070] max-w-2xl">
-              18 headline projects across airports, malls, hotels, infrastructure, and refractory works — delivered across the GCC since 2008.
+              18 headline projects across airports, malls, hotels, infrastructure, and refractory works, delivered across the GCC since 2008.
             </p>
             <div className="lg:col-span-5 lg:justify-self-end">
               <Link

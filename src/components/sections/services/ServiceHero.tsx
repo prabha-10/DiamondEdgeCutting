@@ -41,7 +41,7 @@ export function ServiceHero() {
 
         <div className="mt-12 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end pt-12 border-t border-white/15">
           <p className="lg:col-span-7 font-['Inter_Display',sans-serif] font-normal text-[19px] md:text-[22px] leading-[1.5] text-white/85 max-w-2xl">
-            From 90-metre chimney towers to confined-space refractory works — every scope planned, sequenced, and delivered with the GCC&apos;s largest specialist robotic fleet.
+            From 90-metre chimney towers to confined-space refractory works, every scope planned, sequenced, and delivered with the GCC&apos;s largest specialist robotic fleet.
           </p>
           <div className="lg:col-span-5 lg:justify-self-end">
             <Button asChild variant="brand" size="lg">
@@ -50,7 +50,7 @@ export function ServiceHero() {
           </div>
         </div>
 
-        {/* Stats strip — white cards pop on the dark image */}
+        {/* Stats strip, white cards pop on the dark image */}
         <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-3">
           {stats.map((stat) => (
             <div

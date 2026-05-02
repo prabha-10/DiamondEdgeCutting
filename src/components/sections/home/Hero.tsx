@@ -18,10 +18,10 @@ export function Hero() {
 
   return (
     <>
-      {/* Fullscreen intro overlay — plays video for 3s, locks scroll, then fades out */}
+      {/* Fullscreen intro overlay, plays video for 3s, locks scroll, then fades out */}
       <VideoIntro onComplete={markIntroComplete} />
 
-      {/* Hero section — always rendered but content hidden until intro fires */}
+      {/* Hero section, always rendered but content hidden until intro fires */}
       <section className="relative min-h-[100svh] flex flex-col justify-center overflow-hidden pt-32 pb-32 bg-black">
 
         {/* Looping background video */}

@@ -113,7 +113,7 @@ export function RentalTeaser() {
   return (
     <section className="py-32 bg-brand-gray-900 text-white">
       <div className="container mx-auto px-4 md:px-8">
-        {/* Header — 8/12 left, 4/12 right */}
+        {/* Header, 8/12 left, 4/12 right */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 mb-16 pb-16 border-b border-white/10">
           {/* Left: eyebrow + headline */}
           <div className="lg:col-span-8 flex flex-col gap-8">
@@ -148,7 +148,7 @@ export function RentalTeaser() {
           </div>
         </div>
 
-        {/* 6-card grid: 1 / 2 / 3 columns — full-bleed image with frosted-glass content */}
+        {/* 6-card grid: 1 / 2 / 3 columns, full-bleed image with frosted-glass content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {rentalCategories.map((category) => (
             <Link
@@ -205,7 +205,7 @@ export function RentalTeaser() {
                       className="shrink-0 inline-flex items-center gap-1.5 rounded-full bg-white/15 border border-white/30 px-3.5 py-1.5 text-[12px] font-semibold text-white transition-all duration-300 group-hover:bg-white group-hover:text-brand-gray-900 group-hover:border-white"
                       aria-hidden
                     >
-                      Hire
+                      Rent
                       <ArrowUpRight
                         className="w-3.5 h-3.5 transition-transform duration-300 group-hover:rotate-45"
                         strokeWidth={2}

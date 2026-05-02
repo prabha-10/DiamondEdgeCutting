@@ -20,11 +20,12 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
           {/* Column 1: About */}
           <div className="flex flex-col gap-6">
-            <Link href="/" className="flex items-center gap-3">
-              <div className="w-10 h-10 bg-brand-red flex items-center justify-center rounded-full text-white font-bold text-xl leading-none">
-                D
-              </div>
-              <span className="font-bold text-xl tracking-tight">Diamond Edge</span>
+            <Link href="/" className="inline-flex items-center">
+              <img
+                src="/dec-logo.png"
+                alt="Diamond Edge Cutting"
+                className="h-28 md:h-32 w-auto object-contain"
+              />
             </Link>
             <p className="text-brand-gray-500 text-base leading-relaxed max-w-xs">
               Delivering safe, precise, and efficient demolition solutions across the GCC since 2008.

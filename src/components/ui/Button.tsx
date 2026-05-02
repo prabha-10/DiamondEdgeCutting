@@ -8,7 +8,7 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
   variant?: "brand" | "outline" | "ghost" | "default" | "link"
   size?: "default" | "sm" | "lg" | "icon"
   asChild?: boolean
-  /** Only used when variant="brand" — hides the arrow icon (e.g. mobile full-width buttons) */
+  /** Only used when variant="brand", hides the arrow icon (e.g. mobile full-width buttons) */
   noIcon?: boolean
 }
 

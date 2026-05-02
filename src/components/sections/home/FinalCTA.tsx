@@ -19,7 +19,7 @@ export function FinalCTA() {
 
       <div className="container relative z-10 mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          {/* Left column — heading + direct contact options */}
+          {/* Left column, heading + direct contact options */}
           <div className="lg:col-span-5 flex flex-col gap-10 lg:sticky lg:top-28">
             <div className="flex flex-col gap-6">
               <div className="flex items-center gap-2.5">
@@ -37,7 +37,7 @@ export function FinalCTA() {
               </h2>
               <p className="font-['Inter_Display',sans-serif] font-normal text-[17px] leading-[1.55] text-white/75 max-w-md">
                 Tell us about the scope. We&apos;ll come back with a method
-                statement and budget within 24 hours — no commitment.
+                statement and budget within 24 hours, no commitment.
               </p>
             </div>
 
@@ -76,7 +76,7 @@ export function FinalCTA() {
             </div>
           </div>
 
-          {/* Right column — white form card */}
+          {/* Right column, white form card */}
           <div className="lg:col-span-7">
             <div className="bg-white text-brand-gray-900 rounded-[28px] p-6 md:p-10 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.5)]">
               <h3 className="font-sans font-medium text-brand-gray-900 text-[26px] md:text-[32px] mb-8 tracking-tight">

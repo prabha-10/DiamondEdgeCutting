@@ -77,7 +77,7 @@ const testimonials: Testimonial[] = [
     location: "Sharjah, UAE",
     rating: "5.0",
     quote:
-      "Brokk machines on a refractory shutdown — flawless execution and zero damage to the surrounding kilns. The team's experience shows.",
+      "Brokk machines on a refractory shutdown, flawless execution and zero damage to the surrounding kilns. The team's experience shows.",
     date: "Oct 30, 2025",
   },
   {
@@ -110,7 +110,7 @@ export function Testimonials() {
     <section className="py-32 bg-brand-gray-50">
       <div className="container mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-          {/* Left container — eyebrow + headline + stats (sticky on desktop) */}
+          {/* Left container, eyebrow + headline + stats (sticky on desktop) */}
           <div className="lg:col-span-5 lg:sticky lg:top-24 flex flex-col gap-10">
             <div className="flex flex-col gap-6">
               <div className="inline-flex items-center gap-2.5">
@@ -131,7 +131,7 @@ export function Testimonials() {
               </h2>
             </div>
 
-            {/* Stats — 2×2 grid of mini stat cards */}
+            {/* Stats, 2×2 grid of mini stat cards */}
             <div className="grid grid-cols-2 gap-3 max-w-md">
               {stats.map((stat) => {
                 const Icon = stat.icon;
@@ -158,7 +158,7 @@ export function Testimonials() {
             </div>
           </div>
 
-          {/* Right container — single big red card carousel */}
+          {/* Right container, single big red card carousel */}
           <div className="lg:col-span-7">
             <article
               key={index}

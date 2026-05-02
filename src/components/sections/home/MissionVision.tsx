@@ -18,7 +18,7 @@ type PhotoCell = {
 type Cell = TextCell | PhotoCell;
 
 const cells: Cell[] = [
-  // Row 1 — text left, photos right
+  // Row 1, text left, photos right
   {
     type: "text",
     eyebrow: "Mission",
@@ -37,7 +37,7 @@ const cells: Cell[] = [
     alt: "Heavy excavator at work",
   },
 
-  // Row 2 — photos, text right
+  // Row 2, photos, text right
   {
     type: "photo",
     src: "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=1000&q=80&auto=format&fit=crop",
@@ -56,7 +56,7 @@ const cells: Cell[] = [
     caption: "Where we're going.",
   },
 
-  // Row 3 — text left, photos right
+  // Row 3, text left, photos right
   {
     type: "text",
     eyebrow: "Values",
@@ -109,7 +109,7 @@ export function MissionVision() {
   return (
     <section className="py-32 bg-white">
       <div className="container mx-auto px-4 md:px-8">
-        {/* Section header — left-aligned (original) */}
+        {/* Section header, left-aligned (original) */}
         <div className="flex flex-col gap-6 mb-20 max-w-3xl">
           <div className="flex items-center gap-2.5">
             <span className="w-1.5 h-1.5 rounded-full bg-brand-red" aria-hidden />
@@ -118,7 +118,7 @@ export function MissionVision() {
             </span>
           </div>
           <h2 className="font-sans font-medium text-brand-gray-900 text-[44px] md:text-[64px] leading-[1.02] tracking-tight">
-            What we&apos;re here to do —
+            What we&apos;re here to do
             <br className="hidden md:block" /> and where we&apos;re going.
           </h2>
         </div>
