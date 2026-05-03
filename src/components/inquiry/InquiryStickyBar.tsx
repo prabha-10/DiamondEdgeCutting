@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ChevronUp, ChevronDown, Trash2, Phone, X } from "lucide-react";
 import { useInquiry } from "./InquiryProvider";
 import { InquiryItemCard } from "./InquiryItemCard";
-import { DemolitionButton } from "@/components/ui/DemolitionButton";
+import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 
 export function InquiryStickyBar() {
@@ -123,20 +123,20 @@ export function InquiryStickyBar() {
             {/* Drawer Footer */}
             <div className="p-5 border-t border-brand-gray-100 bg-brand-gray-50 flex flex-col gap-4">
               <div className="grid grid-cols-2 gap-4">
-                <DemolitionButton
-                  variant="secondary"
+                <Button
+                  variant="outline"
                   onClick={() => setDrawerExpanded(false)}
                   className="py-4 text-sm"
                 >
                   Continue browsing
-                </DemolitionButton>
-                <DemolitionButton
-                  variant="primary"
+                </Button>
+                <Button
+                  variant="brand"
                   onClick={() => openModal("multi")}
                   className="py-4 text-sm"
                 >
                   Inquire now
-                </DemolitionButton>
+                </Button>
               </div>
               
               <a 

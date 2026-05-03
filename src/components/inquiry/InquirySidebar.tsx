@@ -4,7 +4,7 @@ import React from "react";
 import { ClipboardList, Trash2, Phone } from "lucide-react";
 import { useInquiry } from "./InquiryProvider";
 import { InquiryItemCard } from "./InquiryItemCard";
-import { DemolitionButton } from "@/components/ui/DemolitionButton";
+import { Button } from "@/components/ui/Button";
 
 export function InquirySidebar() {
   const { items, removeItem, clearItems, openModal } = useInquiry();
@@ -61,13 +61,13 @@ export function InquirySidebar() {
       {/* Footer */}
       {hasItems && (
         <div className="p-5 border-t border-brand-gray-300 bg-brand-gray-50/30">
-          <DemolitionButton
-            variant="primary"
+          <Button
+            variant="brand"
             onClick={() => openModal("multi")}
             className="w-full mb-4 py-3"
           >
             Inquire about all ({items.length})
-          </DemolitionButton>
+          </Button>
           
           <div className="flex flex-col gap-2">
             <p className="text-[11px] uppercase tracking-wider font-bold text-brand-gray-500 text-center">

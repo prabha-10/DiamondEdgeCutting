@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Check } from "lucide-react";
-import { DemolitionButton } from "@/components/ui/DemolitionButton";
+import { Button } from "@/components/ui/Button";
 import { useInquiry } from "./InquiryProvider";
 import { InquiryItem } from "@/lib/inquiry-storage";
 
@@ -39,8 +39,8 @@ export function InquiryButton({ item }: InquiryButtonProps) {
 
   return (
     <div className="grid grid-cols-2 gap-3 mt-auto">
-      <DemolitionButton
-        variant="secondary"
+      <Button
+        variant="outline"
         onClick={handleLeftClick}
         className="text-sm px-4 py-3"
       >
@@ -52,15 +52,15 @@ export function InquiryButton({ item }: InquiryButtonProps) {
         ) : (
           "Add to Inquiry"
         )}
-      </DemolitionButton>
+      </Button>
 
-      <DemolitionButton
-        variant="primary"
+      <Button
+        variant="brand"
         onClick={handleRightClick}
         className="text-sm px-4 py-3"
       >
         Get Quote
-      </DemolitionButton>
+      </Button>
     </div>
   );
 }

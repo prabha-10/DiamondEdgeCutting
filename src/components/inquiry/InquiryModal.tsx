@@ -8,7 +8,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useInquiry } from "./InquiryProvider";
 import { rentalFormSchema, RentalFormData } from "@/lib/rental-form-schema";
 import { equipmentItems } from "@/lib/equipment-data";
-import { DemolitionButton } from "@/components/ui/DemolitionButton";
+import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 
 export function InquiryModal() {
@@ -152,13 +152,13 @@ export function InquiryModal() {
               <p className="text-brand-gray-600 max-w-sm">
                 Your inquiry has been received. Our hire team will review your requirements and contact you with a detailed quote.
               </p>
-              <DemolitionButton
-                variant="secondary"
+              <Button
+                variant="outline"
                 onClick={closeModal}
                 className="mt-8"
               >
                 Close
-              </DemolitionButton>
+              </Button>
             </div>
           ) : (
             <form id="rental-inquiry-form" onSubmit={handleSubmit(onSubmit)} className="space-y-6">
@@ -392,9 +392,9 @@ export function InquiryModal() {
         {/* Footer */}
         {!isSuccess && (
           <div className="p-6 border-t border-brand-gray-100 bg-brand-gray-50/50">
-            <DemolitionButton
+            <Button
               type="submit"
-              variant="primary"
+              variant="brand"
               form="rental-inquiry-form"
               disabled={isSubmitting}
               className="w-full py-4 text-lg"
@@ -407,7 +407,7 @@ export function InquiryModal() {
               ) : (
                 "Send Inquiry"
               )}
-            </DemolitionButton>
+            </Button>
           </div>
         )}
       </motion.div>

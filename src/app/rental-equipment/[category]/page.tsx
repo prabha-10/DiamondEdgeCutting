@@ -9,9 +9,8 @@ import {
 import { EquipmentCard } from "@/components/rental/EquipmentCard";
 import { EmptyStateHelper } from "@/components/rental/EmptyStateHelper";
 import { InquirySidebar } from "@/components/inquiry/InquirySidebar";
-import { DemolitionButton } from "@/components/ui/DemolitionButton";
-import { ChevronRight, Phone } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { ChevronRight, Phone } from "lucide-react";
 
 interface PageProps {
   params: Promise<{ category: string }>;
@@ -123,9 +122,9 @@ export default async function CategoryPage({ params }: PageProps) {
                 </p>
               </div>
               <div className="flex flex-col gap-4 w-full md:w-auto">
-                <DemolitionButton variant="primary" size="lg" onClick={() => window.location.href='/contact'}>
-                  Request equipment quote
-                </DemolitionButton>
+                <Button asChild variant="brand" size="lg">
+                  <Link href="/contact">Request equipment quote</Link>
+                </Button>
                 <a 
                   href="tel:+97143706434"
                   className="flex items-center justify-center gap-2 text-white/80 font-bold hover:text-white transition-colors"

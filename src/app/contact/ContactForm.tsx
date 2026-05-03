@@ -5,7 +5,6 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Button } from "@/components/ui/Button";
-import { DemolitionButton } from "@/components/ui/DemolitionButton";
 
 const formSchema = z.object({
   fullName: z.string().min(2, "Full name is required"),
@@ -68,9 +67,9 @@ export function ContactForm() {
         <p className="text-brand-gray-700 mb-8 text-lg font-medium">
           Thank you for reaching out. We have received your inquiry and will reply within 24 hours.
         </p>
-        <DemolitionButton onClick={() => setIsSuccess(false)} variant="secondary" className="rounded-full h-14 px-8 text-lg">
+        <Button onClick={() => setIsSuccess(false)} variant="outline" className="rounded-full h-14 px-8 text-lg">
           Send Another Message
-        </DemolitionButton>
+        </Button>
       </div>
     );
   }
@@ -187,9 +186,9 @@ export function ContactForm() {
         {errors.description && <span className="text-sm font-bold text-brand-red-dark mt-2">{errors.description.message}</span>}
       </div>
 
-      <DemolitionButton type="submit" size="lg" disabled={isSubmitting} className="rounded-full h-16 px-12 text-xl self-start mt-8">
+      <Button type="submit" size="lg" disabled={isSubmitting} className="rounded-full h-16 px-12 text-xl self-start mt-8" variant="brand">
         {isSubmitting ? "Sending..." : "Submit Inquiry"}
-      </DemolitionButton>
+      </Button>
     </form>
   );
 }
