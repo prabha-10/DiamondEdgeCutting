@@ -85,3 +85,72 @@ export const equipmentCategories: EquipmentCategory[] = [
     order: 6
   }
 ]
+
+export type EquipmentItem = {
+  id: string
+  title: string
+  categorySlug: string
+  subcategory?: string
+  description: string
+  keySpec: string
+  imageUrl: string
+  order: number
+}
+
+export const equipmentItems: EquipmentItem[] = [
+  {
+    id: 'brokk-500',
+    title: 'Brokk 500',
+    categorySlug: 'robotic-demolition-machines',
+    description: 'Our flagship robotic demolition machine. Most powerful Brokk in the GCC fleet, built for large-scale controlled demolition where conventional plant cannot reach safely.',
+    keySpec: '22 kW, 5,200 kg, electric',
+    imageUrl: 'https://images.unsplash.com/photo-1711618732376-416cf6af54f6?w=800&q=80&auto=format&fit=crop',
+    order: 1
+  },
+  {
+    id: 'hitachi-zx350h-5g',
+    title: 'Hitachi ZX350H-5G',
+    categorySlug: 'excavators',
+    description: '35-ton heavy excavator for structural demolition and infrastructure works. Reliable workhorse for live demolition packages across the UAE.',
+    keySpec: '35 ton, hydraulic breaker compatible',
+    imageUrl: 'https://images.unsplash.com/photo-1583024011792-b165975b52f5?w=800&q=80&auto=format&fit=crop',
+    order: 1
+  },
+  {
+    id: 'kobelco-sk17sr-6',
+    title: 'KOBELCO SK1.7SR-6',
+    categorySlug: 'mini-excavators',
+    description: 'Compact 1.7-ton mini excavator for indoor demolition, basement and podium-deck works, and tight-access refurbishment. Fits through standard doorways.',
+    keySpec: '1.7 ton, 980 mm wide, indoor-capable',
+    imageUrl: 'https://images.unsplash.com/photo-1649829809465-d358fce60ebd?w=800&q=80&auto=format&fit=crop',
+    order: 1
+  },
+  {
+    id: 'bobcat-s550b',
+    title: 'Bobcat S550B',
+    categorySlug: 'skid-steers',
+    description: 'Mid-size skid steer loader for strip-out, debris handling, and post-demolition site clearance. Compact, manoeuvrable, indoor-capable with proper ventilation.',
+    keySpec: 'Mid-size, multi-attachment, wet or dry hire',
+    imageUrl: 'https://images.unsplash.com/photo-1545426373-6588267475be?w=800&q=80&auto=format&fit=crop',
+    order: 1
+  },
+  {
+    id: 'cat-it14f',
+    title: 'CAT IT14F',
+    categorySlug: 'wheel-loaders',
+    description: 'Caterpillar wheel loader for heavy load-out and material handling on live demolition and enabling-works packages. Operator included.',
+    keySpec: 'High capacity, integrated tool carrier',
+    imageUrl: 'https://images.unsplash.com/photo-1630288214032-2c4cc2c080ca?w=800&q=80&auto=format&fit=crop',
+    order: 1
+  },
+  {
+    id: 'man-hook-loader',
+    title: 'MAN Hook Loader Truck',
+    categorySlug: 'waste-removal',
+    subcategory: 'Skip Lorries',
+    description: 'Hook loader truck for skip-direct waste removal across Dubai and UAE. Pairs with our 12 and 22 CBM skips for site-direct demolition disposal.',
+    keySpec: '22 CBM compatible, drivers included',
+    imageUrl: 'https://images.unsplash.com/photo-1746349086423-06ea6b4d73f7?w=800&q=80&auto=format&fit=crop',
+    order: 1
+  }
+]

@@ -23,6 +23,7 @@
 :root {
   --background: var(--color-brand-gray-100);
   --foreground: var(--color-brand-gray-900);
+  --phone-nav-height: 64px;
 }
 
 body {

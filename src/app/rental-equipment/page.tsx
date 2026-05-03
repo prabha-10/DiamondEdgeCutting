@@ -5,6 +5,7 @@ import Script from "next/script";
 import { Button } from "@/components/ui/Button";
 import { ShieldCheck, Wrench, CalendarClock, ArrowRight, Phone } from "lucide-react";
 import { getAllCategories } from "../../../sanity/lib/queries";
+import { equipmentCategories as fallbackCategories } from "@/lib/equipment-data";
 
 export const metadata: Metadata = {
   title: "Demolition Equipment Rental Dubai | Brokk, Excavators, Skid Steers",
@@ -218,8 +219,33 @@ function FinalCTASection() {
 /* ------------------------------------------------------------------ */
 /*  Page                                                               */
 /* ------------------------------------------------------------------ */
+
 export default async function RentalEquipmentPage() {
-  const categories = await getAllCategories();
+  let categories = [];
+  try {
+    categories = await getAllCategories();
+    if (!categories || categories.length === 0) {
+      categories = fallbackCategories.map(c => ({
+        _id: c.slug,
+        title: c.title,
+        slug: c.slug,
+        overview: c.description,
+        shortLabel: c.shortLabel,
+        trustTags: c.trustTags,
+        imageUrl: c.imageUrl
+      }));
+    }
+  } catch (error) {
+    categories = fallbackCategories.map(c => ({
+      _id: c.slug,
+      title: c.title,
+      slug: c.slug,
+      overview: c.description,
+      shortLabel: c.shortLabel,
+      trustTags: c.trustTags,
+      imageUrl: c.imageUrl
+    }));
+  }
 
   return (
     <>

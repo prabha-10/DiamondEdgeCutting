@@ -3,6 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
+import { DemolitionButton } from "@/components/ui/DemolitionButton";
 import { VideoIntro } from "@/components/ui/VideoIntro";
 import { useIntro } from "@/context/IntroContext";
 
@@ -66,9 +67,13 @@ export function Hero() {
               className="flex flex-col sm:flex-row gap-4 mt-8"
               style={slideUp(400, introComplete)}
             >
-              <Button asChild size="lg" variant="brand">
-                <Link href="/contact">Start Your Project</Link>
-              </Button>
+              <DemolitionButton 
+                size="lg" 
+                variant="brand"
+                onClick={() => window.location.href='/contact'}
+              >
+                Start Your Project
+              </DemolitionButton>
               <Button
                 asChild
                 variant="outline"
