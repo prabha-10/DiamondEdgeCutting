@@ -4,7 +4,8 @@ import { useState, useRef, MouseEvent, ReactNode, forwardRef } from "react";
 import { motion, AnimatePresence, HTMLMotionProps } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-interface DemolitionButtonProps extends HTMLMotionProps<"button"> {
+// Omit conflicting props between React.ButtonHTMLAttributes and framer-motion's motion.button
+export interface DemolitionButtonProps extends Omit<HTMLMotionProps<"button">, "onDrag" | "onDragStart" | "onDragEnd" | "onAnimationStart"> {
   children: ReactNode;
   variant?: "primary" | "secondary" | "brand";
   size?: "default" | "sm" | "lg";
@@ -76,13 +77,13 @@ export const DemolitionButton = forwardRef<HTMLButtonElement, DemolitionButtonPr
 
     return (
       <motion.button
+        {...(props as any)}
         ref={activeRef}
         onClick={handleClick}
         whileTap={!disabled ? { y: 4 } : {}}
         transition={{ duration: 0.08, ease: "easeOut" }}
         className={baseClasses}
         disabled={disabled}
-        {...(props as any)}
       >
         <span className="relative z-10 flex items-center justify-center gap-2">
           {children}
