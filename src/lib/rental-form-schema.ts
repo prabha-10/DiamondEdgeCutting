@@ -14,10 +14,10 @@ export const rentalFormSchema = z.object({
     "Full project",
     "Not sure",
   ], {
-    errorMap: () => ({ message: "Please select a rental duration" }),
+    message: "Please select a rental duration",
   }),
   operatorRequired: z.enum(["all", "none", "some"], {
-    errorMap: () => ({ message: "Please select an operator option" }),
+    message: "Please select an operator option",
   }),
   projectStart: z.enum([
     "Immediate",
@@ -26,7 +26,7 @@ export const rentalFormSchema = z.object({
     "Beyond 3 months",
     "Not sure",
   ], {
-    errorMap: () => ({ message: "Please select a project start timeframe" }),
+    message: "Please select a project start timeframe",
   }),
   equipment: z.array(z.object({
     id: z.string(),
