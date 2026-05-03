@@ -51,7 +51,7 @@ export function ServiceDetails() {
                     <h2 className="font-sans font-medium text-brand-gray-900 text-[40px] md:text-[56px] leading-[1.05] tracking-tight">
                       {service.title}
                     </h2>
-                    <p className="font-['Inter_Display',sans-serif] font-normal text-[17px] leading-[1.6] text-[#707070] max-w-xl">
+                    <p className="font-['Inter_Display',sans-serif] font-normal text-[17px] leading-[1.6] text-brand-gray-500 max-w-xl">
                       {service.lead}
                     </p>
                   </div>

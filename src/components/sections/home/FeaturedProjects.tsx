@@ -58,7 +58,7 @@ export function FeaturedProjects() {
             <h2 className="font-sans font-semibold text-brand-gray-900 text-[48px] md:text-[56px] leading-none tracking-tight">
               Selected Projects
             </h2>
-            <p className="font-['Inter_Display',sans-serif] font-normal text-[#707070] text-[18px] leading-[24px] max-w-[460px]">
+            <p className="font-['Inter_Display',sans-serif] font-normal text-brand-gray-500 text-[18px] leading-[24px] max-w-[460px]">
               A look at some of the projects we&apos;ve demolished, cut, and dismantled.
             </p>
           </div>
@@ -119,7 +119,7 @@ export function FeaturedProjects() {
                 <h3 className="font-sans font-semibold text-brand-gray-900 text-[22px] tracking-tight leading-tight group-hover:text-brand-red transition-colors">
                   {project.title}
                 </h3>
-                <div className="font-['Inter_Display',sans-serif] text-[#707070] text-[14px]">
+                <div className="font-['Inter_Display',sans-serif] text-brand-gray-500 text-[14px]">
                   {project.year} · {project.location}
                 </div>
               </div>

@@ -34,7 +34,7 @@ export function WhyDec() {
                 className="w-1.5 h-1.5 rounded-full bg-brand-red"
                 aria-hidden
               />
-              <span className="font-['Inter_Display',sans-serif] text-[13px] uppercase tracking-[0.12em] text-[#707070]">
+              <span className="font-['Inter_Display',sans-serif] text-[13px] uppercase tracking-[0.12em] text-brand-gray-500">
                 Why DEC
               </span>
             </div>
@@ -44,7 +44,7 @@ export function WhyDec() {
             </h2>
           </div>
           <div className="lg:col-span-5 flex flex-col gap-3 lg:justify-end">
-            <p className="font-['Inter_Display',sans-serif] font-normal text-[17px] leading-[1.55] text-[#707070]">
+            <p className="font-['Inter_Display',sans-serif] font-normal text-[17px] leading-[1.55] text-brand-gray-500">
               We get called when a structure is too sensitive, too constrained,
               or too high-stakes for general demolition. Three reasons it works
               out.

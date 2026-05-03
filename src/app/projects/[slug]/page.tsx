@@ -131,11 +131,11 @@ export default function ProjectDetailPage({ params }: { params: { slug: string }
               <div className="bg-brand-gray-50 border border-brand-gray-100 p-10 flex flex-col gap-8 mb-12">
                 <h3 className="text-3xl font-bold text-brand-gray-900 tracking-tight">Details</h3>
                 <div className="flex flex-col gap-6">
-                  <div className="flex flex-col border-b border-brand-gray-200 pb-6">
+                  <div className="flex flex-col border-b border-brand-gray-300 pb-6">
                     <span className="text-brand-gray-500 font-medium text-sm uppercase tracking-widest mb-2">Sector</span>
                     <span className="font-bold text-brand-gray-900 text-xl">{project.category}</span>
                   </div>
-                  <div className="flex flex-col border-b border-brand-gray-200 pb-6">
+                  <div className="flex flex-col border-b border-brand-gray-300 pb-6">
                     <span className="text-brand-gray-500 font-medium text-sm uppercase tracking-widest mb-2">Location</span>
                     <span className="font-bold text-brand-gray-900 text-xl">{project.location}</span>
                   </div>

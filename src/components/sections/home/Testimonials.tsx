@@ -118,7 +118,7 @@ export function Testimonials() {
                   className="w-1.5 h-1.5 rounded-full bg-brand-gray-500"
                   aria-hidden
                 />
-                <span className="font-['Inter_Display',sans-serif] text-[14px] text-[#707070]">
+                <span className="font-['Inter_Display',sans-serif] text-[14px] text-brand-gray-500">
                   Testimonials
                 </span>
               </div>
@@ -145,7 +145,7 @@ export function Testimonials() {
                       strokeWidth={1.8}
                     />
                     <div className="flex flex-col gap-0.5">
-                      <span className="font-['Inter_Display',sans-serif] text-[13px] text-[#707070] leading-tight">
+                      <span className="font-['Inter_Display',sans-serif] text-[13px] text-brand-gray-500 leading-tight">
                         {stat.label}
                       </span>
                       <span className="font-sans font-medium text-black text-[28px] leading-none tabular-nums">

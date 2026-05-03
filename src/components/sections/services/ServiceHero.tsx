@@ -60,7 +60,7 @@ export function ServiceHero() {
               <span className="font-sans font-medium text-brand-gray-900 text-[36px] md:text-[44px] leading-none tracking-tight">
                 {stat.value}
               </span>
-              <span className="font-['Inter_Display',sans-serif] text-[13px] text-[#707070]">
+              <span className="font-['Inter_Display',sans-serif] text-[13px] text-brand-gray-500">
                 {stat.label}
               </span>
             </div>

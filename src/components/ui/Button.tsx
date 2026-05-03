@@ -28,8 +28,8 @@ function BrandButton({
     <button
       ref={ref}
       className={cn(
-        "group inline-flex items-center rounded-full border-2 border-brand-gray-900 bg-brand-gray-900 text-white font-bold transition-all duration-300",
-        "hover:bg-brand-gray-700 hover:border-brand-gray-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-gray-900 focus-visible:ring-offset-2",
+        "group inline-flex items-center rounded-full border-2 border-brand-red bg-brand-red text-white font-bold transition-all duration-300",
+        "hover:bg-brand-red-dark hover:border-brand-red-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-red focus-visible:ring-offset-2",
         "disabled:pointer-events-none disabled:opacity-50 whitespace-nowrap",
         isLg ? "h-14 text-base" : "h-14 text-base",
         noIcon ? "justify-center px-8" : "pl-2 pr-7 gap-3",
@@ -41,7 +41,7 @@ function BrandButton({
       {!noIcon && (
         <span
           className={cn(
-            "flex items-center justify-center rounded-full bg-white text-brand-gray-900 shrink-0 transition-transform duration-300 group-hover:rotate-45",
+            "flex items-center justify-center rounded-full bg-white text-brand-red shrink-0 transition-transform duration-300 group-hover:rotate-45",
             "w-9 h-9"
           )}
         >

@@ -33,6 +33,8 @@ export function ContactForm() {
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
+      inquiryType: "",
+      projectTimeline: "",
       botField: ""
     }
   });
@@ -72,8 +74,8 @@ export function ContactForm() {
     );
   }
 
-  const inputClasses = "w-full bg-transparent border-0 border-b-2 border-brand-gray-300 py-4 text-xl font-medium text-brand-gray-900 focus:ring-0 focus:border-brand-gray-900 focus:outline-none transition-colors placeholder:text-brand-gray-400";
-  const errorClasses = "w-full bg-transparent border-0 border-b-2 border-[#A00C24] py-4 text-xl font-medium text-brand-gray-900 focus:ring-0 focus:border-[#A00C24] focus:outline-none transition-colors placeholder:text-brand-gray-400";
+  const inputClasses = "w-full bg-transparent border-0 border-b-2 border-brand-gray-300 py-4 text-xl font-medium text-brand-gray-900 focus:ring-0 focus:border-brand-gray-900 focus:outline-none transition-colors placeholder:text-brand-gray-500";
+  const errorClasses = "w-full bg-transparent border-0 border-b-2 border-brand-red-dark py-4 text-xl font-medium text-brand-gray-900 focus:ring-0 focus:border-brand-red-dark focus:outline-none transition-colors placeholder:text-brand-gray-500";
   const labelClasses = "block text-sm font-bold text-brand-gray-500 uppercase tracking-widest mb-2";
 
   return (
@@ -92,7 +94,7 @@ export function ContactForm() {
             placeholder="John Doe"
             className={errors.fullName ? errorClasses : inputClasses}
           />
-          {errors.fullName && <span className="text-sm font-bold text-[#A00C24] mt-2">{errors.fullName.message}</span>}
+          {errors.fullName && <span className="text-sm font-bold text-brand-red-dark mt-2">{errors.fullName.message}</span>}
         </div>
 
         <div className="flex flex-col">
@@ -102,7 +104,7 @@ export function ContactForm() {
             placeholder="Your Company LLC"
             className={errors.company ? errorClasses : inputClasses}
           />
-          {errors.company && <span className="text-sm font-bold text-[#A00C24] mt-2">{errors.company.message}</span>}
+          {errors.company && <span className="text-sm font-bold text-brand-red-dark mt-2">{errors.company.message}</span>}
         </div>
       </div>
 
@@ -115,7 +117,7 @@ export function ContactForm() {
             placeholder="john@company.com"
             className={errors.email ? errorClasses : inputClasses}
           />
-          {errors.email && <span className="text-sm font-bold text-[#A00C24] mt-2">{errors.email.message}</span>}
+          {errors.email && <span className="text-sm font-bold text-brand-red-dark mt-2">{errors.email.message}</span>}
         </div>
 
         <div className="flex flex-col">
@@ -126,23 +128,24 @@ export function ContactForm() {
             placeholder="+971 50 123 4567"
             className={errors.phone ? errorClasses : inputClasses}
           />
-          {errors.phone && <span className="text-sm font-bold text-[#A00C24] mt-2">{errors.phone.message}</span>}
+          {errors.phone && <span className="text-sm font-bold text-brand-red-dark mt-2">{errors.phone.message}</span>}
         </div>
       </div>
 
       <div className="flex flex-col">
         <label htmlFor="inquiryType" className={labelClasses}>Inquiry Type *</label>
-        <select 
+        <select
           {...register("inquiryType")}
+          defaultValue=""
           className={errors.inquiryType ? errorClasses : inputClasses}
         >
-          <option value="" disabled selected>Select an option</option>
+          <option value="" disabled>Select an option</option>
           <option value="Demolition Project">Demolition Project</option>
           <option value="Equipment Rental">Equipment Rental</option>
           <option value="Operator Availability">Operator Availability</option>
           <option value="General">General Inquiry</option>
         </select>
-        {errors.inquiryType && <span className="text-sm font-bold text-[#A00C24] mt-2">{errors.inquiryType.message}</span>}
+        {errors.inquiryType && <span className="text-sm font-bold text-brand-red-dark mt-2">{errors.inquiryType.message}</span>}
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
@@ -157,11 +160,12 @@ export function ContactForm() {
 
         <div className="flex flex-col">
           <label htmlFor="projectTimeline" className={labelClasses}>Project Timeline</label>
-          <select 
+          <select
             {...register("projectTimeline")}
+            defaultValue=""
             className={inputClasses}
           >
-            <option value="" disabled selected>Select a timeline</option>
+            <option value="" disabled>Select a timeline</option>
             <option value="Immediate">Immediate</option>
             <option value="Within 1 month">Within 1 month</option>
             <option value="Within 3 months">Within 3 months</option>
@@ -179,7 +183,7 @@ export function ContactForm() {
           placeholder="Tell us about your project requirements..."
           className={`resize-none ${errors.description ? errorClasses : inputClasses}`}
         ></textarea>
-        {errors.description && <span className="text-sm font-bold text-[#A00C24] mt-2">{errors.description.message}</span>}
+        {errors.description && <span className="text-sm font-bold text-brand-red-dark mt-2">{errors.description.message}</span>}
       </div>
 
       <Button type="submit" size="lg" disabled={isSubmitting} className="rounded-full h-16 px-12 text-xl self-start mt-8">

@@ -86,7 +86,7 @@ function TextCard({ cell }: { cell: TextCell }) {
         &ldquo;{cell.statement}&rdquo;
       </p>
       <span className="w-10 h-px bg-brand-gray-300" aria-hidden />
-      <span className="font-['Inter_Display',sans-serif] text-[13px] text-[#707070] max-w-[26ch]">
+      <span className="font-['Inter_Display',sans-serif] text-[13px] text-brand-gray-500 max-w-[26ch]">
         {cell.caption}
       </span>
     </div>
@@ -113,7 +113,7 @@ export function MissionVision() {
         <div className="flex flex-col gap-6 mb-20 max-w-3xl">
           <div className="flex items-center gap-2.5">
             <span className="w-1.5 h-1.5 rounded-full bg-brand-red" aria-hidden />
-            <span className="font-['Inter_Display',sans-serif] text-[13px] uppercase tracking-[0.12em] text-[#707070]">
+            <span className="font-['Inter_Display',sans-serif] text-[13px] uppercase tracking-[0.12em] text-brand-gray-500">
               How We Work
             </span>
           </div>

@@ -63,7 +63,7 @@ export function Leadership() {
                 <h3 className="font-sans font-semibold text-brand-gray-900 text-[22px] leading-[1.2] tracking-tight">
                   {member.name}
                 </h3>
-                <p className="font-['Inter_Display',sans-serif] text-[14px] text-[#707070]">
+                <p className="font-['Inter_Display',sans-serif] text-[14px] text-brand-gray-500">
                   {member.role}
                 </p>
               </div>

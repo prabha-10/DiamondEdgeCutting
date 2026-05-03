@@ -51,11 +51,11 @@ export function Overview() {
     <section className="pt-8 pb-32 bg-brand-gray-100">
       <div className="container mx-auto px-4 md:px-8">
         {/* Top: eyebrow + headline split */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 border-t border-brand-gray-200 pt-12">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 border-t border-brand-gray-300 pt-12">
           <div className="lg:col-span-4">
             <div className="flex items-center gap-2.5">
               <span className="w-1.5 h-1.5 rounded-full bg-brand-gray-500" />
-              <span className="font-['Inter_Display',sans-serif] font-normal text-[#707070] text-[20px] leading-[22px] tracking-normal">
+              <span className="font-['Inter_Display',sans-serif] font-normal text-brand-gray-500 text-[20px] leading-[22px] tracking-normal">
                 Built on experience and craft
               </span>
             </div>
@@ -81,10 +81,10 @@ export function Overview() {
                 /{String(index + 1).padStart(2, "0")}
               </span>
               <div>
-                <div className="font-sans font-medium text-[rgb(10,10,10)] text-[68px] leading-[68px] mb-4 tracking-tight tabular-nums">
+                <div className="font-sans font-medium text-brand-gray-900 text-[68px] leading-[68px] mb-4 tracking-tight tabular-nums">
                   <CountUp target={stat.target} suffix={stat.suffix} />
                 </div>
-                <div className="font-['Inter_Display',sans-serif] font-normal text-[#707070] text-[18px] leading-[normal]">
+                <div className="font-['Inter_Display',sans-serif] font-normal text-brand-gray-500 text-[18px] leading-[normal]">
                   {stat.label}
                 </div>
               </div>

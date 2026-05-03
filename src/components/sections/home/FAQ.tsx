@@ -55,7 +55,7 @@ export function FAQ() {
               <h2 className="font-sans font-medium text-brand-gray-900 text-[40px] md:text-[52px] leading-[1.05] tracking-tight">
                 Frequently Asked Questions
               </h2>
-              <p className="font-['Inter_Display',sans-serif] font-normal text-[16px] leading-[1.55] text-[#707070] max-w-md">
+              <p className="font-['Inter_Display',sans-serif] font-normal text-[16px] leading-[1.55] text-brand-gray-500 max-w-md">
                 Questions? We have answers. Here&apos;s what you need to know
                 about working with us.
               </p>
@@ -63,7 +63,7 @@ export function FAQ() {
 
             {/* CTA card */}
             <div className="flex flex-col gap-4">
-              <span className="font-['Inter_Display',sans-serif] text-[14px] text-[#707070]">
+              <span className="font-['Inter_Display',sans-serif] text-[14px] text-brand-gray-500">
                 Need to ask something else?
               </span>
               <div className="bg-white rounded-[20px] p-6 flex flex-col gap-8 max-w-md">
@@ -77,7 +77,7 @@ export function FAQ() {
                     <span className="font-sans font-medium text-black text-[16px] leading-[1.3] tracking-tight">
                       Hi, I&apos;m Robert, MD of Diamond Edge
                     </span>
-                    <span className="font-['Inter_Display',sans-serif] text-[14px] text-[#707070] mt-1">
+                    <span className="font-['Inter_Display',sans-serif] text-[14px] text-brand-gray-500 mt-1">
                       Reach out anytime.
                     </span>
                   </div>
@@ -118,7 +118,7 @@ export function FAQ() {
                     <span
                       className={`shrink-0 w-10 h-10 rounded-full flex items-center justify-center transition-colors duration-300 ${
                         isOpen
-                          ? "bg-[#F5F5F5] text-black"
+                          ? "bg-brand-gray-100 text-black"
                           : "bg-black text-white"
                       }`}
                       aria-hidden
@@ -137,7 +137,7 @@ export function FAQ() {
                     }`}
                   >
                     <div className="overflow-hidden">
-                      <p className="px-6 pb-6 font-['Inter_Display',sans-serif] font-normal text-[18px] leading-[1.55] text-[#707070] max-w-[60ch]">
+                      <p className="px-6 pb-6 font-['Inter_Display',sans-serif] font-normal text-[18px] leading-[1.55] text-brand-gray-500 max-w-[60ch]">
                         {faq.answer}
                       </p>
                     </div>

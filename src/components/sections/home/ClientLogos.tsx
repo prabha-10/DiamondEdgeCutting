@@ -41,7 +41,7 @@ export function ClientLogos() {
                   />
                 ))}
               </div>
-              <span className="font-['Inter_Display',sans-serif] font-normal text-[14px] leading-[16px] text-[#707070] max-w-[160px]">
+              <span className="font-['Inter_Display',sans-serif] font-normal text-[14px] leading-[16px] text-brand-gray-500 max-w-[160px]">
                 Used by 60+ developers &amp; builders
               </span>
             </div>

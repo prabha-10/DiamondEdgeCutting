@@ -36,7 +36,7 @@ export function Certifications() {
               className="w-1.5 h-1.5 rounded-full bg-brand-gray-500"
               aria-hidden
             />
-            <span className="font-['Inter_Display',sans-serif] text-[14px] tracking-[0.02em] text-[#707070]">
+            <span className="font-['Inter_Display',sans-serif] text-[14px] tracking-[0.02em] text-brand-gray-500">
               Certifications &amp; Approvals
             </span>
           </div>
@@ -61,7 +61,7 @@ export function Certifications() {
                   <Icon className="w-6 h-6" strokeWidth={1.6} />
                 </div>
                 <div className="flex flex-col gap-1 min-w-0">
-                  <span className="font-['Inter_Display',sans-serif] text-[12px] text-[#707070] leading-[1.3]">
+                  <span className="font-['Inter_Display',sans-serif] text-[12px] text-brand-gray-500 leading-[1.3]">
                     {cert.name}
                   </span>
                   <h3 className="font-sans font-semibold text-brand-gray-900 text-[18px] leading-[1.2] tracking-tight">

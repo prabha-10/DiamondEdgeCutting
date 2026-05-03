@@ -78,7 +78,7 @@ export function Services() {
           <aside className="bg-white rounded-[25px] p-9 flex flex-col">
             <div className="flex items-center gap-2.5 mb-8">
               <span className="w-1.5 h-1.5 rounded-full bg-brand-gray-500" />
-              <span className="font-['Inter_Display',sans-serif] text-[14px] text-[#707070]">
+              <span className="font-['Inter_Display',sans-serif] text-[14px] text-brand-gray-500">
                 Services
               </span>
             </div>
@@ -88,7 +88,7 @@ export function Services() {
                 <span className="font-sans font-medium text-brand-gray-900 text-[44px] leading-none tracking-tight">
                   300+
                 </span>
-                <span className="font-['Inter_Display',sans-serif] text-[14px] text-[#707070]">
+                <span className="font-['Inter_Display',sans-serif] text-[14px] text-brand-gray-500">
                   Trained professionals
                 </span>
               </div>
@@ -96,14 +96,14 @@ export function Services() {
                 <span className="font-sans font-medium text-brand-gray-900 text-[44px] leading-none tracking-tight">
                   17+
                 </span>
-                <span className="font-['Inter_Display',sans-serif] text-[14px] text-[#707070]">
+                <span className="font-['Inter_Display',sans-serif] text-[14px] text-brand-gray-500">
                   Years in the GCC
                 </span>
               </div>
             </div>
 
             <div className="mt-auto border-t border-brand-gray-300 pt-8 flex flex-col gap-4">
-              <div className="flex items-center gap-1 text-[#FFB23F]">
+              <div className="flex items-center gap-1 text-brand-red">
                 {[0, 1, 2, 3, 4].map((i) => (
                   <Star key={i} className="w-4 h-4 fill-current" strokeWidth={0} />
                 ))}
@@ -119,7 +119,7 @@ export function Services() {
                   <span className="font-sans font-semibold text-brand-gray-900 text-[15px] leading-tight">
                     A. Mansour
                   </span>
-                  <span className="font-['Inter_Display',sans-serif] text-[13px] text-[#707070] leading-tight">
+                  <span className="font-['Inter_Display',sans-serif] text-[13px] text-brand-gray-500 leading-tight">
                     Project Director, UAE main contractor
                   </span>
                 </div>
@@ -178,7 +178,7 @@ export function Services() {
                         <h4 className="font-sans font-semibold text-black text-[26px] leading-[33px] tracking-tight">
                           {service.title}
                         </h4>
-                        <p className="font-['Inter_Display',sans-serif] font-normal text-[#707070] text-[18px] leading-[24px] max-w-xl">
+                        <p className="font-['Inter_Display',sans-serif] font-normal text-brand-gray-500 text-[18px] leading-[24px] max-w-xl">
                           {service.description}
                         </p>
                         <div className="flex flex-wrap gap-2">

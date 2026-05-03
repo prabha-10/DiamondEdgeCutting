@@ -4,6 +4,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { OrganizationSchema } from "@/components/seo/Schema";
 import { IntroProvider } from "@/context/IntroContext";
+import { getAllCategories } from "../../sanity/lib/queries";
 
 export const metadata: Metadata = {
   title: {
@@ -13,11 +14,12 @@ export const metadata: Metadata = {
   description: "GCC's largest robotic demolition fleet. Specialist controlled demolition, concrete cutting, equipment rental across Dubai, Abu Dhabi & UAE since 2008.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const rentalCategories = await getAllCategories();
   return (
     <html
       lang="en"
@@ -30,7 +32,7 @@ export default function RootLayout({
       >
         <OrganizationSchema />
         <IntroProvider>
-          <Header />
+          <Header rentalCategories={rentalCategories} />
           <main className="flex-1 flex flex-col">{children}</main>
           <Footer />
         </IntroProvider>

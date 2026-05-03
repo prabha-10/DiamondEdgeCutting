@@ -3,13 +3,29 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { navigationLinks } from "@/data/navigation";
 import { Button } from "@/components/ui/Button";
 import { Menu, X, ChevronDown, Phone } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useIntro } from "@/context/IntroContext";
 
-export function Header() {
+type NavDropdownItem = { name: string; href: string };
+type NavLink = { name: string; href: string; dropdown?: NavDropdownItem[] };
+
+export function Header({ rentalCategories }: { rentalCategories?: { title: string; slug: string }[] }) {
+  const navigationLinks: NavLink[] = [
+    { name: "Home", href: "/" },
+    { name: "Demolition Services", href: "/demolition-services" },
+    {
+      name: "Rental Equipment",
+      href: "/rental-equipment",
+      dropdown: (rentalCategories || []).map((c) => ({
+        name: c.title,
+        href: `/rental-equipment/${c.slug}`,
+      })),
+    },
+    { name: "Projects", href: "/projects" },
+    { name: "Contact", href: "/contact" },
+  ];
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
@@ -34,20 +50,37 @@ export function Header() {
 
   return (
     <header
-      className="fixed top-0 left-0 right-0 z-50 pt-6 pb-4 bg-brand-gray-900/40 backdrop-blur-2xl backdrop-saturate-150 border-b border-white/15 shadow-lg shadow-black/10 transition-all duration-500"
+      className={cn(
+        "fixed top-0 left-0 right-0 z-50 pt-6 pb-4 transition-all duration-500",
+        isScrolled
+          ? "bg-white shadow-md border-b border-brand-gray-300"
+          : "bg-white/5 backdrop-blur-md border-b border-white/10"
+      )}
       style={{
         opacity: headerVisible ? 1 : 0,
         transform: headerVisible ? "translateY(0)" : "translateY(-16px)",
-        transition: "opacity 700ms cubic-bezier(0.22,1,0.36,1) 200ms, transform 700ms cubic-bezier(0.22,1,0.36,1) 200ms",
+        transition: "opacity 700ms cubic-bezier(0.22,1,0.36,1) 200ms, transform 700ms cubic-bezier(0.22,1,0.36,1) 200ms, background-color 300ms ease, box-shadow 300ms ease, border-color 300ms ease",
       }}
     >
       <div className="container mx-auto px-4 md:px-8 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 z-50 group">
-          <div className="w-9 h-9 bg-white/20 group-hover:bg-brand-red transition-colors flex items-center justify-center rounded-full text-white font-bold text-lg leading-none border border-white/30">
+          <div
+            className={cn(
+              "w-9 h-9 group-hover:bg-brand-red transition-colors flex items-center justify-center rounded-full font-bold text-lg leading-none border",
+              isScrolled
+                ? "bg-brand-red text-white border-brand-red"
+                : "bg-white/20 text-white border-white/30"
+            )}
+          >
             D
           </div>
-          <span className="font-bold text-xl tracking-tight text-white">
+          <span
+            className={cn(
+              "font-bold text-xl tracking-tight transition-colors",
+              isScrolled ? "text-brand-gray-900" : "text-white"
+            )}
+          >
             Diamond Edge
           </span>
         </Link>
@@ -66,28 +99,50 @@ export function Header() {
                     className={cn(
                       "flex items-center gap-1 cursor-pointer px-4 py-2 rounded-full transition-all duration-200",
                       isActive
-                        ? "bg-white text-brand-red"
+                        ? isScrolled
+                          ? "bg-brand-red text-white"
+                          : "bg-white text-brand-red"
+                        : isScrolled
+                        ? "text-brand-gray-900 hover:bg-brand-gray-100"
                         : "text-white hover:bg-white/10"
                     )}
                   >
-                    <span className="text-base font-bold">
+                    <Link href={link.href} className="text-base font-bold">
                       {link.name}
-                    </span>
+                    </Link>
                     <ChevronDown
                       className={cn(
                         "w-4 h-4 transition-transform group-hover:rotate-180",
-                        isActive ? "text-brand-red" : "text-white/70"
+                        isActive
+                          ? isScrolled
+                            ? "text-white"
+                            : "text-brand-red"
+                          : isScrolled
+                          ? "text-brand-gray-500"
+                          : "text-white/70"
                       )}
                     />
 
                     {/* Dropdown Menu */}
                     <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 w-64">
-                      <div className="bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-xl overflow-hidden py-2 flex flex-col">
+                      <div
+                        className={cn(
+                          "rounded-2xl shadow-xl overflow-hidden py-2 flex flex-col border",
+                          isScrolled
+                            ? "bg-white border-brand-gray-300"
+                            : "bg-white/10 backdrop-blur-xl border-white/20"
+                        )}
+                      >
                         {link.dropdown.map((item) => (
                           <Link
                             key={item.name}
                             href={item.href}
-                            className="px-5 py-3 text-sm font-semibold text-white hover:bg-white/10 transition-colors"
+                            className={cn(
+                              "px-5 py-3 text-sm font-semibold transition-colors",
+                              isScrolled
+                                ? "text-brand-gray-900 hover:bg-brand-gray-100"
+                                : "text-white hover:bg-white/10"
+                            )}
                           >
                             {item.name}
                           </Link>
@@ -101,7 +156,11 @@ export function Header() {
                     className={cn(
                       "flex items-center px-4 py-2 rounded-full text-base font-bold transition-all duration-200",
                       isActive
-                        ? "bg-white text-brand-red"
+                        ? isScrolled
+                          ? "bg-brand-red text-white"
+                          : "bg-white text-brand-red"
+                        : isScrolled
+                        ? "text-brand-gray-900 hover:bg-brand-gray-100"
                         : "text-white hover:bg-white/10"
                     )}
                   >

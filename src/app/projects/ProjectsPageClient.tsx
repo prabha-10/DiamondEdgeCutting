@@ -71,7 +71,7 @@ export default function ProjectsPageClient() {
           <div className="flex flex-col gap-6 max-w-4xl">
             <div className="flex items-center gap-2.5">
               <span className="w-1.5 h-1.5 rounded-full bg-brand-red" aria-hidden />
-              <span className="font-['Inter_Display',sans-serif] text-[13px] uppercase tracking-[0.12em] text-[#707070]">
+              <span className="font-['Inter_Display',sans-serif] text-[13px] uppercase tracking-[0.12em] text-brand-gray-500">
                 Selected Works
               </span>
             </div>
@@ -80,7 +80,7 @@ export default function ProjectsPageClient() {
             </h1>
           </div>
           <div className="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end">
-            <p className="lg:col-span-7 font-['Inter_Display',sans-serif] font-normal text-[19px] md:text-[22px] leading-[1.5] text-[#707070] max-w-2xl">
+            <p className="lg:col-span-7 font-['Inter_Display',sans-serif] font-normal text-[19px] md:text-[22px] leading-[1.5] text-brand-gray-500 max-w-2xl">
               18 headline projects across airports, malls, hotels, infrastructure, and refractory works, delivered across the GCC since 2008.
             </p>
             <div className="lg:col-span-5 lg:justify-self-end">
@@ -97,7 +97,7 @@ export default function ProjectsPageClient() {
       </section>
 
       {/* Filter pills */}
-      <section className="py-6 bg-white border-b border-brand-gray-200 sticky top-20 z-30 backdrop-blur-sm">
+      <section className="py-6 bg-white border-b border-brand-gray-300 sticky top-20 z-30 backdrop-blur-sm">
         <div className="container mx-auto px-4 md:px-8">
           <div className="flex flex-nowrap overflow-x-auto gap-2 hide-scrollbar">
             {projectCategories.map((category) => (
@@ -107,7 +107,7 @@ export default function ProjectsPageClient() {
                 className={`shrink-0 px-5 py-2 rounded-full font-mono text-[12px] uppercase tracking-[0.12em] transition-colors ${
                   activeFilter === category
                     ? "bg-brand-gray-900 text-white"
-                    : "bg-brand-gray-100 text-[#707070] hover:bg-brand-gray-300/50 hover:text-brand-gray-900"
+                    : "bg-brand-gray-100 text-brand-gray-500 hover:bg-brand-gray-300/50 hover:text-brand-gray-900"
                 }`}
               >
                 {category}
@@ -142,7 +142,7 @@ export default function ProjectsPageClient() {
                   <h3 className="font-mono font-semibold text-brand-gray-900 text-[14px] tracking-tight md:basis-1/3 shrink-0">
                     {projectId(i, project.title)}
                   </h3>
-                  <div className="font-mono text-[12px] uppercase tracking-[0.06em] text-[#707070] flex flex-col gap-0.5 leading-[1.5]">
+                  <div className="font-mono text-[12px] uppercase tracking-[0.06em] text-brand-gray-500 flex flex-col gap-0.5 leading-[1.5]">
                     <span className="text-brand-gray-900">{project.title}</span>
                     <span>{project.location}</span>
                     {project.year && <span>{project.year}</span>}
@@ -154,7 +154,7 @@ export default function ProjectsPageClient() {
           </div>
 
           {filteredProjects.length === 0 && (
-            <div className="text-center py-32 font-mono text-[#707070] text-[14px] uppercase tracking-widest">
+            <div className="text-center py-32 font-mono text-brand-gray-500 text-[14px] uppercase tracking-widest">
               No projects in this category.
             </div>
           )}
@@ -218,7 +218,7 @@ export default function ProjectsPageClient() {
 
                     <div className="grid grid-cols-2 gap-4 pt-6 border-t border-brand-gray-300">
                       <div className="flex flex-col gap-1">
-                        <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-[#707070]">
+                        <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-brand-gray-500">
                           Location
                         </span>
                         <span className="font-sans text-brand-gray-900 text-[16px]">
@@ -227,7 +227,7 @@ export default function ProjectsPageClient() {
                       </div>
                       {selectedProject.year && (
                         <div className="flex flex-col gap-1">
-                          <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-[#707070]">
+                          <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-brand-gray-500">
                             Year
                           </span>
                           <span className="font-sans text-brand-gray-900 text-[16px]">
@@ -238,7 +238,7 @@ export default function ProjectsPageClient() {
                     </div>
 
                     <div className="flex flex-col gap-2 pt-6 border-t border-brand-gray-300">
-                      <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-[#707070]">
+                      <span className="font-mono text-[11px] uppercase tracking-[0.12em] text-brand-gray-500">
                         Scope of work
                       </span>
                       <p className="font-['Inter_Display',sans-serif] font-normal text-[16px] leading-[1.55] text-brand-gray-900">

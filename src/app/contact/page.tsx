@@ -17,7 +17,7 @@ export default function ContactPage() {
       <section className="relative pt-32 pb-16 bg-white overflow-hidden">
         <div className="container relative z-20 mx-auto px-4 md:px-8">
           <div className="flex flex-col gap-3">
-            <span className="font-mono text-[13px] text-[#707070]">
+            <span className="font-mono text-[13px] text-brand-gray-500">
               Get in touch
             </span>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-end">
@@ -26,7 +26,7 @@ export default function ContactPage() {
                 <br />
                 Let&apos;s plan it together.
               </h1>
-              <span className="lg:col-span-3 font-['Inter_Display',sans-serif] text-[14px] text-[#707070] lg:text-right lg:pb-4">
+              <span className="lg:col-span-3 font-['Inter_Display',sans-serif] text-[14px] text-brand-gray-500 lg:text-right lg:pb-4">
                 Replies within 24 hours · Sun – Thu, 8:00 – 18:00 GST
               </span>
             </div>

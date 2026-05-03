@@ -44,7 +44,7 @@ export function VideoIntro({ onComplete }: VideoIntroProps) {
         position: "fixed",
         inset: 0,
         zIndex: 9999,
-        background: "#000",
+        background: "var(--color-brand-gray-900)",
         opacity: exiting ? 0 : 1,
         transform: exiting ? "scale(1.04)" : "scale(1)",
         transition: "opacity 900ms cubic-bezier(0.4,0,0.2,1), transform 900ms cubic-bezier(0.4,0,0.2,1)",
