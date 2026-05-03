@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, useRef, MouseEvent, ReactNode, forwardRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, HTMLMotionProps } from "framer-motion";
 import { cn } from "@/lib/utils";
 
-interface DemolitionButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface DemolitionButtonProps extends HTMLMotionProps<"button"> {
   children: ReactNode;
   variant?: "primary" | "secondary" | "brand";
   size?: "default" | "sm" | "lg";
@@ -74,9 +74,6 @@ export const DemolitionButton = forwardRef<HTMLButtonElement, DemolitionButtonPr
       className
     );
 
-    // Simple implementation for asChild: if children is a single React element, we wrap it
-    // Note: this is a shortcut, real asChild requires Slot
-    
     return (
       <motion.button
         ref={activeRef}
@@ -85,7 +82,7 @@ export const DemolitionButton = forwardRef<HTMLButtonElement, DemolitionButtonPr
         transition={{ duration: 0.08, ease: "easeOut" }}
         className={baseClasses}
         disabled={disabled}
-        {...props}
+        {...(props as any)}
       >
         <span className="relative z-10 flex items-center justify-center gap-2">
           {children}
