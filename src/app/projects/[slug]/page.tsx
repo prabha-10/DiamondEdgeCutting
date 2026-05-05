@@ -109,8 +109,8 @@ export async function generateStaticParams() {
     if (Array.isArray(slugs) && slugs.length > 0) {
       return slugs
         .map((s: { slug?: string }) => s?.slug)
-        .filter(Boolean)
-        .map((slug: string) => ({ slug }));
+        .filter((slug): slug is string => Boolean(slug))
+        .map((slug) => ({ slug }));
     }
   } catch {
     // ignore — fall back to local
