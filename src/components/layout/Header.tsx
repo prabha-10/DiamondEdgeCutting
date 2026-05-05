@@ -67,25 +67,15 @@ export function Header({ rentalCategories }: { rentalCategories?: { title: strin
     >
       <div className="container mx-auto px-4 md:px-8 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-3 z-50 group">
-          <div
+        <Link href="/" className="flex items-center z-50 group" aria-label="Diamond Edge Cutting — Home">
+          <img
+            src="/header-logo.png"
+            alt="Diamond Edge Cutting"
             className={cn(
-              "w-9 h-9 group-hover:bg-brand-red transition-colors flex items-center justify-center rounded-full font-bold text-lg leading-none border",
-              isSolid
-                ? "bg-brand-red text-white border-brand-red"
-                : "bg-white/20 text-white border-white/30"
+              "h-12 md:h-14 w-auto object-contain transition-[filter] duration-300",
+              isSolid ? "" : "drop-shadow-[0_2px_12px_rgba(0,0,0,0.55)]"
             )}
-          >
-            D
-          </div>
-          <span
-            className={cn(
-              "font-bold text-xl tracking-tight transition-colors",
-              isSolid ? "text-brand-gray-900" : "text-white"
-            )}
-          >
-            Diamond Edge
-          </span>
+          />
         </Link>
 
         {/* Desktop Navigation, no pill container, items float freely */}

@@ -31,7 +31,8 @@ export default async function RootLayout({
       rentalCategories = equipmentCategories.map(c => ({ title: c.title, slug: c.slug }));
     }
   } catch (error) {
-    console.error("Failed to fetch categories from Sanity, using fallback:", error);
+    const msg = error instanceof Error ? error.message : String(error);
+    console.warn(`[Sanity] categories fetch failed (${msg.slice(0, 120)}); using local fallback.`);
     rentalCategories = equipmentCategories.map(c => ({ title: c.title, slug: c.slug }));
   }
   return (
