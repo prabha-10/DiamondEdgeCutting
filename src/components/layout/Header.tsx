@@ -34,6 +34,9 @@ export function Header({ rentalCategories }: { rentalCategories?: { title: strin
   // On inner pages there's no intro, show immediately
   const isHomepage = pathname === "/";
   const headerVisible = !isHomepage || introComplete;
+  
+  // Force solid white header on inner pages
+  const isSolid = isScrolled || !isHomepage;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -51,8 +54,8 @@ export function Header({ rentalCategories }: { rentalCategories?: { title: strin
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 pt-6 pb-4 transition-all duration-500",
-        isScrolled
+        "fixed top-0 left-0 right-0 z-[100] pt-6 pb-4 transition-all duration-500",
+        isSolid
           ? "bg-white shadow-md border-b border-brand-gray-300"
           : "bg-white/5 backdrop-blur-md border-b border-white/10"
       )}
@@ -68,7 +71,7 @@ export function Header({ rentalCategories }: { rentalCategories?: { title: strin
           <div
             className={cn(
               "w-9 h-9 group-hover:bg-brand-red transition-colors flex items-center justify-center rounded-full font-bold text-lg leading-none border",
-              isScrolled
+              isSolid
                 ? "bg-brand-red text-white border-brand-red"
                 : "bg-white/20 text-white border-white/30"
             )}
@@ -78,7 +81,7 @@ export function Header({ rentalCategories }: { rentalCategories?: { title: strin
           <span
             className={cn(
               "font-bold text-xl tracking-tight transition-colors",
-              isScrolled ? "text-brand-gray-900" : "text-white"
+              isSolid ? "text-brand-gray-900" : "text-white"
             )}
           >
             Diamond Edge
@@ -99,10 +102,10 @@ export function Header({ rentalCategories }: { rentalCategories?: { title: strin
                     className={cn(
                       "flex items-center gap-1 cursor-pointer px-4 py-2 rounded-full transition-all duration-200",
                       isActive
-                        ? isScrolled
+                        ? isSolid
                           ? "bg-brand-red text-white"
                           : "bg-white text-brand-red"
-                        : isScrolled
+                        : isSolid
                         ? "text-brand-gray-900 hover:bg-brand-gray-100"
                         : "text-white hover:bg-white/10"
                     )}
@@ -114,10 +117,10 @@ export function Header({ rentalCategories }: { rentalCategories?: { title: strin
                       className={cn(
                         "w-4 h-4 transition-transform group-hover:rotate-180",
                         isActive
-                          ? isScrolled
+                          ? isSolid
                             ? "text-white"
                             : "text-brand-red"
-                          : isScrolled
+                          : isSolid
                           ? "text-brand-gray-500"
                           : "text-white/70"
                       )}
@@ -128,7 +131,7 @@ export function Header({ rentalCategories }: { rentalCategories?: { title: strin
                       <div
                         className={cn(
                           "rounded-2xl shadow-xl overflow-hidden py-2 flex flex-col border",
-                          isScrolled
+                          isSolid
                             ? "bg-white border-brand-gray-300"
                             : "bg-white/10 backdrop-blur-xl border-white/20"
                         )}
@@ -139,7 +142,7 @@ export function Header({ rentalCategories }: { rentalCategories?: { title: strin
                             href={item.href}
                             className={cn(
                               "px-5 py-3 text-sm font-semibold transition-colors",
-                              isScrolled
+                              isSolid
                                 ? "text-brand-gray-900 hover:bg-brand-gray-100"
                                 : "text-white hover:bg-white/10"
                             )}
@@ -156,10 +159,10 @@ export function Header({ rentalCategories }: { rentalCategories?: { title: strin
                     className={cn(
                       "flex items-center px-4 py-2 rounded-full text-base font-bold transition-all duration-200",
                       isActive
-                        ? isScrolled
+                        ? isSolid
                           ? "bg-brand-red text-white"
                           : "bg-white text-brand-red"
-                        : isScrolled
+                        : isSolid
                         ? "text-brand-gray-900 hover:bg-brand-gray-100"
                         : "text-white hover:bg-white/10"
                     )}
