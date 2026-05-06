@@ -48,7 +48,7 @@ function CountUp({ target, suffix, duration = 1600 }: { target: number; suffix: 
 
 export function Overview() {
   return (
-    <section className="pt-8 pb-32 bg-brand-gray-100">
+    <section className="pt-8 pb-16 md:pb-32 bg-brand-gray-100">
       <div className="container mx-auto px-4 md:px-8">
         {/* Top: eyebrow + headline split */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 border-t border-brand-gray-300 pt-12">

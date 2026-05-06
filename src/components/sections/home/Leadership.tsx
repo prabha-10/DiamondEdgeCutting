@@ -24,10 +24,10 @@ function initialsOf(name: string) {
 
 export function Leadership() {
   return (
-    <section className="py-32 bg-brand-gray-50 overflow-hidden">
+    <section className="py-16 md:py-32 bg-brand-gray-50 overflow-hidden">
       {/* Header, big centered title, divider underneath */}
-      <div className="container mx-auto px-4 md:px-8 mb-12">
-        <h2 className="text-center font-sans font-medium text-black text-[40px] md:text-[60px] leading-[1.05] md:leading-[67px] tracking-tight mb-10">
+      <div className="container mx-auto px-4 md:px-8 mb-6 md:mb-12">
+        <h2 className="text-center font-sans font-medium text-black text-[36px] md:text-[60px] leading-[1.05] md:leading-[67px] tracking-tight mb-6 md:mb-10">
           People
         </h2>
         <div className="h-px bg-brand-gray-300" />
@@ -35,14 +35,14 @@ export function Leadership() {
 
       {/* Auto-loop marquee */}
       <div className="[mask-image:linear-gradient(to_right,transparent,black_4%,black_96%,transparent)]">
-        <div className="flex gap-6 animate-marquee hover:[animation-play-state:paused]">
+        <div className="flex gap-3 sm:gap-5 md:gap-6 animate-marquee hover:[animation-play-state:paused]">
           {[...team, ...team].map((member, i) => (
             <div
               key={`${member.name}-${i}`}
-              className="shrink-0 w-[260px] sm:w-[300px] md:w-[320px] flex flex-col gap-5"
+              className="shrink-0 w-[160px] sm:w-[240px] md:w-[300px] lg:w-[320px] flex flex-col gap-3 sm:gap-4 md:gap-5"
             >
               {/* Portrait, rectangular with rounded corners */}
-              <div className="relative aspect-[4/5] rounded-[20px] overflow-hidden bg-brand-gray-100 border border-brand-gray-300">
+              <div className="relative aspect-[4/5] rounded-[14px] sm:rounded-[18px] md:rounded-[20px] overflow-hidden bg-brand-gray-100 border border-brand-gray-300">
                 {member.image ? (
                   <img
                     src={member.image}
@@ -51,7 +51,7 @@ export function Leadership() {
                   />
                 ) : (
                   <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="font-sans font-medium text-brand-gray-500 text-[56px] tracking-tight">
+                    <span className="font-sans font-medium text-brand-gray-500 text-[36px] sm:text-[44px] md:text-[56px] tracking-tight">
                       {initialsOf(member.name)}
                     </span>
                   </div>
@@ -59,11 +59,11 @@ export function Leadership() {
               </div>
 
               {/* Name + role */}
-              <div className="flex flex-col gap-1">
-                <h3 className="font-sans font-semibold text-brand-gray-900 text-[22px] leading-[1.2] tracking-tight">
+              <div className="flex flex-col gap-0.5 sm:gap-1">
+                <h3 className="font-sans font-semibold text-brand-gray-900 text-[15px] sm:text-[18px] md:text-[22px] leading-[1.2] tracking-tight">
                   {member.name}
                 </h3>
-                <p className="font-['Inter_Display',sans-serif] text-[14px] text-brand-gray-500">
+                <p className="font-['Inter_Display',sans-serif] text-[12px] sm:text-[13px] md:text-[14px] text-brand-gray-500">
                   {member.role}
                 </p>
               </div>

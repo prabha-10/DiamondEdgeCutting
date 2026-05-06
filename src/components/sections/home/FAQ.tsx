@@ -46,7 +46,7 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
-    <section className="py-32 bg-brand-gray-100">
+    <section className="py-16 md:py-32 bg-brand-gray-100">
       <div className="container mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Left, heading + CTA card */}
@@ -66,18 +66,18 @@ export function FAQ() {
               <span className="font-['Inter_Display',sans-serif] text-[14px] text-brand-gray-500">
                 Need to ask something else?
               </span>
-              <div className="bg-white rounded-[20px] p-6 flex flex-col gap-8 max-w-md">
-                <div className="flex items-center gap-4">
-                  <div className="w-14 h-14 rounded-[8px] bg-brand-gray-100 flex items-center justify-center shrink-0">
-                    <span className="font-sans font-semibold text-brand-gray-700 text-[15px]">
+              <div className="bg-white rounded-[20px] p-5 sm:p-6 flex flex-col gap-6 sm:gap-8 max-w-md">
+                <div className="flex items-center gap-3 sm:gap-4">
+                  <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-[8px] bg-brand-gray-100 flex items-center justify-center shrink-0">
+                    <span className="font-sans font-semibold text-brand-gray-700 text-[13px] sm:text-[15px]">
                       RA
                     </span>
                   </div>
                   <div className="flex flex-col min-w-0">
-                    <span className="font-sans font-medium text-black text-[16px] leading-[1.3] tracking-tight">
+                    <span className="font-sans font-medium text-black text-[14px] sm:text-[16px] leading-[1.3] tracking-tight">
                       Hi, I&apos;m Robert, MD of Diamond Edge
                     </span>
-                    <span className="font-['Inter_Display',sans-serif] text-[14px] text-brand-gray-500 mt-1">
+                    <span className="font-['Inter_Display',sans-serif] text-[12px] sm:text-[14px] text-brand-gray-500 mt-1">
                       Reach out anytime.
                     </span>
                   </div>

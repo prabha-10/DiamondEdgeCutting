@@ -14,7 +14,7 @@ export default function ContactPage() {
       <ContactSchema />
 
       {/* Hero, Bungee-style: tiny eyebrow, big inviting headline, divider, email + reply note */}
-      <section className="relative pt-32 pb-16 bg-white overflow-hidden">
+      <section className="relative pt-28 md:pt-32 pb-10 md:pb-16 bg-white overflow-hidden">
         <div className="container relative z-20 mx-auto px-4 md:px-8">
           <div className="flex flex-col gap-3">
             <span className="font-mono text-[13px] text-brand-gray-500">
@@ -35,7 +35,7 @@ export default function ContactPage() {
       </section>
 
       {/* Form section, form on the right, empty space on the left */}
-      <section className="py-32 bg-white">
+      <section className="py-12 md:py-32 bg-white">
         <div className="container mx-auto px-4 md:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
             {/* Empty left column on desktop */}
@@ -43,7 +43,7 @@ export default function ContactPage() {
 
             {/* Form Column */}
             <div className="lg:col-span-7 flex flex-col">
-              <h2 className="text-4xl md:text-5xl font-bold text-brand-gray-900 mb-12 tracking-tight">Send an Inquiry</h2>
+              <h2 className="text-3xl md:text-5xl font-bold text-brand-gray-900 mb-8 md:mb-12 tracking-tight">Send an Inquiry</h2>
               <ContactForm />
             </div>
           </div>
@@ -51,13 +51,13 @@ export default function ContactPage() {
       </section>
 
       {/* Direct + Offices below the form, 2 column row */}
-      <section className="pb-32 bg-white">
+      <section className="pb-16 md:pb-32 bg-white">
         <div className="container mx-auto px-4 md:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start pt-16 border-t border-brand-gray-300">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 lg:gap-24 items-start pt-10 md:pt-16 border-t border-brand-gray-300">
 
             {/* Direct */}
-            <div className="flex flex-col gap-12">
-              <h2 className="text-4xl md:text-5xl font-bold text-brand-gray-900 tracking-tight">Direct</h2>
+            <div className="flex flex-col gap-6 md:gap-12">
+              <h2 className="text-3xl md:text-5xl font-bold text-brand-gray-900 tracking-tight">Direct</h2>
 
               <div className="flex flex-col gap-6 border-t border-brand-gray-300 pt-8">
                 <a href="tel:+97143706434" className="group flex items-center justify-between border-b border-brand-gray-300 pb-6">
@@ -89,8 +89,8 @@ export default function ContactPage() {
             </div>
 
             {/* Offices */}
-            <div className="flex flex-col gap-12">
-              <h2 className="text-4xl md:text-5xl font-bold text-brand-gray-900 tracking-tight">Offices</h2>
+            <div className="flex flex-col gap-6 md:gap-12">
+              <h2 className="text-3xl md:text-5xl font-bold text-brand-gray-900 tracking-tight">Offices</h2>
 
               <div className="flex flex-col gap-8 border-t border-brand-gray-300 pt-8">
                 <div className="flex flex-col gap-4">

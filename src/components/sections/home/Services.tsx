@@ -57,7 +57,7 @@ export function Services() {
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
-    <section className="py-24 bg-brand-gray-100">
+    <section className="py-14 md:py-24 bg-brand-gray-100">
       <div className="container mx-auto px-4 md:px-8">
         {/* Header (full width) */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-6">

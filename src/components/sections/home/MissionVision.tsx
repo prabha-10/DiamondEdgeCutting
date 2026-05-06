@@ -107,7 +107,7 @@ function PhotoCard({ cell }: { cell: PhotoCell }) {
 
 export function MissionVision() {
   return (
-    <section className="py-32 bg-white">
+    <section className="py-16 md:py-32 bg-white">
       <div className="container mx-auto px-4 md:px-8">
         {/* Section header, left-aligned (original) */}
         <div className="flex flex-col gap-6 mb-20 max-w-3xl">

@@ -111,7 +111,7 @@ const trustItems = [
 
 export function RentalTeaser() {
   return (
-    <section className="py-32 bg-brand-red text-white">
+    <section className="py-16 md:py-32 bg-brand-red text-white">
       <div className="container mx-auto px-4 md:px-8">
         {/* Header, 8/12 left, 4/12 right */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 mb-16 pb-16 border-b border-white/20">

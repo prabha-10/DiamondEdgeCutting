@@ -28,6 +28,7 @@ export function Header({ rentalCategories }: { rentalCategories?: { title: strin
   ];
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [mobileOpenDropdown, setMobileOpenDropdown] = useState<string | null>(null);
   const pathname = usePathname();
   const { introComplete } = useIntro();
 
@@ -52,6 +53,7 @@ export function Header({ rentalCategories }: { rentalCategories?: { title: strin
   }, [pathname]);
 
   return (
+    <>
     <header
       className={cn(
         "fixed top-0 left-0 right-0 z-[100] pt-6 pb-4 transition-all duration-500",
@@ -67,24 +69,35 @@ export function Header({ rentalCategories }: { rentalCategories?: { title: strin
     >
       <div className="container mx-auto px-4 md:px-8 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-3 z-50 group">
-          <div
+        <Link href="/" className="flex items-center gap-3 z-50 group" aria-label="Diamond Edge Cutting — Home">
+          <img
+            src="/header-logo.png"
+            alt="Diamond Edge Cutting"
             className={cn(
-              "w-9 h-9 group-hover:bg-brand-red transition-colors flex items-center justify-center rounded-full font-bold text-lg leading-none border",
-              isSolid
-                ? "bg-brand-red text-white border-brand-red"
-                : "bg-white/20 text-white border-white/30"
+              "h-12 md:h-14 w-auto object-contain transition-[filter] duration-300",
+              isSolid ? "" : "drop-shadow-[0_2px_12px_rgba(0,0,0,0.55)]"
             )}
-          >
-            D
-          </div>
+          />
           <span
             className={cn(
-              "font-bold text-xl tracking-tight transition-colors",
-              isSolid ? "text-brand-gray-900" : "text-white"
+              "hidden md:flex flex-col leading-tight transition-colors duration-300",
+              isSolid ? "text-brand-gray-900" : "text-white drop-shadow-[0_1px_8px_rgba(0,0,0,0.45)]"
             )}
           >
-            Diamond Edge
+            <span className="font-sans font-bold text-[15px] tracking-tight">
+              Diamond Edge
+            </span>
+            <span
+              className={cn(
+                "font-['Inter_Display',sans-serif] text-[10.5px] font-bold uppercase flex justify-between w-full",
+                isSolid ? "text-brand-red" : "text-white/85"
+              )}
+              aria-label="Cutting"
+            >
+              {"CUTTING".split("").map((ch, i) => (
+                <span key={i}>{ch}</span>
+              ))}
+            </span>
           </span>
         </Link>
 
@@ -127,13 +140,13 @@ export function Header({ rentalCategories }: { rentalCategories?: { title: strin
                     />
 
                     {/* Dropdown Menu */}
-                    <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 w-64">
+                    <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-300 w-80">
                       <div
                         className={cn(
                           "rounded-2xl shadow-xl overflow-hidden py-2 flex flex-col border",
                           isSolid
                             ? "bg-white border-brand-gray-300"
-                            : "bg-white/10 backdrop-blur-xl border-white/20"
+                            : "bg-white/95 backdrop-blur-xl border-white/40"
                         )}
                       >
                         {link.dropdown.map((item) => (
@@ -141,10 +154,10 @@ export function Header({ rentalCategories }: { rentalCategories?: { title: strin
                             key={item.name}
                             href={item.href}
                             className={cn(
-                              "px-5 py-3 text-sm font-semibold transition-colors",
+                              "block px-5 py-3 text-sm font-semibold leading-snug transition-colors",
                               isSolid
                                 ? "text-brand-gray-900 hover:bg-brand-gray-100"
-                                : "text-white hover:bg-white/10"
+                                : "text-brand-gray-900 hover:bg-brand-gray-100"
                             )}
                           >
                             {item.name}
@@ -194,62 +207,118 @@ export function Header({ rentalCategories }: { rentalCategories?: { title: strin
         </div>
       </div>
 
-      {/* Mobile Navigation Menu */}
-      <div
-        className={cn(
-          "fixed inset-0 top-[72px] bg-white lg:hidden transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]",
-          isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
-        )}
-      >
-        <div className="flex flex-col h-full p-8 overflow-y-auto">
-          <nav className="flex flex-col gap-8 mt-8">
-            {navigationLinks.map((link) => (
-              <div key={link.name} className="flex flex-col">
-                {link.dropdown ? (
-                  <div className="flex flex-col gap-4">
-                    <span className="text-2xl font-bold text-brand-gray-900 border-b border-brand-gray-100 pb-4">
-                      {link.name}
-                    </span>
-                    <div className="flex flex-col pl-4 gap-4 border-l border-brand-gray-100">
-                      {link.dropdown.map((item) => (
-                        <Link
-                          key={item.name}
-                          href={item.href}
-                          className="text-lg text-brand-gray-700 font-medium hover:text-brand-red"
-                        >
-                          {item.name}
-                        </Link>
-                      ))}
-                    </div>
-                  </div>
-                ) : (
-                  <Link
-                    href={link.href}
-                    className={cn(
-                      "text-2xl font-bold transition-colors",
-                      pathname === link.href ? "text-brand-red" : "text-brand-gray-900"
-                    )}
-                  >
-                    {link.name}
-                  </Link>
-                )}
-              </div>
-            ))}
-          </nav>
-          <div className="mt-auto pt-12 flex flex-col gap-4">
-            <Button asChild size="lg" variant="brand" className="w-full">
-              <Link href="/contact">Start Your Project</Link>
-            </Button>
-            <a
-              href="tel:+97143706434"
-              className="flex justify-center items-center gap-2 py-4 text-brand-gray-700 font-medium text-lg"
-            >
-              <Phone className="w-5 h-5" />
-              <span>+971 4 370 6434</span>
-            </a>
-          </div>
-        </div>
-      </div>
     </header>
+
+    {/* Mobile Navigation Menu — rendered as sibling of <header> so it escapes
+        the header's `transform` containing block and uses true viewport-fixed sizing. */}
+    <div
+      className={cn(
+        "fixed inset-0 z-[90] bg-white lg:hidden transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] flex flex-col",
+        isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
+      )}
+      aria-hidden={!isMobileMenuOpen}
+    >
+      {/* Spacer for fixed header */}
+      <div className="h-[88px] shrink-0" aria-hidden />
+
+      {/* Scrollable nav */}
+      <nav className="flex-1 overflow-y-auto px-6 pt-8 pb-6 flex flex-col gap-5">
+        {navigationLinks.map((link) => {
+          const hasDropdown = !!link.dropdown && link.dropdown.length > 0;
+          const isActive = hasDropdown ? pathname.startsWith(link.href) : pathname === link.href;
+          const isExpanded = mobileOpenDropdown === link.name;
+
+          if (!hasDropdown) {
+            return (
+              <Link
+                key={link.name}
+                href={link.href}
+                className={cn(
+                  "font-sans font-semibold text-[26px] tracking-tight transition-colors",
+                  isActive ? "text-brand-red" : "text-brand-gray-900"
+                )}
+              >
+                {link.name}
+              </Link>
+            );
+          }
+
+          return (
+            <div key={link.name} className="flex flex-col">
+              <button
+                type="button"
+                onClick={() =>
+                  setMobileOpenDropdown(isExpanded ? null : link.name)
+                }
+                aria-expanded={isExpanded}
+                className="w-full flex items-center justify-between gap-4 text-left"
+              >
+                <span
+                  className={cn(
+                    "font-sans font-semibold text-[26px] tracking-tight transition-colors",
+                    isActive ? "text-brand-red" : "text-brand-gray-900"
+                  )}
+                >
+                  {link.name}
+                </span>
+                <span
+                  className={cn(
+                    "shrink-0 w-9 h-9 rounded-full flex items-center justify-center transition-all duration-300",
+                    isExpanded
+                      ? "bg-brand-gray-100 text-brand-gray-900 rotate-180"
+                      : "bg-brand-gray-900 text-white"
+                  )}
+                  aria-hidden
+                >
+                  <ChevronDown className="w-4 h-4" strokeWidth={2} />
+                </span>
+              </button>
+
+              <div
+                className={cn(
+                  "grid transition-[grid-template-rows] duration-300 ease-out",
+                  isExpanded ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+                )}
+              >
+                <div className="overflow-hidden">
+                  <div className="flex flex-col pl-4 gap-3 border-l-2 border-brand-gray-300 mt-4">
+                    <Link
+                      href={link.href}
+                      className="font-['Inter_Display',sans-serif] text-[14px] font-semibold uppercase tracking-[0.12em] text-brand-red"
+                    >
+                      View all
+                    </Link>
+                    {link.dropdown!.map((item) => (
+                      <Link
+                        key={item.name}
+                        href={item.href}
+                        className="font-['Inter_Display',sans-serif] text-[15px] font-medium text-brand-gray-700 hover:text-brand-red transition-colors"
+                      >
+                        {item.name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </nav>
+
+      {/* Footer */}
+      <div className="border-t border-brand-gray-300 px-6 py-6 flex flex-col gap-4 shrink-0">
+        <Button asChild size="lg" variant="brand" className="w-full">
+          <Link href="/contact">Start Your Project</Link>
+        </Button>
+        <a
+          href="tel:+97143706434"
+          className="flex justify-center items-center gap-2 py-2 font-['Inter_Display',sans-serif] text-brand-gray-700 font-medium text-[15px]"
+        >
+          <Phone className="w-4 h-4" strokeWidth={1.8} />
+          <span>+971 4 370 6434</span>
+        </a>
+      </div>
+    </div>
+    </>
   );
 }

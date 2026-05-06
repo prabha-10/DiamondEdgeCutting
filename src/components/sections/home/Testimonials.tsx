@@ -107,7 +107,7 @@ export function Testimonials() {
   const goNext = () => setIndex((i) => (i + 1) % total);
 
   return (
-    <section className="py-32 bg-brand-gray-50">
+    <section className="py-16 md:py-32 bg-brand-gray-50">
       <div className="container mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Left container, eyebrow + headline + stats (sticky on desktop) */}

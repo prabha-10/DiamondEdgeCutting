@@ -74,19 +74,19 @@ export function ContactForm() {
     );
   }
 
-  const inputClasses = "w-full bg-transparent border-0 border-b-2 border-brand-gray-300 py-4 text-xl font-medium text-brand-gray-900 focus:ring-0 focus:border-brand-gray-900 focus:outline-none transition-colors placeholder:text-brand-gray-500";
-  const errorClasses = "w-full bg-transparent border-0 border-b-2 border-brand-red-dark py-4 text-xl font-medium text-brand-gray-900 focus:ring-0 focus:border-brand-red-dark focus:outline-none transition-colors placeholder:text-brand-gray-500";
-  const labelClasses = "block text-sm font-bold text-brand-gray-500 uppercase tracking-widest mb-2";
+  const inputClasses = "w-full bg-transparent border-0 border-b-2 border-brand-gray-300 py-3 md:py-4 text-base md:text-xl font-medium text-brand-gray-900 focus:ring-0 focus:border-brand-gray-900 focus:outline-none transition-colors placeholder:text-brand-gray-300";
+  const errorClasses = "w-full bg-transparent border-0 border-b-2 border-brand-red-dark py-3 md:py-4 text-base md:text-xl font-medium text-brand-gray-900 focus:ring-0 focus:border-brand-red-dark focus:outline-none transition-colors placeholder:text-brand-gray-300";
+  const labelClasses = "block text-[12px] md:text-sm font-bold text-brand-gray-500 uppercase tracking-widest mb-1.5 md:mb-2";
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-12">
+    <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-6 md:gap-12">
       {/* Honeypot */}
       <div className="hidden">
         <label htmlFor="botField">Don't fill this out if you're human:</label>
         <input {...register("botField")} />
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12">
         <div className="flex flex-col">
           <label htmlFor="fullName" className={labelClasses}>Full Name *</label>
           <input 
@@ -108,7 +108,7 @@ export function ContactForm() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12">
         <div className="flex flex-col">
           <label htmlFor="email" className={labelClasses}>Email *</label>
           <input 
@@ -148,7 +148,7 @@ export function ContactForm() {
         {errors.inquiryType && <span className="text-sm font-bold text-brand-red-dark mt-2">{errors.inquiryType.message}</span>}
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-12">
         <div className="flex flex-col">
           <label htmlFor="projectLocation" className={labelClasses}>Project Location</label>
           <input 
@@ -186,7 +186,7 @@ export function ContactForm() {
         {errors.description && <span className="text-sm font-bold text-brand-red-dark mt-2">{errors.description.message}</span>}
       </div>
 
-      <Button type="submit" size="lg" disabled={isSubmitting} className="rounded-full h-16 px-12 text-xl self-start mt-8" variant="brand">
+      <Button type="submit" size="lg" disabled={isSubmitting} className="rounded-full h-12 md:h-16 px-8 md:px-12 text-base md:text-xl self-start mt-2 md:mt-8" variant="brand">
         {isSubmitting ? "Sending..." : "Submit Inquiry"}
       </Button>
     </form>
