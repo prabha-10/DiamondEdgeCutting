@@ -9,7 +9,7 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState(0);
 
   return (
-    <section className="py-32 bg-brand-gray-100">
+    <section className="py-16 md:py-32 bg-brand-gray-100">
       <div className="container mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           {/* Left, heading + CTA card */}

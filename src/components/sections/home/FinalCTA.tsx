@@ -4,7 +4,7 @@ import { Phone, Mail, Clock } from "lucide-react";
 
 export function FinalCTA() {
   return (
-    <section className="relative py-28 md:py-32 overflow-hidden bg-brand-gray-900 text-white">
+    <section className="relative py-16 md:py-32 overflow-hidden bg-brand-gray-900 text-white">
       {/* Background image + dark overlay */}
       <img
         src="https://images.unsplash.com/photo-1711618732376-416cf6af54f6?w=2000&q=80&auto=format&fit=crop"

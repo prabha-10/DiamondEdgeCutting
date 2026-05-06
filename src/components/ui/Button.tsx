@@ -19,35 +19,45 @@ function BrandButton({
   size,
   children,
   noIcon,
+  asChild,
   ref,
   ...props
 }: ButtonProps & { ref?: React.Ref<HTMLButtonElement> }) {
   const isLg = size === "lg"
 
-  return (
-    <button
-      ref={ref}
+  const cls = cn(
+    "group inline-flex items-center rounded-full border-2 border-brand-red bg-brand-red text-white font-bold transition-all duration-300",
+    "hover:bg-brand-red-dark hover:border-brand-red-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-red focus-visible:ring-offset-2",
+    "disabled:pointer-events-none disabled:opacity-50 whitespace-nowrap",
+    isLg ? "h-14 text-base" : "h-14 text-base",
+    noIcon ? "justify-center px-8" : "pl-2 pr-7 gap-3",
+    className
+  )
+
+  const iconCircle = !noIcon ? (
+    <span
       className={cn(
-        "group inline-flex items-center rounded-full border-2 border-brand-red bg-brand-red text-white font-bold transition-all duration-300",
-        "hover:bg-brand-red-dark hover:border-brand-red-dark focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-red focus-visible:ring-offset-2",
-        "disabled:pointer-events-none disabled:opacity-50 whitespace-nowrap",
-        isLg ? "h-14 text-base" : "h-14 text-base",
-        noIcon ? "justify-center px-8" : "pl-2 pr-7 gap-3",
-        className
+        "flex items-center justify-center rounded-full bg-white text-brand-red shrink-0 transition-transform duration-300 group-hover:rotate-45",
+        "w-9 h-9"
       )}
-      {...props}
     >
-      {/* White circle with arrow icon */}
-      {!noIcon && (
-        <span
-          className={cn(
-            "flex items-center justify-center rounded-full bg-white text-brand-red shrink-0 transition-transform duration-300 group-hover:rotate-45",
-            "w-9 h-9"
-          )}
-        >
-          <ArrowUpRight className="w-4 h-4" strokeWidth={1.8} />
-        </span>
-      )}
+      <ArrowUpRight className="w-4 h-4" strokeWidth={1.8} />
+    </span>
+  ) : null
+
+  if (asChild && React.isValidElement(children)) {
+    const child = children as React.ReactElement<{ className?: string; children?: React.ReactNode }>
+    return React.cloneElement(
+      child,
+      { ...props, className: cn(cls, child.props.className) } as Record<string, unknown>,
+      iconCircle,
+      child.props.children
+    )
+  }
+
+  return (
+    <button ref={ref} className={cls} {...props}>
+      {iconCircle}
       {children}
     </button>
   )
@@ -58,7 +68,7 @@ function BrandButton({
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = "default", size = "default", asChild = false, noIcon, ...props }, ref) => {
     if (variant === "brand") {
-      return <BrandButton className={className} size={size} noIcon={noIcon} ref={ref} {...props} />
+      return <BrandButton className={className} size={size} noIcon={noIcon} asChild={asChild} ref={ref} {...props} />
     }
 
     const base =
@@ -79,13 +89,18 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       icon: "h-12 w-12",
     }
 
-    return (
-      <button
-        ref={ref}
-        className={cn(base, variants[variant] ?? variants.default, sizes[size] ?? sizes.default, className)}
-        {...props}
-      />
-    )
+    const finalClass = cn(base, variants[variant] ?? variants.default, sizes[size] ?? sizes.default, className)
+
+    if (asChild && React.isValidElement(props.children)) {
+      const child = props.children as React.ReactElement<{ className?: string }>
+      const { children: _omit, ...rest } = props
+      return React.cloneElement(child, {
+        ...rest,
+        className: cn(finalClass, child.props.className),
+      } as Record<string, unknown>)
+    }
+
+    return <button ref={ref} className={finalClass} {...props} />
   }
 )
 Button.displayName = "Button"

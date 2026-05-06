@@ -4,13 +4,14 @@ import { rentalCategories } from "@/data/navigation";
 
 const serviceLinks = [
   { name: "Robotic Demolition", href: "/demolition-services#robotic-demolition" },
-  { name: "Controlled Demolition", href: "/demolition-services#controlled-demolition" },
+  { name: "Controlled & Structural Demolition", href: "/demolition-services#controlled-demolition" },
   { name: "Wire Sawing", href: "/demolition-services#wire-sawing" },
   { name: "Wall & Track Sawing", href: "/demolition-services#wall-sawing" },
   { name: "Core Drilling", href: "/demolition-services#core-drilling" },
-  { name: "Refractory & Tunnelling", href: "/demolition-services#refractory-kiln" },
+  { name: "Refractory, Kiln & Tunnelling", href: "/demolition-services#refractory-kiln" },
   { name: "Floor & Apron Sawing", href: "/demolition-services#floor-sawing" },
-  { name: "Soft Demolition / Strip Out", href: "/demolition-services#strip-out" },
+  { name: "Soft Demolition & Strip Out", href: "/demolition-services#strip-out" },
+  { name: "View all services", href: "/demolition-services" },
 ];
 
 export function Footer() {
@@ -36,16 +37,24 @@ export function Footer() {
           <div>
             <h3 className="text-lg font-bold mb-6 text-white">Services</h3>
             <ul className="flex flex-col gap-4">
-              {serviceLinks.map((link) => (
-                <li key={link.name}>
-                  <Link
-                    href={link.href}
-                    className="text-brand-gray-500 hover:text-white transition-colors text-base font-medium"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
+              {serviceLinks.map((link, i) => {
+                const isLast = i === serviceLinks.length - 1;
+                return (
+                  <li key={link.name}>
+                    <Link
+                      href={link.href}
+                      className={
+                        isLast
+                          ? "inline-flex items-center gap-1.5 text-brand-red hover:text-white transition-colors text-base font-semibold mt-1"
+                          : "text-brand-gray-500 hover:text-white transition-colors text-base font-medium"
+                      }
+                    >
+                      {link.name}
+                      {isLast && <span aria-hidden>&rarr;</span>}
+                    </Link>
+                  </li>
+                );
+              })}
             </ul>
           </div>
 

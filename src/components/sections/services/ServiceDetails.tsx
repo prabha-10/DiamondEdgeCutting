@@ -32,7 +32,7 @@ export function ServiceDetails() {
           <section
             key={service.id}
             id={service.id}
-            className={`py-32 ${
+            className={`scroll-mt-28 md:scroll-mt-32 py-16 md:py-32 ${
               index % 2 === 0 ? "bg-brand-gray-50" : "bg-white"
             }`}
           >

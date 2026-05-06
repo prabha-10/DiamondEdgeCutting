@@ -24,7 +24,7 @@ const reasons = [
 
 export function WhyDec() {
   return (
-    <section className="py-32 bg-white">
+    <section className="py-16 md:py-32 bg-white">
       <div className="container mx-auto px-4 md:px-8">
         {/* Header */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 mb-14 pb-14 border-b border-brand-gray-300">

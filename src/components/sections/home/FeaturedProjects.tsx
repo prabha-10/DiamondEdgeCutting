@@ -49,7 +49,7 @@ export function FeaturedProjects() {
   };
 
   return (
-    <section className="pt-24 pb-40 bg-brand-gray-100 overflow-hidden">
+    <section className="pt-14 pb-20 md:pt-24 md:pb-40 bg-brand-gray-100 overflow-hidden">
       {/* Header row */}
       <div className="container mx-auto px-4 md:px-8 mb-12">
         <div className="grid grid-cols-1 md:grid-cols-2 items-center gap-6">
