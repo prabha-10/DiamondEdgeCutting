@@ -1,6 +1,7 @@
 import { category } from './category'
 import { equipment } from './equipment'
+import { inquiry } from './inquiry'
 import { projectCategory } from './projectCategory'
 import { project } from './project'
 
-export const schemaTypes = [category, equipment, projectCategory, project]
+export const schemaTypes = [category, equipment, inquiry, projectCategory, project]
