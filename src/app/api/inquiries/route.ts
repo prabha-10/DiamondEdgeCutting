@@ -25,7 +25,12 @@ const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KE
 const FROM_ADDRESS =
   process.env.INQUIRY_FROM ?? "Diamond Edge Website <onboarding@resend.dev>";
 const TO_ADDRESS = process.env.INQUIRY_TO ?? "info@diamondedgecutting.com";
-const CC_ADDRESSES = (process.env.INQUIRY_CC ?? "laxmikant@diamondedgecutting.com")
+// CC defaults to empty until diamondedgecutting.com is verified in Resend.
+// While the from address is the Resend onboarding domain, Resend rejects any
+// recipient (including CC) other than the account owner's verified email.
+// After domain verification, set INQUIRY_CC=laxmikant@diamondedgecutting.com
+// in Vercel and the CC will resume.
+const CC_ADDRESSES = (process.env.INQUIRY_CC ?? "")
   .split(",")
   .map((a) => a.trim())
   .filter(Boolean);
