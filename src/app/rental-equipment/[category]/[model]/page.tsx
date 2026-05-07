@@ -8,12 +8,13 @@ import { EquipmentGallery } from "@/components/rental/EquipmentGallery";
 import { EquipmentSpecsGrid } from "@/components/rental/EquipmentSpecsGrid";
 import { RelatedEquipment } from "@/components/rental/RelatedEquipment";
 import { InquiryForm } from "@/components/rental/InquiryForm";
+import { AddToInquiryButton } from "@/components/rental/AddToInquiryButton";
 import { Button } from "@/components/ui/Button";
 import {
   getEquipmentBySlug,
   getAllEquipmentParams,
 } from "../../../../../sanity/lib/queries";
-import type { SanityImage } from "@/lib/sanity-image";
+import { safeUrlFor, type SanityImage } from "@/lib/sanity-image";
 
 export const revalidate = 60;
 
@@ -175,10 +176,20 @@ export default async function EquipmentDetailPage({ params }: Props) {
                 )}
               </div>
 
-              <div className="flex flex-wrap items-center gap-4 mt-3">
+              <div className="flex flex-wrap items-center gap-3 mt-3">
                 <Button asChild variant="brand">
                   <a href="#inquiry">Request a quote</a>
                 </Button>
+                <AddToInquiryButton
+                  item={{
+                    id: model,
+                    title: doc.title,
+                    category: canonicalCategorySlug ?? doc.categorySlug,
+                    image: safeUrlFor(doc.heroImage, 600) ?? "",
+                    equipmentId: doc._id,
+                    categorySlug: canonicalCategorySlug ?? doc.categorySlug,
+                  }}
+                />
                 {specSheetUrl && (
                   <a
                     href={specSheetUrl}

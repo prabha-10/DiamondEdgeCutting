@@ -38,26 +38,27 @@ export function InquiryButton({ item }: InquiryButtonProps) {
   };
 
   return (
-    <div className="grid grid-cols-2 gap-3 mt-auto">
+    <div className="grid grid-cols-2 gap-2 mt-auto">
       <Button
         variant="outline"
         onClick={handleLeftClick}
-        className="text-sm px-4 py-3"
+        className="text-[13px] px-3 h-11 min-w-0"
       >
         {alreadyInBasket ? (
-          <span className="flex items-center gap-2">
-            <Check className="w-4 h-4 text-brand-red" />
-            View Inquiry
+          <span className="flex items-center gap-1.5 truncate">
+            <Check className="w-3.5 h-3.5 text-brand-red shrink-0" />
+            <span className="truncate">View Inquiry</span>
           </span>
         ) : (
-          "Add to Inquiry"
+          <span className="truncate">Add to Inquiry</span>
         )}
       </Button>
 
       <Button
         variant="brand"
+        noIcon
         onClick={handleRightClick}
-        className="text-sm px-4 py-3"
+        className="!h-11 text-[13px] !px-4 min-w-0 truncate"
       >
         Get Quote
       </Button>
