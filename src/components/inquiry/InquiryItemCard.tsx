@@ -10,24 +10,44 @@ interface InquiryItemCardProps {
   onRemove: () => void;
 }
 
+function GlyphFallback() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      aria-hidden
+      className="absolute inset-0 m-auto w-6 h-6 text-brand-gray-300"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+    >
+      <polygon points="12,3 21,12 12,21 3,12" />
+    </svg>
+  );
+}
+
 export function InquiryItemCard({ item, onRemove }: InquiryItemCardProps) {
   return (
     <div className="flex items-center gap-4 p-3 bg-white border border-brand-gray-300 rounded-lg group transition-colors hover:border-brand-gray-500">
-      <div className="relative w-12 h-12 rounded md overflow-hidden flex-shrink-0 bg-brand-gray-100">
-        <Image
-          src={item.image}
-          alt={item.title}
-          fill
-          className="object-cover"
-        />
+      <div className="relative w-12 h-12 rounded-md overflow-hidden flex-shrink-0 bg-brand-gray-100">
+        {item.image ? (
+          <Image
+            src={item.image}
+            alt={item.title}
+            fill
+            className="object-cover"
+            unoptimized
+          />
+        ) : (
+          <GlyphFallback />
+        )}
       </div>
-      
+
       <div className="flex-1 min-w-0">
         <h4 className="text-sm font-bold text-brand-gray-900 truncate">
           {item.title}
         </h4>
         <p className="text-xs text-brand-gray-500 truncate capitalize">
-          {item.category.replace(/-/g, ' ')}
+          {item.category.replace(/-/g, " ")}
         </p>
       </div>
 

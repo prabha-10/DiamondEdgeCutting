@@ -66,11 +66,24 @@ export function InquiryStickyBar() {
               
               <div className="flex -space-x-2 ml-2">
                 {items.slice(0, 3).map((item) => (
-                  <div 
-                    key={item.id} 
-                    className="relative w-7 h-7 rounded-full border-2 border-brand-gray-900 overflow-hidden bg-white"
+                  <div
+                    key={item.id}
+                    className="relative w-7 h-7 rounded-full border-2 border-brand-gray-900 overflow-hidden bg-brand-gray-100 flex items-center justify-center"
                   >
-                    <Image src={item.image} alt="" fill className="object-cover" />
+                    {item.image ? (
+                      <Image src={item.image} alt="" fill className="object-cover" unoptimized />
+                    ) : (
+                      <svg
+                        viewBox="0 0 24 24"
+                        aria-hidden
+                        className="w-3.5 h-3.5 text-brand-gray-500"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      >
+                        <polygon points="12,3 21,12 12,21 3,12" />
+                      </svg>
+                    )}
                   </div>
                 ))}
                 {items.length > 3 && (
