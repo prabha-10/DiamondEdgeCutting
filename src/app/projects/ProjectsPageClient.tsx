@@ -3,9 +3,23 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { projectsData, projectCategories } from "@/data/projects";
+import { safeUrlFor, type SanityImage } from "@/lib/sanity-image";
 
-// Cycle a small set of verified construction/demolition photos across the projects.
+export type ProjectListItem = {
+  slug: string;
+  title: string;
+  category: string;
+  location: string;
+  year?: number | string;
+  /** Local-fallback shape (from src/data/projects.ts). */
+  scope?: string;
+  /** Sanity shape. */
+  scopeSummary?: string;
+  /** Optional Sanity hero image. Falls back to the Unsplash hash if absent. */
+  heroImage?: SanityImage;
+};
+
+// Cycle a small set of verified construction/demolition photos when no Sanity image is available.
 const imagePool = [
   "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=900&q=80&auto=format&fit=crop",
   "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=900&q=80&auto=format&fit=crop",
@@ -33,13 +47,18 @@ function projectId(index: number, title: string) {
   return `.${String(index + 1).padStart(2, "0")} / ${tag}`;
 }
 
-export default function ProjectsPageClient() {
+type Props = {
+  projects: ProjectListItem[];
+  categories: string[];
+};
+
+export default function ProjectsPageClient({ projects, categories }: Props) {
   const [activeFilter, setActiveFilter] = useState("All");
 
   const filteredProjects =
     activeFilter === "All"
-      ? projectsData
-      : projectsData.filter((p) => p.category === activeFilter);
+      ? projects
+      : projects.filter((p) => p.category === activeFilter);
 
   return (
     <>
@@ -59,7 +78,7 @@ export default function ProjectsPageClient() {
           </div>
           <div className="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end">
             <p className="lg:col-span-7 font-['Inter_Display',sans-serif] font-normal text-[19px] md:text-[22px] leading-[1.5] text-brand-gray-500 max-w-2xl">
-              18 headline projects across airports, malls, hotels, infrastructure, and refractory works, delivered across the GCC since 2008.
+              {projects.length} headline projects across airports, malls, hotels, infrastructure, and refractory works, delivered across the GCC since 2008.
             </p>
             <div className="lg:col-span-5 lg:justify-self-end">
               <Link
@@ -78,7 +97,7 @@ export default function ProjectsPageClient() {
       <section className="py-6 bg-white border-b border-brand-gray-300 sticky top-20 z-30 backdrop-blur-sm">
         <div className="container mx-auto px-4 md:px-8">
           <div className="flex flex-nowrap overflow-x-auto gap-2 hide-scrollbar">
-            {projectCategories.map((category) => (
+            {categories.map((category) => (
               <button
                 key={category}
                 onClick={() => setActiveFilter(category)}
@@ -99,34 +118,39 @@ export default function ProjectsPageClient() {
       <section className="py-20 bg-white min-h-[500px]">
         <div className="container mx-auto px-4 md:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
-            {filteredProjects.map((project, i) => (
-              <Link
-                key={project.slug}
-                href={`/projects/${project.slug}`}
-                className="group flex flex-col gap-6"
-              >
-                <div className="relative w-full aspect-[3/4] bg-brand-gray-100 overflow-hidden">
-                  <img
-                    src={imageFor(project.slug)}
-                    alt={project.title}
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-                  />
-                </div>
-                <div className="flex flex-col md:flex-row md:gap-8 gap-2">
-                  <h3 className="font-mono font-semibold text-brand-gray-900 text-[14px] tracking-tight md:basis-1/3 shrink-0 group-hover:text-brand-red transition-colors">
-                    {projectId(i, project.title)}
-                  </h3>
-                  <div className="font-mono text-[12px] uppercase tracking-[0.06em] text-brand-gray-500 flex flex-col gap-0.5 leading-[1.5]">
-                    <span className="text-brand-gray-900 group-hover:text-brand-red transition-colors">
-                      {project.title}
-                    </span>
-                    <span>{project.location}</span>
-                    {project.year && <span>{project.year}</span>}
-                    <span>{project.scope}</span>
+            {filteredProjects.map((project, i) => {
+              const heroFromSanity = safeUrlFor(project.heroImage, 900);
+              const cardImage = heroFromSanity ?? imageFor(project.slug);
+              const scopeText = project.scopeSummary ?? project.scope ?? "";
+              return (
+                <Link
+                  key={project.slug}
+                  href={`/projects/${project.slug}`}
+                  className="group flex flex-col gap-6"
+                >
+                  <div className="relative w-full aspect-[3/4] bg-brand-gray-100 overflow-hidden">
+                    <img
+                      src={cardImage}
+                      alt={project.title}
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                    />
                   </div>
-                </div>
-              </Link>
-            ))}
+                  <div className="flex flex-col md:flex-row md:gap-8 gap-2">
+                    <h3 className="font-mono font-semibold text-brand-gray-900 text-[14px] tracking-tight md:basis-1/3 shrink-0 group-hover:text-brand-red transition-colors">
+                      {projectId(i, project.title)}
+                    </h3>
+                    <div className="font-mono text-[12px] uppercase tracking-[0.06em] text-brand-gray-500 flex flex-col gap-0.5 leading-[1.5]">
+                      <span className="text-brand-gray-900 group-hover:text-brand-red transition-colors">
+                        {project.title}
+                      </span>
+                      <span>{project.location}</span>
+                      {project.year && <span>{project.year}</span>}
+                      {scopeText && <span>{scopeText}</span>}
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
 
           {filteredProjects.length === 0 && (

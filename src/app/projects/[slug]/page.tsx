@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight, Check } from "lucide-react";
 import { projectsData } from "@/data/projects";
 import { getProjectBySlug, getAllProjectSlugs } from "../../../../sanity/lib/queries";
-import { urlFor } from "../../../../sanity/lib/image";
+import { safeUrlFor, type SanityImage } from "@/lib/sanity-image";
 
 // Cycle a small set of verified construction/demolition photos when no Sanity image is available.
 const fallbackImagePool = [
@@ -24,8 +24,6 @@ function fallbackImageFor(slug: string, offset = 0) {
   return fallbackImagePool[(hash + offset) % fallbackImagePool.length];
 }
 
-type SanityImage = { asset?: { _ref?: string } } | null | undefined;
-
 type NormalisedProject = {
   title: string;
   slug: string;
@@ -40,17 +38,6 @@ type NormalisedProject = {
   relatedServices?: string[];
   source: "sanity" | "local";
 };
-
-function safeUrlFor(image: SanityImage, width = 1600) {
-  try {
-    if (image && (image as { asset?: unknown }).asset) {
-      return urlFor(image).width(width).auto("format").url();
-    }
-  } catch {
-    // ignore
-  }
-  return null;
-}
 
 async function loadProject(slug: string): Promise<NormalisedProject | null> {
   // Try Sanity first
