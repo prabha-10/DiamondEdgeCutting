@@ -1,11 +1,16 @@
 "use client";
 
 export type InquiryItem = {
-  id: string; // slug
+  id: string; // slug, kept for backwards compatibility
   title: string;
   category: string;
   image: string;
   addedAt: number;
+  /** Sanity _id, e.g. "equipment.brokk-500". Set by EquipmentCard so the
+   *  inquiry submit can pass a real reference to /api/inquiries. */
+  equipmentId?: string;
+  /** Routable parent slug, used when navigating from cart back to detail. */
+  categorySlug?: string;
 };
 
 export type StorageBasket = {

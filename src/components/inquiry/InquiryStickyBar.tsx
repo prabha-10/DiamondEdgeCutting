@@ -24,7 +24,7 @@ export function InquiryStickyBar() {
   if (!hasItems) return null;
 
   return (
-    <div className="lg:hidden">
+    <div>
       <AnimatePresence>
         {/* Backdrop */}
         {isDrawerExpanded && (
@@ -43,10 +43,13 @@ export function InquiryStickyBar() {
         initial={{ y: 100 }}
         animate={{ y: 0 }}
         className={cn(
-          "fixed left-0 right-0 z-[70] bg-white transition-all duration-300 ease-in-out",
-          isDrawerExpanded 
-            ? "bottom-0 rounded-t-2xl shadow-[0_-10px_40px_rgba(0,0,0,0.15)]" 
-            : "bottom-[var(--phone-nav-height,64px)] border-t border-brand-gray-300 shadow-lg"
+          "fixed z-[70] bg-white transition-all duration-300 ease-in-out overflow-hidden",
+          // Mobile: full-width bottom bar (existing). Desktop: contained chip
+          // pinned to bottom-right.
+          "left-0 right-0 lg:left-auto lg:right-6 lg:w-[420px]",
+          isDrawerExpanded
+            ? "bottom-0 rounded-t-2xl shadow-[0_-10px_40px_rgba(0,0,0,0.15)] lg:bottom-6 lg:rounded-2xl lg:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)]"
+            : "bottom-[var(--phone-nav-height,64px)] border-t border-brand-gray-300 shadow-lg lg:bottom-6 lg:border lg:border-brand-gray-300 lg:rounded-full lg:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)]"
         )}
       >
         {/* Collapsed View (always part of the drawer, but shown differently) */}
