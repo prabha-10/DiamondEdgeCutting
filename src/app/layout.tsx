@@ -12,12 +12,45 @@ import { InquiryProvider } from "@/components/inquiry/InquiryProvider";
 import { InquiryStickyBar } from "@/components/inquiry/InquiryStickyBar";
 import { InquiryModal } from "@/components/inquiry/InquiryModal";
 
+// Resolves any relative URLs (like /dec-logo.png) to absolute ones for the
+// Open Graph + Twitter card meta tags. Override via NEXT_PUBLIC_SITE_URL in
+// Vercel once the custom domain is live.
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://diamond-edge-cutting-g9kq.vercel.app";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   title: {
     template: "%s | Diamond Edge Cutting",
     default: "Specialist Demolition Contractor Dubai & UAE | Diamond Edge Cutting",
   },
-  description: "GCC's largest robotic demolition fleet. Specialist controlled demolition, concrete cutting, equipment rental across Dubai, Abu Dhabi & UAE since 2008.",
+  description:
+    "GCC's largest robotic demolition fleet. Specialist controlled demolition, concrete cutting, equipment rental across Dubai, Abu Dhabi & UAE since 2008.",
+  openGraph: {
+    type: "website",
+    siteName: "Diamond Edge Cutting",
+    title: "Specialist Demolition Contractor Dubai & UAE | Diamond Edge Cutting",
+    description:
+      "GCC's largest robotic demolition fleet. Specialist controlled demolition, concrete cutting, equipment rental across Dubai, Abu Dhabi & UAE since 2008.",
+    url: SITE_URL,
+    locale: "en_AE",
+    images: [
+      {
+        url: "/dec-logo.png",
+        width: 1852,
+        height: 1216,
+        alt: "Diamond Edge Cutting",
+        type: "image/png",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Specialist Demolition Contractor Dubai & UAE | Diamond Edge Cutting",
+    description:
+      "GCC's largest robotic demolition fleet. Specialist controlled demolition, concrete cutting, equipment rental across Dubai, Abu Dhabi & UAE since 2008.",
+    images: ["/dec-logo.png"],
+  },
 };
 
 export default async function RootLayout({
