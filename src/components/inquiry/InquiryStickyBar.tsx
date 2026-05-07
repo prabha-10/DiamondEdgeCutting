@@ -24,7 +24,7 @@ export function InquiryStickyBar() {
   if (!hasItems) return null;
 
   return (
-    <div className="lg:hidden">
+    <div>
       <AnimatePresence>
         {/* Backdrop */}
         {isDrawerExpanded && (
@@ -43,10 +43,13 @@ export function InquiryStickyBar() {
         initial={{ y: 100 }}
         animate={{ y: 0 }}
         className={cn(
-          "fixed left-0 right-0 z-[70] bg-white transition-all duration-300 ease-in-out",
-          isDrawerExpanded 
-            ? "bottom-0 rounded-t-2xl shadow-[0_-10px_40px_rgba(0,0,0,0.15)]" 
-            : "bottom-[var(--phone-nav-height,64px)] border-t border-brand-gray-300 shadow-lg"
+          "fixed z-[70] bg-white transition-all duration-300 ease-in-out overflow-hidden",
+          // Mobile: full-width bottom bar (existing). Desktop: contained chip
+          // pinned to bottom-right.
+          "left-0 right-0 lg:left-auto lg:right-6 lg:w-[420px]",
+          isDrawerExpanded
+            ? "bottom-0 rounded-t-2xl shadow-[0_-10px_40px_rgba(0,0,0,0.15)] lg:bottom-6 lg:rounded-2xl lg:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)]"
+            : "bottom-[var(--phone-nav-height,64px)] border-t border-brand-gray-300 shadow-lg lg:bottom-6 lg:border lg:border-brand-gray-300 lg:rounded-full lg:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.3)]"
         )}
       >
         {/* Collapsed View (always part of the drawer, but shown differently) */}
@@ -63,11 +66,24 @@ export function InquiryStickyBar() {
               
               <div className="flex -space-x-2 ml-2">
                 {items.slice(0, 3).map((item) => (
-                  <div 
-                    key={item.id} 
-                    className="relative w-7 h-7 rounded-full border-2 border-brand-gray-900 overflow-hidden bg-white"
+                  <div
+                    key={item.id}
+                    className="relative w-7 h-7 rounded-full border-2 border-brand-gray-900 overflow-hidden bg-brand-gray-100 flex items-center justify-center"
                   >
-                    <Image src={item.image} alt="" fill className="object-cover" />
+                    {item.image ? (
+                      <Image src={item.image} alt="" fill className="object-cover" unoptimized />
+                    ) : (
+                      <svg
+                        viewBox="0 0 24 24"
+                        aria-hidden
+                        className="w-3.5 h-3.5 text-brand-gray-500"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      >
+                        <polygon points="12,3 21,12 12,21 3,12" />
+                      </svg>
+                    )}
                   </div>
                 ))}
                 {items.length > 3 && (

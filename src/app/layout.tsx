@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
+import { SiteChrome } from "@/components/layout/SiteChrome";
 import { OrganizationSchema } from "@/components/seo/Schema";
 import { IntroProvider } from "@/context/IntroContext";
 import { getAllCategories } from "../../sanity/lib/queries";
@@ -39,6 +40,7 @@ export default async function RootLayout({
     <html
       lang="en"
       className="h-full antialiased scroll-smooth"
+      data-scroll-behavior="smooth"
       suppressHydrationWarning
     >
       <body
@@ -48,11 +50,18 @@ export default async function RootLayout({
         <OrganizationSchema />
         <InquiryProvider>
           <IntroProvider>
-            <Header rentalCategories={rentalCategories} />
-            <main className="flex-1 flex flex-col">{children}</main>
-            <Footer />
-            <InquiryStickyBar />
-            <InquiryModal />
+            <SiteChrome
+              header={<Header rentalCategories={rentalCategories} />}
+              footer={<Footer />}
+              inquiryChrome={
+                <>
+                  <InquiryStickyBar />
+                  <InquiryModal />
+                </>
+              }
+            >
+              {children}
+            </SiteChrome>
           </IntroProvider>
         </InquiryProvider>
       </body>

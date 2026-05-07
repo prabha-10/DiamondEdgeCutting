@@ -1,50 +1,80 @@
-"use client";
-
 import React from "react";
-import Image from "next/image";
-import { EquipmentItem } from "@/lib/equipment-data";
+import Link from "next/link";
+import { safeUrlFor, type SanityImage } from "@/lib/sanity-image";
+import { EquipmentPhotoPlaceholder } from "./EquipmentPhotoPlaceholder";
 import { InquiryButton } from "@/components/inquiry/InquiryButton";
 
-interface EquipmentCardProps {
-  item: EquipmentItem;
-}
+export type EquipmentCardData = {
+  _id: string;
+  title: string;
+  subtitle?: string;
+  manufacturer?: string;
+  slug: string;
+  /** Resolved category slug for the URL. For attachment items this is the
+   *  parent carrier category, not the attachment category itself. */
+  categorySlug: string;
+  unitsInStock?: number | null;
+  heroImage?: SanityImage;
+};
 
-export function EquipmentCard({ item }: EquipmentCardProps) {
+export function EquipmentCard({ item }: { item: EquipmentCardData }) {
+  const imageUrl = safeUrlFor(item.heroImage, 900);
+  const stockBadge =
+    typeof item.unitsInStock === "number"
+      ? `${item.unitsInStock} in stock`
+      : "Available on request";
+  const detailHref = `/rental-equipment/${item.categorySlug}/${item.slug}`;
+
   return (
-    <div className="group flex flex-col bg-white border border-brand-gray-300 rounded-xl overflow-hidden hover:border-brand-red hover:-translate-y-1 transition-all duration-200">
-      <div className="relative aspect-[4/3] overflow-hidden bg-brand-gray-100">
-        <Image
-          src={item.imageUrl}
-          alt={item.title}
-          fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
-        />
-      </div>
+    <article className="group flex flex-col bg-white rounded-[20px] overflow-hidden border border-brand-gray-300 hover:border-brand-gray-900 transition-colors duration-300">
+      <Link href={detailHref} className="relative block aspect-[4/3] overflow-hidden">
+        {imageUrl ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={imageUrl}
+            alt={item.title}
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+          />
+        ) : (
+          <EquipmentPhotoPlaceholder />
+        )}
 
-      <div className="flex flex-col flex-1 p-6">
-        <div className="mb-4">
-          <h3 className="text-2xl font-medium text-brand-gray-900 mb-1">
-            {item.title}
-          </h3>
-          <p className="text-sm italic text-brand-gray-700">
-            {item.keySpec}
+        <span className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-sm text-[11px] font-mono uppercase tracking-[0.14em] text-brand-gray-900 border border-brand-gray-300">
+          {stockBadge}
+        </span>
+      </Link>
+
+      <div className="flex flex-col gap-3 p-5">
+        {item.manufacturer && (
+          <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-brand-gray-500">
+            {item.manufacturer}
+          </span>
+        )}
+        <Link
+          href={detailHref}
+          className="font-sans font-semibold text-brand-gray-900 text-[20px] tracking-tight leading-[1.2] hover:text-brand-red transition-colors"
+        >
+          {item.title}
+        </Link>
+        {item.subtitle && (
+          <p className="font-['Inter_Display',sans-serif] text-[14px] leading-[1.5] text-brand-gray-700 line-clamp-2">
+            {item.subtitle}
           </p>
+        )}
+
+        <div className="pt-3 border-t border-brand-gray-300">
+          <InquiryButton
+            item={{
+              id: item.slug,
+              title: item.title,
+              category: item.categorySlug,
+              image: imageUrl ?? "",
+              equipmentId: item._id,
+              categorySlug: item.categorySlug,
+            }}
+          />
         </div>
-
-        <p className="text-base text-brand-gray-700 leading-relaxed mb-6 line-clamp-3">
-          {item.description}
-        </p>
-
-        <InquiryButton 
-          item={{
-            id: item.id,
-            title: item.title,
-            category: item.categorySlug,
-            image: item.imageUrl
-          }} 
-        />
       </div>
-    </div>
+    </article>
   );
 }

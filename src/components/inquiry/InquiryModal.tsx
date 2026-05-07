@@ -3,11 +3,10 @@
 import React, { useEffect, useState } from "react";
 import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { X, CheckCircle2, Loader2, Plus, Trash2 } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { X, CheckCircle2, Loader2, Trash2 } from "lucide-react";
+import { motion } from "framer-motion";
 import { useInquiry } from "./InquiryProvider";
 import { rentalFormSchema, RentalFormData } from "@/lib/rental-form-schema";
-import { equipmentItems } from "@/lib/equipment-data";
 import { Button } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 
@@ -43,21 +42,13 @@ export function InquiryModal() {
     },
   });
 
-  const { fields, append, remove } = useFieldArray({
+  const { fields, remove } = useFieldArray({
     control,
     name: "equipment",
   });
 
-  const [searchTerm, setSearchTerm] = useState("");
-  const [showResults, setShowResults] = useState(false);
-
-  // Filter equipment based on search
-  const filteredEquipment = equipmentItems.filter(item => 
-    item.title.toLowerCase().includes(searchTerm.toLowerCase()) &&
-    !watch("equipment").some(e => e.id === item.id)
-  );
-
-  // Sync modal items with inquiry basket if in multi mode
+  // Sync modal items with inquiry basket on open. Cart is the source of
+  // truth for selected equipment; the modal shows them as removable chips.
   useEffect(() => {
     if (isModalOpen) {
       if (modalMode === "multi") {
@@ -74,28 +65,62 @@ export function InquiryModal() {
     setIsSubmitting(true);
     setError(null);
 
+    // Resolve Sanity _ids from the cart (multi mode) or single-item meta.
+    const sourceItems =
+      modalMode === "multi"
+        ? items
+        : modalSingleItem
+        ? [modalSingleItem]
+        : [];
+    const equipmentIds = sourceItems
+      .map((i) => i.equipmentId)
+      .filter((id): id is string => Boolean(id));
+
+    // Project start and operator preference are not first-class inquiry-schema
+    // fields; fold them into the free-text message so editors still see them.
+    const messageLines = [
+      data.notes?.trim() || null,
+      data.projectStart ? `Project start: ${data.projectStart}` : null,
+      data.operatorRequired
+        ? `Operator required: ${data.operatorRequired === "all" ? "Yes for all" : data.operatorRequired === "none" ? "No for any" : "Some (specify in notes)"}`
+        : null,
+    ].filter(Boolean);
+
+    const payload = {
+      name: data.fullName,
+      email: data.email,
+      phone: data.phone,
+      company: data.company,
+      projectLocation: data.projectLocation,
+      rentalDuration: data.rentalDuration,
+      equipmentIds,
+      message: messageLines.join("\n"),
+    };
+
     try {
-      const response = await fetch("/api/rental-inquiry", {
+      const response = await fetch("/api/inquiries", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify(payload),
       });
 
       if (!response.ok) {
-        throw new Error("Failed to submit inquiry");
+        const j = await response.json().catch(() => ({}));
+        throw new Error(j?.error || "Failed to submit inquiry");
       }
 
       setIsSuccess(true);
       if (modalMode === "multi") {
         clearItems();
       }
-      
+
       // Auto close after 3 seconds
       setTimeout(() => {
         closeModal();
       }, 3000);
     } catch (err) {
-      setError("Something went wrong. Please try again or call us directly.");
+      const msg = err instanceof Error ? err.message : "Something went wrong.";
+      setError(`${msg} Please try again or call us directly.`);
     } finally {
       setIsSubmitting(false);
     }
@@ -314,61 +339,31 @@ export function InquiryModal() {
 
               <div className="space-y-3">
                 <label className="text-sm font-bold text-brand-gray-900">Equipment *</label>
-                <div className="flex flex-wrap gap-2 mb-3">
-                  {fields.map((field, index) => (
-                    <div 
-                      key={field.id}
-                      className="flex items-center gap-1.5 px-3 py-1.5 bg-brand-gray-100 border border-brand-gray-300 rounded-full group"
-                    >
-                      <span className="text-xs font-bold text-brand-gray-900">{field.title}</span>
-                      <button 
-                        type="button" 
-                        onClick={() => remove(index)}
-                        className="text-brand-gray-400 hover:text-brand-red transition-colors"
+                <p className="text-xs text-brand-gray-500 font-medium">
+                  Selected from your inquiry. To add more, close this modal and use Add to Inquiry on any equipment card.
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {fields.length === 0 ? (
+                    <span className="text-xs text-brand-gray-500 italic">
+                      No equipment selected yet.
+                    </span>
+                  ) : (
+                    fields.map((field, index) => (
+                      <div
+                        key={field.id}
+                        className="flex items-center gap-1.5 px-3 py-1.5 bg-brand-gray-100 border border-brand-gray-300 rounded-full group"
                       >
-                        <Trash2 className="w-3.5 h-3.5" />
-                      </button>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="relative">
-                  <div className="flex items-center gap-2 border border-brand-gray-300 rounded-lg px-3 focus-within:ring-2 focus-within:ring-brand-red transition-all">
-                    <Plus className="w-4 h-4 text-brand-gray-400" />
-                    <input
-                      type="text"
-                      className="flex-1 py-3 outline-none text-sm font-medium"
-                      placeholder="Add more equipment..."
-                      value={searchTerm}
-                      onChange={(e) => {
-                        setSearchTerm(e.target.value);
-                        setShowResults(true);
-                      }}
-                      onFocus={() => setShowResults(true)}
-                    />
-                  </div>
-                  
-                  {showResults && searchTerm && (
-                    <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-brand-gray-200 rounded-lg shadow-xl z-10 max-h-48 overflow-y-auto py-2">
-                      {filteredEquipment.length > 0 ? (
-                        filteredEquipment.map(item => (
-                          <button
-                            key={item.id}
-                            type="button"
-                            className="w-full text-left px-4 py-2 hover:bg-brand-gray-50 text-sm font-medium text-brand-gray-900 transition-colors"
-                            onClick={() => {
-                              append({ id: item.id, title: item.title });
-                              setSearchTerm("");
-                              setShowResults(false);
-                            }}
-                          >
-                            {item.title}
-                          </button>
-                        ))
-                      ) : (
-                        <p className="px-4 py-2 text-xs text-brand-gray-500 italic">No matches found</p>
-                      )}
-                    </div>
+                        <span className="text-xs font-bold text-brand-gray-900">{field.title}</span>
+                        <button
+                          type="button"
+                          onClick={() => remove(index)}
+                          className="text-brand-gray-400 hover:text-brand-red transition-colors"
+                          aria-label={`Remove ${field.title}`}
+                        >
+                          <Trash2 className="w-3.5 h-3.5" />
+                        </button>
+                      </div>
+                    ))
                   )}
                 </div>
                 {errors.equipment && (

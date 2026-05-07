@@ -1,6 +1,13 @@
 import React from "react";
 
-export function ProjectSchema({ projects }: { projects: any[] }) {
+type ProjectShape = {
+  title: string;
+  slug: string;
+  scope?: string;
+  scopeSummary?: string;
+};
+
+export function ProjectSchema({ projects }: { projects: ProjectShape[] }) {
   const schema = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
@@ -12,7 +19,7 @@ export function ProjectSchema({ projects }: { projects: any[] }) {
         "item": {
           "@type": "CreativeWork",
           "name": project.title,
-          "description": project.scope,
+          "description": project.scopeSummary ?? project.scope,
           "url": `https://diamondedgecutting.com/projects/${project.slug}`,
           "creator": {
             "@id": "https://diamondedgecutting.com/#organization"

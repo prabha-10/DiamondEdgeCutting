@@ -1,3 +1,7 @@
+// Equipment Category schema. Defined per the rental-equipment PRD spec.
+// 8 categories total: 6 routable + 2 attachment-only (no standalone route,
+// surfaced as a tab on the parent carrier category).
+
 import { defineField, defineType } from 'sanity'
 
 export const category = defineType({
@@ -7,119 +11,90 @@ export const category = defineType({
   fields: [
     defineField({
       name: 'title',
-      title: 'Category Title',
+      title: 'Title',
       type: 'string',
-      validation: Rule => Rule.required()
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'slug',
       title: 'Slug',
       type: 'slug',
       options: { source: 'title', maxLength: 96 },
-      validation: Rule => Rule.required()
-    }),
-    defineField({
-      name: 'h1',
-      title: 'Page Heading (H1)',
-      type: 'string',
-      description: 'Main heading on the category detail page'
-    }),
-    defineField({
-      name: 'overview',
-      title: 'Overview',
-      type: 'text',
-      rows: 4,
-      description: 'Paragraph shown below the H1 and on the category card'
-    }),
-    defineField({
-      name: 'description',
-      title: 'Short Description',
-      type: 'text',
-      rows: 3,
-      description: 'One paragraph used on the category landing tile and SEO description'
-    }),
-    defineField({
-      name: 'shortLabel',
-      title: 'Card Tag Label',
-      type: 'string',
-      description: 'Short tag shown on the card image, e.g. "Specialist Fleet", "14 to 50 Ton"'
-    }),
-    defineField({
-      name: 'trustTags',
-      title: 'Trust Tags',
-      type: 'array',
-      of: [{ type: 'string' }],
-      description: 'Small chips shown on the card, e.g. "13 models", "Operator-led"'
-    }),
-    defineField({
-      name: 'imageUrl',
-      title: 'Card Image URL',
-      type: 'url',
-      description: 'External image URL for the category card (used until real photos are uploaded)'
-    }),
-    defineField({
-      name: 'heroImage',
-      title: 'Hero Image',
-      type: 'image',
-      options: { hotspot: true }
-    }),
-    defineField({
-      name: 'useCases',
-      title: 'Use Cases / Capabilities',
-      type: 'array',
-      of: [{ type: 'string' }],
-      description: 'Bullet list of what this equipment category can do'
-    }),
-    defineField({
-      name: 'terms',
-      title: 'Rental Terms',
-      type: 'text',
-      rows: 3,
-      description: 'Hire terms paragraph shown on the detail page'
-    }),
-    defineField({
-      name: 'faqs',
-      title: 'FAQs',
-      type: 'array',
-      of: [{
-        type: 'object',
-        fields: [
-          defineField({ name: 'question', title: 'Question', type: 'string', validation: Rule => Rule.required() }),
-          defineField({ name: 'answer', title: 'Answer', type: 'text', rows: 3, validation: Rule => Rule.required() })
-        ]
-      }]
-    }),
-    defineField({
-      name: 'crossSells',
-      title: 'Cross-sell Categories',
-      type: 'array',
-      of: [{ type: 'reference', to: [{ type: 'category' }] }],
-      description: '"Pairs Well With" sidebar links'
+      validation: (rule) => rule.required(),
     }),
     defineField({
       name: 'order',
-      title: 'Display Order',
+      title: 'Display order',
       type: 'number',
-      description: 'Lower numbers appear first'
+      description: '1-8. Lower numbers come first on the landing page.',
+      validation: (rule) => rule.required().min(1).max(8),
     }),
     defineField({
-      name: 'metaTitle',
-      title: 'SEO Meta Title',
-      type: 'string',
-      description: 'Max 60 characters'
+      name: 'shortDescription',
+      title: 'Short description',
+      type: 'text',
+      rows: 3,
+      description: '1-2 sentences. Used on the landing page category card.',
+      validation: (rule) => rule.required().max(280),
     }),
     defineField({
-      name: 'metaDescription',
-      title: 'SEO Meta Description',
-      type: 'string',
-      description: 'Max 155 characters'
-    })
+      name: 'description',
+      title: 'Full description',
+      type: 'text',
+      rows: 6,
+      description: 'Used at the top of the category page.',
+      validation: (rule) => rule.required(),
+    }),
+    defineField({
+      name: 'heroImage',
+      title: 'Hero image',
+      type: 'image',
+      options: { hotspot: true },
+      description: 'Optional. Used as the category page banner.',
+    }),
+    defineField({
+      name: 'isAttachmentCategory',
+      title: 'Is this an attachment category?',
+      type: 'boolean',
+      initialValue: false,
+      description:
+        'Mark true for Brokk/DXR Attachments and Excavator Attachments. These do not get standalone routes; they appear as a tab on the parent category page.',
+    }),
+    defineField({
+      name: 'parentCategory',
+      title: 'Parent category',
+      type: 'reference',
+      to: [{ type: 'category' }],
+      description:
+        'Only set for attachment categories. Points to the carrier category that hosts the Attachments tab.',
+      hidden: ({ document }) => !document?.isAttachmentCategory,
+    }),
+    defineField({
+      name: 'hasAttachmentTab',
+      title: 'Has attachment tab?',
+      type: 'boolean',
+      initialValue: false,
+      description:
+        'Mark true on the carrier category (Robotic Demolition Machines, Excavators) so the front end renders the Attachments tab.',
+    }),
+    defineField({
+      name: 'attachmentCategories',
+      title: 'Attachment categories shown in tab',
+      type: 'array',
+      of: [{ type: 'reference', to: [{ type: 'category' }] }],
+      description:
+        "References to the attachment category documents that appear in this category's Attachments tab.",
+      hidden: ({ document }) => !document?.hasAttachmentTab,
+    }),
   ],
   orderings: [
     {
-      title: 'Display Order',
+      title: 'Display order',
       name: 'orderAsc',
-      by: [{ field: 'order', direction: 'asc' }]
-    }
-  ]
+      by: [{ field: 'order', direction: 'asc' }],
+    },
+  ],
+  preview: {
+    select: { title: 'title', subtitle: 'shortDescription', media: 'heroImage' },
+  },
 })

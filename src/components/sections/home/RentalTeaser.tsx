@@ -36,7 +36,7 @@ const rentalCategories: RentalCategory[] = [
       "https://images.unsplash.com/photo-1711618732376-416cf6af54f6?w=900&q=80&auto=format&fit=crop",
     badge: "Specialist Fleet",
     stats: [
-      { icon: Layers, label: "9 models" },
+      { icon: Layers, label: "13 models" },
       { icon: Users, label: "Operator-led" },
     ],
   },
