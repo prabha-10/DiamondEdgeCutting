@@ -1,31 +1,23 @@
 import React from "react";
 import { Hero } from "@/components/sections/home/Hero";
 import { Overview } from "@/components/sections/home/Overview";
-import { Services } from "@/components/sections/home/Services";
-import { RentalTeaser } from "@/components/sections/home/RentalTeaser";
-import { FeaturedProjects } from "@/components/sections/home/FeaturedProjects";
-import { ClientLogos } from "@/components/sections/home/ClientLogos";
-import { Certifications } from "@/components/sections/home/Certifications";
 import { MissionVision } from "@/components/sections/home/MissionVision";
+import { Certifications } from "@/components/sections/home/Certifications";
 import { Leadership } from "@/components/sections/home/Leadership";
-import { Testimonials } from "@/components/sections/home/Testimonials";
-import { FAQ } from "@/components/sections/home/FAQ";
 import { FinalCTA } from "@/components/sections/home/FinalCTA";
+
+// Homepage scope, per client docx (Website Structure Rob 24-02-2026):
+// 1. Company Overview   2. Mission & Vision   3. Certifications   4. Our Team
+// + Hero entry and slim closing CTA.
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <ClientLogos />
       <Overview />
-      <Services />
-      <FeaturedProjects />
-      <RentalTeaser />
-      <Certifications />
       <MissionVision />
+      <Certifications />
       <Leadership />
-      <Testimonials />
-      <FAQ />
       <FinalCTA />
     </>
   );

@@ -1,95 +1,100 @@
-"use client";
+import React from "react";
+import { EditorialSectionHead } from "./editorial/EditorialSectionHead";
 
-import React, { useEffect, useRef, useState } from "react";
+// Block 1 from the client's homepage spec. Section head + two-column body
+// (prose + core services list on the left, credential rows on the right).
 
-const stats = [
-  { target: 17, suffix: "+", label: "Years operating in the UAE" },
-  { target: 300, suffix: "+", label: "Trained professionals" },
-  { target: 18, suffix: "+", label: "Headline projects delivered" },
+const coreServices = [
+  "Controlled and Structural Demolition",
+  "Robotic Demolition",
+  "Wire sawing",
+  "Wall, track, and floor sawing",
+  "Core drilling",
+  "Tunnelling, refinery, kiln works",
+  "Soft demolition and enabling works",
+  "Specialist plant and equipment rental",
 ];
 
-function CountUp({ target, suffix, duration = 1600 }: { target: number; suffix: string; duration?: number }) {
-  const [value, setValue] = useState(0);
-  const ref = useRef<HTMLSpanElement>(null);
-  const startedRef = useRef(false);
+type Credential = { key: string; value: React.ReactNode };
 
-  useEffect(() => {
-    if (!ref.current || startedRef.current) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting && !startedRef.current) {
-            startedRef.current = true;
-            const start = performance.now();
-            const tick = (now: number) => {
-              const t = Math.min(1, (now - start) / duration);
-              const eased = 1 - Math.pow(1 - t, 3); // easeOutCubic
-              setValue(Math.round(eased * target));
-              if (t < 1) requestAnimationFrame(tick);
-            };
-            requestAnimationFrame(tick);
-            observer.disconnect();
-          }
-        }
-      },
-      { threshold: 0.4 }
-    );
-    observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [target, duration]);
-
-  return (
-    <span ref={ref}>
-      {value}
-      {suffix}
-    </span>
-  );
-}
+const credentials: Credential[] = [
+  { key: "Established", value: <>1997 <span className="text-brand-red">·</span> Ireland</> },
+  { key: "UAE Operations", value: <>Since <em className="font-display italic text-brand-red not-italic">2008</em></> },
+  { key: "Workforce", value: <>300<em className="font-display italic text-brand-red not-italic">+</em> Specialists</> },
+  { key: "Approval", value: <>DM <em className="font-display italic text-brand-red not-italic">G+12</em></> },
+  { key: "Certifications", value: <>ISO 9001 <span className="text-brand-red">·</span> 14001 <span className="text-brand-red">·</span> 45001</> },
+  { key: "Coverage", value: "6 GCC Countries" },
+];
 
 export function Overview() {
   return (
-    <section className="pt-8 pb-16 md:pb-32 bg-brand-gray-100">
+    <section className="py-20 md:py-32 bg-white">
       <div className="container mx-auto px-4 md:px-8">
-        {/* Top: eyebrow + headline split */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 border-t border-brand-gray-300 pt-12">
-          <div className="lg:col-span-4">
-            <div className="flex items-center gap-2.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-brand-gray-500" />
-              <span className="font-['Inter_Display',sans-serif] font-normal text-brand-gray-500 text-[20px] leading-[22px] tracking-normal">
-                Built on experience and craft
-              </span>
-            </div>
-          </div>
-          <div className="lg:col-span-8">
-            <h2 className="font-sans font-medium text-black text-[40px] leading-[45px] tracking-tight">
-              We deliver specialist demolition projects focused on safety and precision.{" "}
-              <span className="text-brand-gray-500">
-                Partnering with major developers across the Middle East using advanced robotic methodologies.
-              </span>
-            </h2>
-          </div>
-        </div>
+        <EditorialSectionHead
+          number="01"
+          eyebrow="Company Overview"
+          title={
+            <>
+              Specialists.
+              <br />
+              <em>Not generalists.</em>
+            </>
+          }
+          lede="Diamond Edge Cutting is a leading specialist demolition contractor delivering safe, precise, and efficient solutions across all sectors of the construction industry."
+        />
 
-        {/* Bottom: numbered stat cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-20">
-          {stats.map((stat, index) => (
-            <div
-              key={index}
-              className="bg-white rounded-2xl p-10 flex flex-col gap-12 min-h-[260px]"
-            >
-              <span className="text-sm font-medium text-brand-gray-500">
-                /{String(index + 1).padStart(2, "0")}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 mt-14 md:mt-20">
+          {/* Prose + core services */}
+          <div className="lg:col-span-7 flex flex-col gap-6">
+            <p className="font-['Inter_Display',sans-serif] text-[17px] md:text-[18px] leading-[1.65] text-brand-gray-700">
+              DEC established operations in the United Arab Emirates in 2008, building on more than
+              15 years of prior experience across Ireland and Europe. We have successfully partnered
+              with major developers, main contractors, and consultants across the region on complex
+              and technically challenging projects.
+            </p>
+            <p className="font-['Inter_Display',sans-serif] text-[17px] md:text-[18px] leading-[1.65] text-brand-gray-700">
+              Using advanced technology and modern methodologies, we execute both light and heavy
+              demolition projects with speed, accuracy, and uncompromising safety standards. With a
+              dedicated team of 300+ highly trained professionals, we deliver projects from concept
+              to completion, on time, on budget, and to the highest standards of quality and safety.
+            </p>
+
+            <div className="mt-6">
+              <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-brand-red">
+                Core services
               </span>
-              <div>
-                <div className="font-sans font-medium text-brand-gray-900 text-[68px] leading-[68px] mb-4 tracking-tight tabular-nums">
-                  <CountUp target={stat.target} suffix={stat.suffix} />
-                </div>
-                <div className="font-['Inter_Display',sans-serif] font-normal text-brand-gray-500 text-[18px] leading-[normal]">
-                  {stat.label}
-                </div>
-              </div>
+              <ul className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2.5">
+                {coreServices.map((s) => (
+                  <li
+                    key={s}
+                    className="flex items-baseline gap-3 font-sans text-[15.5px] text-brand-gray-900"
+                  >
+                    <span aria-hidden className="text-brand-red shrink-0 select-none">
+                      /
+                    </span>
+                    <span>{s}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
-          ))}
+          </div>
+
+          {/* Credential rows */}
+          <div className="lg:col-span-5 flex flex-col border-t border-brand-gray-300">
+            {credentials.map(({ key, value }) => (
+              <div
+                key={key}
+                className="flex items-center justify-between gap-6 py-4 border-b border-brand-gray-300"
+              >
+                <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-brand-gray-500">
+                  {key}
+                </span>
+                <span className="font-display font-bold text-brand-gray-900 text-[20px] md:text-[22px] uppercase tracking-tight text-right">
+                  {value}
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
