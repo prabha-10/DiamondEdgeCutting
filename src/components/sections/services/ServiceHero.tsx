@@ -33,7 +33,7 @@ export function ServiceHero() {
               Demolition Services
             </span>
           </div>
-          <h1 className="font-sans font-medium text-white text-[56px] md:text-[88px] lg:text-[112px] leading-[0.95] tracking-tight drop-shadow-[0_2px_20px_rgba(0,0,0,0.35)]">
+          <h1 className="font-display font-medium text-white text-[56px] md:text-[88px] lg:text-[112px] leading-[0.95] tracking-tight drop-shadow-[0_2px_20px_rgba(0,0,0,0.35)]">
             Engineering-led
             <br className="hidden md:block" /> demolition.
           </h1>

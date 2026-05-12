@@ -168,7 +168,7 @@ export default async function ProjectDetailPage({
                   {project.category}
                 </span>
               </div>
-              <h1 className="font-sans font-medium text-brand-gray-900 text-[44px] md:text-[72px] lg:text-[88px] leading-[0.98] tracking-tight">
+              <h1 className="font-display font-medium text-brand-gray-900 text-[44px] md:text-[72px] lg:text-[88px] leading-[0.98] tracking-tight">
                 {project.title}
               </h1>
             </div>
@@ -286,7 +286,7 @@ export default async function ProjectDetailPage({
             {/* Sticky sidebar */}
             <aside className="lg:col-span-4 lg:sticky lg:top-32 flex flex-col gap-8">
               <div className="bg-brand-gray-100 rounded-[24px] p-7 flex flex-col gap-6">
-                <h3 className="font-sans font-semibold text-brand-gray-900 text-[22px] tracking-tight">
+                <h3 className="font-display font-semibold text-brand-gray-900 text-[22px] tracking-tight">
                   Project Details
                 </h3>
                 <div className="flex flex-col gap-5">
@@ -356,7 +356,7 @@ export default async function ProjectDetailPage({
       {/* Footer CTA */}
       <section className="py-32 bg-brand-gray-900 text-white text-center">
         <div className="container mx-auto px-4 md:px-8 flex flex-col items-center gap-10">
-          <h2 className="font-sans font-medium text-white text-[40px] md:text-[64px] leading-[1.05] tracking-tight max-w-3xl">
+          <h2 className="font-display font-medium text-white text-[40px] md:text-[64px] leading-[1.05] tracking-tight max-w-3xl">
             Have a similar project?
           </h2>
           <Link

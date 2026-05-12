@@ -38,7 +38,7 @@ export function WhyDec() {
                 Why DEC
               </span>
             </div>
-            <h2 className="font-sans font-medium text-brand-gray-900 text-[40px] md:text-[56px] leading-[1.05] tracking-tight">
+            <h2 className="font-display font-medium text-brand-gray-900 text-[40px] md:text-[56px] leading-[1.05] tracking-tight">
               Built around the
               <br className="hidden md:block" /> trickiest jobs.
             </h2>
@@ -71,7 +71,7 @@ export function WhyDec() {
                   </span>
                 </div>
                 <div className="flex flex-col gap-3 mt-auto">
-                  <h3 className="font-sans font-semibold text-white text-[22px] leading-[1.2] tracking-tight">
+                  <h3 className="font-display font-semibold text-white text-[22px] leading-[1.2] tracking-tight">
                     {r.title}
                   </h3>
                   <p className="font-['Inter_Display',sans-serif] font-normal text-[14.5px] leading-[1.55] text-white/85">

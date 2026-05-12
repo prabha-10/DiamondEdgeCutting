@@ -92,7 +92,7 @@ export default async function RentalEquipmentLandingPage() {
                 Equipment Rental
               </span>
             </div>
-            <h1 className="font-sans font-medium text-brand-gray-900 text-[44px] md:text-[72px] lg:text-[88px] leading-[0.98] tracking-tight">
+            <h1 className="font-display font-medium text-brand-gray-900 text-[44px] md:text-[72px] lg:text-[88px] leading-[0.98] tracking-tight">
               The GCC&apos;s largest specialist fleet,
               <br className="hidden md:block" /> mobilised on your programme.
             </h1>
@@ -131,7 +131,7 @@ export default async function RentalEquipmentLandingPage() {
             <span className="font-['Inter_Display',sans-serif] text-[12px] uppercase tracking-[0.18em] text-brand-red">
               Fleet by category
             </span>
-            <h2 className="font-sans font-medium text-brand-gray-900 text-[32px] md:text-[44px] tracking-tight leading-[1.1]">
+            <h2 className="font-display font-medium text-brand-gray-900 text-[32px] md:text-[44px] tracking-tight leading-[1.1]">
               Six categories, every demolition job covered.
             </h2>
           </div>
@@ -152,7 +152,7 @@ export default async function RentalEquipmentLandingPage() {
                 <span className="font-['Inter_Display',sans-serif] text-[12px] uppercase tracking-[0.18em] text-brand-red">
                   Featured
                 </span>
-                <h2 className="font-sans font-medium text-brand-gray-900 text-[28px] md:text-[36px] tracking-tight">
+                <h2 className="font-display font-medium text-brand-gray-900 text-[28px] md:text-[36px] tracking-tight">
                   Editor picks from the fleet
                 </h2>
               </div>
@@ -169,7 +169,7 @@ export default async function RentalEquipmentLandingPage() {
       {/* Inquiry CTA band */}
       <section className="py-16 md:py-24 bg-brand-gray-900 text-white">
         <div className="container mx-auto px-4 md:px-8 max-w-4xl text-center">
-          <h2 className="font-sans font-medium text-white text-[32px] md:text-[44px] tracking-tight leading-[1.1] mb-6">
+          <h2 className="font-display font-medium text-white text-[32px] md:text-[44px] tracking-tight leading-[1.1] mb-6">
             Need a tailored package?
           </h2>
           <p className="font-['Inter_Display',sans-serif] text-[16px] md:text-[18px] text-white/75 leading-[1.55] mb-10 max-w-2xl mx-auto">

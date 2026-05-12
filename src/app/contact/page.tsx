@@ -21,7 +21,7 @@ export default function ContactPage() {
               Get in touch
             </span>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-end">
-              <h1 className="lg:col-span-9 font-sans font-medium text-brand-gray-900 text-[44px] md:text-[72px] lg:text-[88px] leading-[1.05] tracking-tight">
+              <h1 className="lg:col-span-9 font-display font-medium text-brand-gray-900 text-[44px] md:text-[72px] lg:text-[88px] leading-[1.05] tracking-tight">
                 Got a project in mind?
                 <br />
                 Let&apos;s plan it together.

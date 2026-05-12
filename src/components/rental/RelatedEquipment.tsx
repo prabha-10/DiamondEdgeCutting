@@ -13,7 +13,7 @@ export function RelatedEquipment({
     <section className="py-20 md:py-24 bg-brand-gray-50 border-t border-brand-gray-300">
       <div className="container mx-auto px-4 md:px-8">
         <div className="flex items-end justify-between mb-10">
-          <h2 className="font-sans font-medium text-brand-gray-900 text-[32px] md:text-[40px] tracking-tight leading-[1.1]">
+          <h2 className="font-display font-medium text-brand-gray-900 text-[32px] md:text-[40px] tracking-tight leading-[1.1]">
             {title}
           </h2>
         </div>

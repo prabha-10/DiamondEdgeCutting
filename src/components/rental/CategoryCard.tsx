@@ -37,7 +37,7 @@ export function CategoryCard({ category }: { category: CategoryCardData }) {
 
       <div className="flex flex-col gap-4 p-6">
         <div className="flex items-start justify-between gap-4">
-          <h3 className="font-sans font-semibold text-brand-gray-900 text-[22px] tracking-tight leading-[1.2]">
+          <h3 className="font-display font-semibold text-brand-gray-900 text-[22px] tracking-tight leading-[1.2]">
             {category.title}
           </h3>
           {typeof category.equipmentCount === "number" && (

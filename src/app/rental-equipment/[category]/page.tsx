@@ -101,7 +101,7 @@ function EquipmentGroup<
           {/* Sub-category heading. Hide if every group is "Other" (single group). */}
           {(groups.length > 1 || g.name !== "Other") && (
             <div className="flex items-center gap-3 border-b border-brand-gray-300 pb-3">
-              <h3 className="font-sans font-semibold text-brand-gray-900 text-[20px] tracking-tight">
+              <h3 className="font-display font-semibold text-brand-gray-900 text-[20px] tracking-tight">
                 {g.name}
               </h3>
               <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-brand-gray-500 tabular-nums">
@@ -178,7 +178,7 @@ export default async function RentalCategoryPage({ params }: Props) {
                 Equipment Rental
               </span>
             </div>
-            <h1 className="font-sans font-medium text-brand-gray-900 text-[40px] md:text-[64px] leading-[1.0] tracking-tight">
+            <h1 className="font-display font-medium text-brand-gray-900 text-[40px] md:text-[64px] leading-[1.0] tracking-tight">
               {doc.title}
             </h1>
             <p className="font-['Inter_Display',sans-serif] text-[17px] md:text-[18px] text-brand-gray-700 leading-[1.6] max-w-2xl">
@@ -255,7 +255,7 @@ export default async function RentalCategoryPage({ params }: Props) {
       {/* Inquiry CTA band */}
       <section className="py-16 md:py-24 bg-brand-gray-900 text-white">
         <div className="container mx-auto px-4 md:px-8 max-w-4xl text-center">
-          <h2 className="font-sans font-medium text-white text-[32px] md:text-[44px] tracking-tight leading-[1.1] mb-6">
+          <h2 className="font-display font-medium text-white text-[32px] md:text-[44px] tracking-tight leading-[1.1] mb-6">
             Need a tailored package?
           </h2>
           <p className="font-['Inter_Display',sans-serif] text-[16px] md:text-[18px] text-white/75 leading-[1.55] mb-10 max-w-2xl mx-auto">

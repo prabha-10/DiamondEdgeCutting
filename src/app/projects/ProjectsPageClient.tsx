@@ -72,7 +72,7 @@ export default function ProjectsPageClient({ projects, categories }: Props) {
                 Selected Works
               </span>
             </div>
-            <h1 className="font-sans font-medium text-brand-gray-900 text-[56px] md:text-[88px] lg:text-[112px] leading-[0.95] tracking-tight">
+            <h1 className="font-display font-medium text-brand-gray-900 text-[56px] md:text-[88px] lg:text-[112px] leading-[0.95] tracking-tight">
               Projects.
             </h1>
           </div>
@@ -164,7 +164,7 @@ export default function ProjectsPageClient({ projects, categories }: Props) {
       {/* Bottom CTA */}
       <section className="py-32 bg-brand-gray-900 text-white text-center">
         <div className="container mx-auto px-4 md:px-8 flex flex-col items-center gap-10">
-          <h2 className="font-sans font-medium text-white text-[40px] md:text-[64px] leading-[1.05] tracking-tight max-w-3xl">
+          <h2 className="font-display font-medium text-white text-[40px] md:text-[64px] leading-[1.05] tracking-tight max-w-3xl">
             Have a similar project?
           </h2>
           <Link

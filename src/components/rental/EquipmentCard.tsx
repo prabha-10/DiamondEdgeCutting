@@ -52,7 +52,7 @@ export function EquipmentCard({ item }: { item: EquipmentCardData }) {
         )}
         <Link
           href={detailHref}
-          className="font-sans font-semibold text-brand-gray-900 text-[20px] tracking-tight leading-[1.2] hover:text-brand-red transition-colors"
+          className="font-display font-semibold text-brand-gray-900 text-[20px] tracking-tight leading-[1.2] hover:text-brand-red transition-colors"
         >
           {item.title}
         </Link>

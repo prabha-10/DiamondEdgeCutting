@@ -1,5 +1,6 @@
 @import url('https://api.fontshare.com/v2/css?f[]=switzer@1,2&display=swap');
 @import url('https://rsms.me/inter/inter.css');
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -17,7 +18,12 @@
   --color-brand-gray-700: #525252;
   --color-brand-gray-900: #0a0a0a; /* Darker, almost true black for highest contrast */
 
+  /* Type system. Switzer is the body sans, Big Shoulders Display is the
+   * industrial display headline face used site-wide on h1/h2/h3 in
+   * editorial sections. JetBrains Mono powers the small uppercase labels. */
   --font-sans: 'Switzer', sans-serif;
+  --font-display: 'Big Shoulders Display', 'Arial Narrow', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 :root {

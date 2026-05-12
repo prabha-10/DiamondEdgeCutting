@@ -48,7 +48,7 @@ export function ServiceDetails() {
                     <span className="font-['Inter_Display',sans-serif] text-[12px] font-semibold tracking-[0.18em] text-brand-red tabular-nums">
                       / {String(index + 1).padStart(2, "0")}
                     </span>
-                    <h2 className="font-sans font-medium text-brand-gray-900 text-[40px] md:text-[56px] leading-[1.05] tracking-tight">
+                    <h2 className="font-display font-medium text-brand-gray-900 text-[40px] md:text-[56px] leading-[1.05] tracking-tight">
                       {service.title}
                     </h2>
                     <p className="font-['Inter_Display',sans-serif] font-normal text-[17px] leading-[1.6] text-brand-gray-500 max-w-xl">

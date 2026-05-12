@@ -24,7 +24,7 @@ export function FAQ() {
                   Common Questions
                 </span>
               </div>
-              <h2 className="font-sans font-medium text-brand-gray-900 text-[40px] md:text-[52px] leading-[1.05] tracking-tight">
+              <h2 className="font-display font-medium text-brand-gray-900 text-[40px] md:text-[52px] leading-[1.05] tracking-tight">
                 Everything contractors ask before we start.
               </h2>
               <p className="font-['Inter_Display',sans-serif] font-normal text-[16px] leading-[1.55] text-brand-gray-500 max-w-md">
@@ -80,7 +80,7 @@ export function FAQ() {
                     aria-expanded={isOpen}
                     className="w-full flex items-center justify-between gap-6 text-left p-6"
                   >
-                    <h3 className="font-sans font-medium text-black text-[20px] leading-[24px] tracking-tight">
+                    <h3 className="font-display font-medium text-black text-[20px] leading-[24px] tracking-tight">
                       {faq.question}
                     </h3>
                     <span

@@ -156,7 +156,7 @@ export default async function EquipmentDetailPage({ params }: Props) {
                   {doc.manufacturer}
                 </span>
               )}
-              <h1 className="font-sans font-medium text-brand-gray-900 text-[36px] md:text-[52px] leading-[1.0] tracking-tight">
+              <h1 className="font-display font-medium text-brand-gray-900 text-[36px] md:text-[52px] leading-[1.0] tracking-tight">
                 {doc.title}
               </h1>
               {doc.subtitle && (
