@@ -133,7 +133,7 @@ export default async function RentalEquipmentLandingPage() {
                     <ArrowUpRight className="w-3.5 h-3.5" strokeWidth={2} />
                   </Link>
                 </div>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                   {cards.map((item) => (
                     <EquipmentCard key={item._id} item={item} />
                   ))}

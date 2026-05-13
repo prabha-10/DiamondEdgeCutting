@@ -21,7 +21,7 @@ export default function ContactPage() {
               Get in touch
             </span>
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-end">
-              <h1 className="lg:col-span-9 font-display font-medium text-brand-gray-900 text-[32px] md:text-[52px] lg:text-[64px] leading-[1.05] tracking-tight whitespace-nowrap">
+              <h1 className="lg:col-span-9 font-display font-medium text-brand-gray-900 text-[32px] md:text-[52px] xl:text-[64px] leading-[1.05] tracking-tight xl:whitespace-nowrap">
                 Got a project in mind? Let&apos;s plan it together.
               </h1>
               <span className="lg:col-span-3 font-['Inter_Display',sans-serif] text-[14px] text-brand-gray-500 lg:text-right lg:pb-4">
@@ -46,13 +46,13 @@ export default function ContactPage() {
               </div>
             </a>
 
-            <a href="mailto:info@diamondedgecutting.com" className="group flex items-center gap-4 py-6 md:py-8 md:px-8 hover:text-brand-red transition-colors">
+            <a href="mailto:info@diamondedgecutting.com" className="group flex items-center gap-4 py-6 md:py-8 md:px-8 hover:text-brand-red transition-colors min-w-0">
               <span className="flex items-center justify-center w-10 h-10 rounded-full bg-brand-gray-100 group-hover:bg-brand-red/10 transition-colors shrink-0">
                 <Mail className="w-4 h-4 text-brand-gray-600 group-hover:text-brand-red transition-colors" strokeWidth={2} />
               </span>
-              <div className="flex flex-col">
+              <div className="flex flex-col min-w-0">
                 <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-brand-gray-400 mb-0.5">Email</span>
-                <span className="font-bold text-brand-gray-900 text-[15px] group-hover:text-brand-red transition-colors">info@diamondedgecutting.com</span>
+                <span className="font-bold text-brand-gray-900 text-[15px] group-hover:text-brand-red transition-colors truncate">info@diamondedgecutting.com</span>
               </div>
             </a>
 
