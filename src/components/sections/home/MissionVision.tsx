@@ -41,22 +41,22 @@ export function MissionVision() {
             </p>
           </article>
 
-          {/* Vision, dark card */}
-          <article className="bg-brand-gray-900 text-white rounded-[28px] p-8 md:p-12 flex flex-col gap-6 relative overflow-hidden">
+          {/* Vision, brand-red card */}
+          <article className="bg-brand-red text-white rounded-[28px] p-8 md:p-12 flex flex-col gap-6 relative overflow-hidden">
             {/* Faint grid pattern, like the reference HTML */}
             <div
               aria-hidden
-              className="absolute inset-0 pointer-events-none opacity-[0.06]"
+              className="absolute inset-0 pointer-events-none opacity-[0.08]"
               style={{
                 backgroundImage:
-                  "linear-gradient(to right, rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.5) 1px, transparent 1px)",
+                  "linear-gradient(to right, rgba(255,255,255,0.6) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.6) 1px, transparent 1px)",
                 backgroundSize: "60px 60px",
               }}
             />
             <div className="relative z-10 flex flex-col gap-6">
               <div className="flex items-center gap-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-brand-red" aria-hidden />
-                <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-brand-red">
+                <span className="w-1.5 h-1.5 rounded-full bg-white" aria-hidden />
+                <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-white/85">
                   Our Vision
                 </span>
               </div>

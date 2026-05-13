@@ -3,12 +3,8 @@ import Link from "next/link";
 import Script from "next/script";
 import { ArrowUpRight, Phone } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import { CategoryCard } from "@/components/rental/CategoryCard";
 import { EquipmentCard, type EquipmentCardData } from "@/components/rental/EquipmentCard";
-import {
-  getAllRentalCategories,
-  getFeaturedEquipment,
-} from "../../../sanity/lib/queries";
+import { getAllEquipment } from "../../../sanity/lib/queries";
 import type { SanityImage } from "@/lib/sanity-image";
 
 export const metadata: Metadata = {
@@ -23,44 +19,35 @@ export const metadata: Metadata = {
   },
 };
 
-// Re-fetch every 60s so Studio edits show up quickly without manual deploys.
 export const revalidate = 60;
 
-type CategoryRow = {
-  _id: string;
-  title: string;
-  slug: string;
-  shortDescription: string;
-  hasAttachmentTab?: boolean;
-  equipmentCount?: number;
-  heroImage?: SanityImage;
-};
-
-type FeaturedRow = {
+type EquipmentRow = {
   _id: string;
   title: string;
   subtitle?: string;
   manufacturer?: string;
   slug: string;
   categorySlug: string;
+  categoryTitle: string;
+  unitsInStock?: number | null;
   heroImage?: SanityImage;
 };
 
 export default async function RentalEquipmentLandingPage() {
-  const [categories, featured] = await Promise.all([
-    getAllRentalCategories() as Promise<CategoryRow[]>,
-    getFeaturedEquipment() as Promise<FeaturedRow[]>,
-  ]);
+  const allEquipment = (await getAllEquipment()) as EquipmentRow[];
 
-  const featuredCards: EquipmentCardData[] = (featured ?? []).map((f) => ({
-    _id: f._id,
-    title: f.title,
-    subtitle: f.subtitle,
-    manufacturer: f.manufacturer,
-    slug: f.slug,
-    categorySlug: f.categorySlug,
-    heroImage: f.heroImage,
-  }));
+  const groups = (allEquipment ?? []).reduce(
+    (acc, item) => {
+      const key = item.categorySlug;
+      if (!acc.has(key))
+        acc.set(key, { title: item.categoryTitle, slug: key, items: [] });
+      acc.get(key)!.items.push(item);
+      return acc;
+    },
+    new Map<string, { title: string; slug: string; items: EquipmentRow[] }>()
+  );
+
+  const groupList = [...groups.values()];
 
   return (
     <>
@@ -71,12 +58,12 @@ export default async function RentalEquipmentLandingPage() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "ItemList",
-            name: "Equipment Rental Categories",
-            itemListElement: (categories ?? []).map((c, i) => ({
+            name: "Rental Equipment",
+            itemListElement: groupList.map((g, i) => ({
               "@type": "ListItem",
               position: i + 1,
-              url: `https://diamondedgecutting.com/rental-equipment/${c.slug}`,
-              name: c.title,
+              url: `https://diamondedgecutting.com/rental-equipment/${g.slug}`,
+              name: g.title,
             })),
           }),
         }}
@@ -106,65 +93,79 @@ export default async function RentalEquipmentLandingPage() {
                 <Link href="/contact">Talk to the hire team</Link>
               </Button>
               <Button asChild variant="outline">
-                <a href="#categories">Browse fleet</a>
+                <a href="#fleet">Browse fleet</a>
               </Button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Trust strip */}
-      <section className="bg-brand-gray-900 py-6">
-        <div className="container mx-auto px-4 md:px-8">
-          <p className="text-center font-['Inter_Display',sans-serif] text-[13px] md:text-[14px] tracking-wide text-white/85">
-            300+ trained crew &nbsp;·&nbsp; ISO 45001 safety &nbsp;·&nbsp; Dubai
-            Municipality G+12 approved &nbsp;·&nbsp; Same-day quotes for live
-            tenders
-          </p>
-        </div>
-      </section>
+      {/* Equipment grouped by category */}
+      <div id="fleet" className="bg-white">
+        {groupList.map((g) => {
+          const cards: EquipmentCardData[] = g.items.map((item) => ({
+            _id: item._id,
+            title: item.title,
+            subtitle: item.subtitle,
+            manufacturer: item.manufacturer,
+            slug: item.slug,
+            categorySlug: item.categorySlug,
+            unitsInStock: item.unitsInStock,
+            heroImage: item.heroImage,
+          }));
 
-      {/* Category grid */}
-      <section id="categories" className="scroll-mt-24 py-16 md:py-24 bg-white">
-        <div className="container mx-auto px-4 md:px-8">
-          <div className="flex flex-col gap-3 mb-12">
-            <span className="font-['Inter_Display',sans-serif] text-[12px] uppercase tracking-[0.18em] text-brand-red">
-              Fleet by category
-            </span>
-            <h2 className="font-display font-medium text-brand-gray-900 text-[32px] md:text-[44px] tracking-tight leading-[1.1]">
-              Six categories, every demolition job covered.
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {(categories ?? []).map((c) => (
-              <CategoryCard key={c._id} category={c} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Featured equipment strip */}
-      {featuredCards.length > 0 && (
-        <section className="py-16 md:py-24 bg-brand-gray-50 border-t border-brand-gray-300">
-          <div className="container mx-auto px-4 md:px-8">
-            <div className="flex items-end justify-between mb-10">
-              <div className="flex flex-col gap-3">
-                <span className="font-['Inter_Display',sans-serif] text-[12px] uppercase tracking-[0.18em] text-brand-red">
-                  Featured
-                </span>
-                <h2 className="font-display font-medium text-brand-gray-900 text-[28px] md:text-[36px] tracking-tight">
-                  Editor picks from the fleet
-                </h2>
+          return (
+            <section
+              key={g.slug}
+              id={g.slug}
+              className="scroll-mt-[140px] py-14 md:py-20 border-b border-brand-gray-200 last:border-b-0"
+            >
+              <div className="container mx-auto px-4 md:px-8">
+                <div className="flex items-end justify-between mb-10">
+                  <h2 className="font-display font-medium text-brand-gray-900 text-[28px] md:text-[40px] tracking-tight leading-[1.1]">
+                    {g.title}
+                  </h2>
+                  <Link
+                    href={`/rental-equipment/${g.slug}`}
+                    className="hidden sm:inline-flex items-center gap-1.5 font-['Inter_Display',sans-serif] text-[14px] font-medium text-brand-gray-500 hover:text-brand-gray-900 transition-colors"
+                  >
+                    View all
+                    <ArrowUpRight className="w-3.5 h-3.5" strokeWidth={2} />
+                  </Link>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                  {cards.map((item) => (
+                    <EquipmentCard key={item._id} item={item} />
+                  ))}
+                </div>
+                <div className="mt-8 sm:hidden">
+                  <Link
+                    href={`/rental-equipment/${g.slug}`}
+                    className="inline-flex items-center gap-1.5 font-['Inter_Display',sans-serif] text-[14px] font-medium text-brand-gray-500 hover:text-brand-gray-900 transition-colors"
+                  >
+                    View all {g.title}
+                    <ArrowUpRight className="w-3.5 h-3.5" strokeWidth={2} />
+                  </Link>
+                </div>
               </div>
+            </section>
+          );
+        })}
+
+        {groupList.length === 0 && (
+          <section className="py-24">
+            <div className="container mx-auto px-4 md:px-8 text-center">
+              <p className="font-['Inter_Display',sans-serif] text-[16px] text-brand-gray-500">
+                Equipment catalogue is being updated. Please{" "}
+                <Link href="/contact" className="underline hover:text-brand-gray-900">
+                  contact us
+                </Link>{" "}
+                for availability.
+              </p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {featuredCards.map((it) => (
-                <EquipmentCard key={it._id} item={it} />
-              ))}
-            </div>
-          </div>
-        </section>
-      )}
+          </section>
+        )}
+      </div>
 
       {/* Inquiry CTA band */}
       <section className="py-16 md:py-24 bg-brand-gray-900 text-white">
@@ -178,10 +179,7 @@ export default async function RentalEquipmentLandingPage() {
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
             <Button asChild variant="brand">
-              <Link href="/contact">
-                Request a quote
-                <ArrowUpRight className="w-4 h-4" strokeWidth={2} />
-              </Link>
+              <Link href="/contact">Request a quote</Link>
             </Button>
             <a
               href="tel:+97143706434"

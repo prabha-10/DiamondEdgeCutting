@@ -111,6 +111,31 @@ const ALL_EQUIPMENT_PARAMS_QUERY = `*[_type == "equipment" && defined(subtitle)]
   )
 }`
 
+// All equipment with resolved category info, ordered by category then model.
+// Used by the rental-equipment landing page to show all items grouped by category.
+const ALL_EQUIPMENT_QUERY = `*[_type == "equipment" && defined(subtitle)]
+  | order(
+      coalesce(category->parentCategory->order, category->order) asc,
+      subCategoryOrder asc,
+      order asc
+    ) {
+  _id,
+  title,
+  subtitle,
+  manufacturer,
+  "slug": slug.current,
+  "categorySlug": coalesce(
+    category->parentCategory->slug.current,
+    category->slug.current
+  ),
+  "categoryTitle": coalesce(
+    category->parentCategory->title,
+    category->title
+  ),
+  unitsInStock,
+  heroImage
+}`
+
 // ─── Project queries (existing, unchanged) ──────────────────────────────────
 
 const ALL_PROJECTS_QUERY = `*[_type == "project"] | order(order asc, year desc) {
@@ -179,6 +204,11 @@ export async function getAllRentalCategorySlugs() {
 export async function getAllEquipmentParams() {
   if (!sanityConfigured) return []
   return sanityClient.fetch(ALL_EQUIPMENT_PARAMS_QUERY)
+}
+
+export async function getAllEquipment() {
+  if (!sanityConfigured) return []
+  return sanityClient.fetch(ALL_EQUIPMENT_QUERY)
 }
 
 // Back-compat aliases. The existing layout.tsx + a few other call sites use

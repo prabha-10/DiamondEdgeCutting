@@ -1,75 +1,86 @@
 import React from "react";
-import {
-  Award,
-  Leaf,
-  HardHat,
-  Globe2,
-  Building2,
-  MapPin,
-  BadgeCheck,
-  Trophy,
-} from "lucide-react";
-import { EditorialSectionHead } from "./editorial/EditorialSectionHead";
 
-// Block 3 from the client's homepage spec. Eight certifications in the
-// exact order listed in the doc.
+// Dark editorial certifications strip. Each card shows the cert code in
+// the display font with the numeric/key portion in brand-red, and the
+// description below in dim mono. Mirrors the reference HTML's .certs row.
 
 type Certification = {
-  code: string;
-  name: string;
-  icon: React.ElementType;
+  /** Prefix shown in white, e.g. "ISO " or "DM " */
+  prefix?: string;
+  /** Highlighted key, shown in brand-red */
+  key: string;
+  /** Optional suffix in white (e.g. ":2015") */
+  suffix?: string;
+  /** Description shown below in small mono caps */
+  description: string;
 };
 
 const certifications: Certification[] = [
-  { code: "ISO 9001", name: "Quality Management", icon: Award },
-  { code: "ISO 14001", name: "Environmental Management", icon: Leaf },
-  { code: "ISO 45001", name: "Occupational Health & Safety", icon: HardHat },
-  { code: "ICV Certified", name: "In-Country Value", icon: Globe2 },
-  { code: "DM G+12", name: "Dubai Municipality Approved", icon: Building2 },
-  { code: "ADM Approved", name: "Abu Dhabi Municipality", icon: MapPin },
-  { code: "CICSPA", name: "Specialist Permit Authority", icon: BadgeCheck },
-  { code: "Guinness", name: "World Record · Meena Plaza", icon: Trophy },
+  { prefix: "ISO ", key: "9001", suffix: ":2015", description: "Quality Management System" },
+  { prefix: "ISO ", key: "14001", suffix: ":2015", description: "Environmental System" },
+  { prefix: "ISO ", key: "45001", suffix: ":2018", description: "Occupational Health & Safety" },
+  { prefix: "DM ", key: "G+12", description: "Dubai Municipality Approved" },
+  { prefix: "ICV ", key: "Certified", description: "In-Country Value" },
+  { prefix: "ADM ", key: "Approved", description: "Abu Dhabi Municipality" },
+  { key: "CICSPA", description: "Specialist Permit Authority" },
+  { key: "Guinness", description: "World Record, Meena Plaza" },
 ];
 
 export function Certifications() {
   return (
-    <section className="py-20 md:py-32 bg-white border-t border-brand-gray-300/60">
-      <div className="container mx-auto px-4 md:px-8">
-        <EditorialSectionHead
-          number="03"
-          eyebrow="Certifications & Accreditations"
-          title={
-            <>
-              Fully <em>certified.</em>
+    <section className="py-20 md:py-32 bg-brand-gray-900 text-white relative overflow-hidden">
+      {/* Faint editorial grid */}
+      <div
+        aria-hidden
+        className="absolute inset-0 pointer-events-none opacity-[0.05]"
+        style={{
+          backgroundImage:
+            "linear-gradient(to right, rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.5) 1px, transparent 1px)",
+          backgroundSize: "80px 80px",
+          maskImage: "linear-gradient(to bottom, black, transparent 95%)",
+          WebkitMaskImage: "linear-gradient(to bottom, black, transparent 95%)",
+        }}
+      />
+
+      <div className="container relative z-10 mx-auto px-4 md:px-8">
+        {/* Section head, dark variant */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end">
+          <div className="lg:col-span-7 flex flex-col gap-5">
+            <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-brand-red">
+              — 03 / CERTIFICATIONS & ACCREDITATIONS
+            </span>
+            <h2 className="font-display font-extrabold uppercase text-white text-[44px] md:text-[72px] lg:text-[88px] leading-[0.92] tracking-tight">
+              Fully{" "}
+              <em className="font-light italic text-brand-red normal-case">certified.</em>
               <br />
               Fully compliant.
-            </>
-          }
-          lede="Independently audited and approved across the international quality, environmental, safety and specialist-permit frameworks the GCC's most demanding clients require."
-        />
+            </h2>
+          </div>
+          <div className="lg:col-span-5">
+            <p className="font-['Inter_Display',sans-serif] text-[16px] md:text-[18px] leading-[1.6] text-white/70">
+              Independently audited and approved across the international quality, environmental,
+              safety and specialist-permit frameworks the GCC&apos;s most demanding clients require.
+            </p>
+          </div>
+        </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-8 gap-4 mt-14 md:mt-20">
-          {certifications.map((cert) => {
-            const Icon = cert.icon;
-            return (
-              <div
-                key={cert.code}
-                className="bg-brand-gray-100 rounded-[20px] p-5 flex flex-col gap-4 border border-brand-gray-300/60"
-              >
-                <div className="w-11 h-11 rounded-full bg-brand-red text-white flex items-center justify-center">
-                  <Icon className="w-5 h-5" strokeWidth={1.6} />
-                </div>
-                <div className="flex flex-col gap-1 min-w-0">
-                  <span className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-brand-gray-500 leading-[1.3]">
-                    {cert.name}
-                  </span>
-                  <h3 className="font-display font-bold uppercase text-brand-gray-900 text-[17px] leading-[1.1] tracking-tight">
-                    {cert.code}
-                  </h3>
-                </div>
-              </div>
-            );
-          })}
+        {/* Cert cells, framed by thin dividers. 2 rows of 4 on lg+. */}
+        <div className="mt-14 md:mt-20 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 border-l border-t border-white/10">
+          {certifications.map((cert) => (
+            <div
+              key={`${cert.prefix ?? ""}${cert.key}`}
+              className="flex flex-col items-center text-center gap-3 py-10 md:py-14 px-6 border-r border-b border-white/10"
+            >
+              <h3 className="font-display font-bold uppercase text-white text-[28px] md:text-[36px] tracking-tight leading-none">
+                {cert.prefix}
+                <span className="text-brand-red">{cert.key}</span>
+                {cert.suffix}
+              </h3>
+              <p className="font-mono text-[10.5px] md:text-[11px] uppercase tracking-[0.18em] text-white/55">
+                {cert.description}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </section>
