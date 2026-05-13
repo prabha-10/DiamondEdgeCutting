@@ -119,34 +119,27 @@ export default function ContactPage() {
       {/* Offices */}
       <section className="pb-16 md:pb-32 bg-white">
         <div className="container mx-auto px-4 md:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 md:gap-16 lg:gap-24 items-start pt-10 md:pt-16 border-t border-brand-gray-300">
+          <div className="flex flex-col gap-6 md:gap-10 pt-10 md:pt-16 border-t border-brand-gray-300">
+            <h2 className="text-3xl md:text-5xl font-bold text-brand-gray-900 tracking-tight">Offices</h2>
 
-            {/* Offices */}
-            <div className="flex flex-col gap-6 md:gap-12">
-              <h2 className="text-3xl md:text-5xl font-bold text-brand-gray-900 tracking-tight">Offices</h2>
-
-              <div className="flex flex-col gap-8 border-t border-brand-gray-300 pt-8">
-                <div className="flex flex-col gap-4">
-                  <h3 className="text-2xl font-bold text-brand-gray-900 tracking-tight">Dubai HQ</h3>
-                  <div className="text-brand-gray-700 text-lg font-medium leading-relaxed">
-                    <p>Plot 597-604, Dubai Investment Park 2</p>
-                    <p>P.O. Box 430971, Dubai, UAE</p>
-                    <p className="mt-2 text-brand-gray-500">Fax: +971 4 370 6432</p>
-                  </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 border-t border-brand-gray-300 pt-8">
+              <div className="flex flex-col gap-4">
+                <h3 className="text-2xl font-bold text-brand-gray-900 tracking-tight">Dubai HQ</h3>
+                <div className="text-brand-gray-700 text-lg font-medium leading-relaxed">
+                  <p>Plot 597-604, Dubai Investment Park 2</p>
+                  <p>P.O. Box 430971, Dubai, UAE</p>
+                  <p className="mt-2 text-brand-gray-500">Fax: +971 4 370 6432</p>
                 </div>
               </div>
 
-              <div className="flex flex-col gap-8 border-t border-brand-gray-300 pt-8">
-                <div className="flex flex-col gap-4">
-                  <h3 className="text-2xl font-bold text-brand-gray-900 tracking-tight">Abu Dhabi Office</h3>
-                  <div className="text-brand-gray-700 text-lg font-medium leading-relaxed">
-                    <p>9th Floor, ADNIC Building, Khalifa Street</p>
-                    <p>P.O. Box 45526, Abu Dhabi, UAE</p>
-                  </div>
+              <div className="flex flex-col gap-4">
+                <h3 className="text-2xl font-bold text-brand-gray-900 tracking-tight">Abu Dhabi Office</h3>
+                <div className="text-brand-gray-700 text-lg font-medium leading-relaxed">
+                  <p>9th Floor, ADNIC Building, Khalifa Street</p>
+                  <p>P.O. Box 45526, Abu Dhabi, UAE</p>
                 </div>
               </div>
             </div>
-
           </div>
         </div>
       </section>
