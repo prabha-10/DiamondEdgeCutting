@@ -20,6 +20,7 @@ export default function Home() {
   return (
     <>
       <Hero />
+      <Leadership />
       <ClientLogos />
       <Overview />
       <Services />
@@ -28,7 +29,6 @@ export default function Home() {
       <ProjectsTeaser />
       <RentalTeaser />
       <Certifications />
-      <Leadership />
       <FinalCTA />
     </>
   );
