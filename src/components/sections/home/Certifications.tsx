@@ -28,21 +28,8 @@ const certifications: Certification[] = [
 
 export function Certifications() {
   return (
-    <section className="py-20 md:py-32 bg-brand-gray-900 text-white relative overflow-hidden">
-      {/* Faint editorial grid */}
-      <div
-        aria-hidden
-        className="absolute inset-0 pointer-events-none opacity-[0.05]"
-        style={{
-          backgroundImage:
-            "linear-gradient(to right, rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.5) 1px, transparent 1px)",
-          backgroundSize: "80px 80px",
-          maskImage: "linear-gradient(to bottom, black, transparent 95%)",
-          WebkitMaskImage: "linear-gradient(to bottom, black, transparent 95%)",
-        }}
-      />
-
-      <div className="container relative z-10 mx-auto px-4 md:px-8">
+    <section className="py-10 md:py-16 bg-brand-gray-900 text-white">
+      <div className="container mx-auto px-4 md:px-8">
         {/* Section head, dark variant */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end">
           <div className="lg:col-span-7 flex flex-col gap-5">

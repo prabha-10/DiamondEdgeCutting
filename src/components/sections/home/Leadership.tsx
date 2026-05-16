@@ -61,31 +61,28 @@ function initialsOf(name: string) {
 
 export function Leadership() {
   return (
-    <section className="py-20 md:py-32 bg-brand-gray-100 overflow-hidden">
-      {/* Section head stays in the container; the marquee is full-bleed below. */}
-      <div className="container mx-auto px-4 md:px-8 mb-14 md:mb-20">
-        <EditorialSectionHead
-          number="04"
-          eyebrow="Our Team"
-          title={
-            <>
-              Meet the
-              <br />
-              <em>team.</em>
-            </>
-          }
-          lede="Decades of operational, commercial and project leadership experience, focused, hands-on, and accountable from inception to handover."
-        />
-      </div>
+    <section className="py-10 md:py-16 bg-brand-gray-100">
+      <div className="container mx-auto px-4 md:px-8">
+        <div className="mb-10 md:mb-14">
+          <EditorialSectionHead
+            number="04"
+            eyebrow="Our Team"
+            title={
+              <>
+                Meet the
+                <br />
+                <em>team.</em>
+              </>
+            }
+            lede="Decades of operational, commercial and project leadership experience, focused, hands-on, and accountable from inception to handover."
+          />
+        </div>
 
-      {/* Auto-loop marquee, paused on hover so visitors can read a card.
-          Edges fade out via a mask so cards enter and exit softly. */}
-      <div className="[mask-image:linear-gradient(to_right,transparent,black_4%,black_96%,transparent)]">
-        <div className="flex gap-5 md:gap-6 animate-marquee hover:[animation-play-state:paused]">
-          {[...team, ...team].map((member, i) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          {team.map((member) => (
             <article
-              key={`${member.name}-${i}`}
-              className="shrink-0 w-[300px] md:w-[380px] bg-white border border-brand-gray-300 rounded-[20px] p-7 md:p-9 flex flex-col gap-6"
+              key={member.name}
+              className="bg-white border border-brand-gray-300 rounded-[20px] p-7 md:p-9 flex flex-col gap-6"
             >
               {/* Avatar tile with small accent square */}
               <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-[8px] overflow-hidden bg-brand-gray-100 border border-brand-gray-300">

@@ -6,7 +6,7 @@ import { EditorialSectionHead } from "./editorial/EditorialSectionHead";
 
 export function MissionVision() {
   return (
-    <section className="py-20 md:py-32 bg-brand-gray-100">
+    <section className="py-10 md:py-16 bg-brand-gray-100">
       <div className="container mx-auto px-4 md:px-8">
         <EditorialSectionHead
           number="02"
@@ -42,18 +42,8 @@ export function MissionVision() {
           </article>
 
           {/* Vision, brand-red card */}
-          <article className="bg-brand-red text-white rounded-[28px] p-8 md:p-12 flex flex-col gap-6 relative overflow-hidden">
-            {/* Faint grid pattern, like the reference HTML */}
-            <div
-              aria-hidden
-              className="absolute inset-0 pointer-events-none opacity-[0.08]"
-              style={{
-                backgroundImage:
-                  "linear-gradient(to right, rgba(255,255,255,0.6) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.6) 1px, transparent 1px)",
-                backgroundSize: "60px 60px",
-              }}
-            />
-            <div className="relative z-10 flex flex-col gap-6">
+          <article className="bg-brand-red text-white rounded-[28px] p-8 md:p-12 flex flex-col gap-6">
+            <div className="flex flex-col gap-6">
               <div className="flex items-center gap-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-white" aria-hidden />
                 <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-white/85">

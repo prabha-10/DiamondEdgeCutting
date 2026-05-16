@@ -6,18 +6,9 @@ import React from "react";
 
 export function GuinnessRecord() {
   return (
-    <section className="py-20 md:py-32 bg-brand-gray-900 text-white relative overflow-hidden">
-      {/* Soft red radial behind the right card */}
-      <div
-        aria-hidden
-        className="absolute right-0 top-1/2 -translate-y-1/2 w-[700px] h-[700px] pointer-events-none"
-        style={{
-          background:
-            "radial-gradient(circle at center, rgba(200,16,46,0.18), transparent 65%)",
-        }}
-      />
+    <section className="py-10 md:py-16 bg-brand-gray-900 text-white">
 
-      <div className="container relative z-10 mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+      <div className="container mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
         {/* Left, headline + meta */}
         <div className="lg:col-span-7 flex flex-col gap-8">
           <div className="flex items-center gap-3">
@@ -61,26 +52,8 @@ export function GuinnessRecord() {
           </div>
         </div>
 
-        {/* Right, numeric trophy card with corner-bracket frame */}
-        <div className="lg:col-span-5 relative">
-          {/* Corner brackets, brand-red */}
-          <span
-            aria-hidden
-            className="absolute -top-1.5 -left-1.5 w-6 h-6 border-t-2 border-l-2 border-brand-red"
-          />
-          <span
-            aria-hidden
-            className="absolute -top-1.5 -right-1.5 w-6 h-6 border-t-2 border-r-2 border-brand-red"
-          />
-          <span
-            aria-hidden
-            className="absolute -bottom-1.5 -left-1.5 w-6 h-6 border-b-2 border-l-2 border-brand-red"
-          />
-          <span
-            aria-hidden
-            className="absolute -bottom-1.5 -right-1.5 w-6 h-6 border-b-2 border-r-2 border-brand-red"
-          />
-
+        {/* Right, numeric trophy card */}
+        <div className="lg:col-span-5">
           <div className="bg-[#0c0c10] border border-white/10 rounded-md px-8 py-12 md:py-16 flex flex-col items-center text-center gap-6">
             <div className="font-display font-extrabold uppercase text-white text-[88px] md:text-[120px] lg:text-[140px] leading-none tracking-tight tabular-nums">
               165<span className="text-brand-red">.</span>032

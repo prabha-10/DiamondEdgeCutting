@@ -10,21 +10,8 @@ import { Phone } from "lucide-react";
 
 export function FinalCTA() {
   return (
-    <section className="relative py-20 md:py-28 overflow-hidden bg-brand-gray-900 text-white">
-      {/* Faint editorial grid */}
-      <div
-        aria-hidden
-        className="absolute inset-0 pointer-events-none opacity-[0.05]"
-        style={{
-          backgroundImage:
-            "linear-gradient(to right, rgba(255,255,255,0.5) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.5) 1px, transparent 1px)",
-          backgroundSize: "80px 80px",
-          maskImage: "radial-gradient(ellipse at center, black, transparent 75%)",
-          WebkitMaskImage: "radial-gradient(ellipse at center, black, transparent 75%)",
-        }}
-      />
-
-      <div className="container relative z-10 mx-auto px-4 md:px-8">
+    <section className="py-10 md:py-16 bg-brand-gray-900 text-white">
+      <div className="container mx-auto px-4 md:px-8">
         {/* Contact pitch */}
         <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-10">
           <div className="flex flex-col gap-6 max-w-3xl">
