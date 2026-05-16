@@ -1,6 +1,4 @@
-"use client";
-
-import React, { useEffect, useRef } from "react";
+import React from "react";
 
 type TeamMember = {
   name: string;
@@ -15,38 +13,15 @@ function initialsOf(name: string) {
 }
 
 export function LeadershipCards({ team }: { team: TeamMember[] }) {
-  const refs = useRef<(HTMLElement | null)[]>([]);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            (entry.target as HTMLElement).style.opacity = "1";
-            (entry.target as HTMLElement).style.transform = "translateY(0)";
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.1 }
-    );
-
-    refs.current.forEach((el) => el && observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-      {team.map((member, i) => (
+    <div
+      className="flex gap-5 overflow-x-auto pb-4 -mx-4 px-4 md:-mx-8 md:px-8 snap-x snap-mandatory"
+      style={{ scrollbarWidth: "none" }}
+    >
+      {team.map((member) => (
         <article
           key={member.name}
-          ref={(el) => { refs.current[i] = el; }}
-          style={{
-            opacity: 0,
-            transform: "translateY(32px)",
-            transition: `opacity 0.5s ease ${i * 80}ms, transform 0.5s ease ${i * 80}ms`,
-          }}
-          className="bg-white border border-brand-gray-300 rounded-[20px] p-7 md:p-9 flex flex-col gap-6"
+          className="shrink-0 w-[300px] md:w-[360px] snap-start bg-white border border-brand-gray-300 rounded-[20px] p-7 md:p-9 flex flex-col gap-6"
         >
           <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-[8px] overflow-hidden bg-brand-gray-100 border border-brand-gray-300">
             {member.image ? (
