@@ -6,7 +6,7 @@ import { EditorialSectionHead } from "./editorial/EditorialSectionHead";
 
 export function MissionVision() {
   return (
-    <section className="py-10 md:py-16 bg-brand-gray-100">
+    <section className="py-16 md:py-24 bg-brand-gray-100">
       <div className="container mx-auto px-4 md:px-8">
         <EditorialSectionHead
           number="02"

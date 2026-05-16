@@ -6,7 +6,7 @@ import React from "react";
 
 export function GuinnessRecord() {
   return (
-    <section className="py-10 md:py-16 bg-brand-gray-900 text-white">
+    <section className="py-16 md:py-24 bg-brand-gray-900 text-white">
 
       <div className="container mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
         {/* Left, headline + meta */}

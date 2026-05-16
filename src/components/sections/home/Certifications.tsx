@@ -28,7 +28,7 @@ const certifications: Certification[] = [
 
 export function Certifications() {
   return (
-    <section className="py-10 md:py-16 bg-brand-gray-900 text-white">
+    <section className="py-16 md:py-24 bg-brand-gray-900 text-white">
       <div className="container mx-auto px-4 md:px-8">
         {/* Section head, dark variant */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end">

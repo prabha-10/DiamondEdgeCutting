@@ -10,7 +10,7 @@ import { Phone } from "lucide-react";
 
 export function FinalCTA() {
   return (
-    <section className="py-10 md:py-16 bg-brand-gray-900 text-white">
+    <section className="py-16 md:py-24 bg-brand-gray-900 text-white">
       <div className="container mx-auto px-4 md:px-8">
         {/* Contact pitch */}
         <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-10">

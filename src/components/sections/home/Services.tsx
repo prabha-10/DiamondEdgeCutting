@@ -68,7 +68,7 @@ const services: Service[] = [
 
 export function Services() {
   return (
-    <section className="py-10 md:py-16 bg-brand-gray-900 text-white">
+    <section className="py-16 md:py-24 bg-brand-gray-900 text-white">
       <div className="container mx-auto px-4 md:px-8">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10">
           <h2 className="font-sans font-medium text-white text-[40px] md:text-[56px] leading-[1] tracking-tight">

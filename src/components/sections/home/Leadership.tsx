@@ -61,7 +61,7 @@ function initialsOf(name: string) {
 
 export function Leadership() {
   return (
-    <section className="py-10 md:py-16 bg-brand-gray-100">
+    <section className="py-16 md:py-24 bg-brand-gray-100">
       <div className="container mx-auto px-4 md:px-8">
         <div className="mb-10 md:mb-14">
           <EditorialSectionHead
