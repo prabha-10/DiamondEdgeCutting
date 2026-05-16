@@ -4,7 +4,6 @@ import { ClientLogos } from "@/components/sections/home/ClientLogos";
 import { Overview } from "@/components/sections/home/Overview";
 import { Services } from "@/components/sections/home/Services";
 import { ProjectsTeaser } from "@/components/sections/home/ProjectsTeaser";
-import { RentalTeaser } from "@/components/sections/home/RentalTeaser";
 import { MissionVision } from "@/components/sections/home/MissionVision";
 import { GuinnessRecord } from "@/components/sections/home/GuinnessRecord";
 import { Certifications } from "@/components/sections/home/Certifications";
@@ -21,15 +20,14 @@ export default function Home() {
     <>
       <Hero />
       <Leadership />
-      <ClientLogos />
+      <Certifications />
       <Overview />
       <Services />
-      <MissionVision />
-      <GuinnessRecord />
       <ProjectsTeaser />
-      <RentalTeaser />
-      <Certifications />
+      <GuinnessRecord />
+      <MissionVision />
       <FinalCTA />
+      <ClientLogos />
     </>
   );
 }

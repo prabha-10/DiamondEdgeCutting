@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { ContactSchema } from "@/components/seo/ContactSchema";
 import { ContactForm } from "./ContactForm";
 import { ArrowRight, Phone, Mail, Clock } from "lucide-react";
@@ -70,13 +71,15 @@ export default function ContactPage() {
       </section>
 
       {/* Form + Map side by side */}
-      <section className="py-12 md:py-32 bg-white">
+      <section className="pt-12 md:pt-32 pb-8 md:pb-12 bg-white">
         <div className="container mx-auto px-4 md:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 lg:items-stretch">
             {/* Form — left */}
             <div className="flex flex-col">
               <h2 className="text-3xl md:text-5xl font-bold text-brand-gray-900 mb-8 md:mb-12 tracking-tight">Send an Inquiry</h2>
-              <ContactForm />
+              <Suspense fallback={null}>
+                <ContactForm />
+              </Suspense>
             </div>
 
             {/* Map — right, fills the full height of the left column */}
@@ -119,7 +122,7 @@ export default function ContactPage() {
       {/* Offices */}
       <section className="pb-16 md:pb-32 bg-white">
         <div className="container mx-auto px-4 md:px-8">
-          <div className="flex flex-col gap-6 md:gap-10 pt-10 md:pt-16 border-t border-brand-gray-300">
+          <div className="flex flex-col gap-6 md:gap-10 pt-10 md:pt-16">
             <h2 className="text-3xl md:text-5xl font-bold text-brand-gray-900 tracking-tight">Offices</h2>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 border-t border-brand-gray-300 pt-8">

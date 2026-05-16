@@ -44,7 +44,7 @@ export function ServiceHero() {
             From 90-metre chimney towers to confined-space refractory works, every scope planned, sequenced, and delivered with the GCC&apos;s largest specialist robotic fleet.
           </p>
           <div className="lg:col-span-5 lg:justify-self-end">
-            <Button asChild variant="brand" size="lg">
+            <Button asChild variant="brand" size="lg" className="!bg-brand-charcoal !border-brand-charcoal hover:!bg-[#6a6a6a] hover:!border-[#6a6a6a]">
               <Link href="/contact">Get a Quote</Link>
             </Button>
           </div>

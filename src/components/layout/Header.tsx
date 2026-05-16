@@ -71,34 +71,13 @@ export function Header({ rentalCategories }: { rentalCategories?: { title: strin
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3 z-50 group" aria-label="Diamond Edge Cutting — Home">
           <img
-            src="/header-logo.png"
+            src="/dec-logo.png"
             alt="Diamond Edge Cutting"
             className={cn(
               "h-12 md:h-14 w-auto object-contain transition-[filter] duration-300",
               isSolid ? "" : "drop-shadow-[0_2px_12px_rgba(0,0,0,0.55)]"
             )}
           />
-          <span
-            className={cn(
-              "hidden md:flex flex-col leading-tight transition-colors duration-300",
-              isSolid ? "text-brand-gray-900" : "text-white drop-shadow-[0_1px_8px_rgba(0,0,0,0.45)]"
-            )}
-          >
-            <span className="font-sans font-bold text-[15px] tracking-tight">
-              Diamond Edge
-            </span>
-            <span
-              className={cn(
-                "font-['Inter_Display',sans-serif] text-[10.5px] font-bold uppercase flex justify-between w-full",
-                isSolid ? "text-brand-red" : "text-white/85"
-              )}
-              aria-label="Cutting"
-            >
-              {"CUTTING".split("").map((ch, i) => (
-                <span key={i}>{ch}</span>
-              ))}
-            </span>
-          </span>
         </Link>
 
         {/* Desktop Navigation, no pill container, items float freely */}
@@ -115,9 +94,7 @@ export function Header({ rentalCategories }: { rentalCategories?: { title: strin
                     className={cn(
                       "flex items-center gap-1 cursor-pointer px-4 py-2 rounded-full transition-all duration-200",
                       isActive
-                        ? isSolid
-                          ? "bg-brand-red text-white"
-                          : "bg-white text-brand-red"
+                        ? "bg-brand-charcoal text-white"
                         : isSolid
                         ? "text-brand-gray-900 hover:bg-brand-gray-100"
                         : "text-white hover:bg-white/10"
@@ -130,9 +107,7 @@ export function Header({ rentalCategories }: { rentalCategories?: { title: strin
                       className={cn(
                         "w-4 h-4 transition-transform group-hover:rotate-180",
                         isActive
-                          ? isSolid
-                            ? "text-white"
-                            : "text-brand-red"
+                          ? "text-white"
                           : isSolid
                           ? "text-brand-gray-500"
                           : "text-white/70"
@@ -172,9 +147,7 @@ export function Header({ rentalCategories }: { rentalCategories?: { title: strin
                     className={cn(
                       "flex items-center px-4 py-2 rounded-full text-base font-bold transition-all duration-200",
                       isActive
-                        ? isSolid
-                          ? "bg-brand-red text-white"
-                          : "bg-white text-brand-red"
+                        ? "bg-brand-charcoal text-white"
                         : isSolid
                         ? "text-brand-gray-900 hover:bg-brand-gray-100"
                         : "text-white hover:bg-white/10"

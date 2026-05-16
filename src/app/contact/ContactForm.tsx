@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -24,6 +25,8 @@ type FormData = z.infer<typeof formSchema>;
 export function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const searchParams = useSearchParams();
+  const preselectedInquiry = searchParams.get("inquiry") ?? "";
 
   const {
     register,
@@ -33,7 +36,7 @@ export function ContactForm() {
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      inquiryType: "",
+      inquiryType: preselectedInquiry,
       projectTimeline: "",
       botField: ""
     }

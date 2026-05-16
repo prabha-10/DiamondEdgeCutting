@@ -6,7 +6,7 @@ type Service = {
   num: string;
   title: string;
   description: string;
-  href?: string;
+  href: string;
 };
 
 const services: Service[] = [
@@ -38,33 +38,59 @@ const services: Service[] = [
     num: "05",
     title: "Tunnelling, Refinery & Kiln Works",
     description: "Specialist demolition inside active refineries, kilns, and confined tunnelling environments.",
-    href: "/demolition-services",
+    href: "/demolition-services#tunnelling",
   },
   {
     num: "06",
     title: "Soft Demolition & Enabling Works",
     description: "Controlled strip-out, non-structural removal, and site preparation ahead of main works.",
-    href: "/demolition-services",
+    href: "/demolition-services#soft-demolition",
   },
   {
     num: "07",
     title: "Floor Sawing & Scanning",
     description: "Flat-slab and slab-on-grade cutting with GPR scanning for MEP and structural penetrations.",
-    href: "/demolition-services",
+    href: "/demolition-services#floor-sawing",
   },
   {
     num: "08",
     title: "Wall & Concrete Cutting",
     description: "Precision wall sawing and hand sawing for openings, pockets, and structural modifications.",
-    href: "/demolition-services",
-  },
-  {
-    num: "09",
-    title: "Equipment Rental",
-    description: "Brokk robots, excavators, mini excavators, skid steers, and waste removal with trained operators.",
-    href: "/rental-equipment",
+    href: "/demolition-services#wall-cutting",
   },
 ];
+
+const rentalService: Service = {
+  num: "09",
+  title: "Equipment Rental",
+  description: "Brokk robots, excavators, mini excavators, skid steers, and waste removal with trained operators.",
+  href: "/rental-equipment",
+};
+
+function ServiceCard({ service }: { service: Service }) {
+  return (
+    <div className="flex flex-col gap-4 bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/8 transition-colors">
+      <span className="font-mono text-white/35 text-[11px] tabular-nums tracking-[0.14em]">
+        {service.num}
+      </span>
+      <div className="flex flex-col gap-2 flex-1">
+        <h3 className="font-sans font-medium text-white text-[18px] leading-[1.2] tracking-tight">
+          {service.title}
+        </h3>
+        <p className="font-['Inter_Display',sans-serif] text-[13px] text-white/55 leading-[1.55]">
+          {service.description}
+        </p>
+      </div>
+      <Link
+        href={service.href}
+        className="group inline-flex items-center gap-1.5 text-[13px] font-medium text-white/70 hover:text-white transition-colors mt-auto"
+      >
+        Learn more
+        <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:rotate-45" />
+      </Link>
+    </div>
+  );
+}
 
 export function Services() {
   return (
@@ -83,25 +109,35 @@ export function Services() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 border-t border-white/15">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {services.map((service) => (
-            <div
-              key={service.num}
-              className="flex gap-5 py-6 border-b border-white/10"
-            >
-              <span className="font-mono text-white/40 text-[13px] tabular-nums shrink-0 pt-0.5">
-                {service.num}
-              </span>
-              <div className="flex flex-col gap-1">
+            <ServiceCard key={service.num} service={service} />
+          ))}
+        </div>
+
+        <div className="mt-4">
+          <div className="bg-brand-red/20 border border-brand-red/30 rounded-2xl p-6 flex flex-col md:flex-row md:items-center gap-6">
+            <span className="font-mono text-white/35 text-[11px] tabular-nums tracking-[0.14em] shrink-0">
+              {rentalService.num}
+            </span>
+            <div className="flex-1 flex flex-col md:flex-row md:items-center gap-4 md:gap-10">
+              <div className="flex flex-col gap-1.5">
                 <h3 className="font-sans font-medium text-white text-[20px] tracking-tight">
-                  {service.title}
+                  {rentalService.title}
                 </h3>
-                <p className="font-['Inter_Display',sans-serif] text-[14px] text-white/60 leading-[1.5]">
-                  {service.description}
+                <p className="font-['Inter_Display',sans-serif] text-[14px] text-white/65 leading-[1.5]">
+                  {rentalService.description}
                 </p>
               </div>
+              <Link
+                href={rentalService.href}
+                className="group inline-flex items-center gap-2 rounded-full bg-brand-red text-white font-medium px-6 py-3 hover:bg-brand-red-dark transition-colors shrink-0 self-start md:self-auto md:ml-auto"
+              >
+                Rent Equipment
+                <ArrowUpRight className="w-4 h-4 transition-transform group-hover:rotate-45" />
+              </Link>
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </section>

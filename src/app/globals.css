@@ -17,6 +17,7 @@
   --color-brand-gray-500: #737373; /* tightened from #a3a3a3 for WCAG AA on white */
   --color-brand-gray-700: #525252;
   --color-brand-gray-900: #0a0a0a; /* Darker, almost true black for highest contrast */
+  --color-brand-charcoal: #818181; /* Brand mid-grey — active states, footer, accent surfaces */
 
   /* Type system. Switzer is the body sans, Big Shoulders Display is the
    * industrial display headline face used site-wide on h1/h2/h3 in

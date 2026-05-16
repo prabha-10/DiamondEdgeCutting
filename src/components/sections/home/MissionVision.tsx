@@ -42,7 +42,7 @@ export function MissionVision() {
           </article>
 
           {/* Vision, brand-red card */}
-          <article className="bg-brand-red text-white rounded-[28px] p-8 md:p-12 flex flex-col gap-6">
+          <article className="bg-brand-charcoal text-white rounded-[28px] p-8 md:p-12 flex flex-col gap-6">
             <div className="flex flex-col gap-6">
               <div className="flex items-center gap-3">
                 <span className="w-1.5 h-1.5 rounded-full bg-white" aria-hidden />

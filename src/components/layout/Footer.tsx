@@ -28,7 +28,7 @@ export function Footer() {
                 className="h-28 md:h-32 w-auto object-contain"
               />
             </Link>
-            <p className="text-brand-gray-500 text-base leading-relaxed max-w-xs">
+            <p className="text-white/70 text-base leading-relaxed max-w-xs">
               Delivering safe, precise, and efficient demolition solutions across the GCC since 2008.
             </p>
           </div>
@@ -46,7 +46,7 @@ export function Footer() {
                       className={
                         isLast
                           ? "inline-flex items-center gap-1.5 text-brand-red hover:text-white transition-colors text-base font-semibold mt-1"
-                          : "text-brand-gray-500 hover:text-white transition-colors text-base font-medium"
+                          : "text-white/70 hover:text-white transition-colors text-base font-medium"
                       }
                     >
                       {link.name}
@@ -66,7 +66,7 @@ export function Footer() {
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-brand-gray-500 hover:text-white transition-colors text-base font-medium"
+                    className="text-white/70 hover:text-white transition-colors text-base font-medium"
                   >
                     {link.name}
                   </Link>
@@ -78,7 +78,7 @@ export function Footer() {
           {/* Column 4: Contact */}
           <div>
             <h3 className="text-lg font-bold mb-6 text-white">Contact</h3>
-            <div className="flex flex-col gap-6 text-base text-brand-gray-500 font-medium">
+            <div className="flex flex-col gap-6 text-base text-white/70 font-medium">
               <div className="flex flex-col gap-2">
                 <a href="tel:+97143706434" className="hover:text-white transition-colors">
                   +971 4 370 6434
@@ -96,7 +96,7 @@ export function Footer() {
         </div>
 
         {/* Bottom Row */}
-        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-brand-gray-500 font-medium">
+        <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-white/70 font-medium">
           <p>&copy; {new Date().getFullYear()} Diamond Edge Cutting. All rights reserved.</p>
           <div className="flex items-center gap-8">
             <Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link>
