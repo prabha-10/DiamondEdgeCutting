@@ -73,10 +73,7 @@ export function Hero() {
               <h1 className="font-display font-extrabold uppercase leading-[0.9] tracking-tight">
                 <div className="text-[9vw] md:text-[6rem] lg:text-[7.5rem]">
                   <span className="text-white">WE </span>
-                  <span
-                    className="text-brand-red"
-                    style={{ WebkitTextStroke: "0.5px rgba(255,255,255,0.7)" }}
-                  >DEMOLISH.</span>
+                  <span className="text-brand-red">DEMOLISH.</span>
                 </div>
                 <div className="text-[9vw] md:text-[6rem] lg:text-[7.5rem] text-white">
                   WE CUT. WE DRILL.
@@ -89,13 +86,10 @@ export function Hero() {
 
             {/* Tagline */}
             <p
-              className="mt-8 max-w-xl text-base md:text-lg text-white/80 leading-[1.6] font-['Inter_Display',sans-serif]"
+              className="mt-8 max-w-4xl text-base md:text-lg text-white/80 leading-[1.6] font-['Inter_Display',sans-serif]"
               style={slideUp(250, introComplete)}
             >
-              <strong className="text-white font-semibold">Diamond Edge Cutting LLC</strong> is the GCC&apos;s leading specialist demolition
-              contractor — controlled demolition, robotic systems, concrete cutting and core drilling
-              delivered to the highest standards of safety, professionalism and quality. Operating
-              across the UAE, Oman, Saudi Arabia, Qatar, Bahrain &amp; Kuwait.
+              <strong className="text-white font-semibold">Diamond Edge Cutting LLC</strong>{" "}is the GCC&apos;s leading specialist demolition contractor — controlled demolition, robotic systems, concrete cutting and core drilling delivered to the highest standards of safety, professionalism and quality. Operating across the UAE, Oman, Saudi Arabia, Qatar, Bahrain &amp; Kuwait.
             </p>
 
             {/* 4-up hero stats */}
