@@ -15,7 +15,7 @@ const slideUp = (delay: number, revealed: boolean): React.CSSProperties => ({
 
 const stats: Array<{ num: string; label: string }> = [
   { num: "30+", label: "Years in industry" },
-  { num: "300+", label: "Skilled team" },
+  { num: "60+", label: "Skilled team" },
   { num: "G+12", label: "Approved demolition" },
   { num: "N°1", label: "Robotic fleet in GCC" },
 ];
@@ -64,27 +64,38 @@ export function Hero() {
                 <span className="relative rounded-full bg-brand-red w-2.5 h-2.5" />
               </span>
               <span className="font-mono text-[11px] md:text-[12px] uppercase tracking-[0.18em] text-brand-red">
-                DM G+12 Approved · ISO 9001 / 14001 / 45001
+                Dubai Municipality G+12 Approved · ISO 9001 / 14001 / 45001
               </span>
             </div>
 
-            {/* Display headline with italic accent */}
+            {/* Display headline */}
             <div style={slideUp(120, introComplete)}>
-              <h1 className="font-display font-extrabold uppercase text-white text-[14vw] md:text-[8rem] lg:text-[10rem] leading-[0.92] tracking-tight">
-                Precision.
-                <br />
-                <em className="font-light italic text-white/55 normal-case">Demolition.</em>
+              <h1 className="font-display font-extrabold uppercase leading-[0.9] tracking-tight">
+                <div className="text-[9vw] md:text-[6rem] lg:text-[7.5rem]">
+                  <span className="text-white">WE </span>
+                  <span
+                    className="text-brand-red"
+                    style={{ WebkitTextStroke: "0.5px rgba(255,255,255,0.7)" }}
+                  >DEMOLISH.</span>
+                </div>
+                <div className="text-[9vw] md:text-[6rem] lg:text-[7.5rem] text-white">
+                  WE CUT. WE DRILL.
+                </div>
+                <div className="text-[9vw] md:text-[6rem] lg:text-[7.5rem] text-white/25">
+                  WITH PRECISION.
+                </div>
               </h1>
             </div>
 
             {/* Tagline */}
             <p
-              className="mt-8 max-w-3xl text-lg md:text-xl text-white/85 leading-[1.55] font-['Inter_Display',sans-serif]"
+              className="mt-8 max-w-xl text-base md:text-lg text-white/80 leading-[1.6] font-['Inter_Display',sans-serif]"
               style={slideUp(250, introComplete)}
             >
-              Diamond Edge Cutting is the GCC&apos;s leading specialist demolition contractor,
-              delivering controlled demolition, robotic systems, concrete cutting and core drilling
-              to the highest standards of safety and precision.
+              <strong className="text-white font-semibold">Diamond Edge Cutting LLC</strong> is the GCC&apos;s leading specialist demolition
+              contractor — controlled demolition, robotic systems, concrete cutting and core drilling
+              delivered to the highest standards of safety, professionalism and quality. Operating
+              across the UAE, Oman, Saudi Arabia, Qatar, Bahrain &amp; Kuwait.
             </p>
 
             {/* 4-up hero stats */}
@@ -122,6 +133,12 @@ export function Hero() {
               </Button>
             </div>
           </div>
+        </div>
+
+        {/* Scroll indicator */}
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2" style={slideUp(600, introComplete)}>
+          <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/40">Scroll</span>
+          <span className="w-px h-8 bg-gradient-to-b from-white/30 to-transparent" />
         </div>
       </section>
     </>
