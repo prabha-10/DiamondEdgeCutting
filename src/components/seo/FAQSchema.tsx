@@ -1,4 +1,5 @@
 import React from "react";
+import Script from "next/script";
 import { faqs } from "@/data/services";
 
 export function FAQSchema() {
@@ -16,8 +17,10 @@ export function FAQSchema() {
   };
 
   return (
-    <script
+    <Script
+      id="faq-schema"
       type="application/ld+json"
+      strategy="beforeInteractive"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
     />
   );

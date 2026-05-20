@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Script from "next/script";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowUpRight, Check } from "lucide-react";
 import { HeroGallery } from "./HeroGallery";
@@ -134,8 +135,10 @@ export default async function ProjectDetailPage({
 
   return (
     <>
-      <script
+      <Script
+        id={`project-detail-${project.slug}`}
         type="application/ld+json"
+        strategy="beforeInteractive"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify({
             "@context": "https://schema.org",

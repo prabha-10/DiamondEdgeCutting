@@ -1,4 +1,5 @@
 import React from "react";
+import Script from "next/script";
 
 export function ProductSchema({ products }: { products: any[] }) {
   const schema = {
@@ -20,8 +21,10 @@ export function ProductSchema({ products }: { products: any[] }) {
   };
 
   return (
-    <script
+    <Script
+      id="product-schema"
       type="application/ld+json"
+      strategy="beforeInteractive"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
     />
   );

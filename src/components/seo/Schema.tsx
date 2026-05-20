@@ -1,4 +1,5 @@
 import React from "react";
+import Script from "next/script";
 
 export function OrganizationSchema() {
   const schema = {
@@ -60,8 +61,10 @@ export function OrganizationSchema() {
   };
 
   return (
-    <script
+    <Script
+      id="organization-schema"
       type="application/ld+json"
+      strategy="beforeInteractive"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
     />
   );

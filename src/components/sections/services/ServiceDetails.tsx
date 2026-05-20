@@ -1,8 +1,7 @@
 import React from "react";
 import Link from "next/link";
-import { Button } from "@/components/ui/Button";
 import { servicesDetails } from "@/data/services";
-import { ArrowRight, Check } from "lucide-react";
+import { ArrowUpRight, Check } from "lucide-react";
 
 const serviceImages: Record<string, string> = {
   "robotic-demolition":
@@ -25,120 +24,82 @@ const serviceImages: Record<string, string> = {
 
 export function ServiceDetails() {
   return (
-    <div className="flex flex-col">
-      {servicesDetails.map((service, index) => {
-        const isReversed = index % 2 !== 0;
-        return (
-          <section
-            key={service.id}
-            id={service.id}
-            className={`scroll-mt-28 md:scroll-mt-32 py-16 md:py-32 ${
-              index % 2 === 0 ? "bg-brand-gray-50" : "bg-white"
-            }`}
-          >
-            <div className="container mx-auto px-4 md:px-8">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-                {/* Text column */}
+    <section className="py-16 md:py-24 bg-brand-gray-50">
+      <div className="container mx-auto px-4 md:px-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+          {servicesDetails.map((service) => {
+            const image =
+              serviceImages[service.id] ||
+              "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80&auto=format&fit=crop";
+            return (
+              <article
+                key={service.id}
+                id={service.id}
+                className="group relative aspect-[4/5] md:aspect-[5/6] rounded-[28px] overflow-hidden bg-brand-gray-900 scroll-mt-28 md:scroll-mt-32"
+              >
+                {/* Full-bleed background image */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={image}
+                  alt={service.title}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+
+                {/* Dark gradient for legibility */}
                 <div
-                  className={`lg:col-span-6 flex flex-col gap-8 ${
-                    isReversed ? "lg:order-2" : "lg:order-1"
-                  }`}
+                  className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10"
+                  aria-hidden
+                />
+
+                {/* CTA arrow top-right */}
+                <Link
+                  href={service.ctaLink}
+                  aria-label={`${service.cta} — ${service.title}`}
+                  className="absolute top-6 right-6 z-10 inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-white hover:bg-brand-red hover:border-brand-red transition-colors"
                 >
-                  <div className="flex flex-col gap-5">
-                    <span className="font-['Inter_Display',sans-serif] text-[12px] font-semibold tracking-[0.18em] text-brand-red tabular-nums">
-                      / {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <h2 className="font-display font-medium text-brand-gray-900 text-[40px] md:text-[56px] leading-[1.05] tracking-tight">
+                  <ArrowUpRight className="w-4 h-4" strokeWidth={2} />
+                </Link>
+
+                {/* Frosted-glass content panel pinned to bottom */}
+                <div className="absolute inset-x-4 bottom-4 md:inset-x-5 md:bottom-5 z-10">
+                  <div className="rounded-[20px] bg-white/12 backdrop-blur-xl border border-white/20 p-5 md:p-6 flex flex-col gap-3.5 shadow-[0_8px_32px_rgba(0,0,0,0.35)]">
+                    <h2 className="font-display font-bold text-white text-[24px] md:text-[28px] leading-[1.05] tracking-tight">
                       {service.title}
                     </h2>
-                    <p className="font-['Inter_Display',sans-serif] font-normal text-[17px] leading-[1.6] text-brand-gray-500 max-w-xl">
+                    <p className="font-['Inter_Display',sans-serif] text-[14px] leading-[1.55] text-white/85">
                       {service.lead}
                     </p>
-                  </div>
 
-                  {service.shines && (
-                    <div className="flex flex-col gap-4 pt-6 border-t border-brand-gray-300">
-                      <h3 className="font-['Inter_Display',sans-serif] text-[12px] font-semibold uppercase tracking-[0.18em] text-brand-red">
-                        Capabilities
-                      </h3>
-                      <ul className="flex flex-col gap-3">
-                        {service.shines.map((item, i) => (
+                    {service.shines && service.shines.length > 0 && (
+                      <ul className="flex flex-col gap-1.5 pt-1">
+                        {service.shines.slice(0, 3).map((item, i) => (
                           <li
                             key={i}
-                            className="flex items-start gap-3 font-['Inter_Display',sans-serif] text-[15.5px] leading-[1.5] text-brand-gray-900"
+                            className="flex items-start gap-2 font-['Inter_Display',sans-serif] text-[13px] leading-[1.45] text-white/85"
                           >
-                            <span className="mt-0.5 shrink-0 w-5 h-5 rounded-full bg-brand-red text-white flex items-center justify-center">
-                              <Check className="w-3 h-3" strokeWidth={3} />
+                            <span className="mt-0.5 shrink-0 w-4 h-4 rounded-full bg-brand-red text-white flex items-center justify-center">
+                              <Check className="w-2.5 h-2.5" strokeWidth={3} />
                             </span>
                             <span>{item}</span>
                           </li>
                         ))}
                       </ul>
-                    </div>
-                  )}
-
-                  {service.equipment && (
-                    <div className="flex flex-col gap-3 pt-6 border-t border-brand-gray-300">
-                      <h3 className="font-['Inter_Display',sans-serif] text-[12px] font-semibold uppercase tracking-[0.18em] text-brand-red">
-                        Equipment
-                      </h3>
-                      <p className="font-['Inter_Display',sans-serif] text-[15px] leading-[1.55] text-brand-gray-900">
-                        {service.equipment}
-                      </p>
-                    </div>
-                  )}
-
-                  <div className="flex flex-wrap items-center gap-x-6 gap-y-4 pt-2">
-                    <Button asChild size="lg" variant="brand">
-                      <Link href={service.ctaLink}>{service.cta}</Link>
-                    </Button>
-
-                    {service.crossSell && (
-                      <Link
-                        href={service.crossSell.link}
-                        className="group inline-flex items-center gap-2 font-['Inter_Display',sans-serif] text-[15px] font-medium text-brand-gray-900 hover:text-brand-red underline-offset-4 hover:underline transition-colors"
-                      >
-                        {service.crossSell.text}
-                        <ArrowRight
-                          className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5"
-                          strokeWidth={2}
-                        />
-                      </Link>
                     )}
-                  </div>
-                </div>
 
-                {/* Image column */}
-                <div
-                  className={`lg:col-span-6 ${
-                    isReversed ? "lg:order-1" : "lg:order-2"
-                  }`}
-                >
-                  <div className="relative aspect-[4/5] rounded-[28px] overflow-hidden bg-brand-gray-100 lg:sticky lg:top-32">
-                    <img
-                      src={
-                        serviceImages[service.id] ||
-                        "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80&auto=format&fit=crop"
-                      }
-                      alt={service.title}
-                      className="absolute inset-0 w-full h-full object-cover"
-                    />
-                    <div
-                      className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-b from-transparent to-black/30"
-                      aria-hidden
-                    />
-                    <div className="absolute bottom-5 left-5 right-5 flex items-center justify-between">
-                      <span className="inline-flex items-center gap-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 px-3 py-1.5 text-white text-[12px] font-semibold tracking-wide">
-                        {service.title}
-                      </span>
-                    </div>
+                    <Link
+                      href={service.ctaLink}
+                      className="mt-1 inline-flex items-center gap-2 self-start rounded-full bg-white text-brand-gray-900 font-sans font-semibold text-[13px] px-5 py-2 hover:bg-brand-red hover:text-white transition-colors"
+                    >
+                      {service.cta}
+                      <ArrowUpRight className="w-3.5 h-3.5" strokeWidth={2} />
+                    </Link>
                   </div>
                 </div>
-              </div>
-            </div>
-          </section>
-        );
-      })}
-    </div>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </section>
   );
 }

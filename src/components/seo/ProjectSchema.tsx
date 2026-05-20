@@ -1,4 +1,5 @@
 import React from "react";
+import Script from "next/script";
 
 type ProjectShape = {
   title: string;
@@ -30,8 +31,10 @@ export function ProjectSchema({ projects }: { projects: ProjectShape[] }) {
   };
 
   return (
-    <script
+    <Script
+      id="project-schema"
       type="application/ld+json"
+      strategy="beforeInteractive"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
     />
   );

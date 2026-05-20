@@ -1,4 +1,5 @@
 import React from "react";
+import Script from "next/script";
 
 export function ContactSchema() {
   const schema = {
@@ -21,8 +22,10 @@ export function ContactSchema() {
   };
 
   return (
-    <script
+    <Script
+      id="contact-schema"
       type="application/ld+json"
+      strategy="beforeInteractive"
       dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
     />
   );
