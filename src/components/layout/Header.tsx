@@ -15,14 +15,7 @@ export function Header({ rentalCategories }: { rentalCategories?: { title: strin
   const navigationLinks: NavLink[] = [
     { name: "Home", href: "/" },
     { name: "Demolition Services", href: "/demolition-services" },
-    {
-      name: "Rental Equipment",
-      href: "/rental-equipment",
-      dropdown: (rentalCategories || []).map((c) => ({
-        name: c.title,
-        href: `/rental-equipment/${c.slug}`,
-      })),
-    },
+    { name: "Rental Equipment", href: "/rental-equipment" },
     { name: "Projects", href: "/projects" },
     { name: "Contact", href: "/contact" },
   ];
