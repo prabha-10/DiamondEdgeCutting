@@ -125,10 +125,10 @@ export function Services() {
               </div>
               <Link
                 href={rentalService.href}
-                className="group inline-flex items-center gap-2 rounded-full bg-brand-red text-white font-medium px-6 py-3 hover:bg-brand-red-dark transition-colors shrink-0 self-start md:self-auto md:ml-auto"
+                aria-label="Rent Equipment"
+                className="group inline-flex items-center justify-center rounded-full bg-brand-red text-white w-12 h-12 hover:bg-brand-red-dark transition-colors shrink-0 self-start md:self-auto md:ml-auto"
               >
-                Rent Equipment
-                <ArrowUpRight className="w-4 h-4 transition-transform group-hover:rotate-45" />
+                <ArrowUpRight className="w-5 h-5 transition-transform group-hover:rotate-45" />
               </Link>
             </div>
           </div>

@@ -24,7 +24,7 @@ const reasons = [
 
 export function WhyDec() {
   return (
-    <section className="py-16 md:py-32 bg-white">
+    <section id="why-dec" className="py-16 md:py-32 bg-white scroll-mt-20">
       <div className="container mx-auto px-4 md:px-8">
         {/* Header */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 mb-14 pb-14 border-b border-brand-gray-300">
@@ -54,21 +54,15 @@ export function WhyDec() {
 
         {/* Reasons cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-          {reasons.map((r, i) => {
+          {reasons.map((r) => {
             const Icon = r.icon;
-            const num = String(i + 1).padStart(2, "0");
             return (
               <div
                 key={r.title}
                 className="bg-brand-charcoal text-white rounded-[24px] p-7 flex flex-col gap-6 min-h-[280px]"
               >
-                <div className="flex items-start justify-between">
-                  <div className="w-12 h-12 rounded-full bg-white/15 border border-white/25 text-white flex items-center justify-center">
-                    <Icon className="w-6 h-6" strokeWidth={1.6} />
-                  </div>
-                  <span className="font-['Inter_Display',sans-serif] text-[12px] font-semibold tracking-[0.14em] text-white/80 tabular-nums">
-                    / {num}
-                  </span>
+                <div className="w-12 h-12 rounded-full bg-white/15 border border-white/25 text-white flex items-center justify-center">
+                  <Icon className="w-6 h-6" strokeWidth={1.6} />
                 </div>
                 <div className="flex flex-col gap-3 mt-auto">
                   <h3 className="font-display font-semibold text-white text-[22px] leading-[1.2] tracking-tight">

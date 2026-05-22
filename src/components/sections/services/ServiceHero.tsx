@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 
 const stats = [
@@ -67,6 +68,20 @@ export function ServiceHero() {
           ))}
         </div>
       </div>
+
+      {/* Scroll-down indicator */}
+      <a
+        href="#why-dec"
+        aria-label="Scroll to content"
+        className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 group"
+      >
+        <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/55 group-hover:text-white transition-colors">
+          Scroll
+        </span>
+        <span className="inline-flex items-center justify-center w-10 h-10 rounded-full border border-white/30 bg-white/10 backdrop-blur-sm text-white group-hover:bg-white group-hover:text-brand-gray-900 transition-colors">
+          <ChevronDown className="w-5 h-5 animate-bounce" strokeWidth={2} />
+        </span>
+      </a>
     </section>
   );
 }
