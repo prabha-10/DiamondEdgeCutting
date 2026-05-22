@@ -14,47 +14,34 @@ function initialsOf(name: string) {
 
 function Card({ member }: { member: TeamMember }) {
   return (
-    <article className="shrink-0 w-[300px] md:w-[380px] bg-white border border-brand-gray-300 rounded-[20px] p-7 md:p-9 flex flex-col gap-6">
-      <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-[8px] overflow-hidden bg-brand-gray-100 border border-brand-gray-300">
+    <article className="bg-white border border-brand-gray-300 rounded-[20px] overflow-hidden flex flex-col group">
+      {/* Image / initials block — top */}
+      <div className="relative w-full aspect-[3/4] overflow-hidden bg-brand-gray-100">
         {member.image ? (
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={member.image}
             alt={member.name}
-            className="absolute inset-0 w-full h-full object-cover"
+            className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
           />
         ) : (
           <div className="absolute inset-0 flex items-center justify-center">
-            <span className="font-display font-extrabold uppercase text-brand-red text-[34px] md:text-[40px] tracking-tight leading-none">
+            <span className="font-display font-extrabold uppercase text-brand-red text-[88px] md:text-[112px] tracking-tight leading-none">
               {initialsOf(member.name)}
             </span>
           </div>
         )}
-        <span aria-hidden className="absolute bottom-1.5 right-1.5 w-3 h-3 bg-brand-red rounded-[2px]" />
+        <span aria-hidden className="absolute top-3 right-3 w-2.5 h-2.5 bg-brand-red rounded-[2px]" />
       </div>
 
-      <div className="flex flex-col gap-1.5">
-        <h3 className="font-display font-bold uppercase text-brand-gray-900 text-[24px] md:text-[26px] tracking-tight leading-[1.05]">
+      {/* Name + role panel — below image */}
+      <div className="p-4 md:p-5 flex flex-col gap-1">
+        <h3 className="font-display font-bold uppercase text-brand-gray-900 text-[16px] md:text-[18px] tracking-tight leading-[1.05]">
           {member.name}
         </h3>
-        <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-brand-red">
+        <p className="font-mono text-[10px] md:text-[10.5px] uppercase tracking-[0.18em] text-brand-red">
           {member.role}
         </p>
-      </div>
-
-      <p className="font-['Inter_Display',sans-serif] text-[15px] md:text-[15.5px] leading-[1.6] text-brand-gray-700">
-        {member.bio}
-      </p>
-
-      <div className="mt-auto pt-6 border-t border-brand-gray-300">
-        <span className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-brand-gray-500">
-          <span className="text-brand-gray-900 font-semibold">
-            {member.years.split(" · ")[0]}
-          </span>
-          {member.years.includes(" · ") && (
-            <span> · {member.years.split(" · ").slice(1).join(" · ")}</span>
-          )}
-        </span>
       </div>
     </article>
   );
@@ -62,12 +49,10 @@ function Card({ member }: { member: TeamMember }) {
 
 export function LeadershipCards({ team }: { team: TeamMember[] }) {
   return (
-    <div className="[mask-image:linear-gradient(to_right,transparent,black_4%,black_96%,transparent)]">
-      <div className="flex gap-5 md:gap-6 animate-marquee hover:[animation-play-state:paused]">
-        {[...team, ...team].map((member, i) => (
-          <Card key={`${member.name}-${i}`} member={member} />
-        ))}
-      </div>
+    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-5">
+      {team.map((member) => (
+        <Card key={member.name} member={member} />
+      ))}
     </div>
   );
 }

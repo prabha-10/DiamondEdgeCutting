@@ -85,14 +85,6 @@ export function ServiceDetails() {
                         ))}
                       </ul>
                     )}
-
-                    <Link
-                      href={service.ctaLink}
-                      className="mt-1 inline-flex items-center gap-2 self-start rounded-full bg-white text-brand-gray-900 font-sans font-semibold text-[13px] px-5 py-2 hover:bg-brand-red hover:text-white transition-colors"
-                    >
-                      {service.cta}
-                      <ArrowUpRight className="w-3.5 h-3.5" strokeWidth={2} />
-                    </Link>
                   </div>
                 </div>
               </article>

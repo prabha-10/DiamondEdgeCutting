@@ -174,6 +174,17 @@ const PROJECT_BY_SLUG_QUERY = `*[_type == "project" && slug.current == $slug][0]
 
 const ALL_PROJECT_SLUGS_QUERY = `*[_type == "project"] { "slug": slug.current }`
 
+// ─── Team member queries ────────────────────────────────────────────────────
+
+const ALL_TEAM_MEMBERS_QUERY = `*[_type == "teamMember" && (featured == true || !defined(featured))] | order(order asc, name asc) {
+  _id,
+  name,
+  role,
+  bio,
+  years,
+  image
+}`
+
 // ─── Helpers (short-circuit when Sanity isn't configured) ───────────────────
 
 export async function getAllRentalCategories() {
@@ -245,4 +256,9 @@ export async function getProjectBySlug(slug: string) {
 export async function getAllProjectSlugs() {
   if (!sanityConfigured) return []
   return sanityClient.fetch(ALL_PROJECT_SLUGS_QUERY)
+}
+
+export async function getAllTeamMembers() {
+  if (!sanityConfigured) return []
+  return sanityClient.fetch(ALL_TEAM_MEMBERS_QUERY)
 }

@@ -70,9 +70,6 @@ const rentalService: Service = {
 function ServiceCard({ service }: { service: Service }) {
   return (
     <div className="flex flex-col gap-4 bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/8 transition-colors">
-      <span className="font-mono text-white/35 text-[11px] tabular-nums tracking-[0.14em]">
-        {service.num}
-      </span>
       <div className="flex flex-col gap-2 flex-1">
         <h3 className="font-sans font-medium text-white text-[18px] leading-[1.2] tracking-tight">
           {service.title}
@@ -117,9 +114,6 @@ export function Services() {
 
         <div className="mt-4">
           <div className="bg-brand-red/20 border border-brand-red/30 rounded-2xl p-6 flex flex-col md:flex-row md:items-center gap-6">
-            <span className="font-mono text-white/35 text-[11px] tabular-nums tracking-[0.14em] shrink-0">
-              {rentalService.num}
-            </span>
             <div className="flex-1 flex flex-col md:flex-row md:items-center gap-4 md:gap-10">
               <div className="flex flex-col gap-1.5">
                 <h3 className="font-sans font-medium text-white text-[20px] tracking-tight">

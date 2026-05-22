@@ -1,6 +1,8 @@
 import React from "react";
 import { EditorialSectionHead } from "./editorial/EditorialSectionHead";
 import { LeadershipCards } from "./LeadershipCards";
+import { getAllTeamMembers } from "../../../../sanity/lib/queries";
+import { safeUrlFor, type SanityImage } from "@/lib/sanity-image";
 
 type TeamMember = {
   name: string;
@@ -10,7 +12,17 @@ type TeamMember = {
   image?: string;
 };
 
-const team: TeamMember[] = [
+type SanityTeamMember = {
+  _id: string;
+  name: string;
+  role: string;
+  bio?: string;
+  years?: string;
+  image?: SanityImage;
+};
+
+// Fallback data — used when Sanity has no team members configured yet.
+const fallbackTeam: TeamMember[] = [
   {
     name: "Anthony Keever",
     role: "Chief Executive Officer",
@@ -43,8 +55,25 @@ const team: TeamMember[] = [
   },
 ];
 
+export async function Leadership() {
+  let team: TeamMember[] = fallbackTeam;
 
-export function Leadership() {
+  try {
+    const sanityTeam = (await getAllTeamMembers()) as SanityTeamMember[];
+    if (sanityTeam && sanityTeam.length > 0) {
+      team = sanityTeam.map((m) => ({
+        name: m.name,
+        role: m.role,
+        bio: m.bio ?? "",
+        years: m.years ?? "",
+        image: safeUrlFor(m.image, 800) ?? undefined,
+      }));
+    }
+  } catch (error) {
+    const msg = error instanceof Error ? error.message : String(error);
+    console.warn(`[Sanity] team fetch failed (${msg.slice(0, 120)}); using local fallback.`);
+  }
+
   return (
     <section className="py-16 md:py-24 bg-brand-gray-100">
       <div className="container mx-auto px-4 md:px-8">

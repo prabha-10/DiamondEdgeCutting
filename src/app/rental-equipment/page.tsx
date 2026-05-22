@@ -92,8 +92,9 @@ export default function RentalEquipmentPage() {
         <div className="container mx-auto px-4 md:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
             {categories.map((cat) => (
-              <div
+              <Link
                 key={cat.title}
+                href="/contact?inquiry=Equipment+Rental"
                 className="group bg-white rounded-[20px] overflow-hidden flex flex-col shadow-[0_2px_16px_rgba(0,0,0,0.07)] hover:shadow-[0_8px_32px_rgba(0,0,0,0.13)] hover:-translate-y-1 transition-all duration-300"
               >
                 {/* Image */}
@@ -107,24 +108,21 @@ export default function RentalEquipmentPage() {
                 </div>
 
                 {/* Body */}
-                <div className="p-7 md:p-8 flex flex-col gap-5 flex-1">
-                  <div className="flex flex-col gap-2 flex-1">
-                    <h2 className="font-display font-extrabold uppercase text-brand-gray-900 text-[22px] md:text-[24px] tracking-[0.04em] leading-[1.1]">
+                <div className="p-7 md:p-8 flex flex-col gap-2 flex-1">
+                  <div className="flex items-center justify-between gap-3">
+                    <h2 className="font-display font-extrabold uppercase text-brand-gray-900 text-[22px] md:text-[24px] tracking-[0.04em] leading-[1.1] group-hover:text-brand-red transition-colors">
                       {cat.title}
                     </h2>
-                    <p className="font-['Inter_Display',sans-serif] text-[14px] md:text-[15px] leading-[1.6] text-brand-gray-600">
-                      {cat.description}
-                    </p>
+                    <ArrowUpRight
+                      className="w-5 h-5 shrink-0 text-brand-gray-400 group-hover:text-brand-red group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"
+                      strokeWidth={2}
+                    />
                   </div>
-                  <Link
-                    href="/contact?inquiry=Equipment+Rental"
-                    className="group/cta inline-flex items-center gap-2 self-start rounded-full bg-brand-gray-900 text-white font-bold text-[14px] px-5 py-2.5 hover:bg-brand-red transition-colors"
-                  >
-                    Rent
-                    <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover/cta:rotate-45" strokeWidth={2} />
-                  </Link>
+                  <p className="font-['Inter_Display',sans-serif] text-[14px] md:text-[15px] leading-[1.6] text-brand-gray-600">
+                    {cat.description}
+                  </p>
                 </div>
-              </div>
+              </Link>
             ))}
           </div>
         </div>

@@ -47,16 +47,16 @@ export function ClientLogos() {
             </div>
           </div>
 
-          {/* Right: logo cards (marquee) */}
-          <div className="overflow-hidden flex-1 [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
-            <div className="flex gap-3 animate-marquee">
-              {[...featured, ...featured].map(({ name, Icon }, i) => (
+          {/* Right: logo cards (static, balanced across 2 rows) */}
+          <div className="flex-1">
+            <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-7 gap-2.5">
+              {featured.map(({ name, Icon }) => (
                 <div
-                  key={`${name}-${i}`}
-                  className="shrink-0 w-[236px] h-[83px] bg-white rounded-[10px] px-3 py-5 flex items-center justify-center gap-2 overflow-hidden box-border transition-all"
+                  key={name}
+                  className="bg-white rounded-[10px] px-3 py-3 flex items-center justify-center gap-2 transition-all"
                 >
-                  <Icon className="w-5 h-5 text-brand-gray-900 shrink-0" strokeWidth={2.2} />
-                  <span className="font-['Inter_Display',sans-serif] font-bold text-brand-gray-900 text-[17px] tracking-tight whitespace-nowrap">
+                  <Icon className="w-4 h-4 text-brand-gray-900 shrink-0" strokeWidth={2.2} />
+                  <span className="font-['Inter_Display',sans-serif] font-bold text-brand-gray-900 text-[14px] tracking-tight whitespace-nowrap">
                     {name}
                   </span>
                 </div>
