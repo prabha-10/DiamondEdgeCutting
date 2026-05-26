@@ -1,6 +1,6 @@
 @import url('https://api.fontshare.com/v2/css?f[]=switzer@1,2&display=swap');
 @import url('https://rsms.me/inter/inter.css');
-@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;800;900&family=Bebas+Neue&family=JetBrains+Mono:wght@400;500;600&display=swap');
 @import "tailwindcss";
 
 @theme {
@@ -24,6 +24,7 @@
    * editorial sections. JetBrains Mono powers the small uppercase labels. */
   --font-sans: 'Switzer', sans-serif;
   --font-display: 'Big Shoulders Display', 'Arial Narrow', sans-serif;
+  --font-hero: 'Bebas Neue', 'Arial Narrow', sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 

@@ -57,20 +57,9 @@ export function Hero() {
 
         <div className="container relative z-20 mx-auto px-4 md:px-8">
           <div className="max-w-6xl">
-            {/* Pulse-dot meta */}
-            <div className="flex items-center gap-3 mb-8" style={slideUp(0, introComplete)}>
-              <span className="relative flex w-2.5 h-2.5">
-                <span className="absolute inset-0 rounded-full bg-brand-red animate-ping opacity-75" />
-                <span className="relative rounded-full bg-brand-red w-2.5 h-2.5" />
-              </span>
-              <span className="font-mono text-[11px] md:text-[12px] uppercase tracking-[0.18em] text-brand-red">
-                Dubai Municipality G+12 Approved · ISO 9001 / 14001 / 45001
-              </span>
-            </div>
-
             {/* Display headline */}
             <div style={slideUp(120, introComplete)}>
-              <h1 className="font-display font-extrabold uppercase leading-[0.9] tracking-tight">
+              <h1 className="font-hero uppercase leading-[0.95] tracking-tight">
                 <div className="text-[9vw] md:text-[6rem] lg:text-[7.5rem]">
                   <span className="text-white">WE </span>
                   <span className="text-brand-red">DEMOLISH.</span>
@@ -78,7 +67,7 @@ export function Hero() {
                 <div className="text-[9vw] md:text-[6rem] lg:text-[7.5rem] text-white">
                   WE CUT. WE DRILL.
                 </div>
-                <div className="text-[9vw] md:text-[6rem] lg:text-[7.5rem] text-white/25">
+                <div className="text-[9vw] md:text-[6rem] lg:text-[7.5rem] text-white/55">
                   WITH PRECISION.
                 </div>
               </h1>

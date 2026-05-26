@@ -59,7 +59,7 @@ export function WhyDec() {
             return (
               <div
                 key={r.title}
-                className="bg-brand-charcoal text-white rounded-[24px] p-7 flex flex-col gap-6 min-h-[280px]"
+                className="bg-brand-red text-white rounded-[24px] p-7 flex flex-col gap-5 min-h-[220px]"
               >
                 <div className="w-12 h-12 rounded-full bg-white/15 border border-white/25 text-white flex items-center justify-center">
                   <Icon className="w-6 h-6" strokeWidth={1.6} />

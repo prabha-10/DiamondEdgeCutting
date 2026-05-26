@@ -23,9 +23,6 @@ export function EditorialSectionHead({ number, eyebrow, title, lede }: Props) {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end">
       <div className="lg:col-span-7 flex flex-col gap-5">
-        <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-brand-red">
-          — {number} / {eyebrow}
-        </span>
         <h2 className="font-display font-extrabold uppercase text-brand-gray-900 text-[44px] md:text-[72px] lg:text-[88px] leading-[0.92] tracking-tight [&_em]:font-light [&_em]:italic [&_em]:text-brand-red [&_em]:normal-case">
           {title}
         </h2>

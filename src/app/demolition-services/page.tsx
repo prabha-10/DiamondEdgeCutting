@@ -2,9 +2,7 @@ import type { Metadata } from "next";
 import { ServiceHero } from "@/components/sections/services/ServiceHero";
 import { WhyDec } from "@/components/sections/services/WhyDec";
 import { ServiceDetails } from "@/components/sections/services/ServiceDetails";
-import { FAQ } from "@/components/sections/services/FAQ";
 import { ServiceSchema } from "@/components/seo/ServiceSchema";
-import { FAQSchema } from "@/components/seo/FAQSchema";
 
 export const metadata: Metadata = {
   title: "Demolition Services Dubai & UAE | Robotic, Controlled, Strip-Out",
@@ -15,11 +13,9 @@ export default function DemolitionServicesPage() {
   return (
     <>
       <ServiceSchema />
-      <FAQSchema />
       <ServiceHero />
       <WhyDec />
       <ServiceDetails />
-      <FAQ />
     </>
   );
 }

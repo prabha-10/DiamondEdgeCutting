@@ -47,9 +47,6 @@ export async function ProjectsTeaser() {
       <div className="container mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end">
           <div className="lg:col-span-7 flex flex-col gap-5">
-            <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-brand-red">
-              — 05 / Selected Projects
-            </span>
             <h2 className="font-display font-extrabold uppercase text-brand-gray-900 text-[44px] md:text-[72px] lg:text-[88px] leading-[0.92] tracking-tight [&_em]:font-light [&_em]:italic [&_em]:text-brand-red [&_em]:normal-case">
               Work that<br /><em>speaks for itself.</em>
             </h2>

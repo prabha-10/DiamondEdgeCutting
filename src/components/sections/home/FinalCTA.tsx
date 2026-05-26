@@ -8,12 +8,6 @@ export function FinalCTA() {
       <div className="container mx-auto px-4 md:px-8">
         <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-10">
           <div className="flex flex-col gap-6 max-w-3xl">
-            <div className="flex items-center gap-3">
-              <span className="w-1.5 h-1.5 rounded-full bg-white" aria-hidden />
-              <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-white/70">
-                — 09 / Get in touch
-              </span>
-            </div>
             <h2 className="font-display font-extrabold uppercase text-white text-[44px] md:text-[64px] lg:text-[72px] leading-[0.95] tracking-tight">
               Have a structure that needs to{" "}
               <em className="not-italic">come down?</em>
