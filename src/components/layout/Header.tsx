@@ -49,7 +49,7 @@ export function Header({ rentalCategories }: { rentalCategories?: { title: strin
     <>
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-[100] pt-6 pb-4 transition-all duration-500",
+        "fixed top-0 left-0 right-0 z-[100] pt-4 pb-3 transition-all duration-500",
         isSolid
           ? "bg-white shadow-md border-b border-brand-gray-300"
           : "bg-white/5 backdrop-blur-md border-b border-white/10"
@@ -67,7 +67,7 @@ export function Header({ rentalCategories }: { rentalCategories?: { title: strin
             src="/dec-logo.png"
             alt="Diamond Edge Cutting"
             className={cn(
-              "h-12 md:h-14 w-auto object-contain transition-[filter] duration-300",
+              "h-16 md:h-20 w-auto object-contain transition-[filter] duration-300",
               isSolid ? "" : "drop-shadow-[0_2px_12px_rgba(0,0,0,0.55)]"
             )}
           />

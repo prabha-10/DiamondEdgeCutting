@@ -16,7 +16,7 @@ export const revalidate = 60;
 export default async function ProjectsPage() {
   const sanityProjects = (await getAllProjects()) as ProjectListItem[] | null;
 
-  const projects: ProjectListItem[] =
+  const resolvedProjects: ProjectListItem[] =
     sanityProjects && sanityProjects.length > 0
       ? sanityProjects
       : // Fallback when Sanity isn't configured yet — keep the site usable.
@@ -28,6 +28,9 @@ export default async function ProjectsPage() {
           year: p.year,
           scope: p.scope,
         }));
+
+  // Show the first six projects (3 rows of 2).
+  const projects: ProjectListItem[] = resolvedProjects.slice(0, 6);
 
   // Derive filter pills dynamically — adding a new category in Studio
   // automatically adds a filter pill on the next revalidation.

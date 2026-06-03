@@ -154,69 +154,34 @@ export default async function ProjectDetailPage({
       />
 
       {/* Hero — eyebrow, title, meta row */}
-      <section className="relative pt-36 pb-16 bg-white overflow-hidden border-b border-brand-gray-300">
+      <section className="relative pt-44 pb-16 bg-white overflow-hidden border-b border-brand-gray-300">
         <div className="container mx-auto px-4 md:px-8">
-          <Link
-            href="/projects"
-            className="inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.12em] text-brand-gray-500 hover:text-brand-red transition-colors mb-10"
-          >
-            <ArrowLeft className="w-3.5 h-3.5" strokeWidth={2} />
-            All Projects
-          </Link>
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-end">
-            <div className="lg:col-span-8 flex flex-col gap-6">
-              <div className="flex items-center gap-2.5">
-                <span className="w-1.5 h-1.5 rounded-full bg-brand-red" aria-hidden />
-                <span className="font-['Inter_Display',sans-serif] text-[13px] uppercase tracking-[0.12em] text-brand-red">
-                  {project.category}
-                </span>
-              </div>
-              <h1 className="font-display font-medium text-brand-gray-900 text-[44px] md:text-[72px] lg:text-[88px] leading-[0.98] tracking-tight">
-                {project.title}
-              </h1>
-            </div>
-
-            <div className="lg:col-span-4 grid grid-cols-3 gap-6 lg:pb-2">
-              <div className="flex flex-col gap-1">
-                <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-brand-gray-500">
-                  Sector
-                </span>
-                <span className="font-sans text-brand-gray-900 text-[16px]">
-                  {project.category}
-                </span>
-              </div>
-              <div className="flex flex-col gap-1">
-                <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-brand-gray-500">
-                  Location
-                </span>
-                <span className="font-sans text-brand-gray-900 text-[16px]">
-                  {project.location || "—"}
-                </span>
-              </div>
-              {project.year && (
-                <div className="flex flex-col gap-1">
-                  <span className="font-mono text-[11px] uppercase tracking-[0.14em] text-brand-gray-500">
-                    Year
-                  </span>
-                  <span className="font-sans text-brand-gray-900 text-[16px]">
-                    {project.year}
-                  </span>
-                </div>
-              )}
-            </div>
+          <div className="flex justify-between items-start gap-6">
+            <Link
+              href="/projects"
+              className="inline-flex items-center gap-2 font-mono text-[12px] uppercase tracking-[0.12em] text-brand-gray-500 hover:text-brand-red transition-colors"
+            >
+              <ArrowLeft className="w-3.5 h-3.5" strokeWidth={2} />
+              All Projects
+            </Link>
+            <h1 className="font-display font-medium text-brand-gray-900 text-[44px] md:text-[72px] lg:text-[88px] leading-[0.98] tracking-tight text-right">
+              {project.title}
+            </h1>
           </div>
         </div>
       </section>
 
       {/* Hero image + auto-cycling gallery */}
-      <section className="bg-white pt-12 pb-0">
+      <section className="bg-white pt-10 pb-0">
         <div className="container mx-auto px-4 md:px-8">
           <HeroGallery
             heroImageUrl={project.heroImageUrl}
             galleryUrls={project.galleryUrls}
             title={project.title}
             scopeSummary={project.scopeSummary}
+            category={project.category}
+            location={project.location}
+            year={project.year}
           />
         </div>
       </section>

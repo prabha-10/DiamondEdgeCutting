@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { safeUrlFor, type SanityImage } from "@/lib/sanity-image";
@@ -37,33 +37,18 @@ function imageFor(slug: string) {
   return imagePool[hash % imagePool.length];
 }
 
-function projectId(index: number, title: string) {
-  const tag = title
-    .replace(/[^A-Za-z0-9 ]/g, "")
-    .split(" ")
-    .slice(0, 2)
-    .join("-")
-    .toUpperCase();
-  return `.${String(index + 1).padStart(2, "0")} / ${tag}`;
-}
-
 type Props = {
   projects: ProjectListItem[];
   categories: string[];
 };
 
-export default function ProjectsPageClient({ projects, categories }: Props) {
-  const [activeFilter, setActiveFilter] = useState("All");
-
-  const filteredProjects =
-    activeFilter === "All"
-      ? projects
-      : projects.filter((p) => p.category === activeFilter);
+export default function ProjectsPageClient({ projects }: Props) {
+  const filteredProjects = projects;
 
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-44 pb-24 bg-white overflow-hidden border-b border-brand-gray-300">
+      <section className="relative pt-44 pb-24 bg-white overflow-hidden">
         <div className="container relative z-10 mx-auto px-4 md:px-8">
           <div className="flex flex-col gap-6 max-w-4xl">
             <div className="flex items-center gap-2.5">
@@ -93,32 +78,11 @@ export default function ProjectsPageClient({ projects, categories }: Props) {
         </div>
       </section>
 
-      {/* Filter pills */}
-      <section className="py-6 bg-white border-b border-brand-gray-300 sticky top-20 z-30 backdrop-blur-sm">
-        <div className="container mx-auto px-4 md:px-8">
-          <div className="flex flex-nowrap overflow-x-auto gap-2 hide-scrollbar">
-            {categories.map((category) => (
-              <button
-                key={category}
-                onClick={() => setActiveFilter(category)}
-                className={`shrink-0 px-5 py-2 rounded-full font-mono text-[12px] uppercase tracking-[0.12em] transition-colors ${
-                  activeFilter === category
-                    ? "bg-brand-gray-900 text-white"
-                    : "bg-brand-gray-100 text-brand-gray-500 hover:bg-brand-gray-300/50 hover:text-brand-gray-900"
-                }`}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Projects grid — clicking a card navigates to /projects/[slug] */}
-      <section className="py-20 bg-white min-h-[500px]">
+      <section className="pb-20 bg-white min-h-[500px]">
         <div className="container mx-auto px-4 md:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-16">
-            {filteredProjects.map((project, i) => {
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-16">
+            {filteredProjects.map((project) => {
               const heroFromSanity = safeUrlFor(project.heroImage, 900);
               const cardImage = heroFromSanity ?? imageFor(project.slug);
               const scopeText = project.scopeSummary ?? project.scope ?? "";
@@ -126,26 +90,34 @@ export default function ProjectsPageClient({ projects, categories }: Props) {
                 <Link
                   key={project.slug}
                   href={`/projects/${project.slug}`}
-                  className="group flex flex-col gap-6"
+                  className="group relative block w-full aspect-[3/4] bg-brand-gray-100 overflow-hidden"
                 >
-                  <div className="relative w-full aspect-[3/4] bg-brand-gray-100 overflow-hidden">
-                    <img
-                      src={cardImage}
-                      alt={project.title}
-                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-                    />
-                  </div>
-                  <div className="flex flex-col md:flex-row md:gap-8 gap-2">
-                    <h3 className="font-mono font-semibold text-brand-gray-900 text-[14px] tracking-tight md:basis-1/3 shrink-0 group-hover:text-brand-red transition-colors">
-                      {projectId(i, project.title)}
+                  <img
+                    src={cardImage}
+                    alt={project.title}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.05]"
+                  />
+
+                  {/* Legibility scrim — darker toward the bottom, deepens on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent opacity-90 transition-opacity duration-500 group-hover:opacity-100" />
+
+                  {/* Overlaid content, bottom */}
+                  <div className="absolute inset-x-0 bottom-0 p-6 flex flex-col gap-1 text-white">
+                    <h3 className="font-display font-medium text-[26px] md:text-[30px] leading-[1.05] tracking-tight">
+                      {project.title}
                     </h3>
-                    <div className="font-mono text-[12px] uppercase tracking-[0.06em] text-brand-gray-500 flex flex-col gap-0.5 leading-[1.5]">
-                      <span className="text-brand-gray-900 group-hover:text-brand-red transition-colors">
-                        {project.title}
-                      </span>
-                      <span>{project.location}</span>
-                      {project.year && <span>{project.year}</span>}
-                      {scopeText && <span>{scopeText}</span>}
+                    <span className="font-mono text-[12px] uppercase tracking-[0.08em] text-white/70">
+                      {project.location}
+                    </span>
+
+                    {/* Extra details — collapsed by default, expand on hover */}
+                    <div className="grid grid-rows-[0fr] opacity-0 group-hover:grid-rows-[1fr] group-hover:opacity-100 transition-[grid-template-rows,opacity] duration-500 ease-out">
+                      <div className="overflow-hidden">
+                        <div className="mt-3 pt-3 border-t border-white/25 flex flex-col gap-1 font-mono text-[12px] uppercase tracking-[0.06em] text-white/80">
+                          {project.year && <span>{project.year}</span>}
+                          {scopeText && <span>{scopeText}</span>}
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </Link>
@@ -162,7 +134,7 @@ export default function ProjectsPageClient({ projects, categories }: Props) {
       </section>
 
       {/* Bottom CTA */}
-      <section className="py-32 bg-brand-gray-900 text-white text-center">
+      <section className="py-32 bg-brand-red text-white text-center">
         <div className="container mx-auto px-4 md:px-8 flex flex-col items-center gap-10">
           <h2 className="font-display font-medium text-white text-[40px] md:text-[64px] leading-[1.05] tracking-tight max-w-3xl">
             Have a similar project?

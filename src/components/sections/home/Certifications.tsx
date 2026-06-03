@@ -54,9 +54,9 @@ export function Certifications() {
           {certifications.map((cert) => (
             <div
               key={`${cert.prefix ?? ""}${cert.key}`}
-              className="relative flex flex-col items-center text-center gap-3 py-10 md:py-14 px-6 bg-white rounded-[20px] shadow-[0_2px_16px_rgba(0,0,0,0.07)] hover:shadow-[0_8px_32px_rgba(0,0,0,0.13)] transition-shadow duration-300"
+              className="relative flex flex-col items-center text-center gap-3 py-10 md:py-14 px-6 rounded-[20px] bg-gradient-to-br from-[#FCF3D6] via-[#FFFDF6] to-[#E6C977] border border-[#E3C778] shadow-[0_2px_16px_rgba(176,141,54,0.18)] hover:shadow-[0_8px_32px_rgba(176,141,54,0.32)] transition-shadow duration-300"
             >
-              <span className="absolute top-4 right-4 inline-flex items-center justify-center w-9 h-9 rounded-full bg-brand-red/10 text-brand-red">
+              <span className="absolute top-4 right-4 inline-flex items-center justify-center w-9 h-9 rounded-full bg-gradient-to-br from-[#F4DA8C] to-[#C49A3E] text-white shadow-[0_2px_8px_rgba(176,141,54,0.45)]">
                 <Award className="w-5 h-5" strokeWidth={2} />
               </span>
               <h3 className="font-display font-bold uppercase text-brand-gray-900 text-[28px] md:text-[36px] tracking-tight leading-none">

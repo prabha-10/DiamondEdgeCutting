@@ -69,8 +69,8 @@ export function Overview() {
                     key={s}
                     className="flex items-baseline gap-3 font-sans text-[15.5px] text-brand-gray-900"
                   >
-                    <span aria-hidden className="text-brand-red shrink-0 select-none">
-                      /
+                    <span aria-hidden className="text-brand-red shrink-0 select-none text-[20px] leading-none">
+                      •
                     </span>
                     <span>{s}</span>
                   </li>
@@ -84,7 +84,7 @@ export function Overview() {
             {credentials.map(({ key, value }) => (
               <div
                 key={key}
-                className="flex items-center justify-between gap-6 py-4 border-b border-brand-gray-300"
+                className="flex flex-1 items-center justify-between gap-6 py-4 border-b border-brand-gray-300"
               >
                 <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-brand-gray-500">
                   {key}
