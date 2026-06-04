@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState, useMemo } from "react";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { safeUrlFor, type SanityImage } from "@/lib/sanity-image";
@@ -42,38 +42,65 @@ type Props = {
   categories: string[];
 };
 
-export default function ProjectsPageClient({ projects }: Props) {
-  const filteredProjects = projects;
+export default function ProjectsPageClient({ projects, categories }: Props) {
+  const [activeCategory, setActiveCategory] = useState<string>("All");
+
+  // Fixed filter list — always shows the 6 standard sector tabs whether or
+  // not the project pool contains entries for each one. "All" first.
+  const filterCategories = useMemo(() => {
+    return ["All", "Commercial", "Residential", "Airport", "Hotels", "Industrial", "Infrastructure"];
+  }, []);
+
+  const filteredProjects = useMemo(() => {
+    if (activeCategory === "All") return projects;
+    return projects.filter((p) => p.category === activeCategory);
+  }, [projects, activeCategory]);
 
   return (
     <>
       {/* Hero */}
-      <section className="relative pt-44 pb-24 bg-white overflow-hidden">
+      <section className="relative pt-44 pb-16 bg-white overflow-hidden">
         <div className="container relative z-10 mx-auto px-4 md:px-8">
-          <div className="flex flex-col gap-6 max-w-4xl">
-            <div className="flex items-center gap-2.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-brand-red" aria-hidden />
-              <span className="font-['Inter_Display',sans-serif] text-[13px] uppercase tracking-[0.12em] text-brand-gray-500">
-                Selected Works
-              </span>
+          {/* Title row: eyebrow + title on the left, CTA on the right */}
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-6">
+            <div className="flex flex-col gap-6">
+              <div className="flex items-center gap-2.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-brand-red" aria-hidden />
+                <span className="font-['Inter_Display',sans-serif] text-[13px] uppercase tracking-[0.12em] text-brand-gray-500">
+                  Selected Works
+                </span>
+              </div>
+              <h1 className="font-display font-medium text-brand-gray-900 text-[56px] md:text-[88px] lg:text-[112px] leading-[0.95] tracking-tight">
+                Projects.
+              </h1>
             </div>
-            <h1 className="font-display font-medium text-brand-gray-900 text-[56px] md:text-[88px] lg:text-[112px] leading-[0.95] tracking-tight">
-              Projects.
-            </h1>
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 rounded-full bg-brand-gray-900 text-white font-medium text-[15px] px-6 py-3 hover:bg-brand-gray-700 transition-colors shrink-0 self-start sm:self-auto sm:mb-3"
+            >
+              Discuss Project
+              <ArrowUpRight className="w-4 h-4" strokeWidth={2} />
+            </Link>
           </div>
-          <div className="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end">
-            <p className="lg:col-span-7 font-['Inter_Display',sans-serif] font-normal text-[19px] md:text-[22px] leading-[1.5] text-brand-gray-500 max-w-2xl">
-              {projects.length} headline projects across airports, malls, hotels, infrastructure, and refractory works, delivered across the GCC since 2008.
-            </p>
-            <div className="lg:col-span-5 lg:justify-self-end">
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 rounded-full bg-brand-gray-900 text-white font-medium text-[15px] px-6 py-3 hover:bg-brand-gray-700 transition-colors"
-              >
-                Discuss Project
-                <ArrowUpRight className="w-4 h-4" strokeWidth={2} />
-              </Link>
-            </div>
+
+          {/* Centered category filters */}
+          <div className="mt-12 flex flex-wrap justify-center gap-3">
+            {filterCategories.map((cat) => {
+              const isActive = cat === activeCategory;
+              return (
+                <button
+                  key={cat}
+                  onClick={() => setActiveCategory(cat)}
+                  className={`rounded-full px-5 py-2.5 font-sans font-medium text-[14px] transition-colors ${
+                    isActive
+                      ? "bg-brand-red text-white"
+                      : "bg-brand-gray-900 text-white hover:bg-brand-gray-700"
+                  }`}
+                >
+                  {cat}
+                </button>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -81,7 +108,7 @@ export default function ProjectsPageClient({ projects }: Props) {
       {/* Projects grid — clicking a card navigates to /projects/[slug] */}
       <section className="pb-20 bg-white min-h-[500px]">
         <div className="container mx-auto px-4 md:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10">
             {filteredProjects.map((project) => {
               const heroFromSanity = safeUrlFor(project.heroImage, 900);
               const cardImage = heroFromSanity ?? imageFor(project.slug);
