@@ -29,18 +29,15 @@ export default async function ProjectsPage() {
           scope: p.scope,
         }));
 
-  // Show the first six projects (3 rows of 2).
-  const projects: ProjectListItem[] = resolvedProjects.slice(0, 6);
+  // Show the full catalogue so every category filter returns results.
+  const projects: ProjectListItem[] = resolvedProjects;
 
-  // Derive filter pills dynamically — adding a new category in Studio
-  // automatically adds a filter pill on the next revalidation.
+  // Always expose the six core category filters; append any extra categories
+  // that appear in Studio so new ones still get a pill.
   const categoryOrder = ["Commercial", "Residential", "Airport", "Hotel", "Industrial", "Infrastructure"];
   const presentCategories = Array.from(new Set(projects.map((p) => p.category).filter(Boolean)));
-  const sortedCategories = [
-    ...categoryOrder.filter((c) => presentCategories.includes(c)),
-    ...presentCategories.filter((c) => !categoryOrder.includes(c)),
-  ];
-  const categories = ["All", ...sortedCategories];
+  const extraCategories = presentCategories.filter((c) => !categoryOrder.includes(c));
+  const categories = ["All", ...categoryOrder, ...extraCategories];
 
   return (
     <>
