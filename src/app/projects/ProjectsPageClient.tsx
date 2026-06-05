@@ -1,8 +1,9 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import { cn } from "@/lib/utils";
 import { safeUrlFor, type SanityImage } from "@/lib/sanity-image";
 
 export type ProjectListItem = {
@@ -42,8 +43,12 @@ type Props = {
   categories: string[];
 };
 
-export default function ProjectsPageClient({ projects }: Props) {
-  const filteredProjects = projects;
+export default function ProjectsPageClient({ projects, categories }: Props) {
+  const [activeCategory, setActiveCategory] = useState("All");
+  const filteredProjects =
+    activeCategory === "All"
+      ? projects
+      : projects.filter((p) => p.category === activeCategory);
 
   return (
     <>
@@ -81,6 +86,30 @@ export default function ProjectsPageClient({ projects }: Props) {
       {/* Projects grid — clicking a card navigates to /projects/[slug] */}
       <section className="pb-20 bg-white min-h-[500px]">
         <div className="container mx-auto px-4 md:px-8">
+          {/* Category filter tabs */}
+          {categories.length > 1 && (
+            <div className="flex flex-wrap gap-2.5 mb-12">
+              {categories.map((category) => {
+                const isActive = category === activeCategory;
+                return (
+                  <button
+                    key={category}
+                    type="button"
+                    onClick={() => setActiveCategory(category)}
+                    className={cn(
+                      "rounded-full px-5 py-2 font-['Inter_Display',sans-serif] font-semibold text-[14px] transition-colors",
+                      isActive
+                        ? "bg-brand-red text-white"
+                        : "bg-brand-gray-100 text-brand-gray-700 hover:bg-brand-gray-200"
+                    )}
+                  >
+                    {category}
+                  </button>
+                );
+              })}
+            </div>
+          )}
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-16">
             {filteredProjects.map((project) => {
               const heroFromSanity = safeUrlFor(project.heroImage, 900);

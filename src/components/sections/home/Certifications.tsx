@@ -49,17 +49,18 @@ export function Certifications() {
           </div>
         </div>
 
-        {/* Cert cards, shadowed and gapped. 2 rows of 4 on lg+. */}
+        {/* Cert cards — clean white panels with a thin red top accent and a
+            small red ribbon icon. 2 rows of 4 on lg+. */}
         <div className="mt-14 md:mt-20 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
           {certifications.map((cert) => (
             <div
               key={`${cert.prefix ?? ""}${cert.key}`}
-              className="relative flex flex-col items-center text-center gap-3 py-10 md:py-14 px-6 rounded-[20px] bg-gradient-to-br from-[#FCF3D6] via-[#FFFDF6] to-[#E6C977] border border-[#E3C778] shadow-[0_2px_16px_rgba(176,141,54,0.18)] hover:shadow-[0_8px_32px_rgba(176,141,54,0.32)] transition-shadow duration-300"
+              className="relative flex flex-col gap-2 pt-8 pb-7 px-6 bg-white border-t-2 border-brand-red shadow-[0_1px_3px_rgba(0,0,0,0.06)] hover:shadow-[0_8px_28px_rgba(0,0,0,0.10)] transition-shadow duration-300"
             >
-              <span className="absolute top-4 right-4 inline-flex items-center justify-center w-9 h-9 rounded-full bg-gradient-to-br from-[#F4DA8C] to-[#C49A3E] text-white shadow-[0_2px_8px_rgba(176,141,54,0.45)]">
-                <Award className="w-5 h-5" strokeWidth={2} />
+              <span className="absolute top-4 right-4 inline-flex items-center justify-center w-8 h-8 rounded-full bg-brand-red/10 text-brand-red">
+                <Award className="w-4 h-4" strokeWidth={2} />
               </span>
-              <h3 className="font-display font-bold uppercase text-brand-gray-900 text-[28px] md:text-[36px] tracking-tight leading-none">
+              <h3 className="font-display font-bold uppercase text-brand-gray-900 text-[26px] md:text-[34px] tracking-tight leading-none">
                 {cert.prefix}
                 <span className="text-brand-red">{cert.key}</span>
                 {cert.suffix}

@@ -83,16 +83,23 @@ export async function Leadership() {
             eyebrow="Our Team"
             title={
               <>
-                Meet the
-                <br />
-                <em>team.</em>
+                Meet the <em>team.</em>
               </>
             }
-            lede="Decades of operational, commercial and project leadership experience, focused, hands-on, and accountable from inception to handover."
+            lede="Operational, commercial and project leadership — accountable from inception to handover."
           />
         </div>
 
         <LeadershipCards team={team} />
+
+        {/* Wider workforce caption */}
+        <div className="mt-8 flex items-center gap-3">
+          <span aria-hidden className="w-8 h-0.5 bg-brand-red shrink-0" />
+          <p className="font-['Inter_Display',sans-serif] text-[14px] md:text-[15px] text-brand-gray-700">
+            Backed by <strong className="text-brand-gray-900 font-semibold">120+ specialists</strong>{" "}
+            — project managers, site supervisors, safety officers and operators.
+          </p>
+        </div>
       </div>
     </section>
   );

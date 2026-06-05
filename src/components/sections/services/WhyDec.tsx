@@ -24,10 +24,10 @@ const reasons = [
 
 export function WhyDec() {
   return (
-    <section id="why-dec" className="py-16 md:py-32 bg-white scroll-mt-20">
+    <section id="why-dec" className="py-16 md:py-24 bg-white scroll-mt-20">
       <div className="container mx-auto px-4 md:px-8">
         {/* Header */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 mb-14 pb-14 border-b border-brand-gray-300">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 mb-12 pb-12 border-b border-brand-gray-300">
           <div className="lg:col-span-7 flex flex-col gap-6">
             <div className="flex items-center gap-2.5">
               <span
