@@ -72,10 +72,10 @@ export async function ProjectsTeaser() {
               <Link
                 key={project.slug}
                 href={`/projects/${project.slug}`}
-                className="group bg-white border border-brand-gray-300 rounded-[20px] overflow-hidden flex flex-col hover:border-brand-red transition-colors duration-300"
+                className="group flex flex-col"
               >
-                {/* Hero image */}
-                <div className="relative w-full aspect-[16/9] bg-brand-gray-900 overflow-hidden shrink-0">
+                {/* Hero image with category badge */}
+                <div className="relative w-full aspect-[4/5] bg-brand-gray-900 overflow-hidden shrink-0">
                   {imageUrl ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
@@ -84,43 +84,29 @@ export async function ProjectsTeaser() {
                       className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     />
                   ) : (
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="font-display font-extrabold uppercase text-white/10 text-[32px] tracking-tight text-center px-4">
-                        {project.title}
+                    <div className="absolute inset-0 flex items-center justify-center bg-brand-gray-200">
+                      <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-brand-gray-400">
+                        Project Image
                       </span>
                     </div>
                   )}
-                  <div className="absolute inset-0 bg-brand-gray-900/0 group-hover:bg-brand-red/20 transition-colors duration-300" />
-                </div>
-
-                {/* Card body */}
-                <div className="p-7 md:p-8 flex flex-col gap-4 flex-1">
-                  <div className="flex items-center justify-between">
-                    <span className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-brand-red group-hover:text-brand-red transition-colors duration-300">
+                  {project.category && (
+                    <span className="absolute top-3 left-3 bg-brand-red text-white font-mono text-[10px] uppercase tracking-[0.16em] px-2.5 py-1">
                       {project.category}
                     </span>
-                    <ArrowUpRight
-                      className="w-4 h-4 text-brand-gray-400 group-hover:text-brand-red group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300"
-                      strokeWidth={2}
-                    />
-                  </div>
+                  )}
+                </div>
 
-                  <h3 className="font-display font-bold uppercase text-brand-gray-900 text-[20px] md:text-[22px] tracking-tight leading-[1.05]">
+                {/* Title + meta */}
+                <div className="pt-4 flex flex-col gap-1.5">
+                  <h3 className="font-display font-bold text-brand-gray-900 text-[18px] md:text-[20px] tracking-tight leading-[1.1]">
                     {project.title}
                   </h3>
-
-                  <p className="font-['Inter_Display',sans-serif] text-[14px] md:text-[15px] leading-[1.6] text-brand-gray-600 flex-1">
-                    {project.scope}
-                  </p>
-
-                  <div className="flex items-center justify-between pt-4 border-t border-brand-gray-200">
-                    <span className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-brand-gray-500">
-                      {project.location}
-                    </span>
-                    <span className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-brand-gray-400">
-                      {project.year}
-                    </span>
-                  </div>
+                  <span className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-brand-gray-500">
+                    {project.location}
+                    {project.location && project.year ? " · " : ""}
+                    {project.year}
+                  </span>
                 </div>
               </Link>
             );

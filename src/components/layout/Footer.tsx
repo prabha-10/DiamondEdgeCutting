@@ -2,6 +2,16 @@ import React from "react";
 import Link from "next/link";
 import { rentalCategories } from "@/data/navigation";
 
+// lucide-react in this project ships without brand glyphs, so the LinkedIn
+// mark is an inline SVG.
+function LinkedInIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden className={className}>
+      <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.02-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.34V9h3.42v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.06 2.06 0 110-4.13 2.06 2.06 0 010 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z" />
+    </svg>
+  );
+}
+
 const serviceLinks = [
   { name: "Robotic Demolition", href: "/demolition-services#robotic-demolition" },
   { name: "Controlled & Structural Demolition", href: "/demolition-services#controlled-demolition" },
@@ -21,16 +31,30 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
           {/* Column 1: About */}
           <div className="flex flex-col gap-6">
-            <Link href="/" className="inline-flex items-center">
+            <Link href="/" className="inline-flex items-center gap-3" aria-label="Diamond Edge Cutting — Home">
               <img
-                src="/dec-logo.png"
+                src="/header-logo.png"
                 alt="Diamond Edge Cutting"
-                className="h-28 md:h-32 w-auto object-contain"
+                className="h-14 md:h-16 w-auto object-contain"
               />
+              <span className="font-display font-extrabold uppercase tracking-tight leading-none text-[18px] text-white">
+                Diamond Edge Cutting
+              </span>
             </Link>
             <p className="text-white/70 text-base leading-relaxed max-w-xs">
               Delivering safe, precise, and efficient demolition solutions across the GCC since 2008.
             </p>
+            <a
+              href="https://www.linkedin.com/company/diamond-edge-cutting-llc/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2.5 text-white/70 hover:text-white transition-colors text-base font-medium"
+            >
+              <span className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-white/10">
+                <LinkedInIcon className="w-4 h-4" />
+              </span>
+              Follow us on LinkedIn
+            </a>
           </div>
 
           {/* Column 2: Services */}
@@ -90,6 +114,10 @@ export function Footer() {
               <div>
                 <p className="text-white mb-2 font-bold">Dubai HQ</p>
                 <p>Plot 597-604, DIP 2<br/>Dubai, UAE</p>
+              </div>
+              <div>
+                <p className="text-white mb-2 font-bold">Working Hours</p>
+                <p>Monday – Friday: 8:00 AM – 5:00 PM<br/>Saturday: 9:00 AM – 2:00 PM</p>
               </div>
             </div>
           </div>

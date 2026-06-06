@@ -1,100 +1,76 @@
 import React from "react";
-import { EditorialSectionHead } from "./editorial/EditorialSectionHead";
 
-// Block 1 from the client's homepage spec. Section head + two-column body
-// (prose + core services list on the left, credential rows on the right).
-
-const coreServices = [
-  "Controlled and Structural Demolition",
-  "Robotic Demolition",
-  "Wire sawing",
-  "Wall, track, and floor sawing",
-  "Core drilling",
-  "Tunnelling, refinery, kiln works",
-  "Soft demolition and enabling works",
-  "Specialist plant and equipment rental",
-];
-
-type Credential = { key: string; value: React.ReactNode };
-
-const credentials: Credential[] = [
-  { key: "Established", value: <>1997 <span className="text-brand-red">·</span> Ireland</> },
-  { key: "UAE Operations", value: <>Since <em className="font-display italic text-brand-red not-italic">2008</em></> },
-  { key: "Workforce", value: <>300<em className="font-display italic text-brand-red not-italic">+</em> Specialists</> },
-  { key: "Approval", value: <>DM <em className="font-display italic text-brand-red not-italic">G+12</em></> },
-  { key: "Certifications", value: <>ISO 9001 <span className="text-brand-red">·</span> 14001 <span className="text-brand-red">·</span> 45001</> },
-  { key: "Coverage", value: "6 GCC Countries" },
-];
+// "Who we are" combined with Mission & Vision in a single block, per the
+// client revision (image7): eyebrow + headline and intro on the left, two
+// body paragraphs on the right, then Mission / Vision cards beneath.
 
 export function Overview() {
   return (
-    <section className="py-20 md:py-32 bg-white">
+    <section className="py-20 md:py-28 bg-white">
       <div className="container mx-auto px-4 md:px-8">
-        <EditorialSectionHead
-          number="01"
-          eyebrow="Company Overview"
-          title={
-            <>
-              Specialists.
-              <br />
-              <em>Not generalists.</em>
-            </>
-          }
-          lede="Diamond Edge Cutting is a leading specialist demolition contractor delivering safe, precise, and efficient solutions across all sectors of the construction industry."
-        />
-
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 mt-14 md:mt-20">
-          {/* Prose + core services */}
-          <div className="lg:col-span-7 flex flex-col gap-6">
-            <p className="font-['Inter_Display',sans-serif] text-[17px] md:text-[18px] leading-[1.65] text-brand-gray-700">
-              DEC established operations in the United Arab Emirates in 2008, building on more than
-              15 years of prior experience across Ireland and Europe. We have successfully partnered
-              with major developers, main contractors, and consultants across the region on complex
-              and technically challenging projects.
+        {/* Top: headline + intro (left) / body paragraphs (right) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+          <div className="lg:col-span-6 flex flex-col gap-6">
+            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brand-red">
+              Who We Are
+            </span>
+            <h2 className="font-display font-extrabold uppercase text-brand-gray-900 text-[40px] md:text-[58px] lg:text-[64px] leading-[0.95] tracking-tight">
+              Specialists.{" "}
+              <em className="font-light italic text-brand-red normal-case">
+                Not generalists.
+              </em>
+            </h2>
+            <p className="font-['Inter_Display',sans-serif] text-[18px] md:text-[20px] leading-[1.5] text-brand-gray-900">
+              Diamond Edge Cutting is a leading specialist demolition contractor
+              delivering safe, precise, and efficient solutions across all sectors
+              of the construction industry.
             </p>
-            <p className="font-['Inter_Display',sans-serif] text-[17px] md:text-[18px] leading-[1.65] text-brand-gray-700">
-              Using advanced technology and modern methodologies, we execute both light and heavy
-              demolition projects with speed, accuracy, and uncompromising safety standards. With a
-              dedicated team of 300+ highly trained professionals, we deliver projects from concept
-              to completion, on time, on budget, and to the highest standards of quality and safety.
-            </p>
-
-            <div className="mt-6">
-              <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-brand-red">
-                Core services
-              </span>
-              <ul className="mt-4 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2.5">
-                {coreServices.map((s) => (
-                  <li
-                    key={s}
-                    className="flex items-baseline gap-3 font-sans text-[15.5px] text-brand-gray-900"
-                  >
-                    <span aria-hidden className="text-brand-red shrink-0 select-none text-[20px] leading-none">
-                      •
-                    </span>
-                    <span>{s}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
           </div>
 
-          {/* Credential rows */}
-          <div className="lg:col-span-5 flex flex-col border-t border-brand-gray-300">
-            {credentials.map(({ key, value }) => (
-              <div
-                key={key}
-                className="flex flex-1 items-center justify-between gap-6 py-4 border-b border-brand-gray-300"
-              >
-                <span className="font-mono text-[11px] uppercase tracking-[0.16em] text-brand-gray-500">
-                  {key}
-                </span>
-                <span className="font-display font-bold text-brand-gray-900 text-[20px] md:text-[22px] uppercase tracking-tight text-right">
-                  {value}
-                </span>
-              </div>
-            ))}
+          <div className="lg:col-span-6 flex flex-col gap-5 lg:pt-12">
+            <p className="font-['Inter_Display',sans-serif] text-[16px] md:text-[17px] leading-[1.7] text-brand-gray-700">
+              DEC established operations in the United Arab Emirates in 2008,
+              building on more than 15 years of prior experience across Ireland and
+              Europe. DEC has successfully partnered with major developers, main
+              contractors, and consultants across the region on complex and
+              technically challenging projects.
+            </p>
+            <p className="font-['Inter_Display',sans-serif] text-[16px] md:text-[17px] leading-[1.7] text-brand-gray-700">
+              Using advanced technology and modern methodologies, we execute both
+              light and heavy demolition projects with speed, accuracy, and
+              uncompromising safety standards. With a dedicated team of 300+ highly
+              trained professionals, we deliver projects from concept to completion
+              — on time, on budget, and to the highest standards of quality and
+              safety.
+            </p>
           </div>
+        </div>
+
+        {/* Mission / Vision cards */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-6 mt-12 md:mt-16">
+          <article className="bg-brand-gray-100 border-t-2 border-brand-red p-8 md:p-10 flex flex-col gap-4">
+            <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-brand-red">
+              Our Mission
+            </span>
+            <p className="font-['Inter_Display',sans-serif] text-[16px] md:text-[17px] leading-[1.7] text-brand-gray-700">
+              To deliver innovative, safe, and efficient demolition solutions that
+              exceed client expectations while maintaining the highest standards of
+              quality, professionalism, and environmental responsibility. We are
+              committed to building long-term client relationships based on trust
+              and performance.
+            </p>
+          </article>
+
+          <article className="bg-brand-gray-100 border-t-2 border-brand-red p-8 md:p-10 flex flex-col gap-4">
+            <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-brand-red">
+              Our Vision
+            </span>
+            <p className="font-['Inter_Display',sans-serif] text-[16px] md:text-[17px] leading-[1.7] text-brand-gray-700">
+              To be recognised as the leading specialist demolition contractor in
+              the Middle East region, setting industry benchmarks for safety,
+              innovation, and operational excellence.
+            </p>
+          </article>
         </div>
       </div>
     </section>

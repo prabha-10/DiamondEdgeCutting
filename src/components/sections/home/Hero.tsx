@@ -15,7 +15,7 @@ const slideUp = (delay: number, revealed: boolean): React.CSSProperties => ({
 
 const stats: Array<{ num: string; label: string }> = [
   { num: "30+", label: "Years in industry" },
-  { num: "60+", label: "Skilled team" },
+  { num: "120+", label: "Skilled team" },
   { num: "G+12", label: "Approved demolition" },
   { num: "N°1", label: "Robotic fleet in GCC" },
 ];
@@ -68,7 +68,7 @@ export function Hero() {
                   WE CUT. WE DRILL.
                 </div>
                 <div className="text-[9vw] md:text-[6rem] lg:text-[7.5rem] text-white/55">
-                  WITH PRECISION.
+                  WITH SURGICAL CONTROL.
                 </div>
               </h1>
             </div>

@@ -16,7 +16,7 @@ export function OrganizationSchema() {
         },
         "description": "Specialist demolition contractor delivering safe, precise, and efficient solutions across all sectors of the construction industry in the GCC.",
         "foundingDate": "2008",
-        "sameAs": [] // Add social links here if any
+        "sameAs": ["https://www.linkedin.com/company/diamond-edge-cutting-llc/"]
       },
       {
         "@type": "HomeAndConstructionBusiness",
@@ -36,9 +36,15 @@ export function OrganizationSchema() {
         "openingHoursSpecification": [
           {
             "@type": "OpeningHoursSpecification",
-            "dayOfWeek": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"],
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
             "opens": "08:00",
-            "closes": "18:00"
+            "closes": "17:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Saturday"],
+            "opens": "09:00",
+            "closes": "14:00"
           }
         ]
       },
