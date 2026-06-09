@@ -1,46 +1,32 @@
-"use client";
-
-import React, { useState } from "react";
+import React from "react";
 
 // Client roster per the client revision. Each entry renders a real logo
-// image from /public/clients/{slug}.png when present, and falls back to a
-// clean wordmark if the file isn't supplied yet — so the section never
-// shows a broken image. Drop logo files into public/clients to light them up.
+// image from /public/clients. Drop a new file into that folder and add an
+// entry here to extend the grid.
 
-type Client = { name: string; slug: string };
+type Client = { name: string; file: string };
 
 const clients: Client[] = [
-  { name: "Dutco", slug: "dutco" },
-  { name: "Al Tayer", slug: "al-tayer" },
-  { name: "DMT", slug: "dmt" },
-  { name: "Shamal", slug: "shamal" },
-  { name: "Khansaheb", slug: "khansaheb" },
-  { name: "Modon", slug: "modon" },
-  { name: "Emaar", slug: "emaar" },
-  { name: "Zublin", slug: "zublin" },
-  { name: "Engineering Office", slug: "engineering-office" },
-  { name: "Drydocks", slug: "drydocks" },
-  { name: "Expo", slug: "expo" },
+  { name: "Emaar", file: "EMAAR.png" },
+  { name: "ALEC", file: "ALEC.png" },
+  { name: "Al Naboodah", file: "Al Naboodah.jpg" },
+  { name: "Al Tayer", file: "Al Tayer.jpg" },
+  { name: "Khansaheb", file: "Khansaheb.jpg" },
+  { name: "McLaren", file: "McLaren.png" },
+  { name: "Bond Interiors", file: "Bond Interiors.png" },
+  { name: "Modon", file: "modon.png" },
+  { name: "DMT", file: "dmt.png" },
 ];
 
 function ClientLogo({ client }: { client: Client }) {
-  const [failed, setFailed] = useState(false);
-
   return (
-    <div className="bg-white rounded-[14px] h-24 md:h-28 px-5 flex items-center justify-center">
-      {failed ? (
-        <span className="font-display font-extrabold uppercase text-brand-gray-900 text-[18px] md:text-[20px] tracking-tight text-center leading-tight">
-          {client.name}
-        </span>
-      ) : (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={`/clients/${client.slug}.png`}
-          alt={`${client.name} logo`}
-          onError={() => setFailed(true)}
-          className="max-h-14 md:max-h-16 w-auto max-w-full object-contain grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-300"
-        />
-      )}
+    <div className="bg-white rounded-[14px] h-20 md:h-24 px-5 flex items-center justify-center">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={`/clients/${encodeURIComponent(client.file)}`}
+        alt={`${client.name} logo`}
+        className="max-h-14 md:max-h-16 w-auto max-w-full object-contain"
+      />
     </div>
   );
 }
@@ -61,7 +47,7 @@ export function ClientLogos() {
 
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 md:gap-4">
           {clients.map((client) => (
-            <ClientLogo key={client.slug} client={client} />
+            <ClientLogo key={client.file} client={client} />
           ))}
         </div>
       </div>

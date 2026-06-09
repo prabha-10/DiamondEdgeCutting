@@ -65,24 +65,13 @@ export function Header({ rentalCategories }: { rentalCategories?: { title: strin
             so the brand reads clearly at small header heights. */}
         <Link href="/" className="flex items-center gap-3 z-50 group" aria-label="Diamond Edge Cutting — Home">
           <img
-            src="/header-logo.png"
+            src="/dec-logo.png"
             alt="Diamond Edge Cutting"
             className={cn(
-              "h-10 md:h-12 w-auto object-contain transition-[filter] duration-300",
+              "h-16 md:h-20 w-auto object-contain transition-[filter] duration-300",
               isSolid ? "" : "drop-shadow-[0_2px_10px_rgba(0,0,0,0.45)]"
             )}
           />
-          <span
-            className={cn(
-              // Visible on mobile/tablet and on wide desktops; the tight
-              // 1024–1279 band falls back to the emblem alone to avoid
-              // crowding the nav.
-              "font-display font-extrabold uppercase tracking-tight leading-none text-[15px] md:text-[18px] xl:text-[21px] whitespace-nowrap transition-colors duration-300 lg:hidden xl:inline",
-              isSolid ? "text-brand-gray-900" : "text-white drop-shadow-[0_1px_8px_rgba(0,0,0,0.6)]"
-            )}
-          >
-            Diamond Edge Cutting
-          </span>
         </Link>
 
         {/* Desktop Navigation, no pill container, items float freely */}
