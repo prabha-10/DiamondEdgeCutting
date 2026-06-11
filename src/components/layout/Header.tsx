@@ -158,7 +158,7 @@ export function Header({ rentalCategories }: { rentalCategories?: { title: strin
         {/* Desktop Actions */}
         <div className="hidden lg:flex items-center gap-4">
           <Button asChild variant="brand" className="font-bold">
-            <Link href="/contact">Start Your Project</Link>
+            <Link href="/contact">Discuss Your Project</Link>
           </Button>
         </div>
 
@@ -275,7 +275,7 @@ export function Header({ rentalCategories }: { rentalCategories?: { title: strin
       {/* Footer */}
       <div className="border-t border-brand-gray-300 px-6 py-6 flex flex-col gap-4 shrink-0">
         <Button asChild size="lg" variant="brand" className="w-full">
-          <Link href="/contact">Start Your Project</Link>
+          <Link href="/contact">Discuss Your Project</Link>
         </Button>
         <a
           href="tel:+97143706434"

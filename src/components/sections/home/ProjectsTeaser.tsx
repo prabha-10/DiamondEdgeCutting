@@ -1,18 +1,9 @@
 import React from "react";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { getAllProjects } from "../../../../sanity/lib/queries";
+import { getFeaturedProjects } from "../../../../sanity/lib/queries";
 import { safeUrlFor, type SanityImage } from "@/lib/sanity-image";
 import { projectsData } from "@/data/projects";
-
-const featuredSlugs = [
-  "meena-plaza",
-  "jebel-ali-chimney-tower",
-  "marsa-al-arab",
-  "one-zaabeel",
-  "dwc-al-maktoum-airport",
-  "icd-brookfield",
-];
 
 type SanityProject = {
   _id: string;
@@ -26,21 +17,33 @@ type SanityProject = {
 };
 
 export async function ProjectsTeaser() {
-  const sanityProjects = (await getAllProjects()) as SanityProject[];
+  const featured = (await getFeaturedProjects()) as SanityProject[];
 
-  const projects = featuredSlugs.map((slug) => {
-    const sanity = sanityProjects.find((p) => p.slug === slug);
-    const fallback = projectsData.find((p) => p.slug === slug);
-    return {
-      slug,
-      title: sanity?.title ?? fallback?.title ?? slug,
-      category: sanity?.category ?? fallback?.category ?? "",
-      location: sanity?.location ?? fallback?.location ?? "",
-      year: String(sanity?.year ?? fallback?.year ?? ""),
-      scope: sanity?.scopeSummary ?? fallback?.scope ?? "",
-      heroImage: sanity?.heroImage ?? null,
-    };
-  });
+  // Sanity drives the selection via the "Featured on Homepage" toggle. When
+  // Sanity isn't configured (local dev without env), fall back to the first 6
+  // local projects so the section still renders.
+  const source =
+    featured.length > 0
+      ? featured.map((p) => ({
+          slug: p.slug,
+          title: p.title,
+          category: p.category ?? "",
+          location: p.location ?? "",
+          year: String(p.year ?? ""),
+          scope: p.scopeSummary ?? "",
+          heroImage: p.heroImage ?? null,
+        }))
+      : projectsData.slice(0, 6).map((p) => ({
+          slug: p.slug,
+          title: p.title,
+          category: p.category ?? "",
+          location: p.location ?? "",
+          year: String(p.year ?? ""),
+          scope: p.scope ?? "",
+          heroImage: null as SanityImage | null,
+        }));
+
+  const projects = source;
 
   return (
     <section className="py-20 md:py-32 bg-brand-gray-100">
@@ -72,10 +75,10 @@ export async function ProjectsTeaser() {
               <Link
                 key={project.slug}
                 href={`/projects/${project.slug}`}
-                className="group flex flex-col"
+                className="group flex flex-col overflow-hidden rounded-2xl bg-brand-white border border-brand-gray-300 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-brand-red/30 transition-all duration-300"
               >
                 {/* Hero image with category badge */}
-                <div className="relative w-full aspect-[4/5] bg-brand-gray-900 overflow-hidden shrink-0">
+                <div className="relative w-full aspect-[4/3] bg-brand-gray-900 overflow-hidden shrink-0">
                   {imageUrl ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
@@ -91,22 +94,28 @@ export async function ProjectsTeaser() {
                     </div>
                   )}
                   {project.category && (
-                    <span className="absolute top-3 left-3 bg-brand-red text-white font-mono text-[10px] uppercase tracking-[0.16em] px-2.5 py-1">
+                    <span className="absolute top-3 left-3 bg-brand-red text-white font-mono text-[10px] uppercase tracking-[0.16em] px-2.5 py-1 rounded-full">
                       {project.category}
                     </span>
                   )}
                 </div>
 
                 {/* Title + meta */}
-                <div className="pt-4 flex flex-col gap-1.5">
-                  <h3 className="font-display font-bold text-brand-gray-900 text-[18px] md:text-[20px] tracking-tight leading-[1.1]">
-                    {project.title}
-                  </h3>
-                  <span className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-brand-gray-500">
-                    {project.location}
-                    {project.location && project.year ? " · " : ""}
-                    {project.year}
-                  </span>
+                <div className="p-5 md:p-6 flex items-start justify-between gap-3">
+                  <div className="flex flex-col gap-1.5">
+                    <h3 className="font-display font-bold text-brand-gray-900 text-[18px] md:text-[20px] tracking-tight leading-[1.1]">
+                      {project.title}
+                    </h3>
+                    <span className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-brand-gray-500">
+                      {project.location}
+                      {project.location && project.year ? " · " : ""}
+                      {project.year}
+                    </span>
+                  </div>
+                  <ArrowUpRight
+                    className="w-5 h-5 shrink-0 mt-0.5 text-brand-gray-400 group-hover:text-brand-red group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300"
+                    strokeWidth={2}
+                  />
                 </div>
               </Link>
             );

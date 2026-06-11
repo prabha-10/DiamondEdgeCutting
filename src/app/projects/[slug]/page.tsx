@@ -256,7 +256,7 @@ export default async function ProjectDetailPage({
             href="/contact"
             className="inline-flex items-center gap-2 rounded-full bg-white text-brand-gray-900 font-medium text-[15px] px-7 py-3.5 hover:bg-brand-gray-300 transition-colors"
           >
-            Start Your Project
+            Discuss Your Project
             <ArrowUpRight className="w-4 h-4" strokeWidth={2} />
           </Link>
         </div>

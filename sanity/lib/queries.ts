@@ -155,6 +155,20 @@ const ALL_PROJECTS_QUERY = `*[_type == "project"] | order(order asc, year desc) 
   featured
 }`
 
+// Featured projects for the homepage teaser. Editors control which projects
+// appear (and in what order) via the "Featured on Homepage" toggle + "Display
+// Order" field in Sanity Studio. Capped at 6 to fit the 3-column grid.
+const FEATURED_PROJECTS_QUERY = `*[_type == "project" && featured == true] | order(order asc, year desc) [0...6] {
+  _id,
+  title,
+  "slug": slug.current,
+  "category": category->title,
+  location,
+  year,
+  scopeSummary,
+  heroImage
+}`
+
 const PROJECT_BY_SLUG_QUERY = `*[_type == "project" && slug.current == $slug][0] {
   _id,
   title,
@@ -246,6 +260,11 @@ export async function getAllCategorySlugs() {
 export async function getAllProjects() {
   if (!sanityConfigured) return []
   return sanityClient.fetch(ALL_PROJECTS_QUERY)
+}
+
+export async function getFeaturedProjects() {
+  if (!sanityConfigured) return []
+  return sanityClient.fetch(FEATURED_PROJECTS_QUERY)
 }
 
 export async function getProjectBySlug(slug: string) {

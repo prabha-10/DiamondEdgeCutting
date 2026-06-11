@@ -102,7 +102,7 @@ export function Hero() {
               style={slideUp(480, introComplete)}
             >
               <Button asChild size="lg" variant="brand">
-                <Link href="/contact">Start Your Project</Link>
+                <Link href="/contact">Discuss Your Project</Link>
               </Button>
               <Button
                 asChild
