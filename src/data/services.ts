@@ -12,7 +12,7 @@ export const servicesDetails = [
     equipment: "Brokk 500 (flagship), Brokk 400, Brokk 300, Brokk 260, Brokk 200, Brokk 170, Brokk 160. Husqvarna DXR 300, DXR 305, DXR 145. Hydraulic breakers, crushers, grapples, and shears.",
     cta: "Discuss Your Robotic Demolition Project",
     ctaLink: "/contact",
-    crossSell: { text: "View Robotic Fleet", link: "/rental-equipment/robotic-demolition-machines" }
+    crossSell: { text: "View Robotic Fleet", link: "/rental-equipment" }
   },
   {
     id: "controlled-demolition",
@@ -28,7 +28,7 @@ export const servicesDetails = [
     equipment: "14 to 50 ton excavators, 26-metre long-reach demolition rigs, hydraulic breakers, crushers, shears.",
     cta: "Plan Your Controlled Demolition",
     ctaLink: "/contact",
-    crossSell: { text: "View Excavator Fleet", link: "/rental-equipment/excavators" }
+    crossSell: { text: "View Excavator Fleet", link: "/rental-equipment" }
   },
   {
     id: "wire-sawing",

@@ -1,10 +1,12 @@
+// Category subpages were removed — every entry now points to the main
+// /rental-equipment page.
 export const rentalCategories = [
-  { name: "Robotic Demolition Machines", href: "/rental-equipment/robotic-demolition-machines" },
-  { name: "Excavators", href: "/rental-equipment/excavators" },
-  { name: "Mini Excavators", href: "/rental-equipment/mini-excavators" },
-  { name: "Skid Steers", href: "/rental-equipment/skid-steers" },
-  { name: "Wheel Loaders", href: "/rental-equipment/wheel-loaders" },
-  { name: "Waste Removal", href: "/rental-equipment/waste-removal" },
+  { name: "Robotic Demolition Machines", href: "/rental-equipment" },
+  { name: "Excavators", href: "/rental-equipment" },
+  { name: "Mini Excavators", href: "/rental-equipment" },
+  { name: "Skid Steers", href: "/rental-equipment" },
+  { name: "Wheel Loaders", href: "/rental-equipment" },
+  { name: "Waste Removal", href: "/rental-equipment" },
 ];
 
 export const navigationLinks = [
