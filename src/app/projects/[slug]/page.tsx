@@ -195,7 +195,7 @@ export default async function ProjectDetailPage({
                 <span className="font-['Inter_Display',sans-serif] text-[12px] font-semibold uppercase tracking-[0.18em] text-brand-red">
                   Overview
                 </span>
-                <p className="font-['Inter_Display',sans-serif] font-normal text-[18px] md:text-[20px] leading-[1.6] text-brand-gray-900 max-w-3xl whitespace-pre-line">
+                <p className="font-['Inter_Display',sans-serif] font-normal text-[18px] md:text-[20px] leading-[1.6] text-brand-gray-900 w-full whitespace-pre-line">
                   {project.description ||
                     `Diamond Edge Cutting was appointed to deliver specialist demolition services for ${project.title}${
                       project.location ? ` in ${project.location}` : ""
@@ -241,7 +241,7 @@ export default async function ProjectDetailPage({
             href="/contact"
             className="inline-flex items-center gap-2 rounded-full bg-white text-brand-gray-900 font-medium text-[15px] px-7 py-3.5 hover:bg-brand-gray-300 transition-colors"
           >
-            Discuss your project
+            Start Your Project
             <ArrowUpRight className="w-4 h-4" strokeWidth={2} />
           </Link>
         </div>

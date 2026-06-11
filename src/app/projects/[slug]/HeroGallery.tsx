@@ -37,7 +37,34 @@ export function HeroGallery({
     ...(year ? [{ label: "Year", value: String(year) }] : []),
   ].filter((row) => row.value);
 
-  // Right-hand column: project facts + scope pills.
+  // Small thumbnail strip — sits in the right column beneath the project info.
+  const thumbnailGrid = galleryUrls.length > 0 && (
+    <div className="grid grid-cols-4 gap-2">
+      {galleryUrls.slice(0, 4).map((url, i) => {
+        const idx = i + 1;
+        return (
+          <button
+            key={url}
+            onClick={() => setCurrent(idx)}
+            className={`relative w-full aspect-square rounded-[10px] overflow-hidden bg-brand-gray-100 transition-all duration-300 ${
+              current === idx
+                ? "ring-2 ring-brand-red ring-offset-2 opacity-100"
+                : "opacity-60 hover:opacity-90"
+            }`}
+            aria-label={`View gallery image ${i + 1}`}
+          >
+            <img
+              src={url}
+              alt={`${title} — gallery ${i + 1}`}
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          </button>
+        );
+      })}
+    </div>
+  );
+
+  // Right-hand column: project facts + scope pills + small thumbnails.
   const infoColumn = (
     <div className="lg:col-span-4 flex flex-col gap-8">
       <div className="flex flex-col border-t border-brand-gray-300">
@@ -70,12 +97,14 @@ export function HeroGallery({
             ))}
         </div>
       )}
+
+      {thumbnailGrid}
     </div>
   );
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-start">
-      {/* Left: main display + evenly-spaced thumbnail row beneath it */}
+      {/* Left: main display */}
       <div className="lg:col-span-8 flex flex-col gap-4 lg:gap-5">
         <div className="relative w-full aspect-[16/9] rounded-[28px] overflow-hidden bg-brand-gray-100">
           {allImages.map((url, i) => (
@@ -89,32 +118,6 @@ export function HeroGallery({
             />
           ))}
         </div>
-
-        {galleryUrls.length > 0 && (
-          <div className="grid grid-cols-4 gap-3 lg:gap-4">
-            {galleryUrls.slice(0, 4).map((url, i) => {
-              const idx = i + 1;
-              return (
-                <button
-                  key={url}
-                  onClick={() => setCurrent(idx)}
-                  className={`relative w-full aspect-[4/3] rounded-[14px] overflow-hidden bg-brand-gray-100 transition-all duration-300 ${
-                    current === idx
-                      ? "ring-2 ring-brand-red ring-offset-2 opacity-100"
-                      : "opacity-60 hover:opacity-90"
-                  }`}
-                  aria-label={`View gallery image ${i + 1}`}
-                >
-                  <img
-                    src={url}
-                    alt={`${title} — gallery ${i + 1}`}
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
-                </button>
-              );
-            })}
-          </div>
-        )}
       </div>
 
       {/* Right: project info */}
