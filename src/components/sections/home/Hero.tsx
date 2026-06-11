@@ -76,7 +76,7 @@ export function Hero() {
               className="mt-8 max-w-4xl text-base md:text-lg text-white/80 leading-[1.6] font-['Inter_Display',sans-serif]"
               style={slideUp(250, introComplete)}
             >
-              <strong className="text-white font-semibold">Diamond Edge Cutting LLC</strong>{" "}is the GCC&apos;s leading specialist demolition contractor — controlled demolition, robotic systems, concrete cutting and core drilling delivered to the highest standards of safety, professionalism and quality. Operating across the UAE, Oman, Saudi Arabia, Qatar, Bahrain &amp; Kuwait.
+              <strong className="text-white font-semibold">Diamond Edge Cutting LLC</strong>{" "}is the GCC&apos;s leading specialist demolition contractor, providing controlled demolition, robotic systems, concrete cutting and core drilling delivered to the highest standards of safety, professionalism and quality. Operating across the UAE, Oman, Saudi Arabia, Qatar, Bahrain &amp; Kuwait.
             </p>
 
             {/* 4-up hero stats */}
