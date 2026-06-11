@@ -26,68 +26,61 @@ export function ServiceDetails() {
   return (
     <section className="pt-0 pb-16 md:pb-24 bg-white">
       <div className="container mx-auto px-4 md:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {servicesDetails.map((service) => {
             const image =
               serviceImages[service.id] ||
               "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80&auto=format&fit=crop";
             return (
-              <article
+              <Link
                 key={service.id}
                 id={service.id}
-                className="group relative aspect-[4/5] md:aspect-[5/6] rounded-[28px] overflow-hidden bg-brand-gray-900 scroll-mt-28 md:scroll-mt-32"
+                href={service.ctaLink}
+                aria-label={`${service.cta} — ${service.title}`}
+                className="group bg-white rounded-[20px] overflow-hidden flex flex-col shadow-[0_2px_16px_rgba(0,0,0,0.07)] hover:shadow-[0_8px_32px_rgba(0,0,0,0.13)] hover:-translate-y-1 transition-all duration-300 scroll-mt-28 md:scroll-mt-32"
               >
-                {/* Full-bleed background image */}
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={image}
-                  alt={service.title}
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                />
+                {/* Image */}
+                <div className="relative w-full aspect-[16/10] overflow-hidden bg-brand-gray-100">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={image}
+                    alt={service.title}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                </div>
 
-                {/* Dark gradient for legibility */}
-                <div
-                  className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10"
-                  aria-hidden
-                />
-
-                {/* CTA arrow top-right */}
-                <Link
-                  href={service.ctaLink}
-                  aria-label={`${service.cta} — ${service.title}`}
-                  className="absolute top-6 right-6 z-10 inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-white hover:bg-brand-red hover:border-brand-red transition-colors"
-                >
-                  <ArrowUpRight className="w-4 h-4" strokeWidth={2} />
-                </Link>
-
-                {/* Frosted-glass content panel pinned to bottom */}
-                <div className="absolute inset-x-4 bottom-4 md:inset-x-5 md:bottom-5 z-10">
-                  <div className="rounded-[20px] bg-white/12 backdrop-blur-xl border border-white/20 p-5 md:p-6 flex flex-col gap-3.5 shadow-[0_8px_32px_rgba(0,0,0,0.35)]">
-                    <h2 className="font-display font-bold text-white text-[24px] md:text-[28px] leading-[1.05] tracking-tight">
+                {/* Body */}
+                <div className="p-7 md:p-8 flex flex-col gap-3.5 flex-1">
+                  <div className="flex items-center justify-between gap-3">
+                    <h2 className="font-display font-extrabold uppercase text-brand-gray-900 text-[22px] md:text-[24px] tracking-[0.04em] leading-[1.1] group-hover:text-brand-red transition-colors">
                       {service.title}
                     </h2>
-                    <p className="font-['Inter_Display',sans-serif] text-[14px] leading-[1.55] text-white/85">
-                      {service.lead}
-                    </p>
-
-                    {service.shines && service.shines.length > 0 && (
-                      <ul className="flex flex-col gap-1.5 pt-1">
-                        {service.shines.slice(0, 3).map((item, i) => (
-                          <li
-                            key={i}
-                            className="flex items-start gap-2 font-['Inter_Display',sans-serif] text-[13px] leading-[1.45] text-white/85"
-                          >
-                            <span className="mt-0.5 shrink-0 w-4 h-4 rounded-full bg-brand-red text-white flex items-center justify-center">
-                              <Check className="w-2.5 h-2.5" strokeWidth={3} />
-                            </span>
-                            <span>{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
+                    <ArrowUpRight
+                      className="w-5 h-5 shrink-0 text-brand-gray-400 group-hover:text-brand-red group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all"
+                      strokeWidth={2}
+                    />
                   </div>
+                  <p className="font-['Inter_Display',sans-serif] text-[14px] md:text-[15px] leading-[1.6] text-brand-gray-600">
+                    {service.lead}
+                  </p>
+
+                  {service.shines && service.shines.length > 0 && (
+                    <ul className="flex flex-col gap-1.5 pt-1">
+                      {service.shines.slice(0, 3).map((item, i) => (
+                        <li
+                          key={i}
+                          className="flex items-start gap-2 font-['Inter_Display',sans-serif] text-[13px] md:text-[14px] leading-[1.45] text-brand-gray-600"
+                        >
+                          <span className="mt-0.5 shrink-0 w-4 h-4 rounded-full bg-brand-red text-white flex items-center justify-center">
+                            <Check className="w-2.5 h-2.5" strokeWidth={3} />
+                          </span>
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
                 </div>
-              </article>
+              </Link>
             );
           })}
         </div>

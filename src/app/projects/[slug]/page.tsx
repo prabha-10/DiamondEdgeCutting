@@ -195,12 +195,27 @@ export default async function ProjectDetailPage({
                 <span className="font-['Inter_Display',sans-serif] text-[12px] font-semibold uppercase tracking-[0.18em] text-brand-red">
                   Overview
                 </span>
-                <p className="font-['Inter_Display',sans-serif] font-normal text-[18px] md:text-[20px] leading-[1.6] text-brand-gray-900 w-full whitespace-pre-line">
-                  {project.description ||
+                <div className="flex flex-col gap-4 w-full">
+                  {(
+                    project.description ||
                     `Diamond Edge Cutting was appointed to deliver specialist demolition services for ${project.title}${
                       project.location ? ` in ${project.location}` : ""
-                    }. The project required stringent safety protocols and precision engineering, executed on programme with full authority compliance.`}
-                </p>
+                    }. The project required stringent safety protocols and precision engineering, executed on programme with full authority compliance.`
+                  )
+                    // Split on blank lines into blocks, then collapse single
+                    // mid-sentence newlines so each block reflows to full width.
+                    .split(/\n\s*\n/)
+                    .map((block) => block.replace(/\s*\n\s*/g, " ").trim())
+                    .filter(Boolean)
+                    .map((block, i) => (
+                      <p
+                        key={i}
+                        className="font-['Inter_Display',sans-serif] font-normal text-[18px] md:text-[20px] leading-[1.6] text-brand-gray-900"
+                      >
+                        {block}
+                      </p>
+                    ))}
+                </div>
               </div>
 
               {/* Key highlights */}

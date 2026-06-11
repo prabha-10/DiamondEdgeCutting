@@ -30,7 +30,14 @@ export default async function ProjectsPage() {
         }));
 
   // Show the full catalogue so every category filter returns results.
-  const projects: ProjectListItem[] = resolvedProjects;
+  // Dedupe by slug — guards against duplicate documents in Sanity rendering
+  // the same project card twice.
+  const seenSlugs = new Set<string>();
+  const projects: ProjectListItem[] = resolvedProjects.filter((p) => {
+    if (!p.slug || seenSlugs.has(p.slug)) return false;
+    seenSlugs.add(p.slug);
+    return true;
+  });
 
   // Always expose the six core category filters; append any extra categories
   // that appear in Studio so new ones still get a pill.
