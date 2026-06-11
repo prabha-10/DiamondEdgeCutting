@@ -16,6 +16,7 @@ const clients: Client[] = [
   { name: "Bond Interiors", file: "Bond Interiors.png" },
   { name: "Modon", file: "modon.png" },
   { name: "DMT", file: "dmt.png" },
+  { name: "Dutco Construction", file: "Dutco.jpeg" },
 ];
 
 function ClientLogo({ client }: { client: Client }) {

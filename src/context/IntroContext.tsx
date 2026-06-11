@@ -8,12 +8,12 @@ interface IntroContextType {
 }
 
 const IntroContext = createContext<IntroContextType>({
-  introComplete: false,
+  introComplete: true,
   markIntroComplete: () => {},
 });
 
 export function IntroProvider({ children }: { children: ReactNode }) {
-  const [introComplete, setIntroComplete] = useState(false);
+  const [introComplete, setIntroComplete] = useState(true);
 
   const markIntroComplete = useCallback(() => {
     requestAnimationFrame(() => requestAnimationFrame(() => setIntroComplete(true)));

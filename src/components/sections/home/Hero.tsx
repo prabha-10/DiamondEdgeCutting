@@ -3,7 +3,6 @@
 import React from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/Button";
-import { VideoIntro } from "@/components/ui/VideoIntro";
 import { useIntro } from "@/context/IntroContext";
 
 const slideUp = (delay: number, revealed: boolean): React.CSSProperties => ({
@@ -17,27 +16,26 @@ const stats: Array<{ num: string; label: string }> = [
   { num: "30+", label: "Years in industry" },
   { num: "120+", label: "Skilled team" },
   { num: "G+12", label: "Approved demolition" },
-  { num: "N°1", label: "Robotic fleet in GCC" },
+  { num: "No. 1", label: "Robotic fleet in GCC" },
 ];
 
 export function Hero() {
-  const { introComplete, markIntroComplete } = useIntro();
+  const { introComplete } = useIntro();
 
   return (
-    <>
-      <VideoIntro onComplete={markIntroComplete} />
-
       <section className="relative min-h-[100svh] flex flex-col justify-center overflow-hidden pt-32 pb-20 bg-black">
-        {/* Looping background video */}
-        <video
-          src="/videos/hero.mp4"
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-          style={{ opacity: 0.55 }}
-        />
+        {/* Background image — robotic demolition machine. Portrait crop on
+            mobile, landscape on larger screens; subject sits opposite the text. */}
+        <picture>
+          <source media="(max-width: 767px)" srcSet="/hero/hero-mobile.webp" />
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/hero/hero-desktop.webp"
+            alt=""
+            aria-hidden
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+        </picture>
 
         {/* Gradient overlay for legibility */}
         <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/85 via-black/35 to-black/15" />
@@ -124,6 +122,5 @@ export function Hero() {
           <span className="w-px h-8 bg-gradient-to-b from-white/30 to-transparent" />
         </div>
       </section>
-    </>
   );
 }

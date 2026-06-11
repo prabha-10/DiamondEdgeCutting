@@ -31,7 +31,11 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
           {/* Column 1: About */}
           <div className="flex flex-col gap-6">
-            <Link href="/" className="inline-flex items-center" aria-label="Diamond Edge Cutting — Home">
+            <Link
+              href="/"
+              className="inline-flex items-center justify-center bg-brand-charcoal rounded-2xl px-5 py-4 w-fit"
+              aria-label="Diamond Edge Cutting — Home"
+            >
               <img
                 src="/dec-logo.png"
                 alt="Diamond Edge Cutting"
