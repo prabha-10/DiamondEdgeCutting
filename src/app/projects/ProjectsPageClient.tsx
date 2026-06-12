@@ -53,7 +53,11 @@ export default function ProjectsPageClient({ projects, categories }: Props) {
 
   const filteredProjects = useMemo(() => {
     if (activeCategory === "All") return projects;
-    return projects.filter((p) => p.category === activeCategory);
+    // Tolerate singular/plural drift between tab labels and Sanity category
+    // titles (e.g. the "Hotels" tab must match the "Hotel" category).
+    return projects.filter(
+      (p) => p.category === activeCategory || `${p.category}s` === activeCategory
+    );
   }, [projects, activeCategory]);
 
   return (
