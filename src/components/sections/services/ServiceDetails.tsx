@@ -4,22 +4,14 @@ import { servicesDetails } from "@/data/services";
 import { ArrowUpRight, Check } from "lucide-react";
 
 const serviceImages: Record<string, string> = {
-  "robotic-demolition":
-    "https://images.unsplash.com/photo-1581094288338-2314dddb7ece?w=1200&q=80&auto=format&fit=crop",
-  "controlled-demolition":
-    "https://images.unsplash.com/photo-1711618732376-416cf6af54f6?w=1200&q=80&auto=format&fit=crop",
-  "wire-sawing":
-    "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?w=1200&q=80&auto=format&fit=crop",
-  "wall-sawing":
-    "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1200&q=80&auto=format&fit=crop",
-  "core-drilling":
-    "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1200&q=80&auto=format&fit=crop",
-  "refractory-kiln":
-    "https://images.unsplash.com/photo-1583024011792-b165975b52f5?w=1200&q=80&auto=format&fit=crop",
-  "floor-sawing":
-    "https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?w=1200&q=80&auto=format&fit=crop",
-  "strip-out":
-    "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80&auto=format&fit=crop",
+  "robotic-demolition": "/service-robotic-demolition.jpg",
+  "controlled-demolition": "/service-controlled-demolition.jpg",
+  "wire-sawing": "/service-wire-sawing.jpg",
+  "wall-sawing": "/service-wall-sawing.jpg",
+  "core-drilling": "/service-core-drilling.jpg",
+  "refractory-kiln": "/service-refractory-kiln.jpg",
+  "floor-sawing": "/service-floor-sawing.jpg",
+  "strip-out": "/service-strip-out.jpg",
 };
 
 export function ServiceDetails() {
@@ -29,8 +21,7 @@ export function ServiceDetails() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {servicesDetails.map((service) => {
             const image =
-              serviceImages[service.id] ||
-              "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80&auto=format&fit=crop";
+              serviceImages[service.id] || "/service-controlled-demolition.jpg";
             return (
               <Link
                 key={service.id}
