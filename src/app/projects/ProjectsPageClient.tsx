@@ -45,19 +45,13 @@ type Props = {
 export default function ProjectsPageClient({ projects, categories }: Props) {
   const [activeCategory, setActiveCategory] = useState<string>("All");
 
-  // Fixed filter list — always shows the 6 standard sector tabs whether or
-  // not the project pool contains entries for each one. "All" first.
-  const filterCategories = useMemo(() => {
-    return ["All", "Commercial", "Residential", "Airport", "Hotels", "Industrial", "Infrastructure"];
-  }, []);
+  // Filter tabs come from the server (page.tsx): "All" + the exact Sanity
+  // category titles, so labels always match the data they filter on.
+  const filterCategories = categories;
 
   const filteredProjects = useMemo(() => {
     if (activeCategory === "All") return projects;
-    // Tolerate singular/plural drift between tab labels and Sanity category
-    // titles (e.g. the "Hotels" tab must match the "Hotel" category).
-    return projects.filter(
-      (p) => p.category === activeCategory || `${p.category}s` === activeCategory
-    );
+    return projects.filter((p) => p.category === activeCategory);
   }, [projects, activeCategory]);
 
   return (
