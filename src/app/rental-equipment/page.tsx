@@ -11,42 +11,37 @@ export const metadata: Metadata = {
 const categories = [
   {
     title: "Robotic Demolition Machines",
-    image: "/products_brokk500sp-420x280.jpg",
+    image: "/rental-robotic-demolition.jpeg",
     description:
       "Brokk 500, 400, 300, and 160 alongside Husqvarna DXR series. Remote-operated, emission-free machines built for confined spaces, high-precision structural work, and environments inaccessible to conventional plant.",
   },
   {
     title: "Excavators",
-    image:
-      "https://images.unsplash.com/photo-1711618732376-416cf6af54f6?w=1200&q=80&auto=format&fit=crop",
+    image: "/rental-excavators.jpeg",
     description:
       "13 to 50-tonne excavators for structural demolition, bulk dig, and site clearance across the GCC. Every machine supplied with a trained, site-inducted operator and full safety documentation.",
   },
   {
     title: "Mini Excavators",
-    image:
-      "https://images.unsplash.com/photo-1530124566582-a618bc2615dc?w=1200&q=80&auto=format&fit=crop",
+    image: "/rental-mini-excavators.jpeg",
     description:
       "Compact 1.5 to 6-tonne machines designed for tight access, basement strip-outs, and congested urban sites where larger plant cannot operate safely.",
   },
   {
     title: "Skid Steers",
-    image:
-      "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80&auto=format&fit=crop",
+    image: "/rental-skid-steers.jpeg",
     description:
       "Wheeled and tracked skid steers for debris handling, grading, and site preparation. Fast to mobilise, easy to manoeuvre in restricted yards and below-grade structures.",
   },
   {
     title: "Wheel Loaders",
-    image:
-      "https://images.unsplash.com/photo-1517089596392-fb9a9033e05b?w=1200&q=80&auto=format&fit=crop",
+    image: "/rental-wheel-loaders.jpeg",
     description:
       "Heavy-duty front loaders for bulk material handling, aggregate loading, and spoil removal. Available with a range of bucket configurations to match your programme.",
   },
   {
     title: "Waste Removal",
-    image:
-      "https://images.unsplash.com/photo-1583024011792-b165975b52f5?w=1200&q=80&auto=format&fit=crop",
+    image: "/rental-waste-removal.jpeg",
     description:
       "Roll-on/roll-off skips and tipper lorries for demolition rubble, concrete spoil, and mixed construction waste. Scheduled collections or on-call — sized to your output.",
   },
