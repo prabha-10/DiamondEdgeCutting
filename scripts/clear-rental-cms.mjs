@@ -6,9 +6,9 @@
  * Inquiry documents (customer leads) are KEPT — their equipment references
  * are converted to weak references so they no longer block the deletes.
  *
- * Run with the logged-in CLI user's credentials (the .env.local API token
- * lacks update permission):
- *   npx sanity exec scripts/clear-rental-cms.mjs --with-user-token
+ * Run either way:
+ *   npx sanity exec scripts/clear-rental-cms.mjs --with-user-token  (CLI login)
+ *   node scripts/clear-rental-cms.mjs   (needs Editor token in .env.local)
  *
  * Order:
  *   1. Patch inquiries: equipment[]._weak = true   (lead data untouched)
@@ -17,9 +17,34 @@
  *      resolve because they're removed together)
  */
 
-import { getCliClient } from 'sanity/cli'
+import { createClient } from '@sanity/client'
+import dotenv from 'dotenv'
 
-const client = getCliClient({ apiVersion: '2024-01-01' })
+dotenv.config({ path: '.env.local' })
+
+const projectId =
+  process.env.SANITY_PROJECT_ID ?? process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
+const dataset =
+  process.env.SANITY_DATASET ?? process.env.NEXT_PUBLIC_SANITY_DATASET ?? 'production'
+const token =
+  process.env.SANITY_API_TOKEN ?? process.env.SANITY_WRITE_TOKEN ?? process.env.SANITY_TOKEN
+
+// Prefer the CLI user token when run via `sanity exec --with-user-token`;
+// fall back to the .env.local API token under plain `node`.
+let client = null
+try {
+  const { getCliClient } = await import('sanity/cli')
+  client = getCliClient({ apiVersion: '2024-01-01' })
+} catch {
+  // Not running under `sanity exec`.
+}
+if (!client) {
+  if (!projectId || !token) {
+    console.error('Missing SANITY project id or token in .env.local')
+    process.exit(1)
+  }
+  client = createClient({ projectId, dataset, apiVersion: '2024-01-01', token, useCdn: false })
+}
 
 // 1. Weaken inquiry → equipment references so they don't block deletion.
 const inquiries = await client.fetch(
