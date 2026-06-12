@@ -8,6 +8,10 @@ import { projectsData } from "@/data/projects";
 import { getProjectBySlug, getAllProjectSlugs } from "../../../../sanity/lib/queries";
 import { safeUrlFor, type SanityImage } from "@/lib/sanity-image";
 
+// Re-fetch from Sanity at most once a minute so Studio edits show up quickly
+// without hammering the API. Same policy as the projects listing page.
+export const revalidate = 60;
+
 // Cycle a small set of verified construction/demolition photos when no Sanity image is available.
 const fallbackImagePool = [
   "https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?w=1600&q=80&auto=format&fit=crop",
