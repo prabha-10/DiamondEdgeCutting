@@ -33,13 +33,13 @@ export function Footer() {
           <div className="flex flex-col gap-6">
             <Link
               href="/"
-              className="inline-flex items-center justify-center bg-brand-charcoal rounded-2xl px-5 py-4 w-fit"
+              className="inline-flex items-center justify-center bg-white rounded-2xl px-5 py-4 w-full max-w-xs"
               aria-label="Diamond Edge Cutting — Home"
             >
               <img
                 src="/dec-logo.png"
                 alt="Diamond Edge Cutting"
-                className="h-16 md:h-20 w-auto object-contain"
+                className="h-28 md:h-44 w-auto max-w-full object-contain"
               />
             </Link>
             <p className="text-white/70 text-base leading-relaxed max-w-xs">

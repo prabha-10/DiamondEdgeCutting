@@ -68,7 +68,7 @@ export function Header({ rentalCategories }: { rentalCategories?: { title: strin
             src="/dec-logo.png"
             alt="Diamond Edge Cutting"
             className={cn(
-              "h-16 md:h-20 w-auto object-contain transition-[filter] duration-300",
+              "h-16 md:h-20 w-auto object-contain scale-[1.18] origin-left transition-[filter] duration-300",
               isSolid ? "" : "drop-shadow-[0_2px_10px_rgba(0,0,0,0.45)]"
             )}
           />
