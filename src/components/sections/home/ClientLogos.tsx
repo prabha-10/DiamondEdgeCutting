@@ -34,7 +34,7 @@ function ClientLogo({ client }: { client: Client }) {
 
 export function ClientLogos() {
   return (
-    <section className="py-16 md:py-24 bg-brand-gray-100">
+    <section className="pt-0 pb-16 md:pb-24 bg-brand-gray-100">
       <div className="container mx-auto px-4 md:px-8">
         <div className="flex flex-col gap-3 mb-10 md:mb-14">
           <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-brand-red">

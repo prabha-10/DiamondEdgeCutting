@@ -8,64 +8,69 @@ type Service = {
   description: string;
   href: string;
   image: string;
+  /** Tailwind object-position class when the photo's subject isn't centred. */
+  imagePosition?: string;
 };
 
+// Titles, order, and anchor ids mirror src/data/services.ts (the detail page)
+// so the two sections stay in sync. Source of truth: Website Structure doc.
 const services: Service[] = [
   {
     num: "01",
-    title: "Controlled Demolition",
-    description: "Large machinery and engineered sequencing for safe, predictable structural takedowns.",
-    href: "/demolition-services#controlled-demolition",
-    image: "/service-controlled-demolition.jpg",
-  },
-  {
-    num: "02",
     title: "Robotic Demolition",
     description: "GCC's largest Brokk fleet for confined, high-precision, and emission-controlled environments.",
     href: "/demolition-services#robotic-demolition",
     image: "/service-robotic-demolition.jpg",
   },
   {
+    num: "02",
+    title: "Controlled & Structural Demolition",
+    description: "Large machinery and engineered sequencing for safe, predictable structural takedowns.",
+    href: "/demolition-services#controlled-demolition",
+    image: "/service-controlled-demolition.jpg",
+  },
+  {
     num: "03",
-    title: "Wire & Track Sawing",
-    description: "Diamond wire and track saws for bridges, dams, and heavily reinforced concrete.",
+    title: "Wire Sawing",
+    description: "Diamond wire saws for bridges, dams, and heavily reinforced concrete with no depth limit.",
     href: "/demolition-services#wire-sawing",
     image: "/service-wire-sawing.jpg",
   },
   {
     num: "04",
-    title: "Core Drilling & Strip Out",
-    description: "Heavy core drilling and selective demolition for renovations, retrofits, and MEP penetrations.",
+    title: "Wall Sawing & Track Sawing",
+    description: "Track-mounted wall saws for fast, clean openings in reinforced concrete and masonry.",
+    href: "/demolition-services#wall-sawing",
+    image: "/service-wall-sawing.jpg",
+    imagePosition: "object-bottom",
+  },
+  {
+    num: "05",
+    title: "Core Drilling",
+    description: "Accurate holes from 14mm to 600mm, up to 24m deep, with no dust or vibration.",
     href: "/demolition-services#core-drilling",
     image: "/service-core-drilling.jpg",
   },
   {
-    num: "05",
-    title: "Tunnelling, Refinery & Kiln Works",
-    description: "Specialist demolition inside active refineries, kilns, and confined tunnelling environments.",
-    href: "/demolition-services#tunnelling",
+    num: "06",
+    title: "Refractory, Kiln & Tunnelling",
+    description: "Confined-space robotic demolition for refractory linings, kilns, and tunnel cross-passages.",
+    href: "/demolition-services#refractory-kiln",
     image: "/service-refractory-kiln.jpg",
   },
   {
-    num: "06",
-    title: "Soft Demolition & Enabling Works",
-    description: "Controlled strip-out, non-structural removal, and site preparation ahead of main works.",
-    href: "/demolition-services#soft-demolition",
-    image: "/service-strip-out.jpg",
-  },
-  {
     num: "07",
-    title: "Floor Sawing & Scanning",
-    description: "Flat-slab and slab-on-grade cutting with GPR scanning for MEP and structural penetrations.",
+    title: "Floor & Road / Apron Sawing & Sealing",
+    description: "Petrol, diesel, and electric saws for expansion joints, trench lines, and slab openings.",
     href: "/demolition-services#floor-sawing",
     image: "/service-floor-sawing.jpg",
   },
   {
     num: "08",
-    title: "Wall & Concrete Cutting",
-    description: "Precision wall sawing and hand sawing for openings, pockets, and structural modifications.",
-    href: "/demolition-services#wall-cutting",
-    image: "/service-wall-sawing.jpg",
+    title: "Soft Demolition & Strip Out (Shell & Core)",
+    description: "Whole or selective strip-out back to shell and core for refurbishments and change-of-use.",
+    href: "/demolition-services#strip-out",
+    image: "/service-strip-out.jpg",
   },
 ];
 
@@ -89,7 +94,7 @@ function ServiceCard({ service }: { service: Service }) {
         <img
           src={service.image}
           alt={service.title}
-          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          className={`absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 ${service.imagePosition ?? ""}`}
         />
       </div>
 

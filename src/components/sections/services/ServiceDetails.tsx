@@ -14,6 +14,11 @@ const serviceImages: Record<string, string> = {
   "strip-out": "/service-strip-out.jpg",
 };
 
+// Object-position overrides for photos whose subject isn't centred.
+const serviceImagePositions: Record<string, string> = {
+  "wall-sawing": "object-bottom",
+};
+
 export function ServiceDetails() {
   return (
     <section className="pt-0 pb-16 md:pb-24 bg-white">
@@ -36,7 +41,7 @@ export function ServiceDetails() {
                   <img
                     src={image}
                     alt={service.title}
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    className={`absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 ${serviceImagePositions[service.id] ?? ""}`}
                   />
                 </div>
 
