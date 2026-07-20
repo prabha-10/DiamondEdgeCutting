@@ -14,7 +14,15 @@ export const metadata: Metadata = {
 export const revalidate = 60;
 
 export default async function ProjectsPage() {
-  const sanityProjects = (await getAllProjects()) as ProjectListItem[] | null;
+  // Guarded for the same reason as ProjectsTeaser: a Sanity error must degrade
+  // to the local catalogue, not abort the build.
+  let sanityProjects: ProjectListItem[] | null = null;
+  try {
+    sanityProjects = (await getAllProjects()) as ProjectListItem[] | null;
+  } catch (error) {
+    const msg = error instanceof Error ? error.message : String(error);
+    console.warn(`[Sanity] projects fetch failed (${msg.slice(0, 120)}); using local fallback.`);
+  }
 
   const resolvedProjects: ProjectListItem[] =
     sanityProjects && sanityProjects.length > 0

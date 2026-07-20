@@ -17,7 +17,17 @@ type SanityProject = {
 };
 
 export async function ProjectsTeaser() {
-  const featured = (await getFeaturedProjects()) as SanityProject[];
+  // Never let a Sanity outage or a stale token fail the build — an unguarded
+  // throw here aborts prerendering of the whole homepage.
+  let featured: SanityProject[] = [];
+  try {
+    featured = ((await getFeaturedProjects()) ?? []) as SanityProject[];
+  } catch (error) {
+    const msg = error instanceof Error ? error.message : String(error);
+    console.warn(
+      `[Sanity] featured projects fetch failed (${msg.slice(0, 120)}); using local fallback.`,
+    );
+  }
 
   // Sanity drives the selection via the "Featured on Homepage" toggle. When
   // Sanity isn't configured (local dev without env), fall back to the first 6
