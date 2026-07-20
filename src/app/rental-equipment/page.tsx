@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import { getRentalCategoryContent } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Demolition Equipment Rental Dubai | Diamond Edge Cutting",
@@ -8,46 +9,13 @@ export const metadata: Metadata = {
     "Rent specialist demolition equipment across Dubai and the UAE. Brokk robotic machines, excavators, mini excavators, skid steers, wheel loaders, waste removal. Operators included.",
 };
 
-const categories = [
-  {
-    title: "Robotic Demolition Machines",
-    image: "/rental-robotic-demolition.jpeg",
-    description:
-      "Brokk 500, 400, 300, and 160 alongside Husqvarna DXR series. Remote-operated, emission-free machines built for confined spaces, high-precision structural work, and environments inaccessible to conventional plant.",
-  },
-  {
-    title: "Excavators",
-    image: "/rental-excavators.jpeg",
-    description:
-      "13 to 50-tonne excavators for structural demolition, bulk dig, and site clearance across the GCC. Every machine supplied with a trained, site-inducted operator and full safety documentation.",
-  },
-  {
-    title: "Mini Excavators",
-    image: "/rental-mini-excavators.jpeg",
-    description:
-      "Compact 1.5 to 6-tonne machines designed for tight access, basement strip-outs, and congested urban sites where larger plant cannot operate safely.",
-  },
-  {
-    title: "Skid Steers",
-    image: "/rental-skid-steers.jpeg",
-    description:
-      "Wheeled and tracked skid steers for debris handling, grading, and site preparation. Fast to mobilise, easy to manoeuvre in restricted yards and below-grade structures.",
-  },
-  {
-    title: "Wheel Loaders",
-    image: "/rental-wheel-loaders.jpeg",
-    description:
-      "Heavy-duty front loaders for bulk material handling, aggregate loading, and spoil removal. Available with a range of bucket configurations to match your programme.",
-  },
-  {
-    title: "Waste Removal",
-    image: "/rental-waste-removal.jpeg",
-    description:
-      "Roll-on/roll-off skips and tipper lorries for demolition rubble, concrete spoil, and mixed construction waste. Scheduled collections or on-call — sized to your output.",
-  },
-];
+// Re-fetch from Sanity at most once a minute so Studio edits show up quickly
+// without hammering the API. Same policy as /projects.
+export const revalidate = 60;
 
-export default function RentalEquipmentPage() {
+export default async function RentalEquipmentPage() {
+  const categories = await getRentalCategoryContent();
+
   return (
     <>
       {/* Hero */}
@@ -88,15 +56,15 @@ export default function RentalEquipmentPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
             {categories.map((cat) => (
               <Link
-                key={cat.title}
-                href="/contact?inquiry=Equipment+Rental"
+                key={cat.id}
+                href={cat.href}
                 className="group bg-white rounded-[20px] overflow-hidden flex flex-col shadow-[0_2px_16px_rgba(0,0,0,0.07)] hover:shadow-[0_8px_32px_rgba(0,0,0,0.13)] hover:-translate-y-1 transition-all duration-300"
               >
                 {/* Image */}
                 <div className="relative w-full aspect-[16/10] overflow-hidden bg-brand-gray-100">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src={cat.image}
+                    src={cat.imageUrl}
                     alt={cat.title}
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />

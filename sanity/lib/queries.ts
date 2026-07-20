@@ -199,6 +199,39 @@ const ALL_TEAM_MEMBERS_QUERY = `*[_type == "teamMember" && (featured == true || 
   image
 }`
 
+// ─── Demolition service queries ─────────────────────────────────────────────
+
+// Drives the /demolition-services card grid, the homepage services grid, and
+// the Service JSON-LD. Ordered so both surfaces agree; docs with no `order`
+// sort last rather than jumping to the front.
+const ALL_SERVICES_QUERY = `*[_type == "service"] | order(coalesce(order, 999) asc, title asc) {
+  _id,
+  title,
+  "slug": slug.current,
+  image,
+  shortDescription,
+  description,
+  keyPoints,
+  equipment,
+  ctaText,
+  ctaLink,
+  crossSellText,
+  crossSellLink,
+  order
+}`
+
+// ─── Rental category card queries ───────────────────────────────────────────
+
+const ALL_RENTAL_CATEGORY_CARDS_QUERY = `*[_type == "rentalCategory"] | order(coalesce(order, 999) asc, title asc) {
+  _id,
+  title,
+  "slug": slug.current,
+  image,
+  description,
+  ctaLink,
+  order
+}`
+
 // ─── Helpers (short-circuit when Sanity isn't configured) ───────────────────
 
 export async function getAllRentalCategories() {
@@ -280,4 +313,14 @@ export async function getAllProjectSlugs() {
 export async function getAllTeamMembers() {
   if (!sanityConfigured) return []
   return sanityClient.fetch(ALL_TEAM_MEMBERS_QUERY)
+}
+
+export async function getAllServices() {
+  if (!sanityConfigured) return []
+  return sanityClient.fetch(ALL_SERVICES_QUERY)
+}
+
+export async function getAllRentalCategoryCards() {
+  if (!sanityConfigured) return []
+  return sanityClient.fetch(ALL_RENTAL_CATEGORY_CARDS_QUERY)
 }

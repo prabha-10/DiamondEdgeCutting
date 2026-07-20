@@ -1,18 +1,18 @@
 import React from "react";
 import Script from "next/script";
-import { servicesDetails } from "@/data/services";
+import type { ServiceContent } from "@/lib/content";
 
-export function ServiceSchema() {
+export function ServiceSchema({ services }: { services: ServiceContent[] }) {
   const schema = {
     "@context": "https://schema.org",
-    "@graph": servicesDetails.map((service) => ({
+    "@graph": services.map((service) => ({
       "@type": "Service",
       "@id": `https://diamondedgecutting.com/demolition-services#${service.id}`,
       "name": service.title,
       "provider": {
         "@id": "https://diamondedgecutting.com/#organization"
       },
-      "description": service.lead,
+      "description": service.description,
       "url": `https://diamondedgecutting.com/demolition-services#${service.id}`
     }))
   };

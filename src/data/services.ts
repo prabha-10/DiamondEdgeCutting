@@ -1,7 +1,29 @@
-export const servicesDetails = [
+// Local fallback for the `service` documents in Sanity. Rendered verbatim when
+// Sanity is unconfigured or has no service docs, so the site never goes blank.
+// Field names mirror sanity/schemas/service.ts — keep the two in step.
+export type ServiceDetail = {
+  id: string;
+  title: string;
+  image: string;
+  /** Tailwind object-position class when the photo's subject isn't centred. */
+  imagePosition?: string;
+  /** Homepage card copy — one line. */
+  shortDescription: string;
+  /** Services page card copy + the Service JSON-LD description. */
+  lead: string;
+  shines?: string[];
+  equipment?: string;
+  cta: string;
+  ctaLink: string;
+  crossSell?: { text: string; link: string };
+};
+
+export const servicesDetails: ServiceDetail[] = [
   {
     id: "robotic-demolition",
     title: "Robotic Demolition",
+    image: "/service-robotic-demolition.jpg",
+    shortDescription: "GCC's largest Brokk fleet for confined, high-precision, and emission-controlled environments.",
     lead: "DEC operates the largest robotic demolition fleet in the GCC. Trained operators perform demolition away from the workface with total control of high-risk environments. Electric machines make our robotic fleet ideal where noise and emissions are constraints, including airports, malls, and occupied buildings.",
     shines: [
       "Confined spaces and partial structures",
@@ -17,6 +39,8 @@ export const servicesDetails = [
   {
     id: "controlled-demolition",
     title: "Controlled & Structural Demolition",
+    image: "/service-controlled-demolition.jpg",
+    shortDescription: "Large machinery and engineered sequencing for safe, predictable structural takedowns.",
     lead: "Major demolition of concrete and steel structures using large machinery, engineered sequencing, and rigorous safety controls. We deliver high-rise buildings, chimney towers, hotels, bridges, and infrastructure to ground, on programme, with full authority compliance.",
     shines: [
       "High-rise tower demolition",
@@ -33,6 +57,8 @@ export const servicesDetails = [
   {
     id: "wire-sawing",
     title: "Wire Sawing",
+    image: "/service-wire-sawing.jpg",
+    shortDescription: "Diamond wire saws for bridges, dams, and heavily reinforced concrete with no depth limit.",
     lead: "Environmentally friendly cutting solution with minimal noise and air pollution and no depth limit. We use wire sawing where access, depth, or environmental sensitivity rule out conventional methods.",
     shines: [
       "Bridge sections, large beams, columns",
@@ -46,6 +72,9 @@ export const servicesDetails = [
   {
     id: "wall-sawing",
     title: "Wall Sawing & Track Sawing",
+    image: "/service-wall-sawing.jpg",
+    imagePosition: "object-bottom",
+    shortDescription: "Track-mounted wall saws for fast, clean openings in reinforced concrete and masonry.",
     lead: "Track-mounted wall saws cut fast, clean openings in reinforced concrete, brick, block, and masonry. No dust, no vibration, smooth flush cuts to existing structures.",
     shines: [
       "Door and window openings in existing structures",
@@ -58,6 +87,8 @@ export const servicesDetails = [
   {
     id: "core-drilling",
     title: "Core Drilling",
+    image: "/service-core-drilling.jpg",
+    shortDescription: "Accurate holes from 14mm to 600mm, up to 24m deep, with no dust or vibration.",
     lead: "Electric, hydraulic, or pneumatic drill rigs deliver accurate holes with no dust or vibration. Holes from 14mm to 600mm diameter, up to 24 metres deep, vertical, horizontal, or angled. Custom sizes available.",
     shines: [
       "Service holes for pipes, conduits, and cables",
@@ -71,6 +102,8 @@ export const servicesDetails = [
   {
     id: "refractory-kiln",
     title: "Refractory, Kiln & Tunnelling",
+    image: "/service-refractory-kiln.jpg",
+    shortDescription: "Confined-space robotic demolition for refractory linings, kilns, and tunnel cross-passages.",
     lead: "Specialist confined-space robotic demolition for industrial assets across the GCC. We are mandated for refractory work at cement plants, steel plants, and aluminium plants, and execute underground tunnelling cross-passages with the same robotic fleet.",
     shines: [
       "Refractory linings removal in pelletiser plants, cement kilns, steel furnaces, aluminium plants",
@@ -84,6 +117,8 @@ export const servicesDetails = [
   {
     id: "floor-sawing",
     title: "Floor & Road / Apron Sawing & Sealing",
+    image: "/service-floor-sawing.jpg",
+    shortDescription: "Petrol, diesel, and electric saws for expansion joints, trench lines, and slab openings.",
     lead: "Petrol and diesel saws for outdoor cutting, electric floor saws for indoor and sensitive areas. Water-cooled blades. Used for expansion joints, trench excavation break lines, and large openings in floor slabs across roads, runways, bridges, and piers.",
     cta: "Discuss Your Floor Sawing Project",
     ctaLink: "/contact"
@@ -91,6 +126,8 @@ export const servicesDetails = [
   {
     id: "strip-out",
     title: "Soft Demolition & Strip Out (Shell & Core)",
+    image: "/service-strip-out.jpg",
+    shortDescription: "Whole or selective strip-out back to shell and core for refurbishments and change-of-use.",
     lead: "Whole-package strip-out back to shell and core, or selective strip per requirement. Applies to refurbishments, design changes, and change-of-use across hotels, airports, malls, residential, and commercial assets. Eco-friendly methodology that maximises recyclable salvage.",
     shines: [
       "Hotel and mall refurbishment",
