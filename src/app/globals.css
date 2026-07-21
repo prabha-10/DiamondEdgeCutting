@@ -55,6 +55,27 @@ body {
   animation-play-state: paused;
 }
 
+/* Soft fade at the inner edges of a contained marquee, so cards enter and
+ * leave gently at the container's padding boundary rather than being hard-cut.
+ * The track stays clipped inside the page container — it never runs to the
+ * screen edge. */
+.marquee-fade {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 56px,
+    #000 calc(100% - 56px),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0,
+    #000 56px,
+    #000 calc(100% - 56px),
+    transparent 100%
+  );
+}
+
 .cta-squircle {
   -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M 0,50 C 0,16.5 16.5,0 50,0 C 83.5,0 100,16.5 100,50 C 100,83.5 83.5,100 50,100 C 16.5,100 0,83.5 0,50 Z'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
   mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cpath fill='black' d='M 0,50 C 0,16.5 16.5,0 50,0 C 83.5,0 100,16.5 100,50 C 100,83.5 83.5,100 50,100 C 16.5,100 0,83.5 0,50 Z'/%3E%3C/svg%3E") center / 100% 100% no-repeat;

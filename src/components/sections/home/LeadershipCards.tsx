@@ -12,9 +12,12 @@ function initialsOf(name: string) {
   return name.split(" ").map((p) => p[0]).join("").slice(0, 2);
 }
 
-function Card({ member }: { member: TeamMember }) {
+function Card({ member, ariaHidden }: { member: TeamMember; ariaHidden?: boolean }) {
   return (
-    <article className="bg-brand-gray-100 border-t-2 border-brand-red p-6 flex flex-col gap-4 group">
+    <article
+      aria-hidden={ariaHidden}
+      className="w-[240px] md:w-[260px] shrink-0 bg-brand-gray-100 border-t-2 border-brand-red p-6 flex flex-col gap-4 group"
+    >
       {/* Compact circular avatar — image or initials */}
       <div className="relative w-16 h-16 rounded-full overflow-hidden bg-brand-red/10 flex items-center justify-center shrink-0">
         {member.image ? (
@@ -46,10 +49,25 @@ function Card({ member }: { member: TeamMember }) {
 
 export function LeadershipCards({ team }: { team: TeamMember[] }) {
   return (
-    <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-5">
-      {team.map((member) => (
-        <Card key={member.name} member={member} />
-      ))}
+    // Clipped to the page container (this lives inside `container … px-4 md:px-8`),
+    // so the track never runs to the screen edge. Reduced-motion users get a
+    // normal horizontal scroll instead of the animation.
+    <div className="marquee-fade overflow-hidden motion-reduce:overflow-x-auto motion-reduce:[mask-image:none]">
+      <ul className="flex w-max gap-4 md:gap-5 py-1 animate-marquee motion-reduce:animate-none">
+        {/* Real cards */}
+        {team.map((member) => (
+          <li key={`a-${member.name}`}>
+            <Card member={member} />
+          </li>
+        ))}
+        {/* Seamless-loop duplicate — hidden from assistive tech and from
+            reduced-motion users (who scroll the real set manually). */}
+        {team.map((member) => (
+          <li key={`b-${member.name}`} className="motion-reduce:hidden">
+            <Card member={member} ariaHidden />
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

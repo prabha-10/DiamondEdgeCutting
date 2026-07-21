@@ -48,6 +48,12 @@ const fallbackTeam: TeamMember[] = [
     years: "18+ years · construction commercial",
   },
   {
+    name: "Jithesh Vannadil",
+    role: "Estimation Manager",
+    bio: "Leads DEC's estimation function, translating tender documents and site conditions into accurate, competitive bids. Jithesh brings disciplined quantification and cost modelling across demolition and specialist cutting packages.",
+    years: "15+ years · estimation & cost planning",
+  },
+  {
     name: "Laxmikant Prajapat",
     role: "Finance Manager",
     bio: "Manages the company's financial operations, reporting, and statutory compliance across UAE entities. Laxmikant brings disciplined cash management, audit readiness, and finance partnering to project teams across the business.",
