@@ -1,6 +1,7 @@
 export const projectCategories = ["All", "Commercial", "Residential", "Airport", "Hotel", "Industrial", "Infrastructure"];
 
 export const projectsData = [
+  { slug: "umm-al-sheif-dubai-2025", title: "Umm Al Sheif Villa", category: "Residential", location: "Dubai, UAE", scope: "Structural demolition and full site clearance of an existing villa development, including MEP strip-out and substructure removal", year: "2025", images: ["placeholder1", "placeholder2", "placeholder3", "placeholder4"] },
   { slug: "meena-plaza", title: "Meena Plaza", category: "Commercial", location: "Abu Dhabi", scope: "Controlled demolition, wrapping, protection", year: "2020", images: ["placeholder1", "placeholder2", "placeholder3", "placeholder4"] },
   { slug: "vale-oman-pelletiser", title: "Vale Oman Pelletiser Plant", category: "Industrial", location: "Sohar, Oman", scope: "Refractory linings removal", year: "2019", images: ["placeholder1", "placeholder2", "placeholder3", "placeholder4"] },
   { slug: "al-manhal-palace", title: "Al Manhal Palace", category: "Commercial", location: "Abu Dhabi", scope: "Controlled demolition (crunching), debris disposal", year: "2018", images: ["placeholder1", "placeholder2", "placeholder3", "placeholder4"] },
