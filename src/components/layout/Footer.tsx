@@ -126,7 +126,7 @@ export async function Footer() {
 
         {/* Bottom Row */}
         <div className="pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-6 text-sm text-white/70 font-medium">
-          <p>&copy; {new Date().getFullYear()} Diamond Edge Cutting. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Diamond Edge Cutting LLC. All rights reserved.</p>
           <div className="flex items-center gap-8">
             <Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link>
             <Link href="/terms" className="hover:text-white transition-colors">Terms</Link>

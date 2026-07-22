@@ -26,7 +26,7 @@ export default function ContactPage() {
                 Got a project in mind? Let&apos;s plan it together.
               </h1>
               <span className="lg:col-span-3 font-['Inter_Display',sans-serif] text-[14px] text-brand-gray-500 lg:text-right lg:pb-4">
-                Replies within 24 hours · Mon – Fri, 8:00 – 17:00 GST
+                Replies within 24 hours · Mon – Fri, 8:00 AM – 5:00 PM GST
               </span>
             </div>
           </div>
@@ -63,7 +63,7 @@ export default function ContactPage() {
               </span>
               <div className="flex flex-col">
                 <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-brand-gray-400 mb-0.5">Hours</span>
-                <span className="font-bold text-brand-gray-900 text-[15px]">Mon – Fri, 8:00 – 17:00 · Sat, 9:00 – 14:00</span>
+                <span className="font-bold text-brand-gray-900 text-[15px]">Mon – Fri, 8:00 AM – 5:00 PM · Sat, 9:00 AM – 2:00 PM</span>
               </div>
             </div>
           </div>
