@@ -47,12 +47,18 @@ export default async function ProjectsPage() {
     return true;
   });
 
-  // Always expose the six core category filters; append any extra categories
-  // that appear in Studio so new ones still get a pill.
-  const categoryOrder = ["Commercial", "Residential", "Airport", "Hotel", "Industrial", "Infrastructure"];
+  // Category pills are derived from the projects themselves — whose category
+  // titles come from the CMS projectCategory docs — so the filters always match
+  // what's actually in Sanity. Only categories that have at least one project
+  // are shown (no phantom pills like "Hotel", which isn't a CMS category).
+  // `categoryOrder` just fixes the display order to match the CMS `order` field;
+  // any category not listed here is appended alphabetically so new CMS
+  // categories still surface without a code change.
+  const categoryOrder = ["Commercial", "Residential", "Industrial", "Airport", "Hospitality", "Infrastructure"];
   const presentCategories = Array.from(new Set(projects.map((p) => p.category).filter(Boolean)));
-  const extraCategories = presentCategories.filter((c) => !categoryOrder.includes(c));
-  const categories = ["All", ...categoryOrder, ...extraCategories];
+  const ordered = categoryOrder.filter((c) => presentCategories.includes(c));
+  const extras = presentCategories.filter((c) => !categoryOrder.includes(c)).sort();
+  const categories = ["All", ...ordered, ...extras];
 
   return (
     <>

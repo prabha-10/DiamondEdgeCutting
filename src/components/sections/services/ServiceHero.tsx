@@ -52,10 +52,10 @@ export function ServiceHero() {
               key={stat.label}
               className="bg-white/95 backdrop-blur-sm rounded-[16px] p-5 flex flex-col gap-2"
             >
-              <span className="font-sans font-medium text-brand-gray-900 text-[36px] md:text-[44px] leading-none tracking-tight">
+              <span className="font-display font-extrabold text-brand-gray-900 text-[30px] sm:text-[34px] md:text-[44px] leading-none tracking-tight tabular-nums">
                 {stat.value}
               </span>
-              <span className="font-['Inter_Display',sans-serif] text-[13px] text-brand-gray-500">
+              <span className="font-display font-extrabold text-[10px] md:text-[11px] uppercase tracking-[0.1em] md:tracking-[0.16em] text-brand-gray-500 text-balance">
                 {stat.label}
               </span>
             </div>

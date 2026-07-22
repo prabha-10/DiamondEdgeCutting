@@ -1,4 +1,6 @@
-export const projectCategories = ["All", "Commercial", "Residential", "Airport", "Hotel", "Industrial", "Infrastructure"];
+// Mirrors the CMS projectCategory docs (source of truth). "Hotel" is NOT a CMS
+// category — hotel/hospitality work is filed under "Hospitality".
+export const projectCategories = ["All", "Commercial", "Residential", "Industrial", "Airport", "Hospitality", "Infrastructure"];
 
 export const projectsData = [
   { slug: "umm-al-sheif-dubai-2025", title: "Umm Al Sheif Villa", category: "Residential", location: "Dubai, UAE", scope: "Structural demolition and full site clearance of an existing villa development, including MEP strip-out and substructure removal", year: "2025", images: ["placeholder1", "placeholder2", "placeholder3", "placeholder4"] },
@@ -8,7 +10,7 @@ export const projectsData = [
   { slug: "dwc-al-maktoum-airport", title: "DWC Al Maktoum International Airport", category: "Airport", location: "Dubai", scope: "Façade demolition", year: "2019", images: ["placeholder1", "placeholder2", "placeholder3", "placeholder4"] },
   { slug: "cleveland-clinic", title: "Cleveland Clinic", category: "Commercial", location: "Abu Dhabi", scope: "Controlled demolition (cut & carve), debris disposal", year: "2018", images: ["placeholder1", "placeholder2", "placeholder3", "placeholder4"] },
   { slug: "marsa-al-arab", title: "Marsa Al Arab", category: "Commercial", location: "Dubai", scope: "3600 Bar, Verdana Beach building, breakwater + slipway", year: "2021", images: ["placeholder1", "placeholder2", "placeholder3", "placeholder4"] },
-  { slug: "jumeirah-beach-hotel", title: "Jumeirah Beach Hotel", category: "Hotel", location: "Dubai", scope: "Strip out + debris disposal", year: "2018", images: ["placeholder1", "placeholder2", "placeholder3", "placeholder4"] },
+  { slug: "jumeirah-beach-hotel", title: "Jumeirah Beach Hotel", category: "Hospitality", location: "Dubai", scope: "Strip out + debris disposal", year: "2018", images: ["placeholder1", "placeholder2", "placeholder3", "placeholder4"] },
   { slug: "icd-brookfield", title: "ICD Brookfield", category: "Commercial", location: "Dubai", scope: "Robotic demolition", year: "2019", images: ["placeholder1", "placeholder2", "placeholder3", "placeholder4"] },
   { slug: "dubai-mall-fashion-dome", title: "Dubai Mall Fashion Dome", category: "Commercial", location: "Dubai", scope: "Return shop units to shell & core (9,692m²) + debris disposal", year: "2017", images: ["placeholder1", "placeholder2", "placeholder3", "placeholder4"] },
   { slug: "one-zaabeel", title: "One Za'abeel", category: "Commercial", location: "Dubai", scope: "Wire sawing and controlled demolition of Waler Beams", year: "2020", images: ["placeholder1", "placeholder2", "placeholder3", "placeholder4"] },
