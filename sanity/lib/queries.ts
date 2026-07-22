@@ -145,6 +145,8 @@ const ALL_PROJECTS_QUERY = `*[_type == "project"] | order(order asc, year desc) 
   "category": category->title,
   location,
   year,
+  startDate,
+  endDate,
   scopeSummary,
   description,
   keyHighlights,
@@ -165,6 +167,8 @@ const FEATURED_PROJECTS_QUERY = `*[_type == "project" && featured == true] | ord
   "category": category->title,
   location,
   year,
+  startDate,
+  endDate,
   scopeSummary,
   heroImage
 }`
@@ -176,6 +180,8 @@ const PROJECT_BY_SLUG_QUERY = `*[_type == "project" && slug.current == $slug][0]
   "category": category->title,
   location,
   year,
+  startDate,
+  endDate,
   scopeSummary,
   description,
   keyHighlights,

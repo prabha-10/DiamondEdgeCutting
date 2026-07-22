@@ -4,6 +4,7 @@ import React, { useState, useMemo } from "react";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { safeUrlFor, type SanityImage } from "@/lib/sanity-image";
+import { formatProjectPeriod } from "@/lib/projectPeriod";
 
 export type ProjectListItem = {
   slug: string;
@@ -11,6 +12,9 @@ export type ProjectListItem = {
   category: string;
   location: string;
   year?: number | string;
+  /** CMS start/end month-year range (falls back to `year` for display). */
+  startDate?: string;
+  endDate?: string;
   /** Local-fallback shape (from src/data/projects.ts). */
   scope?: string;
   /** Sanity shape. */
@@ -132,7 +136,7 @@ export default function ProjectsPageClient({ projects, categories }: Props) {
                     <div className="grid grid-rows-[0fr] opacity-0 group-hover:grid-rows-[1fr] group-hover:opacity-100 transition-[grid-template-rows,opacity] duration-500 ease-out">
                       <div className="overflow-hidden">
                         <div className="mt-3 pt-3 border-t border-white/25 flex flex-col gap-1 font-mono text-[12px] uppercase tracking-[0.06em] text-white/80">
-                          {project.year && <span>{project.year}</span>}
+                          {formatProjectPeriod(project) && <span>{formatProjectPeriod(project)}</span>}
                           {scopeText && <span>{scopeText}</span>}
                         </div>
                       </div>

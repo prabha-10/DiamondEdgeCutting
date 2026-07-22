@@ -4,6 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 import { getFeaturedProjects } from "../../../../sanity/lib/queries";
 import { safeUrlFor, type SanityImage } from "@/lib/sanity-image";
 import { projectsData } from "@/data/projects";
+import { formatProjectPeriod } from "@/lib/projectPeriod";
 
 type SanityProject = {
   _id: string;
@@ -12,6 +13,8 @@ type SanityProject = {
   category?: string;
   location?: string;
   year?: string | number;
+  startDate?: string;
+  endDate?: string;
   scopeSummary?: string;
   heroImage?: SanityImage;
 };
@@ -39,7 +42,7 @@ export async function ProjectsTeaser() {
           title: p.title,
           category: p.category ?? "",
           location: p.location ?? "",
-          year: String(p.year ?? ""),
+          period: formatProjectPeriod(p),
           scope: p.scopeSummary ?? "",
           heroImage: p.heroImage ?? null,
         }))
@@ -48,7 +51,7 @@ export async function ProjectsTeaser() {
           title: p.title,
           category: p.category ?? "",
           location: p.location ?? "",
-          year: String(p.year ?? ""),
+          period: formatProjectPeriod({ year: p.year }),
           scope: p.scope ?? "",
           heroImage: null as SanityImage | null,
         }));
@@ -115,8 +118,8 @@ export async function ProjectsTeaser() {
                     </h3>
                     <span className="font-mono text-[10.5px] uppercase tracking-[0.18em] text-brand-gray-500">
                       {project.location}
-                      {project.location && project.year ? " · " : ""}
-                      {project.year}
+                      {project.location && project.period ? " · " : ""}
+                      {project.period}
                     </span>
                   </div>
                   <ArrowUpRight

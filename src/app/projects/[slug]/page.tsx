@@ -7,6 +7,7 @@ import { HeroGallery } from "./HeroGallery";
 import { projectsData } from "@/data/projects";
 import { getProjectBySlug, getAllProjectSlugs } from "../../../../sanity/lib/queries";
 import { safeUrlFor, type SanityImage } from "@/lib/sanity-image";
+import { formatProjectPeriod } from "@/lib/projectPeriod";
 
 // Re-fetch from Sanity at most once a minute so Studio edits show up quickly
 // without hammering the API. Same policy as the projects listing page.
@@ -36,6 +37,8 @@ type NormalisedProject = {
   category: string;
   location: string;
   year?: string | number;
+  startDate?: string;
+  endDate?: string;
   scopeSummary: string;
   description?: string;
   keyHighlights?: string[];
@@ -62,6 +65,8 @@ async function loadProject(slug: string): Promise<NormalisedProject | null> {
         category: doc.category || "Project",
         location: doc.location || "",
         year: doc.year,
+        startDate: doc.startDate,
+        endDate: doc.endDate,
         scopeSummary: doc.scopeSummary || "",
         description: doc.description,
         keyHighlights: doc.keyHighlights,
@@ -185,7 +190,7 @@ export default async function ProjectDetailPage({
             scopeSummary={project.scopeSummary}
             category={project.category}
             location={project.location}
-            year={project.year}
+            period={formatProjectPeriod(project)}
           />
         </div>
       </section>

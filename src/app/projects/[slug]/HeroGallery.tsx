@@ -9,7 +9,8 @@ type Props = {
   scopeSummary?: string;
   category?: string;
   location?: string;
-  year?: string | number;
+  /** Pre-formatted timeline label, e.g. "Mar 2023 – Jun 2024" or "2020". */
+  period?: string;
 };
 
 export function HeroGallery({
@@ -19,7 +20,7 @@ export function HeroGallery({
   scopeSummary,
   category,
   location,
-  year,
+  period,
 }: Props) {
   const allImages = [heroImageUrl, ...galleryUrls];
   const [current, setCurrent] = useState(0);
@@ -34,7 +35,7 @@ export function HeroGallery({
   const info = [
     { label: "Sector", value: category },
     { label: "Location", value: location || "—" },
-    ...(year ? [{ label: "Year", value: String(year) }] : []),
+    ...(period ? [{ label: "Timeline", value: period }] : []),
   ].filter((row) => row.value);
 
   // Small thumbnail strip — sits in the right column beneath the project info.

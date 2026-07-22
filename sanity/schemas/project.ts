@@ -33,9 +33,18 @@ export const project = defineType({
       description: 'e.g. "Dubai", "Abu Dhabi", "Sohar, Oman"'
     }),
     defineField({
-      name: 'year',
-      title: 'Year',
-      type: 'number'
+      name: 'startDate',
+      title: 'Start (Month & Year)',
+      type: 'date',
+      options: { dateFormat: 'MMM yyyy' },
+      description: 'When the project started. Pick any day in the month — only the month and year show on the site. Optional.'
+    }),
+    defineField({
+      name: 'endDate',
+      title: 'End (Month & Year)',
+      type: 'date',
+      options: { dateFormat: 'MMM yyyy' },
+      description: 'When the project completed. Optional — leave blank for a single date or an ongoing project.'
     }),
     defineField({
       name: 'scopeSummary',
@@ -99,9 +108,9 @@ export const project = defineType({
       by: [{ field: 'order', direction: 'asc' }]
     },
     {
-      title: 'Year (newest first)',
-      name: 'yearDesc',
-      by: [{ field: 'year', direction: 'desc' }]
+      title: 'Start date (newest first)',
+      name: 'startDesc',
+      by: [{ field: 'startDate', direction: 'desc' }]
     }
   ],
   preview: {
