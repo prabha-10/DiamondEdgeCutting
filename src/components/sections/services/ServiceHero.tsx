@@ -2,7 +2,7 @@ import React from "react";
 import { ChevronDown } from "lucide-react";
 
 const stats = [
-  { value: "350+", label: "Plants & Equipment" },
+  { value: "350+", label: "Plant & Equipment" },
   { value: "25+", label: "Robotic demolition machines" },
   { value: "1.7T-50T", label: "Excavator capability" },
   { value: "26m", label: "Long-reach capability" },
