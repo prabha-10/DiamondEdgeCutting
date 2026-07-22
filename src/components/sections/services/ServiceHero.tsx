@@ -2,10 +2,10 @@ import React from "react";
 import { ChevronDown } from "lucide-react";
 
 const stats = [
+  { value: "350+", label: "Owned assets" },
+  { value: "25+", label: "Robotic demolition machines" },
+  { value: "1.7–50t", label: "Excavator capability" },
   { value: "26m", label: "Long-reach capability" },
-  { value: "Brokk 500", label: "Flagship robotic rig" },
-  { value: "G+12", label: "DM-approved high-rise" },
-  { value: "300+", label: "Trained crew" },
 ];
 
 export function ServiceHero() {
