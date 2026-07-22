@@ -22,21 +22,20 @@ export function Hero() {
 
   return (
       <section className="relative min-h-[100svh] flex flex-col justify-center overflow-hidden pt-32 pb-20 bg-black">
-        {/* Background image — robotic demolition machine. Portrait crop on
-            mobile, landscape on larger screens; subject sits opposite the text. */}
-        <picture>
-          <source media="(max-width: 767px)" srcSet="/hero/hero-mobile.webp" />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/hero/hero-desktop.webp"
-            alt=""
-            aria-hidden
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-        </picture>
+        {/* Background image — DEC team on a live demolition site. Crop biased
+            low so the crew stays in frame. */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/service-section-bg.jpeg"
+          alt=""
+          aria-hidden
+          className="absolute inset-0 w-full h-full object-cover object-[center_68%]"
+        />
 
-        {/* Gradient overlay for legibility */}
-        <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/85 via-black/35 to-black/15" />
+        {/* Gradient overlay for legibility. Stronger at the top than the
+            previous dark image needed, since this photo is brighter and the
+            headline sits over it. */}
+        <div className="absolute inset-0 z-10 bg-gradient-to-t from-black/85 via-black/45 to-black/55" />
 
         {/* Faint editorial grid, mirrors the reference HTML */}
         <div

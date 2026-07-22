@@ -11,14 +11,18 @@ const stats = [
 export function ServiceHero() {
   return (
     <section className="relative min-h-[92vh] flex flex-col pt-36 pb-24 overflow-hidden border-b border-white/10">
-      {/* Background image — crop biased low so the on-site team stays visible
-          rather than being cut off by the default centre crop. */}
-      <img
-        src="/service-section-bg.jpeg"
-        alt=""
-        aria-hidden
-        className="absolute inset-0 w-full h-full object-cover object-[center_80%]"
-      />
+      {/* Background image — Brokk robotic demolition machine. Portrait crop on
+          mobile, landscape on larger screens. */}
+      <picture>
+        <source media="(max-width: 767px)" srcSet="/hero/hero-mobile.webp" />
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/hero/hero-desktop.webp"
+          alt=""
+          aria-hidden
+          className="absolute inset-0 w-full h-full object-cover"
+        />
+      </picture>
       {/* Dark gradient overlay for legibility */}
       <div
         className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/55 to-black/40"
