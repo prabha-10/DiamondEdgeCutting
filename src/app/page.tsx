@@ -1,7 +1,7 @@
 import React from "react";
 import { Hero } from "@/components/sections/home/Hero";
 import { ClientLogos } from "@/components/sections/home/ClientLogos";
-import { Overview } from "@/components/sections/home/Overview";
+// import { Overview } from "@/components/sections/home/Overview"; // hidden per client request
 import { Services } from "@/components/sections/home/Services";
 import { ProjectsTeaser } from "@/components/sections/home/ProjectsTeaser";
 import { Certifications } from "@/components/sections/home/Certifications";
@@ -24,7 +24,7 @@ export default async function Home() {
     <>
       <Hero />
       <Certifications />
-      <Overview />
+      {/* <Overview /> — "Who we are / Specialists" section hidden per client request */}
       <Services services={services} />
       <Leadership />
       <ProjectsTeaser />
