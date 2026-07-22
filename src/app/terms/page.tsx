@@ -28,7 +28,7 @@ const sections = [
   {
     heading: "4. Intellectual Property",
     body: [
-      "All content on this website — including text, logos, images, and design — is the property of Diamond Edge Cutting LLC or its licensors and is protected by applicable laws. You may not reproduce or distribute it without our prior written consent.",
+      "All content on this website, including text, logos, images, and design, is the property of Diamond Edge Cutting LLC or its licensors and is protected by applicable laws. You may not reproduce or distribute it without our prior written consent.",
     ],
   },
   {

@@ -20,11 +20,11 @@ const certifications: Certification[] = [
   { prefix: "ISO ", key: "9001", suffix: ":2015", description: "Quality Management System" },
   { prefix: "ISO ", key: "14001", suffix: ":2015", description: "Environmental System" },
   { prefix: "ISO ", key: "45001", suffix: ":2018", description: "Occupational Health & Safety" },
-  { prefix: "DM ", key: "G+12", description: "Dubai Municipality Approved" },
   { prefix: "ICV ", key: "Certified", description: "In-Country Value" },
-  { prefix: "ADM ", key: "Approved", description: "Abu Dhabi Municipality" },
-  { key: "CICSPA", description: "Specialist Permit Authority" },
-  { key: "Guinness", description: "World Record, Meena Plaza" },
+  { prefix: "Dubai ", key: "Municipality", description: "Demolition Approved Contractor" },
+  { prefix: "Abu Dhabi ", key: "Municipality", description: "Demolition Approved Contractor" },
+  { key: "CICPA", suffix: " Approved", description: "Oil & Gas Authority" },
+  { prefix: "World ", key: "Record", description: "Guinness World Record Holder" },
 ];
 
 export function Certifications() {
@@ -41,17 +41,11 @@ export function Certifications() {
               Fully compliant.
             </h2>
           </div>
-          <div className="lg:col-span-5">
-            <p className="font-['Inter_Display',sans-serif] text-[16px] md:text-[18px] leading-[1.6] text-brand-gray-700">
-              Independently audited and approved across the international quality, environmental,
-              safety and specialist-permit frameworks the GCC&apos;s most demanding clients require.
-            </p>
-          </div>
         </div>
 
         {/* Cert cards — clean white panels with a thin red top accent and a
             small red ribbon icon. 2 rows of 4 on lg+. */}
-        <div className="mt-14 md:mt-20 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
+        <div className="mt-14 md:mt-20 grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 auto-rows-fr gap-4 md:gap-5">
           {certifications.map((cert) => (
             <div
               key={`${cert.prefix ?? ""}${cert.key}`}
@@ -65,7 +59,7 @@ export function Certifications() {
                 <span className="text-brand-red">{cert.key}</span>
                 {cert.suffix}
               </h3>
-              <p className="font-mono text-[10.5px] md:text-[11px] uppercase tracking-[0.18em] text-brand-gray-500">
+              <p className="font-display font-medium text-[10.5px] md:text-[11px] uppercase tracking-[0.18em] text-brand-gray-500">
                 {cert.description}
               </p>
             </div>

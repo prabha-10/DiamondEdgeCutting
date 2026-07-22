@@ -72,13 +72,6 @@ export default function ProjectsPageClient({ projects, categories }: Props) {
                 Projects.
               </h1>
             </div>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 rounded-full bg-brand-gray-900 text-white font-medium text-[15px] px-6 py-3 hover:bg-brand-gray-700 transition-colors shrink-0 self-start sm:self-auto sm:mb-3"
-            >
-              Discuss Your Project
-              <ArrowUpRight className="w-4 h-4" strokeWidth={2} />
-            </Link>
           </div>
 
           {/* Centered category filters */}
@@ -115,7 +108,7 @@ export default function ProjectsPageClient({ projects, categories }: Props) {
                 <Link
                   key={project.slug}
                   href={`/projects/${project.slug}`}
-                  className="group relative block w-full aspect-[3/4] bg-brand-gray-100 overflow-hidden"
+                  className="group relative block w-full aspect-[4/3] bg-brand-gray-100 overflow-hidden"
                 >
                   <img
                     src={cardImage}

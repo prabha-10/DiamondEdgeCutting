@@ -19,7 +19,6 @@ export function Header({ rentalCategories }: { rentalCategories?: { title: strin
     { name: "Projects", href: "/projects" },
     { name: "Contact", href: "/contact" },
   ];
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [mobileOpenDropdown, setMobileOpenDropdown] = useState<string | null>(null);
   const pathname = usePathname();
@@ -28,17 +27,9 @@ export function Header({ rentalCategories }: { rentalCategories?: { title: strin
   // On inner pages there's no intro, show immediately
   const isHomepage = pathname === "/";
   const headerVisible = !isHomepage || introComplete;
-  
-  // Force solid white header on inner pages
-  const isSolid = isScrolled || !isHomepage;
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  // Always render a solid white header — never transparent.
+  const isSolid = true;
 
   // Close mobile menu when route changes
   useEffect(() => {

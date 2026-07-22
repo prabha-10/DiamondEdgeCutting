@@ -17,7 +17,7 @@ const sections = [
   {
     heading: "2. Information We Collect",
     body: [
-      "We collect information you provide directly — such as your name, email address, phone number, company, and project details — when you submit an enquiry, request a quote, or contact us.",
+      "We collect information you provide directly, such as your name, email address, phone number, company, and project details, when you submit an enquiry, request a quote, or contact us.",
       "We may also collect limited technical information automatically, including your IP address, browser type, and pages visited, to help us improve the website.",
     ],
   },

@@ -11,7 +11,7 @@ export function Overview() {
         {/* Top: headline + intro (left) / body paragraphs (right) */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
           <div className="lg:col-span-6 flex flex-col gap-6">
-            <span className="font-mono text-[24px] font-semibold uppercase tracking-[0.22em] text-brand-red">
+            <span className="font-display text-[24px] font-semibold uppercase tracking-[0.22em] text-brand-red">
               Who We Are
             </span>
             <h2 className="font-display font-extrabold uppercase text-brand-gray-900 text-[40px] md:text-[58px] lg:text-[64px] leading-[0.95] tracking-tight">
@@ -38,9 +38,9 @@ export function Overview() {
             <p className="font-['Inter_Display',sans-serif] text-[16px] md:text-[17px] leading-[1.7] text-brand-gray-700">
               Using advanced technology and modern methodologies, we execute both
               light and heavy demolition projects with speed, accuracy, and
-              uncompromising safety standards. With a dedicated team of 300+ highly
-              trained professionals, we deliver projects from concept to completion
-              — on time, on budget, and to the highest standards of quality and
+              uncompromising safety standards. With a dedicated team of 120+ highly
+              trained professionals, we deliver projects from concept to completion,
+              on time, on budget, and to the highest standards of quality and
               safety.
             </p>
           </div>
@@ -49,7 +49,7 @@ export function Overview() {
         {/* Mission / Vision cards */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 md:gap-6 mt-12 md:mt-16">
           <article className="bg-brand-gray-100 border-t-2 border-brand-red p-8 md:p-10 flex flex-col gap-4">
-            <span className="font-mono text-[24px] font-semibold uppercase tracking-[0.2em] text-brand-red">
+            <span className="font-display text-[24px] font-semibold uppercase tracking-[0.2em] text-brand-red">
               Our Mission
             </span>
             <p className="font-['Inter_Display',sans-serif] text-[16px] md:text-[17px] leading-[1.7] text-brand-gray-700">
@@ -62,7 +62,7 @@ export function Overview() {
           </article>
 
           <article className="bg-brand-gray-100 border-t-2 border-brand-red p-8 md:p-10 flex flex-col gap-4">
-            <span className="font-mono text-[24px] font-semibold uppercase tracking-[0.2em] text-brand-red">
+            <span className="font-display text-[24px] font-semibold uppercase tracking-[0.2em] text-brand-red">
               Our Vision
             </span>
             <p className="font-['Inter_Display',sans-serif] text-[16px] md:text-[17px] leading-[1.7] text-brand-gray-700">

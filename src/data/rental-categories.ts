@@ -52,6 +52,6 @@ export const rentalCategoriesData: RentalCategoryDetail[] = [
     title: "Waste Removal",
     image: "/rental-waste-removal.jpeg",
     description:
-      "Roll-on/roll-off skips and tipper lorries for demolition rubble, concrete spoil, and mixed construction waste. Scheduled collections or on-call — sized to your output.",
+      "Roll-on/roll-off skips and tipper lorries for demolition rubble, concrete spoil, and mixed construction waste. Scheduled collections or on-call, sized to your output.",
   },
 ];

@@ -17,6 +17,8 @@ const clients: Client[] = [
   { name: "Modon", file: "modon.png" },
   { name: "DMT", file: "dmt.png" },
   { name: "Dutco Construction", file: "Dutco.jpeg" },
+  { name: "Dubai Holding", file: "dubai_holding.png" },
+  { name: "Shamal", file: "Shamal.jpeg" },
 ];
 
 function ClientLogo({ client }: { client: Client }) {
@@ -42,7 +44,7 @@ export function ClientLogos() {
           </span>
           <h2 className="font-display font-extrabold uppercase text-brand-gray-900 text-[36px] md:text-[52px] leading-[0.95] tracking-tight">
             Trusted by the region&apos;s{" "}
-            <em className="font-light italic text-brand-red normal-case">leading developers.</em>
+            <em className="font-light italic text-brand-red normal-case">leading developers &amp; contractors.</em>
           </h2>
         </div>
 

@@ -65,9 +65,6 @@ export async function ProjectsTeaser() {
             </h2>
           </div>
           <div className="lg:col-span-5 flex flex-col gap-6 items-end text-right">
-            <p className="font-['Inter_Display',sans-serif] text-[16px] md:text-[18px] leading-[1.6] text-brand-gray-700">
-              From record-breaking controlled demolitions to precision concrete cutting on live airport concourses — a selection of landmark jobs across the GCC.
-            </p>
             <Link
               href="/projects"
               className="inline-flex items-center gap-2 px-8 h-14 rounded-full bg-brand-gray-900 text-white font-sans font-bold text-base hover:bg-brand-red transition-colors duration-200"

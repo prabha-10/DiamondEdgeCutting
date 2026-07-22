@@ -5,7 +5,7 @@ import { ArrowUpRight, Check } from "lucide-react";
 
 export function ServiceDetails({ services }: { services: ServiceContent[] }) {
   return (
-    <section className="pt-0 pb-16 md:pb-24 bg-white">
+    <section id="service-details" className="pt-16 md:pt-24 pb-16 md:pb-24 bg-white scroll-mt-20">
       <div className="container mx-auto px-4 md:px-8">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {services.map((service) => (

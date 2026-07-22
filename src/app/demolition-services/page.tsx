@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { ServiceHero } from "@/components/sections/services/ServiceHero";
-import { WhyDec } from "@/components/sections/services/WhyDec";
 import { ServiceDetails } from "@/components/sections/services/ServiceDetails";
 import { ServiceSchema } from "@/components/seo/ServiceSchema";
 import { getServiceContent } from "@/lib/content";
@@ -21,7 +20,6 @@ export default async function DemolitionServicesPage() {
     <>
       <ServiceSchema services={services} />
       <ServiceHero />
-      <WhyDec />
       <ServiceDetails services={services} />
     </>
   );

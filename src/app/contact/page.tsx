@@ -131,15 +131,14 @@ export default function ContactPage() {
                 <div className="text-brand-gray-700 text-lg font-medium leading-relaxed">
                   <p>Plot 597-604, Dubai Investment Park 2</p>
                   <p>P.O. Box 430971, Dubai, UAE</p>
-                  <p className="mt-2 text-brand-gray-500">Fax: +971 4 370 6432</p>
+                  <p className="text-brand-gray-500">Fax: +971 4 370 6432</p>
                 </div>
               </div>
 
               <div className="flex flex-col gap-4">
                 <h3 className="text-2xl font-bold text-brand-gray-900 tracking-tight">Abu Dhabi Office</h3>
                 <div className="text-brand-gray-700 text-lg font-medium leading-relaxed">
-                  <p>9th Floor, ADNIC Building, Khalifa Street</p>
-                  <p>P.O. Box 45526, Abu Dhabi, UAE</p>
+                  <p>P.O. Box 430700, Abu Dhabi, UAE</p>
                 </div>
               </div>
             </div>

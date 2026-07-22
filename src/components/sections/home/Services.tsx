@@ -16,7 +16,7 @@ type ServiceCardData = {
 // rather than one of the demolition services, so it stays local.
 const rentalService: ServiceCardData = {
   title: "Equipment Rental",
-  description: "Brokk robots, excavators, mini excavators, skid steers, and waste removal with trained operators.",
+  description: "Specialist demolition equipment rental backed by expert operators and support.",
   href: "/rental-equipment",
   image: "/products_brokk500sp-420x280.jpg",
 };

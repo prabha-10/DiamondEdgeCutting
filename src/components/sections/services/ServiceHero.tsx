@@ -1,7 +1,5 @@
 import React from "react";
-import Link from "next/link";
 import { ChevronDown } from "lucide-react";
-import { Button } from "@/components/ui/Button";
 
 const stats = [
   { value: "26m", label: "Long-reach capability" },
@@ -40,15 +38,10 @@ export function ServiceHero() {
           </h1>
         </div>
 
-        <div className="mt-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-end pt-10 border-t border-white/15">
-          <p className="lg:col-span-7 font-['Inter_Display',sans-serif] font-normal text-[19px] md:text-[22px] leading-[1.5] text-white/85 max-w-2xl">
+        <div className="mt-10 pt-10 border-t border-white/15">
+          <p className="font-['Inter_Display',sans-serif] font-normal text-[19px] md:text-[22px] leading-[1.5] text-white/85 max-w-2xl">
             From 90-metre chimney towers to confined-space refractory works, every scope planned, sequenced, and delivered with the GCC&apos;s largest specialist robotic fleet.
           </p>
-          <div className="lg:col-span-5 lg:justify-self-end">
-            <Button asChild variant="brand" size="lg" className="!bg-brand-charcoal !border-brand-charcoal hover:!bg-[#6a6a6a] hover:!border-[#6a6a6a]">
-              <Link href="/contact">Get a Quote</Link>
-            </Button>
-          </div>
         </div>
 
         {/* Stats strip, white cards pop on the dark image */}
@@ -71,7 +64,7 @@ export function ServiceHero() {
 
       {/* Scroll-down indicator */}
       <a
-        href="#why-dec"
+        href="#service-details"
         aria-label="Scroll to content"
         className="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 group"
       >

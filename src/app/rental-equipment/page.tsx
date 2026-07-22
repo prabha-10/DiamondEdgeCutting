@@ -38,13 +38,6 @@ export default async function RentalEquipmentPage() {
               <p className="font-['Inter_Display',sans-serif] text-[16px] md:text-[18px] leading-[1.6] text-brand-gray-600 lg:text-right">
                 Every machine ships with a trained operator, full spec sheet, and the safety paperwork your main contractor already expects.
               </p>
-              <Link
-                href="/contact?inquiry=Equipment+Rental"
-                className="group inline-flex items-center gap-2 rounded-full bg-brand-red text-white font-bold px-7 py-3.5 hover:bg-brand-red-dark transition-colors"
-              >
-                Talk to the hire team
-                <ArrowUpRight className="w-4 h-4 transition-transform group-hover:rotate-45" strokeWidth={2} />
-              </Link>
             </div>
           </div>
         </div>

@@ -119,7 +119,7 @@ export async function generateMetadata({
   const { slug } = await params;
   const project = await loadProject(slug);
   if (!project) return { title: "Not Found" };
-  const where = project.location ? ` — ${project.location}` : "";
+  const where = project.location ? `, ${project.location}` : "";
   return {
     title: `${project.title} Demolition${where}`,
     description: `${project.scopeSummary || project.title}. Delivered by Diamond Edge Cutting${

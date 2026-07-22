@@ -1,8 +1,6 @@
 "use client";
 
 import React from "react";
-import Link from "next/link";
-import { Button } from "@/components/ui/Button";
 import { useIntro } from "@/context/IntroContext";
 
 const slideUp = (delay: number, revealed: boolean): React.CSSProperties => ({
@@ -15,7 +13,7 @@ const slideUp = (delay: number, revealed: boolean): React.CSSProperties => ({
 const stats: Array<{ num: string; label: string }> = [
   { num: "30+", label: "Years in industry" },
   { num: "120+", label: "Skilled team" },
-  { num: "G+12", label: "Approved demolition" },
+  { num: "Municipality", label: "Approved demolition" },
   { num: "No. 1", label: "Robotic fleet in GCC" },
 ];
 
@@ -66,7 +64,7 @@ export function Hero() {
                   WE CUT. WE DRILL.
                 </div>
                 <div className="text-[9vw] md:text-[6rem] lg:text-[7.5rem] text-white/55">
-                  WITH SURGICAL CONTROL.
+                  WE DELIVER.
                 </div>
               </h1>
             </div>
@@ -76,50 +74,26 @@ export function Hero() {
               className="mt-8 max-w-4xl text-base md:text-lg text-white/80 leading-[1.6] font-['Inter_Display',sans-serif]"
               style={slideUp(250, introComplete)}
             >
-              <strong className="text-white font-semibold">Diamond Edge Cutting LLC</strong>{" "}is the GCC&apos;s leading specialist demolition contractor, providing controlled demolition, robotic systems, concrete cutting and core drilling delivered to the highest standards of safety, professionalism and quality. Operating across the UAE, Oman, Saudi Arabia, Qatar, Bahrain &amp; Kuwait.
+              <strong className="text-white font-semibold">Diamond Edge Cutting LLC</strong>{" "}is the GCC&apos;s leading specialist demolition contractor, providing controlled demolition, robotic demolition, specialist concrete cutting and core drilling services across the UAE, Oman, Saudi Arabia, Qatar, Bahrain &amp; Kuwait.
             </p>
 
             {/* 4-up hero stats */}
             <div
-              className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-8 border-t border-white/15 pt-10 max-w-4xl"
+              className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-x-8 md:gap-x-10 gap-y-8 border-t border-white/15 pt-10 max-w-4xl"
               style={slideUp(360, introComplete)}
             >
               {stats.map((s) => (
-                <div key={s.label} className="flex flex-col gap-1">
-                  <span className="font-display font-extrabold text-white text-[40px] md:text-[52px] leading-none tracking-tight tabular-nums">
+                <div key={s.label} className="flex flex-col gap-1 items-center text-center">
+                  <span className="font-display font-extrabold text-white text-[34px] md:text-[44px] leading-none tracking-tight tabular-nums">
                     {s.num}
                   </span>
-                  <span className="font-mono text-[10.5px] md:text-[11px] uppercase tracking-[0.16em] text-white/65">
+                  <span className="font-display font-extrabold text-[10.5px] md:text-[11px] uppercase tracking-[0.16em] text-white/65">
                     {s.label}
                   </span>
                 </div>
               ))}
             </div>
-
-            {/* CTAs */}
-            <div
-              className="flex flex-col sm:flex-row gap-4 mt-12"
-              style={slideUp(480, introComplete)}
-            >
-              <Button asChild size="lg" variant="brand">
-                <Link href="/contact">Discuss Your Project</Link>
-              </Button>
-              <Button
-                asChild
-                variant="outline"
-                size="lg"
-                className="rounded-full px-8 h-14 border-white text-white hover:bg-white hover:text-brand-gray-900"
-              >
-                <Link href="/rental-equipment">View Fleet</Link>
-              </Button>
-            </div>
           </div>
-        </div>
-
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2" style={slideUp(600, introComplete)}>
-          <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/40">Scroll</span>
-          <span className="w-px h-8 bg-gradient-to-b from-white/30 to-transparent" />
         </div>
       </section>
   );
