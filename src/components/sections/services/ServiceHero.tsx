@@ -10,13 +10,14 @@ const stats = [
 
 export function ServiceHero() {
   return (
-    <section className="relative pt-36 pb-20 overflow-hidden border-b border-white/10">
-      {/* Background image */}
+    <section className="relative min-h-[92vh] flex flex-col pt-36 pb-24 overflow-hidden border-b border-white/10">
+      {/* Background image — crop biased low so the on-site team stays visible
+          rather than being cut off by the default centre crop. */}
       <img
         src="/service-section-bg.jpeg"
         alt=""
         aria-hidden
-        className="absolute inset-0 w-full h-full object-cover"
+        className="absolute inset-0 w-full h-full object-cover object-[center_80%]"
       />
       {/* Dark gradient overlay for legibility */}
       <div
@@ -24,7 +25,7 @@ export function ServiceHero() {
         aria-hidden
       />
 
-      <div className="container relative z-10 mx-auto px-4 md:px-8">
+      <div className="container relative z-10 mx-auto px-4 md:px-8 flex-1 flex flex-col w-full">
         <div className="flex flex-col gap-6 max-w-4xl">
           <div className="flex items-center gap-2.5">
             <span className="w-1.5 h-1.5 rounded-full bg-brand-red" aria-hidden />
@@ -44,8 +45,8 @@ export function ServiceHero() {
           </p>
         </div>
 
-        {/* Stats strip, white cards pop on the dark image */}
-        <div className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-3">
+        {/* Stats strip, pushed to the bottom so the team photo reads above it */}
+        <div className="mt-auto pt-20 grid grid-cols-2 md:grid-cols-4 gap-3">
           {stats.map((stat) => (
             <div
               key={stat.label}
