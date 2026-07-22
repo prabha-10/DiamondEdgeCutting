@@ -1,4 +1,5 @@
 import { defineField, defineType } from 'sanity'
+import { OrderInput } from '../components/OrderInput'
 
 export const projectCategory = defineType({
   name: 'projectCategory',
@@ -22,7 +23,16 @@ export const projectCategory = defineType({
     defineField({
       name: 'order',
       title: 'Display Order',
-      type: 'number'
+      type: 'number',
+      description: 'Lower numbers appear first. Values already used by another category are disabled.',
+      components: { input: OrderInput }
     })
+  ],
+  orderings: [
+    {
+      title: 'Display Order',
+      name: 'orderAsc',
+      by: [{ field: 'order', direction: 'asc' }]
+    }
   ]
 })

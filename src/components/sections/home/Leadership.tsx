@@ -143,7 +143,7 @@ export async function Leadership() {
                 <div className="flex items-center gap-4">
                   <Avatar member={member} />
                   <div className="flex flex-col gap-1">
-                    <h3 className="font-display font-bold uppercase text-brand-gray-900 text-[18px] md:text-[20px] tracking-tight leading-[1.05]">
+                    <h3 className="font-display font-bold uppercase text-brand-gray-900 text-[18px] md:text-[20px] tracking-[0.06em] leading-[1.05]">
                       {member.name}
                     </h3>
                     <p className="font-mono text-[10px] md:text-[10.5px] uppercase tracking-[0.16em] text-brand-red">
@@ -170,7 +170,7 @@ export async function Leadership() {
             >
               <Avatar member={member} />
               <div className="flex flex-col gap-1">
-                <h3 className="font-display font-bold uppercase text-brand-gray-900 text-[16px] md:text-[18px] tracking-tight leading-[1.05]">
+                <h3 className="font-display font-bold uppercase text-brand-gray-900 text-[16px] md:text-[18px] tracking-[0.06em] leading-[1.05]">
                   {member.name}
                 </h3>
                 <p className="font-mono text-[10px] md:text-[10.5px] uppercase tracking-[0.16em] text-brand-red">

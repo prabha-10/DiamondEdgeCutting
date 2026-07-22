@@ -1,4 +1,5 @@
 import { defineField, defineType } from 'sanity'
+import { OrderInput } from '../components/OrderInput'
 
 export const teamMember = defineType({
   name: 'teamMember',
@@ -42,7 +43,10 @@ export const teamMember = defineType({
       name: 'order',
       title: 'Display Order',
       type: 'number',
-      description: 'Lower numbers appear first (CEO = 1, MD = 2, etc.)'
+      description:
+        'Lower numbers appear first. Slots 1 and 2 are the featured leadership positions (CEO and Managing Director). Values already used by another member are disabled.',
+      options: { slotLabels: { 1: 'CEO', 2: 'Managing Director' } },
+      components: { input: OrderInput }
     }),
     defineField({
       name: 'featured',

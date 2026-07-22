@@ -15,7 +15,7 @@ type ServiceCardData = {
 // The rental band below the grid is a standing promo for /rental-equipment
 // rather than one of the demolition services, so it stays local.
 const rentalService: ServiceCardData = {
-  title: "Equipment Rental",
+  title: "Plant & Equipment Rental",
   description: "Specialist demolition equipment rental backed by expert operators and support.",
   href: "/rental-equipment",
   image: "/products_brokk500sp-420x280.jpg",

@@ -5,6 +5,7 @@
 // Falls back to the inline list in src/app/rental-equipment/page.tsx when empty.
 
 import { defineField, defineType } from 'sanity'
+import { OrderInput } from '../components/OrderInput'
 
 export const rentalCategory = defineType({
   name: 'rentalCategory',
@@ -52,7 +53,8 @@ export const rentalCategory = defineType({
       name: 'order',
       title: 'Display Order',
       type: 'number',
-      description: 'Lower numbers appear first.'
+      description: 'Lower numbers appear first. Values already used by another category are disabled.',
+      components: { input: OrderInput }
     })
   ],
   orderings: [

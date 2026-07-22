@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Button } from "@/components/ui/Button";
+import { ChevronDown } from "lucide-react";
 
 const formSchema = z.object({
   fullName: z.string().min(2, "Full name is required"),
@@ -137,17 +138,19 @@ export function ContactForm() {
 
       <div className="flex flex-col">
         <label htmlFor="inquiryType" className={labelClasses}>Inquiry Type *</label>
-        <select
-          {...register("inquiryType")}
-          defaultValue=""
-          className={errors.inquiryType ? errorClasses : inputClasses}
-        >
-          <option value="" disabled>Select an option</option>
-          <option value="Demolition Project">Demolition Project</option>
-          <option value="Equipment Rental">Equipment Rental</option>
-          <option value="Operator Availability">Operator Availability</option>
-          <option value="General">General Inquiry</option>
-        </select>
+        <div className="relative">
+          <select
+            {...register("inquiryType")}
+            defaultValue=""
+            className={`${errors.inquiryType ? errorClasses : inputClasses} appearance-none pr-8 cursor-pointer`}
+          >
+            <option value="" disabled>Select an option</option>
+            <option value="Demolition Services">Demolition Services</option>
+            <option value="Equipment Rental">Rental Equipments</option>
+            <option value="General">General Enquiry</option>
+          </select>
+          <ChevronDown className="pointer-events-none absolute right-1 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-gray-500" strokeWidth={2} />
+        </div>
         {errors.inquiryType && <span className="text-xs font-bold text-brand-red-dark mt-1">{errors.inquiryType.message}</span>}
       </div>
 
@@ -163,18 +166,21 @@ export function ContactForm() {
 
         <div className="flex flex-col">
           <label htmlFor="projectTimeline" className={labelClasses}>Project Timeline</label>
-          <select
-            {...register("projectTimeline")}
-            defaultValue=""
-            className={inputClasses}
-          >
-            <option value="" disabled>Select a timeline</option>
-            <option value="Immediate">Immediate</option>
-            <option value="Within 1 month">Within 1 month</option>
-            <option value="Within 3 months">Within 3 months</option>
-            <option value="Beyond 3 months">Beyond 3 months</option>
-            <option value="Not sure">Not sure</option>
-          </select>
+          <div className="relative">
+            <select
+              {...register("projectTimeline")}
+              defaultValue=""
+              className={`${inputClasses} appearance-none pr-8 cursor-pointer`}
+            >
+              <option value="" disabled>Select a timeline</option>
+              <option value="Immediate">Immediate</option>
+              <option value="Within 1 month">Within 1 month</option>
+              <option value="Within 3 months">Within 3 months</option>
+              <option value="Beyond 3 months">Beyond 3 months</option>
+              <option value="Not sure">Not sure</option>
+            </select>
+            <ChevronDown className="pointer-events-none absolute right-1 top-1/2 -translate-y-1/2 w-4 h-4 text-brand-gray-500" strokeWidth={2} />
+          </div>
         </div>
       </div>
 

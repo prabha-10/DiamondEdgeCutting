@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { rentalCategories } from "@/data/navigation";
+import { getServiceContent, getRentalCategoryContent } from "@/lib/content";
 
 // lucide-react in this project ships without brand glyphs, so the LinkedIn
 // mark is an inline SVG.
@@ -12,19 +12,19 @@ function LinkedInIcon({ className }: { className?: string }) {
   );
 }
 
-const serviceLinks = [
-  { name: "Robotic Demolition", href: "/demolition-services#robotic-demolition" },
-  { name: "Controlled & Structural Demolition", href: "/demolition-services#controlled-demolition" },
-  { name: "Wire Sawing", href: "/demolition-services#wire-sawing" },
-  { name: "Wall & Track Sawing", href: "/demolition-services#wall-sawing" },
-  { name: "Core Drilling", href: "/demolition-services#core-drilling" },
-  { name: "Refractory, Kiln & Tunnelling", href: "/demolition-services#refractory-kiln" },
-  { name: "Floor & Apron Sawing", href: "/demolition-services#floor-sawing" },
-  { name: "Soft Demolition & Strip Out", href: "/demolition-services#strip-out" },
-  { name: "View all services", href: "/demolition-services" },
-];
+export async function Footer() {
+  // Services and Equipment menus mirror the CMS card order from the Demolition
+  // Services and Rental Equipment pages (both resolvers sort by `order` asc).
+  const [services, rentals] = await Promise.all([
+    getServiceContent(),
+    getRentalCategoryContent(),
+  ]);
+  const serviceLinks = services.map((s) => ({
+    name: s.title,
+    href: `/demolition-services#${s.id}`,
+  }));
+  const equipmentLinks = rentals.map((c) => ({ name: c.title, href: "/rental-equipment" }));
 
-export function Footer() {
   return (
     <footer className="bg-brand-gray-900 text-white relative">
       <div className="container mx-auto px-4 md:px-8 py-16">
@@ -62,24 +62,24 @@ export function Footer() {
           <div>
             <h3 className="text-lg font-bold mb-6 text-white">Services</h3>
             <ul className="flex flex-col gap-4">
-              {serviceLinks.map((link, i) => {
-                const isLast = i === serviceLinks.length - 1;
-                return (
-                  <li key={link.name}>
-                    <Link
-                      href={link.href}
-                      className={
-                        isLast
-                          ? "inline-flex items-center gap-1.5 text-brand-red hover:text-white transition-colors text-base font-semibold mt-1"
-                          : "text-white/70 hover:text-white transition-colors text-base font-medium"
-                      }
-                    >
-                      {link.name}
-                      {isLast && <span aria-hidden>&rarr;</span>}
-                    </Link>
-                  </li>
-                );
-              })}
+              {serviceLinks.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    href={link.href}
+                    className="text-white/70 hover:text-white transition-colors text-base font-medium"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <Link
+                  href="/demolition-services"
+                  className="inline-flex items-center gap-1.5 text-brand-red hover:text-white transition-colors text-base font-semibold mt-1"
+                >
+                  View all services<span aria-hidden>&rarr;</span>
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -87,7 +87,7 @@ export function Footer() {
           <div>
             <h3 className="text-lg font-bold mb-6 text-white">Equipment</h3>
             <ul className="flex flex-col gap-4">
-              {rentalCategories.map((link) => (
+              {equipmentLinks.map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}
