@@ -19,6 +19,9 @@ const clients: Client[] = [
   { name: "Dutco Construction", file: "Dutco.jpeg" },
   { name: "Dubai Holding", file: "dubai_holding.png" },
   { name: "Shamal", file: "Shamal.jpeg" },
+  { name: "Vale", file: "vale.png" },
+  { name: "Expo City Dubai", file: "dubai expo.png" },
+  { name: "KPS", file: "kps-dark.svg" },
 ];
 
 function ClientLogo({ client }: { client: Client }) {

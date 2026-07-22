@@ -13,7 +13,7 @@ const slideUp = (delay: number, revealed: boolean): React.CSSProperties => ({
 const stats: Array<{ num: string; label: string }> = [
   { num: "30+", label: "Years in industry" },
   { num: "120+", label: "Skilled team" },
-  { num: "Municipality", label: "Approved demolition" },
+  { num: "350+", label: "Plant & Equipment" },
   { num: "No. 1", label: "Robotic fleet in GCC" },
 ];
 
@@ -79,15 +79,15 @@ export function Hero() {
 
             {/* 4-up hero stats */}
             <div
-              className="mt-12 grid grid-cols-2 md:grid-cols-4 gap-x-8 md:gap-x-10 gap-y-8 border-t border-white/15 pt-10 max-w-4xl"
+              className="mt-9 md:mt-12 grid grid-cols-2 md:grid-cols-4 gap-x-5 md:gap-x-10 gap-y-6 md:gap-y-8 border-t border-white/15 pt-7 md:pt-10 max-w-4xl"
               style={slideUp(360, introComplete)}
             >
               {stats.map((s) => (
                 <div key={s.label} className="flex flex-col gap-1 items-center text-center">
-                  <span className="font-display font-extrabold text-white text-[34px] md:text-[44px] leading-none tracking-tight tabular-nums">
+                  <span className="font-display font-extrabold text-white text-[30px] sm:text-[34px] md:text-[44px] leading-none tracking-tight tabular-nums">
                     {s.num}
                   </span>
-                  <span className="font-display font-extrabold text-[10.5px] md:text-[11px] uppercase tracking-[0.16em] text-white/65">
+                  <span className="font-display font-extrabold text-[10px] md:text-[11px] uppercase tracking-[0.1em] md:tracking-[0.16em] text-white/65 text-balance">
                     {s.label}
                   </span>
                 </div>

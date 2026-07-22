@@ -13,7 +13,7 @@ export function ServiceHero() {
     <section className="relative pt-36 pb-20 overflow-hidden border-b border-white/10">
       {/* Background image */}
       <img
-        src="https://images.unsplash.com/photo-1711618732376-416cf6af54f6?w=2000&q=80&auto=format&fit=crop"
+        src="/service-section-bg.jpeg"
         alt=""
         aria-hidden
         className="absolute inset-0 w-full h-full object-cover"
