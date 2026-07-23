@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import ProjectsPageClient, { type ProjectListItem } from "./ProjectsPageClient";
 import { ProjectSchema } from "@/components/seo/ProjectSchema";
-import { projectsData } from "@/data/projects";
-import { getAllProjects } from "../../../sanity/lib/queries";
+import { projectsData, projectCategories } from "@/data/projects";
+import { getAllProjects, getAllProjectCategories } from "../../../sanity/lib/queries";
 
 export const metadata: Metadata = {
   title: "Demolition Projects Across Dubai, UAE & GCC | Diamond Edge Cutting",
@@ -47,14 +47,26 @@ export default async function ProjectsPage() {
     return true;
   });
 
-  // Category pills are derived from the projects themselves — whose category
-  // titles come from the CMS projectCategory docs — so the filters always match
-  // what's actually in Sanity. Only categories that have at least one project
-  // are shown (no phantom pills like "Hotel", which isn't a CMS category).
-  // `categoryOrder` just fixes the display order to match the CMS `order` field;
-  // any category not listed here is appended alphabetically so new CMS
-  // categories still surface without a code change.
-  const categoryOrder = ["Commercial", "Residential", "Industrial", "Airport", "Hospitality", "Infrastructure"];
+  // Category pills follow the CMS projectCategory "Display Order" — Studio is the
+  // source of truth, so reordering there flows through with no code change.
+  // Deduped by title in case two docs share a name.
+  let cmsCategoryOrder: string[] = [];
+  try {
+    const docs = (await getAllProjectCategories()) as { title?: string }[] | null;
+    cmsCategoryOrder = Array.from(
+      new Set((docs ?? []).map((d) => d?.title).filter((t): t is string => Boolean(t)))
+    );
+  } catch (error) {
+    const msg = error instanceof Error ? error.message : String(error);
+    console.warn(`[Sanity] project categories fetch failed (${msg.slice(0, 120)}); using local order.`);
+  }
+
+  // Fall back to the checked-in order when Sanity is unreachable or empty.
+  const categoryOrder =
+    cmsCategoryOrder.length > 0 ? cmsCategoryOrder : projectCategories.filter((c) => c !== "All");
+
+  // Only show categories that actually have a project, so no filter comes up
+  // empty. Anything present but missing from the CMS list is appended.
   const presentCategories = Array.from(new Set(projects.map((p) => p.category).filter(Boolean)));
   const ordered = categoryOrder.filter((c) => presentCategories.includes(c));
   const extras = presentCategories.filter((c) => !categoryOrder.includes(c)).sort();

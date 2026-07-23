@@ -194,6 +194,14 @@ const PROJECT_BY_SLUG_QUERY = `*[_type == "project" && slug.current == $slug][0]
 
 const ALL_PROJECT_SLUGS_QUERY = `*[_type == "project"] { "slug": slug.current }`
 
+// Drives the order of the category filter pills on /projects — Studio's
+// "Display Order" is the source of truth. Drafts are excluded so an unpublished
+// edit can't introduce a duplicate pill; docs with no order sort last.
+const ALL_PROJECT_CATEGORIES_QUERY = `*[_type == "projectCategory" && !(_id in path("drafts.**"))] | order(coalesce(order, 999) asc, title asc) {
+  title,
+  order
+}`
+
 // ─── Team member queries ────────────────────────────────────────────────────
 
 const ALL_TEAM_MEMBERS_QUERY = `*[_type == "teamMember" && (featured == true || !defined(featured))] | order(order asc, name asc) {
@@ -314,6 +322,11 @@ export async function getProjectBySlug(slug: string) {
 export async function getAllProjectSlugs() {
   if (!sanityConfigured) return []
   return sanityClient.fetch(ALL_PROJECT_SLUGS_QUERY)
+}
+
+export async function getAllProjectCategories() {
+  if (!sanityConfigured) return []
+  return sanityClient.fetch(ALL_PROJECT_CATEGORIES_QUERY)
 }
 
 export async function getAllTeamMembers() {

@@ -1,6 +1,7 @@
-// Mirrors the CMS projectCategory docs (source of truth). "Hotel" is NOT a CMS
-// category — hotel/hospitality work is filed under "Hospitality".
-export const projectCategories = ["All", "Commercial", "Residential", "Industrial", "Airport", "Hospitality", "Infrastructure"];
+// Fallback order only — used when Sanity is unreachable. The live order comes
+// from the CMS projectCategory "Display Order" field (see src/app/projects/page.tsx).
+// "Hotel" is NOT a CMS category; hotel work is filed under "Hospitality".
+export const projectCategories = ["All", "Industrial", "Airport", "Hospitality", "Infrastructure", "Residential", "Commercial"];
 
 export const projectsData = [
   { slug: "umm-al-sheif-dubai-2025", title: "Umm Al Sheif Villa", category: "Residential", location: "Dubai, UAE", scope: "Structural demolition and full site clearance of an existing villa development, including MEP strip-out and substructure removal", year: "2025", images: ["placeholder1", "placeholder2", "placeholder3", "placeholder4"] },
