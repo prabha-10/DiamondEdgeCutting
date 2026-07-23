@@ -158,9 +158,12 @@ const ALL_PROJECTS_QUERY = `*[_type == "project"] | order(order asc, year desc) 
 }`
 
 // Featured projects for the homepage teaser. Editors control which projects
-// appear (and in what order) via the "Featured on Homepage" toggle + "Display
-// Order" field in Sanity Studio. Capped at 6 to fit the 3-column grid.
-const FEATURED_PROJECTS_QUERY = `*[_type == "project" && featured == true] | order(order asc, year desc) [0...6] {
+// appear via the "Featured on Homepage" toggle and their left-to-right position
+// via "Homepage Slot" — deliberately separate from "Display Order" so the
+// homepage can be arranged without disturbing the /projects listing. Projects
+// with no slot assigned sort last rather than jumping to the front. Capped at 6
+// to fit the 3-column grid.
+const FEATURED_PROJECTS_QUERY = `*[_type == "project" && featured == true] | order(coalesce(homepageOrder, 999) asc, order asc, year desc) [0...6] {
   _id,
   title,
   "slug": slug.current,

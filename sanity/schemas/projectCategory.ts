@@ -1,5 +1,6 @@
 import { defineField, defineType } from 'sanity'
 import { OrderInput } from '../components/OrderInput'
+import { uniqueOrder } from '../lib/uniqueOrder'
 
 export const projectCategory = defineType({
   name: 'projectCategory',
@@ -25,7 +26,8 @@ export const projectCategory = defineType({
       title: 'Display Order',
       type: 'number',
       description: 'Lower numbers appear first. Values already used by another category are disabled.',
-      components: { input: OrderInput }
+      components: { input: OrderInput },
+      validation: Rule => uniqueOrder(Rule)
     })
   ],
   orderings: [
