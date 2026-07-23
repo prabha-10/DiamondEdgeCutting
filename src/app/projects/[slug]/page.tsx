@@ -6,7 +6,12 @@ import { ArrowLeft, ArrowUpRight, Check } from "lucide-react";
 import { HeroGallery } from "./HeroGallery";
 import { projectsData } from "@/data/projects";
 import { getProjectBySlug, getAllProjectSlugs } from "../../../../sanity/lib/queries";
-import { safeUrlFor, type SanityImage } from "@/lib/sanity-image";
+import {
+  safeUrlFor,
+  HERO_IMAGE_WIDTH,
+  HERO_IMAGE_HEIGHT,
+  type SanityImage,
+} from "@/lib/sanity-image";
 import { formatProjectPeriod } from "@/lib/projectPeriod";
 
 // Re-fetch from Sanity at most once a minute so Studio edits show up quickly
@@ -28,7 +33,10 @@ const fallbackImagePool = [
 function fallbackImageFor(slug: string, offset = 0) {
   let hash = 0;
   for (let i = 0; i < slug.length; i++) hash = (hash * 31 + slug.charCodeAt(i)) >>> 0;
-  return fallbackImagePool[(hash + offset) % fallbackImagePool.length];
+  const url = fallbackImagePool[(hash + offset) % fallbackImagePool.length];
+  // Pin to the same 16:9 frame the Sanity images are cropped to, so a fallback
+  // slide doesn't sit at a different zoom than the real photos beside it.
+  return `${url}&h=${HERO_IMAGE_HEIGHT}`;
 }
 
 type NormalisedProject = {
@@ -53,10 +61,12 @@ async function loadProject(slug: string): Promise<NormalisedProject | null> {
   try {
     const doc = await getProjectBySlug(slug);
     if (doc && doc.title) {
-      const heroFromSanity = safeUrlFor(doc.heroImage, 1600);
+      // Hero and gallery share one size: the frame they render in is the same,
+      // and matching URLs let HeroGallery drop a photo that appears in both.
+      const heroFromSanity = safeUrlFor(doc.heroImage, HERO_IMAGE_WIDTH, HERO_IMAGE_HEIGHT);
       const galleryFromSanity = Array.isArray(doc.gallery)
         ? doc.gallery
-            .map((g: SanityImage) => safeUrlFor(g, 1200))
+            .map((g: SanityImage) => safeUrlFor(g, HERO_IMAGE_WIDTH, HERO_IMAGE_HEIGHT))
             .filter((u: string | null): u is string => Boolean(u))
         : [];
       return {

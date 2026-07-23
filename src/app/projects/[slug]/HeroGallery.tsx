@@ -22,7 +22,10 @@ export function HeroGallery({
   location,
   period,
 }: Props) {
-  const allImages = [heroImageUrl, ...galleryUrls];
+  // Editors sometimes re-use the hero photo inside the gallery. Both resolve to
+  // the same URL now, so drop repeats — otherwise the same frame shows up twice
+  // per rotation and the duplicate React key breaks the crossfade.
+  const allImages = Array.from(new Set([heroImageUrl, ...galleryUrls].filter(Boolean)));
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
@@ -39,9 +42,11 @@ export function HeroGallery({
   ].filter((row) => row.value);
 
   // Small thumbnail strip — sits in the right column beneath the project info.
-  const thumbnailGrid = galleryUrls.length > 0 && (
+  // Derived from allImages (not galleryUrls) so a de-duplicated entry can't
+  // shift a thumbnail out of step with the slide it selects.
+  const thumbnailGrid = allImages.length > 1 && (
     <div className="grid grid-cols-4 gap-2">
-      {galleryUrls.slice(0, 4).map((url, i) => {
+      {allImages.slice(1, 5).map((url, i) => {
         const idx = i + 1;
         return (
           <button
