@@ -36,7 +36,7 @@ export default async function RentalEquipmentPage() {
             </div>
             <div className="lg:col-span-4 flex flex-col gap-5 lg:items-end">
               <p className="font-['Inter_Display',sans-serif] text-[16px] md:text-[18px] leading-[1.6] text-brand-gray-600 lg:text-right">
-                Every machine ships with a trained operator, full spec sheet, and the safety paperwork your main contractor already expects.
+                A modern fleet of specialist demolition equipment, available for short and long-term hire with experienced, factory-trained operators.
               </p>
             </div>
           </div>
