@@ -45,7 +45,7 @@ export function ServiceHero() {
 
         <div className="mt-10 pt-10 border-t border-white/15">
           <p className="font-['Inter_Display',sans-serif] font-normal text-[19px] md:text-[22px] leading-[1.5] text-white/85 max-w-2xl">
-            From 90-metre chimney towers to confined-space refractory works, every scope planned, sequenced, and delivered with the GCC&apos;s largest specialist robotic fleet.
+            Delivering engineered demolition solutions across the GCC, combining specialist equipment, experienced operators and proven methodologies to complete every project safely, efficiently and with precision.
           </p>
         </div>
 
