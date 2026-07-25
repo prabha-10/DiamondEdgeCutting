@@ -62,8 +62,9 @@ export function Hero() {
                 <div className="text-[9vw] md:text-[6rem] lg:text-[7.5rem] text-white">
                   WE CUT. WE DRILL.
                 </div>
-                <div className="text-[9vw] md:text-[6rem] lg:text-[7.5rem] text-white/55">
-                  WE DELIVER.
+                <div className="text-[9vw] md:text-[6rem] lg:text-[7.5rem]">
+                  <span className="text-white">WE </span>
+                  <span className="text-brand-red">DELIVER.</span>
                 </div>
               </h1>
             </div>
