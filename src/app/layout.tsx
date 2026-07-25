@@ -25,13 +25,13 @@ export const metadata: Metadata = {
     default: "Specialist Demolition Contractor Dubai & UAE | Diamond Edge Cutting",
   },
   description:
-    "GCC's largest robotic demolition fleet. Specialist controlled demolition, concrete cutting, equipment rental across Dubai, Abu Dhabi & UAE since 2008.",
+    "GCC's largest robotic demolition fleet. Specialist controlled demolition, concrete cutting, equipment rental across UAE & Middle East since 2008.",
   openGraph: {
     type: "website",
     siteName: "Diamond Edge Cutting",
     title: "Specialist Demolition Contractor Dubai & UAE | Diamond Edge Cutting",
     description:
-      "GCC's largest robotic demolition fleet. Specialist controlled demolition, concrete cutting, equipment rental across Dubai, Abu Dhabi & UAE since 2008.",
+      "GCC's largest robotic demolition fleet. Specialist controlled demolition, concrete cutting, equipment rental across UAE & Middle East since 2008.",
     url: SITE_URL,
     locale: "en_AE",
     images: [
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Specialist Demolition Contractor Dubai & UAE | Diamond Edge Cutting",
     description:
-      "GCC's largest robotic demolition fleet. Specialist controlled demolition, concrete cutting, equipment rental across Dubai, Abu Dhabi & UAE since 2008.",
+      "GCC's largest robotic demolition fleet. Specialist controlled demolition, concrete cutting, equipment rental across UAE & Middle East since 2008.",
     images: ["/dec-logo.png"],
   },
 };
