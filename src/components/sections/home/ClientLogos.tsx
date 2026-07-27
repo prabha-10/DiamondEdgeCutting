@@ -10,7 +10,7 @@ const clients: Client[] = [
   { name: "Emaar", file: "EMAAR.png" },
   { name: "ALEC", file: "ALEC.png" },
   { name: "Al Naboodah", file: "Al Naboodah.jpg" },
-  { name: "Al Tayer", file: "Al Tayer.jpg" },
+  { name: "Al Tayer Stocks", file: "ats-logo.svg" },
   { name: "Khansaheb", file: "Khansaheb.jpg" },
   { name: "McLaren", file: "McLaren.png" },
   { name: "Bond Interiors", file: "Bond Interiors.png" },
