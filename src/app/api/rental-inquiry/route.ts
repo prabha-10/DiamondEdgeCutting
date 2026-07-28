@@ -2,7 +2,11 @@ import { NextResponse } from "next/server";
 import { Resend } from "resend";
 import { rentalFormSchema } from "@/lib/rental-form-schema";
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Constructed only when the key is present: `new Resend(undefined)` throws at
+// module load, which fails the whole production build (not just this route) on
+// any environment without the key -- CI, or a host where it was never set.
+// Matches the guard in app/api/inquiries/route.ts.
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
 export async function POST(request: Request) {
   try {
@@ -28,6 +32,16 @@ export async function POST(request: Request) {
       equipment,
       notes,
     } = validatedData;
+
+    // Unlike /api/inquiries this route has no Sanity fallback, so a missing key
+    // means the lead is lost. Fail loudly rather than reporting a false success.
+    if (!resend) {
+      console.error("RESEND_API_KEY is not set; rental inquiry was not sent.");
+      return NextResponse.json(
+        { error: "Inquiries are temporarily unavailable. Please email info@diamondedgecutting.com." },
+        { status: 503 }
+      );
+    }
 
     // Send email via Resend
     const { data, error } = await resend.emails.send({
