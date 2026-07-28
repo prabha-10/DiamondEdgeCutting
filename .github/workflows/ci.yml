@@ -1,0 +1,68 @@
+name: CI
+
+# Runs on every push to dev/main and on every PR into them, so a build that
+# does not compile can never reach main -- and main is what Hostinger serves
+# to diamondedgecutting.com.
+on:
+  push:
+    branches: [dev, main]
+  pull_request:
+    branches: [dev, main]
+
+# A newer push to the same branch makes the in-flight run obsolete.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          # Matches the Node version Vercel builds this project with.
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # `next build` type-checks the whole project, so this is the real gate:
+      # if it passes, the branch is safe to merge into main.
+      #
+      # The Sanity secrets are optional. Without them the site builds against
+      # the bundled fallback content, which still catches every compile and
+      # type error. Add them under Settings > Secrets and variables > Actions
+      # if you want CI to build against the real CMS.
+      - name: Build
+        run: npm run build
+        env:
+          NEXT_PUBLIC_SANITY_PROJECT_ID: ${{ secrets.NEXT_PUBLIC_SANITY_PROJECT_ID }}
+          NEXT_PUBLIC_SANITY_DATASET: ${{ secrets.NEXT_PUBLIC_SANITY_DATASET }}
+          NEXT_PUBLIC_SANITY_API_VERSION: ${{ secrets.NEXT_PUBLIC_SANITY_API_VERSION }}
+          SANITY_API_TOKEN: ${{ secrets.SANITY_API_TOKEN }}
+
+  lint:
+    name: Lint (advisory)
+    runs-on: ubuntu-latest
+    # Non-blocking on purpose: the project has 7 pre-existing eslint errors
+    # (see DEPLOYMENT.md). Making this required today would leave every branch
+    # permanently red and train everyone to ignore the checkmark. Delete this
+    # line once those errors are cleared, so lint becomes a real gate.
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
