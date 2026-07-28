@@ -71,7 +71,15 @@ variables → Actions**:
 - `NEXT_PUBLIC_SANITY_API_VERSION`
 - `SANITY_API_TOKEN`
 
-**Vercel** builds `dev` and publishes it to the staging URL above. `vercel.json` switches
+**Vercel** builds `dev` and publishes it to the staging URL above. This relies on `dev`
+being set as Vercel's *production* branch — if it is only a preview branch, the URL sits
+behind a Vercel login and you cannot share it. That setting is not on the Git settings page
+where you would expect it:
+
+> Vercel → project → **Settings → Environments → Production → Branch Tracking** →
+> set the branch to `dev` → **Save**
+
+`vercel.json` switches
 off Vercel builds for `main` (`git.deploymentEnabled`), because `main` belongs to
 Hostinger — without it every merge would trigger a pointless second build. Delete that
 entry if you ever want a Vercel copy of `main` again.
