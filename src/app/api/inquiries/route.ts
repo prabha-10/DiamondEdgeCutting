@@ -22,14 +22,18 @@ const sanity = projectId
 
 const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
+// diamondedgecutting.com is verified in Resend (DKIM at resend._domainkey, SPF
+// and the SES feedback MX on the send. subdomain), so we send under our own
+// domain rather than Resend's shared onboarding@resend.dev sender -- that one
+// has no SPF/DKIM alignment with us and is spam-prone and rate limited.
+// Note this address only needs to exist in DNS, not as a real mailbox; staff
+// replies go to the visitor via replyTo below.
 const FROM_ADDRESS =
-  process.env.INQUIRY_FROM ?? "Diamond Edge Website <onboarding@resend.dev>";
+  process.env.INQUIRY_FROM ?? "Diamond Edge Website <website@diamondedgecutting.com>";
 const TO_ADDRESS = process.env.INQUIRY_TO ?? "info@diamondedgecutting.com";
-// CC defaults to empty until diamondedgecutting.com is verified in Resend.
-// While the from address is the Resend onboarding domain, Resend rejects any
-// recipient (including CC) other than the account owner's verified email.
-// After domain verification, set INQUIRY_CC=laxmikant@diamondedgecutting.com
-// in Vercel and the CC will resume.
+// CC defaults to empty. Set INQUIRY_CC=laxmikant@diamondedgecutting.com in the
+// host's environment config to add a second recipient. NB the live site is
+// served from Hostinger (hPanel), not Vercel, so env vars belong there.
 const CC_ADDRESSES = (process.env.INQUIRY_CC ?? "")
   .split(",")
   .map((a) => a.trim())
@@ -138,24 +142,30 @@ export async function POST(req: Request) {
 
   // 3. Send the email.
   if (resend) {
-    try {
-      const subject = `New rental inquiry, ${body.name}${
-        body.company ? ` (${body.company})` : ""
-      }`;
-      const text = [
-        `From: ${body.name} <${body.email}>`,
-        body.phone ? `Phone: ${body.phone}` : null,
-        body.company ? `Company: ${body.company}` : null,
-        body.projectLocation ? `Project location: ${body.projectLocation}` : null,
-        body.rentalDuration ? `Rental duration: ${body.rentalDuration}` : null,
-        equipmentLines ? `\nEquipment requested:\n${equipmentLines}` : null,
-        body.message ? `\nMessage:\n${body.message}` : null,
-        inquiryId ? `\nSanity inquiry ID: ${inquiryId}` : null,
-      ]
-        .filter(Boolean)
-        .join("\n");
+    const subject = `New rental inquiry, ${body.name}${
+      body.company ? ` (${body.company})` : ""
+    }`;
+    const text = [
+      `From: ${body.name} <${body.email}>`,
+      body.phone ? `Phone: ${body.phone}` : null,
+      body.company ? `Company: ${body.company}` : null,
+      body.projectLocation ? `Project location: ${body.projectLocation}` : null,
+      body.rentalDuration ? `Rental duration: ${body.rentalDuration}` : null,
+      equipmentLines ? `\nEquipment requested:\n${equipmentLines}` : null,
+      body.message ? `\nMessage:\n${body.message}` : null,
+      inquiryId ? `\nSanity inquiry ID: ${inquiryId}` : null,
+    ]
+      .filter(Boolean)
+      .join("\n");
 
-      await resend.emails.send({
+    // resend.emails.send() resolves with { data, error } and does NOT throw on
+    // an API rejection (unverified from-domain, revoked key, rate limit). The
+    // returned error therefore has to be inspected explicitly -- a try/catch
+    // alone would report a rejected send as a success and lose the lead
+    // silently. The catch is kept for transport-level failures (DNS, timeout).
+    let sendError: unknown = null;
+    try {
+      const { error } = await resend.emails.send({
         from: FROM_ADDRESS,
         to: TO_ADDRESS,
         cc: CC_ADDRESSES,
@@ -163,8 +173,13 @@ export async function POST(req: Request) {
         subject,
         text,
       });
+      sendError = error;
     } catch (err) {
-      console.error("[inquiries] Resend send failed:", err);
+      sendError = err;
+    }
+
+    if (sendError) {
+      console.error("[inquiries] Resend send failed:", sendError);
       // Email failure is reported back to the client so the visitor knows
       // to follow up via phone, but the Sanity record still exists.
       return NextResponse.json(

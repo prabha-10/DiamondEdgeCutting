@@ -20,7 +20,7 @@
     "framer-motion": "^12.38.0",
     "gsap": "^3.15.0",
     "lucide-react": "^1.11.0",
-    "next": "16.2.6",
+    "next": "16.2.12",
     "next-sanity": "^12.4.0",
     "next-sitemap": "^4.2.3",
     "react": "19.2.4",
@@ -35,15 +35,23 @@
     "Security patches for transitive dependencies. npm audit suggests DOWNGRADES",
     "for these (next@9.3.3, sanity@5.14.1, next-sanity@0.8.5) because it cannot",
     "find a forward fix -- never run `npm audit fix --force` on this project.",
-    "Each override is scoped to the parent that pulls the vulnerable copy, so the",
-    "already-safe copies elsewhere in the tree (uuid@13, js-yaml@4, postcss@8.5.10)",
-    "are left alone. Remove an entry once its parent ships the fix upstream."
+    "Each override is scoped to the vulnerable range, so already-safe copies",
+    "elsewhere in the tree are left alone. Remove an entry once its parent ships",
+    "the fix upstream.",
+    "brace-expansion: CVE-2026-14257 (DoS via unbounded expansion). Only 5.0.8",
+    "fixes it, so the 1.x/2.x copies (from eslint-config-next + @sanity/cli, both",
+    "build-time) are forced forward -- npm's only other fix is eslint@10 (major).",
+    "sharp: GHSA-f88m-g3jw-g9cj (libvips CVEs), pulled by next.",
+    "tar: GHSA-r292-9mhp-454m (uncontrolled recursion), pulled by @sanity/cli."
   ],
   "overrides": {
     "adm-zip@<0.6.0": "^0.6.0",
     "js-yaml@<3.15.0": "^3.15.0",
     "postcss@<8.5.10": "^8.5.10",
     "uuid@<11.1.1": "^11.1.1",
+    "brace-expansion": "^5.0.8",
+    "sharp@<0.35.0": "^0.35.0",
+    "tar@<=7.5.20": "^7.5.21",
     "next": {
       "postcss": "$postcss"
     }
