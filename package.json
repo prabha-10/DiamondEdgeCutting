@@ -42,7 +42,13 @@
     "fixes it, so the 1.x/2.x copies (from eslint-config-next + @sanity/cli, both",
     "build-time) are forced forward -- npm's only other fix is eslint@10 (major).",
     "sharp: GHSA-f88m-g3jw-g9cj (libvips CVEs), pulled by next.",
-    "tar: GHSA-r292-9mhp-454m (uncontrolled recursion), pulled by @sanity/cli."
+    "tar: GHSA-r292-9mhp-454m (uncontrolled recursion), pulled by @sanity/cli.",
+    "eslint.minimatch: fallout from the brace-expansion bump above, not a CVE.",
+    "brace-expansion 5 exports { expand }, but minimatch 3 (which eslint 9 still",
+    "pulls in) does `require('brace-expansion')` expecting a bare function, so",
+    "every `npm run lint` died with `expand is not a function`. minimatch 10 is",
+    "the version written against the new export shape. Drop this entry when",
+    "eslint stops depending on minimatch 3."
   ],
   "overrides": {
     "adm-zip@<0.6.0": "^0.6.0",
@@ -54,6 +60,9 @@
     "tar@<=7.5.20": "^7.5.21",
     "next": {
       "postcss": "$postcss"
+    },
+    "eslint": {
+      "minimatch": "^10.2.5"
     }
   },
   "devDependencies": {
