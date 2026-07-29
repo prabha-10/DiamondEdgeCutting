@@ -47,6 +47,9 @@ type InquiryBody = {
   // Either single equipmentId (model-detail form) or equipmentIds (cart).
   equipmentId?: string;
   equipmentIds?: string[];
+  // "Demolition Services" | "Equipment Rental" | "General" from the contact
+  // form. Absent from the equipment basket, which is always a rental enquiry.
+  inquiryType?: string;
   projectLocation?: string;
   rentalDuration?: string;
   message?: string;
@@ -101,6 +104,7 @@ export async function POST(req: Request) {
           _ref: id,
           _key: id,
         })),
+        inquiryType: body.inquiryType,
         projectLocation: body.projectLocation,
         rentalDuration: body.rentalDuration,
         message: body.message,
@@ -142,13 +146,18 @@ export async function POST(req: Request) {
 
   // 3. Send the email.
   if (resend) {
-    const subject = `New rental inquiry, ${body.name}${
+    // Two callers with different meanings: the contact form sends an explicit
+    // type, the equipment basket sends none and is always a rental enquiry.
+    // Defaulting to "rental" keeps basket subject lines exactly as they were.
+    const kind = body.inquiryType?.trim() || "rental";
+    const subject = `New ${kind} inquiry, ${body.name}${
       body.company ? ` (${body.company})` : ""
     }`;
     const text = [
       `From: ${body.name} <${body.email}>`,
       body.phone ? `Phone: ${body.phone}` : null,
       body.company ? `Company: ${body.company}` : null,
+      body.inquiryType ? `Inquiry type: ${body.inquiryType}` : null,
       body.projectLocation ? `Project location: ${body.projectLocation}` : null,
       body.rentalDuration ? `Rental duration: ${body.rentalDuration}` : null,
       equipmentLines ? `\nEquipment requested:\n${equipmentLines}` : null,

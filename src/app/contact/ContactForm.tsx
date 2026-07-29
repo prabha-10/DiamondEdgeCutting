@@ -26,6 +26,11 @@ type FormData = z.infer<typeof formSchema>;
 export function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  // Set when /api/inquiries answers 207: the enquiry was recorded but the
+  // email did not go out, so we ask the visitor to phone rather than let them
+  // leave believing someone has already seen it.
+  const [warning, setWarning] = useState<string | null>(null);
   const searchParams = useSearchParams();
   const preselectedInquiry = searchParams.get("inquiry") ?? "";
 
@@ -49,16 +54,55 @@ export function ContactForm() {
     }
 
     setIsSubmitting(true);
-    
+    setError(null);
+    setWarning(null);
+
+    // The inquiry schema has no field for the project timeline, so it is folded
+    // into the free-text message -- same approach InquiryModal takes for its
+    // project-start and operator fields. Inquiry type IS sent as its own field:
+    // it drives the email subject so staff can triage without opening it.
+    const message = [
+      data.description.trim(),
+      data.projectTimeline ? `Project timeline: ${data.projectTimeline}` : null,
+    ]
+      .filter(Boolean)
+      .join("\n\n");
+
     try {
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      console.log("Form data:", data);
-      
+      const response = await fetch("/api/inquiries", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: data.fullName,
+          email: data.email,
+          phone: data.phone,
+          company: data.company,
+          inquiryType: data.inquiryType,
+          projectLocation: data.projectLocation,
+          message,
+        }),
+      });
+
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(
+          typeof result?.error === "string" ? result.error : "Failed to submit inquiry"
+        );
+      }
+
+      // 207 counts as response.ok, so the warning has to be read explicitly --
+      // ignoring it would show a clean success for a lead that never arrived.
+      if (typeof result?.warning === "string") {
+        setWarning(result.warning);
+      }
+
       setIsSuccess(true);
       reset();
-    } catch (error) {
-      console.error("Error submitting form:", error);
-      alert("There was an error submitting your form. Please try again or call us directly.");
+    } catch (err) {
+      console.error("Error submitting form:", err);
+      const msg = err instanceof Error ? err.message : "Something went wrong.";
+      setError(`${msg} Please try again, or call us directly on the number above.`);
     } finally {
       setIsSubmitting(false);
     }
@@ -67,11 +111,22 @@ export function ContactForm() {
   if (isSuccess) {
     return (
       <div className="bg-brand-gray-50 p-12 text-center">
-        <h3 className="text-3xl font-bold text-brand-gray-900 mb-6 tracking-tight">Message Sent</h3>
+        <h3 className="text-3xl font-bold text-brand-gray-900 mb-6 tracking-tight">
+          {warning ? "Inquiry Received" : "Message Sent"}
+        </h3>
         <p className="text-brand-gray-700 mb-8 text-lg font-medium">
-          Thank you for reaching out. We have received your inquiry and will reply within 24 hours.
+          {warning
+            ? "We have logged your inquiry, but our email confirmation did not go through. Please call us directly so we can pick this up straight away."
+            : "Thank you for reaching out. We have received your inquiry and will reply within 24 hours."}
         </p>
-        <Button onClick={() => setIsSuccess(false)} variant="outline" className="rounded-full h-14 px-8 text-lg">
+        <Button
+          onClick={() => {
+            setIsSuccess(false);
+            setWarning(null);
+          }}
+          variant="outline"
+          className="rounded-full h-14 px-8 text-lg"
+        >
           Send Another Message
         </Button>
       </div>
@@ -194,6 +249,12 @@ export function ContactForm() {
         ></textarea>
         {errors.description && <span className="text-xs font-bold text-brand-red-dark mt-1">{errors.description.message}</span>}
       </div>
+
+      {error && (
+        <p role="alert" className="text-sm font-bold text-brand-red-dark mt-1">
+          {error}
+        </p>
+      )}
 
       <Button type="submit" size="lg" disabled={isSubmitting} className="self-start mt-2" variant="brand">
         {isSubmitting ? "Sending..." : "Submit Inquiry"}
