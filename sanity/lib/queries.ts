@@ -346,3 +346,99 @@ export async function getAllRentalCategoryCards() {
   if (!sanityConfigured) return []
   return sanityClient.fetch(ALL_RENTAL_CATEGORY_CARDS_QUERY)
 }
+
+// ─── Blog queries ───────────────────────────────────────────────────────────
+//
+// Consts and helpers sit together down here rather than following the file's
+// older split layout, so the whole blog surface can be read in one place.
+//
+// Every query excludes drafts. The client authenticates with a token that CAN
+// read drafts, so without the filter a half-written article would appear on the
+// live archive the moment it was saved. The project queries above predate this
+// concern (a draft project is harmless); for a blog it is the difference
+// between publishing and not.
+
+// Card fields for the /blog archive. `category` is flattened to exactly what
+// the badge needs — title for the label, colour for the chip, slug for the
+// filter pills to match on.
+//
+// `body` is pulled here only so src/lib/blog.ts can count words for the "N min
+// read" line. It is dropped during normalisation, so no article text ever
+// reaches the browser from the archive — the cost is one server-side fetch a
+// minute (revalidate = 60), not page weight.
+const ALL_POSTS_QUERY = `*[_type == "post" && !(_id in path("drafts.**"))] | order(publishedAt desc) {
+  _id,
+  title,
+  "slug": slug.current,
+  excerpt,
+  heroImage,
+  publishedAt,
+  featured,
+  body,
+  "category": category->{ title, "slug": slug.current, color },
+  "author": author->{ name, role }
+}`
+
+// Full article, including the Portable Text body and the author's bio panel.
+const POST_BY_SLUG_QUERY = `*[_type == "post" && !(_id in path("drafts.**")) && slug.current == $slug][0] {
+  _id,
+  title,
+  "slug": slug.current,
+  excerpt,
+  heroImage,
+  publishedAt,
+  body,
+  "category": category->{ title, "slug": slug.current, color },
+  "author": author->{ name, role, photo, bio, linkedin }
+}`
+
+const ALL_POST_SLUGS_QUERY = `*[_type == "post" && !(_id in path("drafts.**"))] { "slug": slug.current }`
+
+// Candidates for the "Related articles" row. Deliberately over-fetches: the
+// resolver puts same-category posts first and tops up with recent ones, so a
+// thin category still fills all three cards. 12 is enough to guarantee that
+// without pulling the whole archive.
+const RELATED_POSTS_QUERY = `*[_type == "post" && !(_id in path("drafts.**")) && slug.current != $slug] | order(publishedAt desc) [0...12] {
+  _id,
+  title,
+  "slug": slug.current,
+  excerpt,
+  heroImage,
+  publishedAt,
+  body,
+  "category": category->{ title, "slug": slug.current, color }
+}`
+
+// Drives the order of the category filter pills on /blog — Studio's "Display
+// Order" is the source of truth, same contract as the /projects pills.
+const ALL_POST_CATEGORIES_QUERY = `*[_type == "postCategory" && !(_id in path("drafts.**"))] | order(coalesce(order, 999) asc, title asc) {
+  title,
+  "slug": slug.current,
+  color,
+  order
+}`
+
+export async function getAllPosts() {
+  if (!sanityConfigured) return []
+  return sanityClient.fetch(ALL_POSTS_QUERY)
+}
+
+export async function getPostBySlug(slug: string) {
+  if (!sanityConfigured) return null
+  return sanityClient.fetch(POST_BY_SLUG_QUERY, { slug })
+}
+
+export async function getAllPostSlugs() {
+  if (!sanityConfigured) return []
+  return sanityClient.fetch(ALL_POST_SLUGS_QUERY)
+}
+
+export async function getRelatedPosts(slug: string) {
+  if (!sanityConfigured) return []
+  return sanityClient.fetch(RELATED_POSTS_QUERY, { slug })
+}
+
+export async function getAllPostCategories() {
+  if (!sanityConfigured) return []
+  return sanityClient.fetch(ALL_POST_CATEGORIES_QUERY)
+}

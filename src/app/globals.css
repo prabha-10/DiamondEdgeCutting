@@ -19,6 +19,13 @@
   --color-brand-gray-900: #0a0a0a; /* Darker, almost true black for highest contrast */
   --color-brand-charcoal: #818181; /* Brand mid-grey — active states, footer, accent surfaces */
 
+  /* Blog category badges. Everything structural on /blog stays brand-red —
+   * eyebrows, CTAs, active filter pills. Only the category chip varies, so an
+   * editor can colour-code the archive from Studio without touching code. */
+  --color-cat-blue: #2563eb;
+  --color-cat-orange: #ea580c;
+  --color-cat-teal: #0d9488;
+
   /* Type system. Switzer is the body sans, Big Shoulders Display is the
    * industrial display headline face used site-wide on h1/h2/h3 in
    * editorial sections. JetBrains Mono powers the small uppercase labels. */

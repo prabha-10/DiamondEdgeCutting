@@ -17,6 +17,7 @@ export function Header({ rentalCategories }: { rentalCategories?: { title: strin
     { name: "Demolition Services", href: "/demolition-services" },
     { name: "Rental Equipment", href: "/rental-equipment" },
     { name: "Projects", href: "/projects" },
+    { name: "Blog", href: "/blog" },
     { name: "Contact", href: "/contact" },
   ];
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

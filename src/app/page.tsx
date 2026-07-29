@@ -6,6 +6,7 @@ import { Services } from "@/components/sections/home/Services";
 import { ProjectsTeaser } from "@/components/sections/home/ProjectsTeaser";
 import { Certifications } from "@/components/sections/home/Certifications";
 import { Leadership } from "@/components/sections/home/Leadership";
+import { BlogTeaser } from "@/components/sections/home/BlogTeaser";
 import { getServiceContent } from "@/lib/content";
 
 // Re-fetch Sanity content (featured projects, team) at most once a minute so
@@ -16,6 +17,8 @@ export const revalidate = 60;
 // Hero → Certifications (Block 2) → Who we are + Mission/Vision (one block)
 // → Services → Featured Projects → Guinness record → Team → Clients.
 // Mission/Vision is merged into Overview; the closing red CTA was removed.
+// BlogTeaser closes the page, added after the /blog section was built — it
+// renders nothing until the first article is published.
 
 export default async function Home() {
   const services = await getServiceContent();
@@ -29,6 +32,7 @@ export default async function Home() {
       <Leadership />
       <ProjectsTeaser />
       <ClientLogos />
+      <BlogTeaser />
     </>
   );
 }

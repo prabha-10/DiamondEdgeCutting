@@ -14,5 +14,6 @@ export const navigationLinks = [
   { name: "Demolition Services", href: "/demolition-services" },
   { name: "Rental Equipment", href: "/rental-equipment", dropdown: rentalCategories },
   { name: "Projects", href: "/projects" },
+  { name: "Blog", href: "/blog" },
   { name: "Contact", href: "/contact" },
 ];
